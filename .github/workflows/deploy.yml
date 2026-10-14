@@ -37,6 +37,11 @@ jobs:
       - name: Pages sozlamalarini aniqlash
         id: pages
         uses: actions/configure-pages@v5
+        with:
+          # Pages hali yoqilmagan bo'lsa, action uni o'zi yoqadi va manbani
+          # "GitHub Actions" ga qo'yadi. Shuning uchun omborda qo'lda hech narsa
+          # sozlash shart emas — bu boshqa omborga ko'chirilganda ham ishlaydi.
+          enablement: true
 
       - name: Bog'liqliklarni o'rnatish
         # Playwright faqat e2e testlar uchun kerak; Pages build'ida brauzer
