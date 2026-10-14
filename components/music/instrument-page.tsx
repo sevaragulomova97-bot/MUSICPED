@@ -238,19 +238,46 @@ export function InstrumentPage({
             </CardContent>
           </Card>
 
-          {settings && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Sozlamalar</CardTitle>
-              </CardHeader>
-              <CardContent>
-                {settings({
-                  setVolume: instrument.setVolume,
-                  setReverb: instrument.setReverb,
-                })}
-              </CardContent>
-            </Card>
-          )}
+          <Card>
+            <CardHeader>
+              <CardTitle>Sozlamalar</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-4">
+              {instrument.timbres.length > 1 && (
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="tembr" className="text-sm text-ink-muted">
+                    Tovush turi
+                  </label>
+                  <select
+                    id="tembr"
+                    value={instrument.timbre.id}
+                    onChange={(e) => {
+                      const next = instrument.timbres.find(
+                        (t) => t.id === e.target.value,
+                      );
+                      if (next) instrument.setTimbre(next);
+                    }}
+                    className="h-10 rounded-lg border border-border-subtle bg-surface px-3 text-sm text-ink"
+                  >
+                    {instrument.timbres.map((t) => (
+                      <option key={t.id} value={t.id}>
+                        {t.label}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="text-xs text-ink-muted">
+                    Qaysi variant haqiqiyroq eshitilsa, o&apos;shani tanlang —
+                    tanlovingiz eslab qolinadi.
+                  </p>
+                </div>
+              )}
+
+              {settings?.({
+                setVolume: instrument.setVolume,
+                setReverb: instrument.setReverb,
+              })}
+            </CardContent>
+          </Card>
         </div>
 
         {/* Mashqlar */}

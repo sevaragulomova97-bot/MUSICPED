@@ -4,6 +4,13 @@ import * as React from "react";
 import { createInstrument, type Instrument, playEvents } from "@/lib/audio/instruments";
 import { type InstrumentKind } from "@/lib/domain/instruments";
 import { NoteRecorder, type NoteEvent } from "@/lib/audio/engine";
+import { useHydrated } from "@/lib/use-hydrated";
+import {
+  defaultTimbre,
+  TIMBRE_STORAGE_PREFIX,
+  type Timbre,
+  timbresFor,
+} from "@/lib/audio/timbres";
 
 export type InstrumentState = {
   /** Audio ishga tushganmi (birinchi bosishdan keyin) */
@@ -20,7 +27,31 @@ export type InstrumentState = {
   events: NoteEvent[];
   /** Hozir bosilgan notalar — klavishlarni yoritish uchun */
   active: ReadonlySet<string>;
+  /** Tanlangan tembr */
+  timbre: Timbre;
+  /** Shu cholg'u uchun mavjud tembrlar */
+  timbres: Timbre[];
 };
+
+/** Tanlangan tembrni brauzer xotirasidan o'qiydi (yo'q bo'lsa — birinchisi). */
+function readStoredTimbre(kind: InstrumentKind): Timbre {
+  const variants = timbresFor(kind);
+  try {
+    const id = window.localStorage.getItem(`${TIMBRE_STORAGE_PREFIX}${kind}`);
+    return variants.find((t) => t.id === id) ?? variants[0];
+  } catch {
+    // Shaxsiy rejim yoki o'chirilgan saqlash — standart tembr ishlatiladi.
+    return variants[0];
+  }
+}
+
+function writeStoredTimbre(kind: InstrumentKind, id: string) {
+  try {
+    window.localStorage.setItem(`${TIMBRE_STORAGE_PREFIX}${kind}`, id);
+  } catch {
+    // Saqlab bo'lmasa ham joriy sessiyada tanlov ishlaydi.
+  }
+}
 
 /**
  * Cholg'u bilan ishlashning umumiy mantig'i: yaratish, chalish, yozib olish,
@@ -36,6 +67,17 @@ export function useInstrument(kind: InstrumentKind) {
 
   const [ready, setReady] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  /**
+   * Tembr tanlovi.
+   *
+   * Server renderida `localStorage` yo'q, shuning uchun birinchi render
+   * standart tembr bilan chiqadi va hidratsiyadan keyingina saqlangan tanlov
+   * qo'llanadi — shunda SSR va klient mos keladi. Foydalanuvchi o'zi
+   * tanlasa, `chosen` ustun turadi.
+   */
+  const hydrated = useHydrated();
+  const [chosen, setChosen] = React.useState<Timbre | null>(null);
+  const timbre = chosen ?? (hydrated ? readStoredTimbre(kind) : defaultTimbre(kind));
   const [usingFallback, setUsingFallback] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const [recording, setRecording] = React.useState(false);
@@ -68,7 +110,7 @@ export function useInstrument(kind: InstrumentKind) {
     if (pendingRef.current) return pendingRef.current;
 
     setLoading(true);
-    pendingRef.current = createInstrument(kind)
+    pendingRef.current = createInstrument(kind, timbre.id)
       .then((instrument) => {
         instrumentRef.current = instrument;
         setReady(true);
@@ -89,7 +131,7 @@ export function useInstrument(kind: InstrumentKind) {
       });
 
     return pendingRef.current;
-  }, [kind]);
+  }, [kind, timbre.id]);
 
   const attack = React.useCallback(
     async (note: string, velocity = 0.8) => {
@@ -185,6 +227,30 @@ export function useInstrument(kind: InstrumentKind) {
     instrumentRef.current?.setReverb(wet);
   }, []);
 
+  /**
+   * Tembrni almashtiradi.
+   *
+   * Joriy cholg'u butunlay tashlanadi — namunalar boshqa papkadan keladi,
+   * shuning uchun uni «qayta sozlab» bo'lmaydi. Yangisi keyingi chalishda
+   * yaratiladi.
+   */
+  const setTimbre = React.useCallback(
+    (next: Timbre) => {
+      stopPlaybackRef.current?.();
+      stopPlaybackRef.current = null;
+      instrumentRef.current?.dispose();
+      instrumentRef.current = null;
+      pendingRef.current = null;
+      setPlaying(false);
+      setReady(false);
+      setUsingFallback(false);
+      setActive(new Set());
+      setChosen(next);
+      writeStoredTimbre(kind, next.id);
+    },
+    [kind],
+  );
+
   const clear = React.useCallback(() => {
     stopPlaybackRef.current?.();
     stopPlaybackRef.current = null;
@@ -201,6 +267,8 @@ export function useInstrument(kind: InstrumentKind) {
     playing,
     events,
     active,
+    timbre,
+    timbres: timbresFor(kind),
   };
 
   return {
@@ -215,6 +283,7 @@ export function useInstrument(kind: InstrumentKind) {
     stopPlayback,
     setVolume,
     setReverb,
+    setTimbre,
     clear,
   };
 }

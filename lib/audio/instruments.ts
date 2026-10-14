@@ -7,6 +7,12 @@ import {
   type InstrumentKind,
   isSustained,
 } from "@/lib/domain/instruments";
+import {
+  findTimbre,
+  SAMPLE_NOTES,
+  type Shaping,
+  type Timbre,
+} from "@/lib/audio/timbres";
 import { asset } from "@/lib/utils";
 
 /**
@@ -28,81 +34,6 @@ import { asset } from "@/lib/utils";
  */
 
 type Tone = Awaited<ReturnType<typeof loadTone>>;
-
-/** Namunalar olingan notalar (har 3 yarim tonda bitta). */
-const SAMPLE_NOTES = [
-  "C2", "Eb2", "Gb2", "A2",
-  "C3", "Eb3", "Gb3", "A3",
-  "C4", "Eb4", "Gb4", "A4",
-  "C5", "Eb5", "Gb5", "A5",
-  "C6",
-];
-
-type Shaping = {
-  /** Past chastotalarni kesish (Hz) */
-  highpass?: number;
-  /** Yuqori chastotalarni kesish (Hz) */
-  lowpass?: number;
-  /** Yorqinlikni oshirish/kamaytirish (dB, 4 kHz atrofida) */
-  presence?: number;
-  reverbDecay: number;
-  reverbWet: number;
-  volumeDb: number;
-  /** Nota qo'yib yuborilgandan keyin so'nish vaqti (soniya) */
-  release?: number;
-};
-
-type SampledSpec = {
-  type: "sampled";
-  folder: string;
-  shaping: Shaping;
-};
-
-const SAMPLED: Record<Exclude<InstrumentKind, "doira">, SampledSpec> = {
-  pianino: {
-    type: "sampled",
-    folder: "piano",
-    shaping: { reverbDecay: 1.8, reverbWet: 0.16, volumeDb: -6, release: 1.0 },
-  },
-  gitara: {
-    type: "sampled",
-    folder: "nylon",
-    shaping: { reverbDecay: 1.6, reverbWet: 0.18, volumeDb: -4, release: 0.9 },
-  },
-  dutor: {
-    // Dutor nayloniy/ipak torli, yumshoq va biroz dimog'i tovushli cholg'u:
-    // gitara namunasining yuqori chastotalari yumshatiladi.
-    type: "sampled",
-    folder: "nylon",
-    shaping: {
-      lowpass: 3400,
-      presence: -2,
-      reverbDecay: 2.2,
-      reverbWet: 0.24,
-      volumeDb: -3,
-      release: 1.3,
-    },
-  },
-  rubob: {
-    // Rubob metall torli, yorqin va jarangdor: metall torli gitara namunasiga
-    // yuqori chastotalar qo'shiladi va reverb uzaytiriladi.
-    type: "sampled",
-    folder: "steel",
-    shaping: {
-      highpass: 110,
-      presence: 4,
-      reverbDecay: 2.6,
-      reverbWet: 0.28,
-      volumeDb: -5,
-      release: 1.1,
-    },
-  },
-  nay: {
-    type: "sampled",
-    folder: "flute",
-    shaping: { reverbDecay: 2.0, reverbWet: 0.22, volumeDb: -8, release: 0.5 },
-  },
-};
 
 /* ──────────────────────────── Interfeys ──────────────────────────── */
 
@@ -184,19 +115,19 @@ function buildChain(T: Tone, shaping: Shaping): Chain {
 
 async function createSampled(
   T: Tone,
-  kind: Exclude<InstrumentKind, "doira">,
+  kind: InstrumentKind,
+  timbre: Timbre,
 ): Promise<Instrument> {
-  const spec = SAMPLED[kind];
-  const chain = buildChain(T, spec.shaping);
+  const chain = buildChain(T, timbre.shaping);
 
   const urls = Object.fromEntries(SAMPLE_NOTES.map((n) => [n, `${n}.mp3`]));
 
   const sampler = new T.Sampler({
     urls,
-    baseUrl: asset(`/audio/${spec.folder}/`),
-    release: spec.shaping.release ?? 1,
+    baseUrl: asset(`/audio/${timbre.folder}/`),
+    release: timbre.shaping.release ?? 1,
   }).connect(chain.input);
-  sampler.volume.value = spec.shaping.volumeDb;
+  sampler.volume.value = timbre.shaping.volumeDb;
 
   // Namunalar yuklanmaguncha kutamiz — aks holda birinchi nota jim chiqadi.
   await T.loaded();
@@ -221,12 +152,8 @@ async function createSampled(
 
 /* ─────────────────────────── Doira (zarbli) ─────────────────────────── */
 
-async function createDoira(T: Tone): Promise<Instrument> {
-  const chain = buildChain(T, {
-    reverbDecay: 1.1,
-    reverbWet: 0.1,
-    volumeDb: -4,
-  });
+async function createDoira(T: Tone, timbre: Timbre): Promise<Instrument> {
+  const chain = buildChain(T, timbre.shaping);
 
   const players = new T.Players({
     urls: {
@@ -234,17 +161,19 @@ async function createDoira(T: Tone): Promise<Instrument> {
       tak: "tak.mp3",
       qarsak: "qarsak.mp3",
     },
-    baseUrl: asset("/audio/doira/"),
+    baseUrl: asset(`/audio/${timbre.folder}/`),
   }).connect(chain.input);
-  players.volume.value = -4;
+  players.volume.value = timbre.shaping.volumeDb;
 
   await T.loaded();
 
   const fire = (stroke: string, velocity: number) => {
     if (!DOIRA_ZARBLARI.includes(stroke as DoiraStroke)) return;
     const player = players.player(stroke);
-    // Zarb kuchi — har bir urish uchun alohida ovoz balandligi.
-    player.volume.value = -4 + (velocity - 1) * 14;
+    // Faqat zarb kuchi — tembr balandligi guruh darajasida (`players.volume`)
+    // allaqachon qo'llangan. Ikkalasini qo'shish balandlikni ikki barobar
+    // oshirib yuborardi va tembrlarni sozlashni imkonsiz qilardi.
+    player.volume.value = (velocity - 1) * 14;
     player.start();
   };
 
@@ -351,11 +280,15 @@ function createFallback(T: Tone, kind: InstrumentKind): Instrument {
  * Namunalarni yuklab bo'lmasa (tarmoq yo'q, fayl topilmadi) sintezga
  * tushiladi — cholg'u baribir ishlaydi, faqat tembri soddaroq bo'ladi.
  */
-export async function createInstrument(kind: InstrumentKind): Promise<Instrument> {
+export async function createInstrument(
+  kind: InstrumentKind,
+  timbreId?: string | null,
+): Promise<Instrument> {
   const T = await startAudio();
+  const timbre = findTimbre(kind, timbreId);
   try {
-    if (kind === "doira") return await createDoira(T);
-    return await createSampled(T, kind);
+    if (kind === "doira") return await createDoira(T, timbre);
+    return await createSampled(T, kind, timbre);
   } catch (cause) {
     console.warn("Namunalarni yuklab bo'lmadi, sintezga o'tilmoqda:", cause);
     return createFallback(T, kind);

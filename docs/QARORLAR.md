@@ -203,3 +203,26 @@ Bu yerda loyiha davomida qabul qilingan texnik qarorlar va ularning sabablari yo
 **Qaror.** `sustained` (pianino, nay) — bosilib turiladi; `plucked` (gitara, dutor, rubob) — bir marta chertiladi; `percussive` (doira) — zarb.
 
 **Sabab.** Avval faqat ikki toifa bor edi va chertma cholg'ular 140 ms dan keyin majburan to'xtatilardi. Namunali ovozda bu gitara yozuvini o'rtasidan kesib tashlardi — tabiiy so'nish yo'qolardi. Endi chertma cholg'u namunasi oxirigacha jaranglaydi, yorqin belgilash esa faqat ko'rinish uchun 180 ms dan keyin o'chadi.
+
+
+---
+
+## B3++ — Tembr tanlovi foydalanuvchiga berildi
+
+### Q27. Qaysi tovush «haqiqiy» ekanini kod emas, quloq hal qiladi
+
+**Qaror.** Dutor, rubob, gitara va doira uchun bir nechta tembr varianti qo'shildi. Har bir cholg'u sahifasida «Tovush turi» ro'yxati bor, tanlov brauzerda eslab qolinadi.
+
+**Sabab.** Dutor va rubob uchun GM to'plamida to'g'ridan-to'g'ri mos keladigan yozuv yo'q, shuning uchun yaqinlashtirish kerak. Lekin qaysi yaqinlashtirish yaxshiroq ekanini **o'lchab bo'lmaydi** — buni faqat eshitgan odam aytadi. Men signal borligini va balandlikni o'lchayman, tembrni emas. Shuning uchun tanlov kodda qotirilmadi.
+
+**Variantlar.** Doira — 4 ta (tom+bongo+daf, chuqur ramkali baraban, past va to'liq, orkestr to'plami). Rubob — 4 ta (metall torli gitara, klavesin, klavinet, pitsikato). Dutor — 3 ta. Gitara — 2 ta (nayloniy va metall tor).
+
+### Q28. Tembrlar balandligi o'lchab tenglashtirildi
+
+**Qaror.** Har bir doira varianti brauzerda o'lchandi va `volumeDb` qiymati natijaga qarab sozlandi: cho'qqi barcha variantlarda ~0,3.
+
+**Sabab.** Namunalar turli manbalardan kelgani uchun balandligi 4 barobargacha farq qilardi — variantni almashtirganda ovoz keskin sakrardi.
+
+**Yo'l-yo'lakay topilgan xato.** Doirada balandlik **ikki marta** qo'llanar ekan: bir marta `Players` guruhiga, ikkinchi marta har bir zarbga. Shu sababli sozlash mantiqsiz ishlardi (−1 dB va +11 dB orasida 16 barobar farq, 4 barobar o'rniga). Endi guruh tembr balandligini, zarb esa faqat urish kuchini belgilaydi.
+
+**Metodologik eslatma.** Dastlabki o'lchovlar noto'g'ri edi: tembr almashtirilganda eski tugunlar tashlanadi va bu «pop» beradi, u esa cho'qqi sifatida qayd etilardi. To'g'ri natija har bir variantni **alohida, toza sahifada** o'lchaganda olindi.
