@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="MusicPed">
+  <rect width="512" height="512" rx="112" fill="#7C5CFF"/>
+  <g fill="#ffffff">
+    <path d="M186 104 L378 84 V130 L186 150 Z"/>
+    <rect x="186" y="104" width="26" height="248" rx="13"/>
+    <rect x="352" y="84" width="26" height="238" rx="13"/>
+    <ellipse cx="162" cy="334" rx="54" ry="40" transform="rotate(-22 162 334)"/>
+    <ellipse cx="328" cy="304" rx="54" ry="40" transform="rotate(-22 328 304)"/>
+  </g>
+</svg>

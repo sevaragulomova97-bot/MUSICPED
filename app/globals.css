@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+/* next-themes `class` strategiyasi bilan ishlashi uchun */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ──────────────────────────────────────────────────────────────
+   DIZAYN TOKENLARI — barcha ranglar faqat shu yerda belgilanadi.
+   Komponentlarda hech qachon to'g'ridan-to'g'ri hex yozilmaydi.
+   ────────────────────────────────────────────────────────────── */
+:root {
+  /* Fon va yuzalar */
+  --mp-bg: #f5f7fb;
+  --mp-surface: #ffffff;
+  --mp-surface-muted: #eef2f9;
+  --mp-border: #e2e8f3;
+
+  /* Matn */
+  --mp-text: #0f172a;
+  --mp-text-muted: #64748b;
+  --mp-text-inverse: #ffffff;
+
+  /* Brend ranglari */
+  --mp-primary: #3b5bdb;
+  --mp-primary-hover: #3550c4;
+  --mp-primary-soft: #e8edfc;
+  --mp-secondary: #7c5cff;
+  --mp-secondary-soft: #efeaff;
+
+  /* Holat ranglari */
+  --mp-success: #22c55e;
+  --mp-success-soft: #dcfce7;
+  --mp-warning: #f59e0b;
+  --mp-warning-soft: #fef3c7;
+  --mp-danger: #ef4444;
+  --mp-danger-soft: #fee2e2;
+
+  /* Yon panel (sidebar) */
+  --mp-sidebar: #14224a;
+  --mp-sidebar-hover: #1e3163;
+  --mp-sidebar-active: #2a4285;
+  --mp-sidebar-text: #c7d2e8;
+  --mp-sidebar-text-active: #ffffff;
+
+  /* Yo'nalish ranglari — 4 ta yo'nalish uchun qat'iy tartibdagi kategorik palitra.
+     Grafiklarda ham shu ranglar ishlatiladi; tartib hech qachon aylantirilmaydi. */
+  --mp-dir-nazariya: #3b5bdb;
+  --mp-dir-ijro: #14b8a6;
+  --mp-dir-metodika: #7c5cff;
+  --mp-dir-kasbiy: #f59e0b;
+
+  --mp-radius: 1rem;
+  --mp-shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 4px 16px rgb(15 23 42 / 0.06);
+}
+
+.dark {
+  --mp-bg: #0b1222;
+  --mp-surface: #141c30;
+  --mp-surface-muted: #1b2540;
+  --mp-border: #27324f;
+
+  --mp-text: #e8edf7;
+  --mp-text-muted: #94a3bc;
+  --mp-text-inverse: #0b1222;
+
+  --mp-primary: #6b87f0;
+  --mp-primary-hover: #7f98f5;
+  --mp-primary-soft: #1d2a52;
+  --mp-secondary: #9d84ff;
+  --mp-secondary-soft: #2a2152;
+
+  --mp-success: #4ade80;
+  --mp-success-soft: #14321f;
+  --mp-warning: #fbbf24;
+  --mp-warning-soft: #3a2a08;
+  --mp-danger: #f87171;
+  --mp-danger-soft: #3a1414;
+
+  --mp-sidebar: #0d1428;
+  --mp-sidebar-hover: #182344;
+  --mp-sidebar-active: #243360;
+  --mp-sidebar-text: #a9b6d4;
+  --mp-sidebar-text-active: #ffffff;
+
+  /* Qorong'i rejim uchun alohida tanlangan qadamlar (avtomatik aylantirish emas):
+     OKLCH L 0.48–0.67 oralig'ida, rang ko'rlik (protan/deutan/tritan) ajratilishi
+     va #141c30 yuzasiga nisbatan >= 3:1 kontrast bo'yicha tekshirilgan. */
+  --mp-dir-nazariya: #6682ea;
+  --mp-dir-ijro: #00a190;
+  --mp-dir-metodika: #8c74e9;
+  --mp-dir-kasbiy: #b08300;
+
+  --mp-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 16px rgb(0 0 0 / 0.35);
+}
+
+@theme inline {
+  --color-bg: var(--mp-bg);
+  --color-surface: var(--mp-surface);
+  --color-surface-muted: var(--mp-surface-muted);
+  --color-border-subtle: var(--mp-border);
+
+  --color-ink: var(--mp-text);
+  --color-ink-muted: var(--mp-text-muted);
+  --color-ink-inverse: var(--mp-text-inverse);
+
+  --color-primary: var(--mp-primary);
+  --color-primary-hover: var(--mp-primary-hover);
+  --color-primary-soft: var(--mp-primary-soft);
+  --color-secondary: var(--mp-secondary);
+  --color-secondary-soft: var(--mp-secondary-soft);
+
+  --color-success: var(--mp-success);
+  --color-success-soft: var(--mp-success-soft);
+  --color-warning: var(--mp-warning);
+  --color-warning-soft: var(--mp-warning-soft);
+  --color-danger: var(--mp-danger);
+  --color-danger-soft: var(--mp-danger-soft);
+
+  --color-sidebar: var(--mp-sidebar);
+  --color-sidebar-hover: var(--mp-sidebar-hover);
+  --color-sidebar-active: var(--mp-sidebar-active);
+  --color-sidebar-ink: var(--mp-sidebar-text);
+  --color-sidebar-ink-active: var(--mp-sidebar-text-active);
+
+  --color-dir-nazariya: var(--mp-dir-nazariya);
+  --color-dir-ijro: var(--mp-dir-ijro);
+  --color-dir-metodika: var(--mp-dir-metodika);
+  --color-dir-kasbiy: var(--mp-dir-kasbiy);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-manrope), var(--font-inter), ui-sans-serif, sans-serif;
+
+  --shadow-card: var(--mp-shadow);
+  --radius-card: var(--mp-radius);
+}
+
+@layer base {
+  * {
+    border-color: var(--mp-border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--mp-bg);
+    color: var(--mp-text);
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  /* Klaviatura bilan boshqarishda fokus doim ko'rinadi (WCAG 2.4.7) */
+  :focus-visible {
+    outline: 2px solid var(--mp-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Harakatni kamaytirish rejimini hurmat qilamiz */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Faqat ekran o'quvchi uchun ko'rinadigan matn */
+  .sr-only-focusable:not(:focus):not(:focus-within) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}

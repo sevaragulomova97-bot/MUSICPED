@@ -1,0 +1,76 @@
+name: GitHub Pages'ga joylash
+
+# Loyiha sof statik sayt — build natijasi (`out/`) to'g'ridan-to'g'ri Pages'ga
+# yuklanadi. Hech qanday server, baza yoki pullik xizmat ishlatilmaydi.
+
+on:
+  push:
+    branches:
+      - main
+      - claude/musicped-account-storage-dcg5ox
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Bir vaqtda faqat bitta joylash ketsin; yangisi eskisini kutadi.
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Qurish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodni olish
+        uses: actions/checkout@v4
+
+      - name: Node.js o'rnatish
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Pages sozlamalarini aniqlash
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Bog'liqliklarni o'rnatish
+        # Playwright faqat e2e testlar uchun kerak; Pages build'ida brauzer
+        # yuklab olish shart emas va u ~150 MB trafik va bir necha daqiqa vaqt oladi.
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Testlar
+        run: npm test --if-present
+
+      - name: Build
+        # `base_path` omborning manzilidan avtomatik olinadi, masalan `/MusicPed`.
+        # Shu sababli ombor nomi o'zgarsa ham hech narsani qo'lda tuzatish shart emas.
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: npm run build
+
+      - name: Natijani artefakt sifatida yuklash
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    name: Joylash
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: GitHub Pages'ga joylash
+        id: deployment
+        uses: actions/deploy-pages@v4
