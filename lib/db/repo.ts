@@ -5,14 +5,20 @@ import {
   type StoredActivity,
   type StoredDiagnostic,
   type StoredLearningPath,
+  type StoredPortfolioItem,
   type StoredProfile,
   type StoredProgress,
+  type StoredRecording,
+  type StoredSubmission,
 } from "@/lib/db/schema";
 import { buildLearningPath } from "@/lib/personalization";
 import {
   type AreaScores,
+  type BloomLevel,
+  type DiagnosticArea,
   type DiagnosticKind,
   overallScore,
+  type TaskType,
 } from "@/lib/domain/types";
 import { detectProfileType } from "@/lib/personalization";
 
@@ -186,6 +192,131 @@ export async function recentActivity(userId: string, limit = 10) {
   return rows
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
     .slice(0, limit);
+}
+
+
+/* ──────────────────── Cholg'u yozuvlari va mashqlar ──────────────────── */
+
+/**
+ * Virtual cholg'udagi yozuvni saqlaydi va uni portfolioga ham qo'shadi.
+ *
+ * Audio fayl emas, nota hodisalari saqlanadi — bu yuzlab marta yengil va
+ * qayta chalinganda aynan o'sha tembr bilan yangraydi.
+ */
+export async function saveRecording(
+  userId: string,
+  instrument: StoredRecording["instrument"],
+  title: string,
+  events: unknown,
+  durationMs: number,
+) {
+  const database = db();
+  const timestamp = now();
+
+  const recording: StoredRecording = {
+    id: newId("rec"),
+    userId,
+    instrument,
+    title,
+    events,
+    durationMs,
+    createdAt: timestamp,
+  };
+
+  const portfolioItem: StoredPortfolioItem = {
+    id: newId("pf"),
+    userId,
+    category: "ijodiy",
+    title,
+    description: `${instrument} · ${(durationMs / 1000).toFixed(1)} soniya`,
+    createdAt: timestamp,
+  };
+
+  await database.transaction(
+    "rw",
+    database.recordings,
+    database.portfolio,
+    database.activity,
+    async () => {
+      await database.recordings.put(recording);
+      await database.portfolio.put(portfolioItem);
+      await database.activity.put({
+        id: newId("act"),
+        userId,
+        type: "yozuv",
+        message: `${title} — yozuv portfolioga saqlandi`,
+        createdAt: timestamp,
+      } satisfies StoredActivity);
+    },
+  );
+
+  return recording;
+}
+
+export async function listRecordings(userId: string) {
+  const rows = await db().recordings.where("userId").equals(userId).toArray();
+  return rows.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+}
+
+/** Mashq natijasini topshiriq sifatida yozadi (avtomatik baholangan). */
+export async function savePracticeResult(params: {
+  userId: string;
+  exerciseId: string;
+  area: DiagnosticArea;
+  bloom: BloomLevel;
+  taskType: TaskType;
+  score: number;
+  title: string;
+  details?: Record<string, unknown>;
+}) {
+  const database = db();
+  const timestamp = now();
+
+  const submission: StoredSubmission = {
+    id: newId("sub"),
+    userId: params.userId,
+    taskId: params.exerciseId,
+    taskType: params.taskType,
+    area: params.area,
+    bloom: params.bloom,
+    score: params.score,
+    answers: params.details,
+    submittedAt: timestamp,
+    gradedAt: timestamp,
+  };
+
+  await database.transaction(
+    "rw",
+    database.submissions,
+    database.activity,
+    async () => {
+      await database.submissions.put(submission);
+      await database.activity.put({
+        id: newId("act"),
+        userId: params.userId,
+        type: "mashq",
+        message: `${params.title} — ${params.score}% natija`,
+        createdAt: timestamp,
+      } satisfies StoredActivity);
+    },
+  );
+
+  return submission;
+}
+
+export async function listSubmissions(userId: string) {
+  const rows = await db().submissions.where("userId").equals(userId).toArray();
+  return rows.sort((a, b) => b.submittedAt.localeCompare(a.submittedAt));
+}
+
+/** Bitta mashq bo'yicha eng yaxshi natija. */
+export async function bestScoreFor(userId: string, exerciseId: string) {
+  const rows = await db()
+    .submissions.where("[userId+taskId]")
+    .equals([userId, exerciseId])
+    .toArray();
+  const scores = rows.map((r) => r.score).filter((s): s is number => s !== undefined);
+  return scores.length ? Math.max(...scores) : undefined;
 }
 
 /* ─────────────────────────── Tozalash ─────────────────────────── */
