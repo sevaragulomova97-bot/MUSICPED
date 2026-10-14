@@ -89,7 +89,7 @@ Yangi omborda ham yuqoridagi **Settings → Pages** sozlamasi takrorlanadi.
 | Ikonkalar | lucide-react |
 | Mavzu (dark mode) | next-themes |
 | Ma'lumot | IndexedDB (Dexie 4) |
-| Audio | Tone.js 15 (sintez, namunasiz) |
+| Audio | Tone.js 15 + FluidR3_GM namunalari (MIT, 1,6 MB, loyihada) |
 | Nota yozuvi | VexFlow — *B4* |
 | Grafiklar | Recharts — *B4* |
 | PDF / Excel | pdf-lib, write-excel-file — *B4–B5* |
@@ -114,10 +114,11 @@ content/
   modules.ts            5 modul, ECTS kredit, o'quv natijalari
   diagnostic.ts         32 ta diagnostika savoli (8 yo'nalish)
   demo-students.ts      24 namunaviy talaba (tajriba / nazorat)
-  practice.ts           9 ta cholg'u mashqi + ritm baholash
+  practice.ts           18 ta cholg'u mashqi + ritm baholash
 lib/
   audio/engine.ts       AudioContext, klaviatura, nota yozuvchi
-  audio/instruments.ts  Pianino / dutor / doira sintezi
+  audio/instruments.ts  Namunali cholg'ular (Tone.Sampler) + sintez zaxirasi
+  domain/instruments.ts Cholg'u lug'ati (audio dvigateldan mustaqil)
   domain/types.ts       Umumiy lug'at: Blum, ZPD, yo'nalishlar, profil turlari
   personalization.ts    IRY algoritmi (sof funksiya, testlangan)
   scoring.ts            Diagnostika baholash (sof funksiya, testlangan)
@@ -135,7 +136,8 @@ docs/
 
 - [x] **B1** — Poydevor: statik eksport, dizayn tokenlari, layout, dark mode, Pages deploy
 - [x] **B2** — Dexie, statik kontent, diagnostika (32 savol), individual yo'nalish algoritmi
-- [x] **B3** — Virtual pianino, dutor, doira (sintez ovoz, yozib olish, mashq rejimi)
+- [x] **B3** — 6 ta virtual cholg'u: pianino, gitara, dutor, rubob, nay, doira
+      (haqiqiy namunali ovoz, yozib olish, mashq rejimi)
 - [ ] **B4** — Darslar, topshiriqlar, natijalar, portfolio, sertifikatlar
 - [ ] **B5** — O'qituvchi kabineti, tadqiqot bo'limi (t-mezon, χ²), PWA, testlar
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { DOIRA_ZARB_NOMI, DOIRA_ZARBLARI, type DoiraStroke } from "@/lib/audio/instruments";
+import { DOIRA_ZARB_NOMI, DOIRA_ZARBLARI, type DoiraStroke } from "@/lib/domain/instruments";
 import { cn } from "@/lib/utils";
 
 /**

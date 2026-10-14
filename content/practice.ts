@@ -1,4 +1,4 @@
-import type { InstrumentKind } from "@/lib/audio/instruments";
+import { InstrumentKind } from "@/lib/domain/instruments";
 import type { DiagnosticArea } from "@/lib/domain/types";
 
 /**
@@ -184,7 +184,131 @@ const DOIRA: Exercise[] = [
   },
 ];
 
-export const MASHQLAR: Exercise[] = [...PIANINO, ...DUTOR, ...DOIRA];
+/* ────────────────────────────── Gitara ────────────────────────────── */
+
+const GITARA: Exercise[] = [
+  {
+    id: "g-ochiq-torlar",
+    instrument: "gitara",
+    title: "Ochiq torlar",
+    description:
+      "Oltita ochiq torni pastdan yuqoriga ketma-ket cherting: Mi–Lya–Re–Sol–Si–Mi.",
+    level: "oson",
+    durationMin: 5,
+    mode: "ketma-ket",
+    area: "texnika",
+    sequence: ["E2", "A2", "D3", "G3", "B3", "E4"],
+  },
+  {
+    id: "g-akkordlar",
+    instrument: "gitara",
+    title: "Birinchi akkordlar",
+    description:
+      "Am va E akkordlari tovushlarini ketma-ket chalib, qulog'ingizni akkord tuzilishiga o'rgating.",
+    level: "orta",
+    durationMin: 10,
+    mode: "ketma-ket",
+    area: "nazariya",
+    sequence: ["A2", "C3", "E3", "A3", "E2", "Ab3", "B3", "E4"],
+  },
+  {
+    id: "g-erkin",
+    instrument: "gitara",
+    title: "Erkin ijro",
+    description: "O'zingiz tanlagan ohangni ijro eting va yozib oling.",
+    level: "erkin",
+    durationMin: 15,
+    mode: "erkin",
+    area: "ijodkorlik",
+  },
+];
+
+/* ────────────────────────────── Rubob ────────────────────────────── */
+
+const RUBOB: Exercise[] = [
+  {
+    id: "r-barmoq",
+    instrument: "rubob",
+    title: "Barmoq mashqlari",
+    description:
+      "Pardalarni ketma-ket bosib chiqing. Rubob tovushi yorqin, shuning uchun zarb aniq bo'lsin.",
+    level: "oson",
+    durationMin: 5,
+    mode: "ketma-ket",
+    area: "texnika",
+    sequence: ["C4", "D4", "E4", "F4", "G4", "F4", "E4", "D4", "C4"],
+  },
+  {
+    id: "r-maqom",
+    instrument: "rubob",
+    title: "Maqom ohangi",
+    description:
+      "Maqom uslubidagi qisqa ohang. Har bir notani to'liq jaranglashiga qo'yib bering.",
+    level: "orta",
+    durationMin: 10,
+    mode: "ketma-ket",
+    area: "nazariya",
+    sequence: ["D4", "E4", "F4", "G4", "A4", "G4", "F4", "E4", "D4", "C4", "D4"],
+  },
+  {
+    id: "r-erkin",
+    instrument: "rubob",
+    title: "Erkin ijro",
+    description: "O'z ohangingizni yarating va portfolioga saqlang.",
+    level: "erkin",
+    durationMin: 15,
+    mode: "erkin",
+    area: "ijodkorlik",
+  },
+];
+
+/* ─────────────────────────────── Nay ─────────────────────────────── */
+
+const NAY: Exercise[] = [
+  {
+    id: "n-gamma",
+    instrument: "nay",
+    title: "Do mažor gammasi",
+    description:
+      "Gammani sekin, har bir tovushni teng davomiylikda chalib chiqing.",
+    level: "oson",
+    durationMin: 5,
+    mode: "ketma-ket",
+    area: "eshituv",
+    sequence: ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"],
+  },
+  {
+    id: "n-ohang",
+    instrument: "nay",
+    title: "Lirik ohang",
+    description:
+      "Cho'ziq, qo'shiqsimon ohang. Nafasni tejab, ohangni uzmasdan chalishga harakat qiling.",
+    level: "orta",
+    durationMin: 10,
+    mode: "ketma-ket",
+    area: "eshituv",
+    sequence: ["G4", "A4", "B4", "A4", "G4", "E4", "G4", "F4", "E4", "D4", "C4"],
+  },
+  {
+    id: "n-erkin",
+    instrument: "nay",
+    title: "Erkin improvizatsiya",
+    description: "Erkin ijro eting, yozib oling va yoqqanini saqlang.",
+    level: "erkin",
+    durationMin: 15,
+    mode: "erkin",
+    area: "ijodkorlik",
+  },
+];
+
+export const MASHQLAR: Exercise[] = [
+  ...PIANINO,
+  ...GITARA,
+  ...DUTOR,
+  ...RUBOB,
+  ...NAY,
+  ...DOIRA,
+];
 
 export function exercisesFor(instrument: InstrumentKind): Exercise[] {
   return MASHQLAR.filter((e) => e.instrument === instrument);

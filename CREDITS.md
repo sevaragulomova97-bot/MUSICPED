@@ -18,9 +18,30 @@ Loyihada mualliflik huquqi bilan himoyalangan musiqa asarlari, audio yozuvlar yo
 
 Shriftlar `next/font` orqali build paytida yuklab olinadi va sayt bilan birga joylashadi — ishlash vaqtida tashqi serverga murojaat qilinmaydi.
 
-## Audio
+## Audio namunalari
 
-Virtual cholg'ular (pianino, dutor, doira) ovozi **real vaqtda sintez qilinadi** (Tone.js). Hech qanday tayyor audio namuna ishlatilmaydi, shuning uchun litsenziya masalasi umuman yuzaga kelmaydi.
+Virtual cholg'ular ovozi **haqiqiy yozib olingan namunalar**dan chiqadi.
+
+| Material | Manba | Litsenziya |
+|---|---|---|
+| Cholg'u namunalari (`public/audio/`) | FluidR3_GM SoundFont, [`soundfont-for-samplers`](https://www.npmjs.com/package/soundfont-for-samplers) npm paketi orqali | MIT |
+
+Namunalar loyihaning o'ziga joylashtirilgan va sayt bilan birga yetkaziladi — ishlash vaqtida tashqi serverga murojaat qilinmaydi va oflayn ishlaydi. Hajmni kamaytirish uchun har 3 yarim tonda bitta namuna olingan (cholg'u uchun 17 ta fayl); oraliq notalarni `Tone.Sampler` tovush balandligini o'zgartirib hosil qiladi. Jami hajm — 1,6 MB.
+
+### Qaysi namuna qaysi cholg'u uchun
+
+| Platformadagi cholg'u | Ishlatilgan namuna | Izoh |
+|---|---|---|
+| Pianino | `acoustic_grand_piano` | To'g'ridan-to'g'ri mos |
+| Gitara | `acoustic_guitar_nylon` | To'g'ridan-to'g'ri mos |
+| Nay | `flute` | Yaqin mos (nay — puflama cholg'u) |
+| Doira | GM zarbli to'plam: past tom, bongo, daf (tambourine) | `bum`, `tak`, `qarsak` zarblari uchun |
+| **Dutor** | `acoustic_guitar_nylon` + tembr filtri | **Yaqinlashtirilgan** |
+| **Rubob** | `acoustic_guitar_steel` + tembr filtri | **Yaqinlashtirilgan** |
+
+> **Halol ogohlantirish:** erkin litsenziyali **haqiqiy dutor va rubob yozuvlari topilmadi**. Shuning uchun ular eng yaqin qarindoshlari — nayloniy va metall torli gitara namunalari asosida, tembr filtrlari (past/yuqori chastota kesish, yorqinlik va reverb) bilan moslashtirilgan. Bu sintez ovozidan ancha haqiqiyroq, lekin **haqiqiy dutor/rubob tembri emas**.
+>
+> Agar sizda erkin foydalanish mumkin bo'lgan dutor yoki rubob yozuvlari bo'lsa, ularni `public/audio/dutor/` va `public/audio/rubob/` papkalariga qo'yib, `lib/audio/instruments.ts` dagi `folder` qiymatini o'zgartirish kifoya — qolgan kod o'zgarmaydi.
 
 ## Avatarlar
 

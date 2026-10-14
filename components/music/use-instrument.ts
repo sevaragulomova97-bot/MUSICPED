@@ -1,17 +1,17 @@
 "use client";
 
 import * as React from "react";
-import {
-  createInstrument,
-  type Instrument,
-  type InstrumentKind,
-  playEvents,
-} from "@/lib/audio/instruments";
+import { createInstrument, type Instrument, playEvents } from "@/lib/audio/instruments";
+import { type InstrumentKind } from "@/lib/domain/instruments";
 import { NoteRecorder, type NoteEvent } from "@/lib/audio/engine";
 
 export type InstrumentState = {
   /** Audio ishga tushganmi (birinchi bosishdan keyin) */
   ready: boolean;
+  /** Namunalar yuklanmoqdami */
+  loading: boolean;
+  /** Namunalar yuklanmay, sintezga tushib qolindimi */
+  usingFallback: boolean;
   /** Yuklanish yoki ruxsat xatosi */
   error: string | null;
   recording: boolean;
@@ -35,6 +35,8 @@ export function useInstrument(kind: InstrumentKind) {
   const stopPlaybackRef = React.useRef<(() => void) | null>(null);
 
   const [ready, setReady] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const [usingFallback, setUsingFallback] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const [recording, setRecording] = React.useState(false);
   const [playing, setPlaying] = React.useState(false);
@@ -52,22 +54,41 @@ export function useInstrument(kind: InstrumentKind) {
     };
   }, []);
 
-  /** Cholg'u tayyorligini ta'minlaydi (birinchi chaqiriqda yaratadi). */
+  /**
+   * Cholg'u tayyorligini ta'minlaydi (birinchi chaqiriqda yaratadi).
+   *
+   * Namunalar yuklanishi bir necha yuz millisekund olishi mumkin, shuning
+   * uchun ayni paytda bir nechta chaqiriq kelsa, ular bitta va'daga ulanadi —
+   * aks holda bir necha cholg'u nusxasi yaratilib, ovoz ikkilanib ketardi.
+   */
+  const pendingRef = React.useRef<Promise<Instrument | null> | null>(null);
+
   const ensure = React.useCallback(async () => {
     if (instrumentRef.current) return instrumentRef.current;
-    try {
-      const instrument = await createInstrument(kind);
-      instrumentRef.current = instrument;
-      setReady(true);
-      setError(null);
-      return instrument;
-    } catch (cause) {
-      console.error(cause);
-      setError(
-        "Ovozni ishga tushirib bo'lmadi. Brauzeringiz Web Audio'ni qo'llamasligi yoki ovoz bloklangan bo'lishi mumkin.",
-      );
-      return null;
-    }
+    if (pendingRef.current) return pendingRef.current;
+
+    setLoading(true);
+    pendingRef.current = createInstrument(kind)
+      .then((instrument) => {
+        instrumentRef.current = instrument;
+        setReady(true);
+        setUsingFallback(instrument.usingFallback);
+        setError(null);
+        return instrument;
+      })
+      .catch((cause: unknown) => {
+        console.error(cause);
+        setError(
+          "Ovozni ishga tushirib bo'lmadi. Brauzeringiz Web Audio'ni qo'llamasligi yoki ovoz bloklangan bo'lishi mumkin.",
+        );
+        return null;
+      })
+      .finally(() => {
+        setLoading(false);
+        pendingRef.current = null;
+      });
+
+    return pendingRef.current;
   }, [kind]);
 
   const attack = React.useCallback(
@@ -92,13 +113,36 @@ export function useInstrument(kind: InstrumentKind) {
     });
   }, []);
 
-  /** Perkussiya uchun: zarb boshlanadi va qisqa vaqtdan keyin o'chadi. */
+  /**
+   * Chertma va zarbli cholg'ular uchun: bir harakat bilan ishlaydi va namuna
+   * tabiiy ravishda so'nadi.
+   *
+   * `attack` + tez `release` ishlatilmaydi — u gitara yoki dutor namunasini
+   * o'rtasidan kesib tashlardi. Yorqin belgilash esa faqat ko'rinish uchun
+   * qisqa vaqtdan keyin o'chadi.
+   */
+  const VISUAL_MS = 180;
+
   const hit = React.useCallback(
     async (note: string, velocity = 0.9) => {
-      await attack(note, velocity);
-      window.setTimeout(() => release(note), 140);
+      const instrument = await ensure();
+      if (!instrument) return;
+      instrument.trigger(note, velocity);
+      recorderRef.current?.noteOn(note, velocity);
+      recorderRef.current?.noteOff(note);
+      setActive((prev) => new Set(prev).add(note));
+      window.setTimeout(
+        () =>
+          setActive((prev) => {
+            if (!prev.has(note)) return prev;
+            const next = new Set(prev);
+            next.delete(note);
+            return next;
+          }),
+        VISUAL_MS,
+      );
     },
-    [attack, release],
+    [ensure],
   );
 
   const startRecording = React.useCallback(async () => {
@@ -148,7 +192,16 @@ export function useInstrument(kind: InstrumentKind) {
     setEvents([]);
   }, []);
 
-  const state: InstrumentState = { ready, error, recording, playing, events, active };
+  const state: InstrumentState = {
+    ready,
+    loading,
+    usingFallback,
+    error,
+    recording,
+    playing,
+    events,
+    active,
+  };
 
   return {
     ...state,

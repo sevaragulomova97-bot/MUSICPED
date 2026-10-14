@@ -15,7 +15,7 @@ import {
 } from "@/components/music/practice-panel";
 import { useInstrument } from "@/components/music/use-instrument";
 import { exercisesFor, type Exercise } from "@/content/practice";
-import type { InstrumentKind } from "@/lib/audio/instruments";
+import { type InstrumentKind, isOneShot } from "@/lib/domain/instruments";
 import { bestScoreFor, savePracticeResult, saveRecording } from "@/lib/db/repo";
 
 export type InstrumentRenderProps = {
@@ -79,16 +79,14 @@ export function InstrumentPage({
   /* ── Chalish: mashq rejimi bo'lsa, javob ham tekshiriladi ── */
 
   /**
-   * Pianino klavishi bosilib turiladi (attack/release), dutor va doira esa
-   * chertiladi/uriladi — ularda «qo'yib yuborish» yo'q, shuning uchun
-   * `hit` ishlatiladi va belgilangan holat o'zi so'nadi. Aks holda zona
-   * doimo yoqilgan bo'lib qolardi.
+   * Pianino va nayda klavish bosilib turiladi (attack/release); gitara,
+   * dutor, rubob va doirada esa bitta harakat yetadi va namuna o'zi so'nadi.
    */
-  const perkussiya = kind !== "pianino";
+  const birZarbli = isOneShot(kind);
 
   const play = React.useCallback(
     (note: string) => {
-      if (perkussiya) {
+      if (birZarbli) {
         void instrument.hit(note);
       } else {
         void instrument.attack(note);
@@ -96,7 +94,7 @@ export function InstrumentPage({
       if (selected.mode === "ketma-ket") sequence.submit(note);
       if (selected.mode === "ritm") rhythm.record(note);
     },
-    [instrument, perkussiya, selected.mode, sequence, rhythm],
+    [instrument, birZarbli, selected.mode, sequence, rhythm],
   );
 
   const stop = React.useCallback(
@@ -221,9 +219,20 @@ export function InstrumentPage({
                 saving={saving}
                 saved={saved}
               />
-              {!instrument.ready && (
+              {instrument.loading && (
+                <p className="text-xs text-ink-muted" aria-live="polite">
+                  Cholg&apos;u namunalari yuklanmoqda…
+                </p>
+              )}
+              {!instrument.ready && !instrument.loading && (
                 <p className="text-xs text-ink-muted">
                   Ovoz birinchi bosishda ishga tushadi — brauzer qoidasi shunday.
+                </p>
+              )}
+              {instrument.usingFallback && (
+                <p className="text-xs text-warning">
+                  Namunalarni yuklab bo&apos;lmadi — vaqtincha soddalashtirilgan
+                  sintez ovozi ishlatilmoqda.
                 </p>
               )}
             </CardContent>

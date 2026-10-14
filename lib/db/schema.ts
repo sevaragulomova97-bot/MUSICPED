@@ -11,6 +11,7 @@ import type {
   StudentProfileType,
   TaskType,
 } from "@/lib/domain/types";
+import { InstrumentKind } from "@/lib/domain/instruments";
 import type { LearningPathItem } from "@/lib/personalization";
 
 /**
@@ -105,7 +106,7 @@ export type StoredReflection = {
 export type StoredRecording = {
   id: string;
   userId: string;
-  instrument: "pianino" | "dutor" | "doira";
+  instrument: InstrumentKind;
   title: string;
   /** Chalingan nota hodisalari (JSON) — audio fayl o'rniga yengil format */
   events: unknown;
