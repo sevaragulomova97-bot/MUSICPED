@@ -8,6 +8,7 @@ import {
   Home,
   type LucideIcon,
   Music4,
+  Route,
   Settings,
   Shield,
   Users,
@@ -34,7 +35,8 @@ export type NavItem = {
 
 const TALABA_NAV: NavItem[] = [
   { href: "/bosh-sahifa", label: "Bosh sahifa", icon: Home, mobile: true },
-  { href: "/kurslar", label: "O'quv kurslari", icon: BookOpen, mobile: true, shortLabel: "Kurslar" },
+  { href: "/yolnalish", label: "Mening yo'lim", icon: Route, mobile: true, shortLabel: "Yo'lim" },
+  { href: "/kurslar", label: "O'quv kurslari", icon: BookOpen },
   { href: "/asboblar", label: "Musiqa asboblari", icon: Music4, mobile: true, shortLabel: "Asboblar" },
   { href: "/topshiriqlar", label: "Topshiriqlar", icon: ClipboardList, mobile: true },
   { href: "/natijalar", label: "Baholash", icon: BarChart3 },

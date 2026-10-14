@@ -88,7 +88,7 @@ Yangi omborda ham yuqoridagi **Settings → Pages** sozlamasi takrorlanadi.
 | UI | React 19, Tailwind CSS v4, qo'lda yozilgan shadcn uslubidagi komponentlar |
 | Ikonkalar | lucide-react |
 | Mavzu (dark mode) | next-themes |
-| Ma'lumot | IndexedDB (Dexie) — *B2 bosqichida qo'shiladi* |
+| Ma'lumot | IndexedDB (Dexie 4) |
 | Audio | Tone.js — *B3* |
 | Nota yozuvi | VexFlow — *B4* |
 | Grafiklar | Recharts — *B4* |
@@ -108,9 +108,18 @@ app/
     natijalar/    portfolio/  profil/
     oqituvchi/    admin/
 components/
-  ui/                   Button, Card, Badge, Progress, ProgressRing
+  ui/                   Button, Card, Badge, Progress, ProgressRing, ChoiceCard
   layout/               Sidebar, Header, MobileNav, AppShell, Logo
+content/
+  modules.ts            5 modul, ECTS kredit, o'quv natijalari
+  diagnostic.ts         32 ta diagnostika savoli (8 yo'nalish)
+  demo-students.ts      24 namunaviy talaba (tajriba / nazorat)
 lib/
+  domain/types.ts       Umumiy lug'at: Blum, ZPD, yo'nalishlar, profil turlari
+  personalization.ts    IRY algoritmi (sof funksiya, testlangan)
+  scoring.ts            Diagnostika baholash (sof funksiya, testlangan)
+  db/schema.ts          Dexie sxemasi
+  db/repo.ts            Ma'lumotga kirishning yagona yo'li
   navigation.ts         Rol bo'yicha menyu
   utils.ts              cn(), asset(), formatDate()
 docs/
@@ -122,7 +131,7 @@ docs/
 ## Ishlab chiqish bosqichlari
 
 - [x] **B1** — Poydevor: statik eksport, dizayn tokenlari, layout, dark mode, Pages deploy
-- [ ] **B2** — Dexie, statik kontent, diagnostika, individual yo'nalish algoritmi
+- [x] **B2** — Dexie, statik kontent, diagnostika (32 savol), individual yo'nalish algoritmi
 - [ ] **B3** — Virtual pianino, dutor, doira
 - [ ] **B4** — Darslar, topshiriqlar, natijalar, portfolio, sertifikatlar
 - [ ] **B5** — O'qituvchi kabineti, tadqiqot bo'limi (t-mezon, χ²), PWA, testlar
