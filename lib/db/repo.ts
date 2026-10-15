@@ -3,6 +3,7 @@
 import {
   db,
   type StoredActivity,
+  type StoredDataset,
   type StoredDiagnostic,
   type StoredLearningPath,
   type StoredPortfolioItem,
@@ -22,6 +23,12 @@ import {
   type TaskType,
 } from "@/lib/domain/types";
 import { detectProfileType } from "@/lib/personalization";
+import {
+  type GradeBundle,
+  TRANSFER_APP,
+  TRANSFER_VERSION,
+  type TransferBundle,
+} from "@/lib/transfer";
 
 /**
  * Ma'lumotlarga kirishning yagona yo'li.
@@ -468,4 +475,349 @@ export async function wipeUserData(userId: string) {
       }
     },
   );
+}
+
+/* ═════════════════ Eksport / import (serversiz ko'chirish) ═════════════════ */
+
+/**
+ * Foydalanuvchining barcha ma'lumotini ko'chirishga tayyor paketga yig'adi.
+ *
+ * Portfolio fayllarining **mazmuni** olinmaydi — faqat ro'yxati (sabab
+ * `lib/transfer.ts` da yozilgan). Shu sababli fayl bir necha o'n kilobayt
+ * bo'ladi va elektron pochta orqali ham yuborish mumkin.
+ */
+export async function exportUserData(userId: string): Promise<TransferBundle> {
+  const profile = await getProfile(userId);
+  if (!profile) throw new Error("Profil topilmadi — eksport qilish mumkin emas.");
+
+  const [diagnostics, progress, submissions, reflections, portfolio] = await Promise.all([
+    allDiagnostics(userId),
+    allProgress(userId),
+    listSubmissions(userId),
+    allReflections(userId),
+    listPortfolio(userId),
+  ]);
+
+  return {
+    app: TRANSFER_APP,
+    version: TRANSFER_VERSION,
+    kind: "natijalar",
+    exportedAt: now(),
+    profile: {
+      id: profile.id,
+      fullName: profile.fullName,
+      role: profile.role,
+      group: profile.group,
+      direction: profile.direction,
+      experimentGroup: profile.experimentGroup,
+      startedAt: profile.startedAt,
+      demo: profile.demo,
+    },
+    diagnostics: diagnostics.map((d) => ({
+      id: d.id,
+      kind: d.kind,
+      scores: d.scores,
+      overall: d.overall,
+      completedAt: d.completedAt,
+    })),
+    progress: progress.map((p) => ({
+      lessonId: p.lessonId,
+      courseSlug: p.courseSlug,
+      percent: p.percent,
+      completedAt: p.completedAt,
+    })),
+    submissions: submissions.map((s) => ({
+      id: s.id,
+      taskId: s.taskId,
+      taskType: s.taskType,
+      area: s.area,
+      bloom: s.bloom,
+      score: s.score,
+      teacherComment: s.teacherComment,
+      submittedAt: s.submittedAt,
+      gradedAt: s.gradedAt,
+    })),
+    reflections: reflections.map((r) => ({
+      contextId: r.contextId,
+      question: r.question,
+      answer: r.answer,
+      createdAt: r.createdAt,
+    })),
+    portfolio: portfolio.map((p) => ({
+      id: p.id,
+      category: p.category,
+      title: p.title,
+      description: p.description,
+      fileName: p.fileName,
+      sizeBytes: p.sizeBytes,
+      createdAt: p.createdAt,
+    })),
+  };
+}
+
+export type ImportReport = {
+  diagnostics: number;
+  progress: number;
+  submissions: number;
+  reflections: number;
+  portfolio: number;
+};
+
+/**
+ * Eksport faylini **joriy foydalanuvchining** ma'lumotiga qo'shadi.
+ *
+ * Nega `userId` fayldan emas, tashqaridan beriladi? Chunki talaba boshqa
+ * kompyuterda yangi profil yaratib, o'z faylini import qilishi mumkin — bunda
+ * identifikatorlar mos kelmaydi. Ma'lumot har doim **kim import qilayotgan
+ * bo'lsa, o'shanga** yoziladi.
+ *
+ * Yozuvlar identifikatori fayl identifikatoridan qayta quriladi, shuning
+ * uchun bir xil faylni ikki marta import qilish dublikat hosil qilmaydi
+ * (idempotent).
+ */
+export async function importUserData(
+  userId: string,
+  bundle: TransferBundle,
+): Promise<ImportReport> {
+  const database = db();
+  const timestamp = now();
+
+  const diagnostics: StoredDiagnostic[] = bundle.diagnostics.map((d) => ({
+    id: `${userId}:${d.id}`,
+    userId,
+    kind: d.kind,
+    scores: d.scores,
+    profileType: detectProfileType(d.scores),
+    overall: d.overall || overallScore(d.scores),
+    completedAt: d.completedAt,
+  }));
+
+  const progress: StoredProgress[] = bundle.progress.map((p) => ({
+    id: `${userId}:${p.lessonId}`,
+    userId,
+    lessonId: p.lessonId,
+    courseSlug: p.courseSlug,
+    percent: p.percent,
+    completedAt: p.completedAt,
+    updatedAt: timestamp,
+  }));
+
+  const submissions: StoredSubmission[] = bundle.submissions.map((s) => ({
+    id: `${userId}:${s.id}`,
+    userId,
+    taskId: s.taskId,
+    taskType: s.taskType as StoredSubmission["taskType"],
+    area: s.area,
+    bloom: s.bloom as StoredSubmission["bloom"],
+    score: s.score,
+    teacherComment: s.teacherComment,
+    submittedAt: s.submittedAt,
+    gradedAt: s.gradedAt,
+  }));
+
+  const reflections: StoredReflection[] = bundle.reflections.map((r, i) => ({
+    id: `${userId}:${r.contextId}:${i}`,
+    userId,
+    contextId: r.contextId,
+    question: r.question,
+    answer: r.answer,
+    createdAt: r.createdAt,
+  }));
+
+  // Portfolio yozuvlari fayl mazmunisiz keladi — ro'yxat tiklanadi, fayllar yo'q.
+  const portfolio: StoredPortfolioItem[] = bundle.portfolio.map((p) => ({
+    id: `${userId}:${p.id}`,
+    userId,
+    category: p.category as StoredPortfolioItem["category"],
+    title: p.title,
+    description: p.description,
+    fileName: p.fileName,
+    sizeBytes: p.sizeBytes,
+    createdAt: p.createdAt,
+  }));
+
+  await database.transaction(
+    "rw",
+    [
+      database.diagnostics,
+      database.progress,
+      database.submissions,
+      database.reflections,
+      database.portfolio,
+      database.activity,
+    ],
+    async () => {
+      if (diagnostics.length) await database.diagnostics.bulkPut(diagnostics);
+      if (progress.length) await database.progress.bulkPut(progress);
+      if (submissions.length) await database.submissions.bulkPut(submissions);
+      if (reflections.length) await database.reflections.bulkPut(reflections);
+      if (portfolio.length) await database.portfolio.bulkPut(portfolio);
+      await database.activity.put({
+        id: newId("act"),
+        userId,
+        type: "import",
+        message: `${bundle.profile.fullName} faylidan ma'lumot import qilindi`,
+        createdAt: timestamp,
+      } satisfies StoredActivity);
+    },
+  );
+
+  // Import qilingan diagnostika asosida individual reja qaytadan quriladi.
+  const latest = diagnostics.sort((a, b) => b.completedAt.localeCompare(a.completedAt))[0];
+  if (latest) {
+    const built = buildLearningPath({ scores: latest.scores });
+    await database.learningPaths.put({
+      id: `${userId}:import`,
+      userId,
+      diagnosticId: latest.id,
+      profileType: built.profileType,
+      strengths: built.strengths,
+      weaknesses: built.weaknesses,
+      items: built.items,
+      recommendations: built.recommendations,
+      generatedAt: timestamp,
+    } satisfies StoredLearningPath);
+  }
+
+  return {
+    diagnostics: diagnostics.length,
+    progress: progress.length,
+    submissions: submissions.length,
+    reflections: reflections.length,
+    portfolio: portfolio.length,
+  };
+}
+
+/**
+ * O'qituvchidan kelgan baholar faylini qo'llaydi.
+ *
+ * Faqat **mavjud** topshiriqlarga baho qo'yiladi: fayldagi notanish
+ * identifikator jim o'tkazib yuborilmaydi, balki `skipped` sifatida
+ * qaytariladi va foydalanuvchiga ko'rsatiladi.
+ */
+export async function applyGrades(
+  userId: string,
+  bundle: GradeBundle,
+): Promise<{ applied: number; skipped: number }> {
+  const database = db();
+  let applied = 0;
+  let skipped = 0;
+
+  await database.transaction("rw", database.submissions, database.activity, async () => {
+    for (const grade of bundle.grades) {
+      // Eksportda identifikator `${userId}:${id}` ko'rinishiga o'tgan bo'lishi
+      // mumkin, shuning uchun ikki variant ham tekshiriladi.
+      const row =
+        (await database.submissions.get(grade.submissionId)) ??
+        (await database.submissions.get(`${userId}:${grade.submissionId}`));
+
+      if (!row || row.userId !== userId) {
+        skipped += 1;
+        continue;
+      }
+
+      await database.submissions.put({
+        ...row,
+        score: grade.score,
+        teacherComment: grade.comment,
+        gradedAt: grade.gradedAt,
+      });
+      applied += 1;
+    }
+
+    if (applied > 0) {
+      await database.activity.put({
+        id: newId("act"),
+        userId,
+        type: "baho",
+        message: `${bundle.teacherName} ${applied} ta ishga baho qo'ydi`,
+        createdAt: now(),
+      } satisfies StoredActivity);
+    }
+  });
+
+  return { applied, skipped };
+}
+
+/* ═════════════════ O'qituvchi kabineti: import qilingan talabalar ═════════════════ */
+
+/** O'qituvchi import qilgan talaba faylini saqlaydi (qayta import — almashtiradi). */
+export async function saveDataset(
+  ownerId: string,
+  bundle: TransferBundle,
+): Promise<StoredDataset> {
+  const row: StoredDataset = {
+    id: `${ownerId}:${bundle.profile.id}`,
+    ownerId,
+    studentId: bundle.profile.id,
+    studentName: bundle.profile.fullName,
+    group: bundle.profile.group,
+    experimentGroup: bundle.profile.experimentGroup,
+    bundle,
+    importedAt: now(),
+  };
+
+  const database = db();
+  await database.transaction("rw", database.datasets, database.activity, async () => {
+    await database.datasets.put(row);
+    await database.activity.put({
+      id: newId("act"),
+      userId: ownerId,
+      type: "import",
+      message: `${bundle.profile.fullName} — ma'lumot qabul qilindi`,
+      createdAt: row.importedAt,
+    } satisfies StoredActivity);
+  });
+
+  return row;
+}
+
+export async function listDatasets(ownerId: string): Promise<StoredDataset[]> {
+  const rows = await db().datasets.where("ownerId").equals(ownerId).toArray();
+  return rows.sort((a, b) => a.studentName.localeCompare(b.studentName, "uz"));
+}
+
+export function getDataset(ownerId: string, studentId: string) {
+  return db().datasets.get(`${ownerId}:${studentId}`);
+}
+
+export async function deleteDataset(ownerId: string, studentId: string) {
+  const id = `${ownerId}:${studentId}`;
+  const row = await db().datasets.get(id);
+  if (!row || row.ownerId !== ownerId) return false;
+  await db().datasets.delete(id);
+  return true;
+}
+
+/**
+ * O'qituvchi qo'ygan bahoni import qilingan ma'lumotga yozadi.
+ *
+ * Baho talabaning o'z bazasiga emas, o'qituvchi nusxasiga yoziladi — keyin u
+ * `baholar.json` sifatida eksport qilinadi va talaba o'zi import qiladi.
+ * Shu sababli bitta manba qoidasi buzilmaydi: o'qituvchi nusxasi
+ * o'qituvchining, talaba nusxasi talabaning.
+ */
+export async function gradeDatasetSubmission(
+  ownerId: string,
+  studentId: string,
+  submissionId: string,
+  score: number,
+  comment?: string,
+): Promise<StoredDataset | null> {
+  const row = await getDataset(ownerId, studentId);
+  if (!row) return null;
+
+  const gradedAt = now();
+  const submissions = row.bundle.submissions.map((s) =>
+    s.id === submissionId
+      ? { ...s, score: Math.max(0, Math.min(100, Math.round(score))), teacherComment: comment, gradedAt }
+      : s,
+  );
+
+  const updated: StoredDataset = {
+    ...row,
+    bundle: { ...row.bundle, submissions },
+  };
+  await db().datasets.put(updated);
+  return updated;
 }

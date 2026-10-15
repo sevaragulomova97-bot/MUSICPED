@@ -13,6 +13,7 @@ import type {
 } from "@/lib/domain/types";
 import { InstrumentKind } from "@/lib/domain/instruments";
 import type { LearningPathItem } from "@/lib/personalization";
+import type { TransferBundle } from "@/lib/transfer";
 
 /**
  * Brauzerdagi ma'lumotlar bazasi (IndexedDB).
@@ -136,6 +137,29 @@ export type StoredActivity = {
   createdAt: string;
 };
 
+/**
+ * O'qituvchi import qilgan talaba ma'lumoti.
+ *
+ * Server yo'q, shuning uchun o'qituvchining kabineti faqat **o'ziga
+ * berilgan** fayllardan iborat. Fayl mazmuni butunligicha (`bundle`)
+ * saqlanadi: shu sababli o'qituvchi baho qo'yganda uni qaytib eksport
+ * qilish uchun hamma narsa joyida turadi.
+ *
+ * `ownerId` — o'qituvchining profili. Bitta brauzerda bir nechta o'qituvchi
+ * bo'lsa, ularning ma'lumoti aralashmaydi.
+ */
+export type StoredDataset = {
+  /** `${ownerId}:${studentId}` — bitta talaba ikki marta qo'shilmaydi */
+  id: string;
+  ownerId: string;
+  studentId: string;
+  studentName: string;
+  group?: string;
+  experimentGroup?: ExperimentGroup;
+  bundle: TransferBundle;
+  importedAt: string;
+};
+
 export class MusicPedDatabase extends Dexie {
   profiles!: Table<StoredProfile, string>;
   diagnostics!: Table<StoredDiagnostic, string>;
@@ -146,6 +170,7 @@ export class MusicPedDatabase extends Dexie {
   recordings!: Table<StoredRecording, string>;
   portfolio!: Table<StoredPortfolioItem, string>;
   activity!: Table<StoredActivity, string>;
+  datasets!: Table<StoredDataset, string>;
 
   constructor() {
     super("musicped");
@@ -162,6 +187,13 @@ export class MusicPedDatabase extends Dexie {
       recordings: "id, userId, instrument, createdAt",
       portfolio: "id, userId, category, createdAt",
       activity: "id, userId, createdAt",
+    });
+
+    // B5: o'qituvchi kabineti uchun import qilingan talaba ma'lumotlari.
+    // Eski jadvallar o'zgarmadi, shuning uchun migratsiya ma'lumot
+    // ko'chirishni talab qilmaydi — Dexie yangi jadvalni o'zi qo'shadi.
+    this.version(2).stores({
+      datasets: "id, ownerId, studentId, experimentGroup, [ownerId+studentId]",
     });
   }
 }
