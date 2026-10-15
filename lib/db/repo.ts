@@ -879,3 +879,48 @@ export async function deleteMentorship(ownerId: string, id: string) {
   await db().mentorship.delete(id);
   return true;
 }
+
+/* ═════════════════ Admin: shu brauzerdagi barcha ma'lumot ═════════════════ */
+
+/**
+ * Brauzerdagi barcha profillar va ularning yozuvlari soni.
+ *
+ * Admin paneli serverni boshqarmaydi (server yo'q) — u faqat **shu
+ * brauzerdagi** holatni ko'rsatadi. Buning izohi interfeysda ochiq
+ * yozilgan, aks holda foydalanuvchi «hamma foydalanuvchilarni
+ * ko'ryapman» deb o'ylaydi.
+ */
+export async function profileSummaries() {
+  const d = db();
+  const profiles = await d.profiles.toArray();
+
+  return Promise.all(
+    profiles.map(async (p) => ({
+      profile: p,
+      diagnostics: await d.diagnostics.where("userId").equals(p.id).count(),
+      progress: await d.progress.where("userId").equals(p.id).count(),
+      submissions: await d.submissions.where("userId").equals(p.id).count(),
+      reflections: await d.reflections.where("userId").equals(p.id).count(),
+      recordings: await d.recordings.where("userId").equals(p.id).count(),
+      portfolio: await d.portfolio.where("userId").equals(p.id).count(),
+    })),
+  );
+}
+
+/** Profilni va unga tegishli barcha yozuvlarni o'chiradi. */
+export async function deleteProfile(id: string) {
+  await wipeUserData(id);
+  await db().profiles.delete(id);
+  const d = db();
+  await d.datasets.where("ownerId").equals(id).delete();
+  await d.mentorship.where("ownerId").equals(id).delete();
+  return true;
+}
+
+/** Barcha foydalanuvchilarning faoliyat jurnali (eng yangisi birinchi). */
+export async function allActivity(limit = 200): Promise<StoredActivity[]> {
+  const rows = await db().activity.toArray();
+  return rows
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+    .slice(0, limit);
+}

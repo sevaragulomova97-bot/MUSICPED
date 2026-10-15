@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
-import { Placeholder } from "@/components/layout/placeholder";
+import { Foydalanuvchilar } from "./foydalanuvchilar";
 
 export const metadata: Metadata = { title: "Foydalanuvchilar" };
 
 export default function Page() {
-  return (
-    <Placeholder
-      title="Foydalanuvchilar"
-      description="Foydalanuvchilar, rollar va guruhlar"
-      stage="B5"
-    />
-  );
+  return <Foydalanuvchilar />;
 }

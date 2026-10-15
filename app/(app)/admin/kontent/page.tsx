@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
-import { Placeholder } from "@/components/layout/placeholder";
+import { Kontent } from "./kontent";
 
-export const metadata: Metadata = { title: "Kontent" };
+export const metadata: Metadata = { title: "Kontent auditi" };
 
 export default function Page() {
-  return (
-    <Placeholder
-      title="Kontent"
-      description="Modullar, kurslar va darslarni boshqarish"
-      stage="B5"
-    />
-  );
+  return <Kontent />;
 }
