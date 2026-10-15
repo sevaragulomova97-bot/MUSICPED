@@ -9,6 +9,7 @@ import {
   type StoredProfile,
   type StoredProgress,
   type StoredRecording,
+  type StoredReflection,
   type StoredSubmission,
 } from "@/lib/db/schema";
 import { buildLearningPath } from "@/lib/personalization";
@@ -317,6 +318,55 @@ export async function bestScoreFor(userId: string, exerciseId: string) {
     .toArray();
   const scores = rows.map((r) => r.score).filter((s): s is number => s !== undefined);
   return scores.length ? Math.max(...scores) : undefined;
+}
+
+
+/* ───────────────────────────── Refleksiya ───────────────────────────── */
+
+/**
+ * Refleksiya javoblarini saqlaydi (D. Schön — reflective practitioner).
+ *
+ * Bitta kontekst (dars yoki topshiriq) uchun bir nechta savol bo'lishi mumkin,
+ * shuning uchun identifikator savol tartibi bilan birga quriladi — qayta
+ * yozilganda eski javob almashtiriladi, dublikat qolmaydi.
+ */
+export async function saveReflections(
+  userId: string,
+  contextId: string,
+  answers: Array<{ question: string; answer: string }>,
+) {
+  const database = db();
+  const timestamp = now();
+  const rows: StoredReflection[] = answers.map((a, i) => ({
+    id: `${userId}:${contextId}:${i}`,
+    userId,
+    contextId,
+    question: a.question,
+    answer: a.answer,
+    createdAt: timestamp,
+  }));
+
+  await database.transaction("rw", database.reflections, database.activity, async () => {
+    await database.reflections.bulkPut(rows);
+    await database.activity.put({
+      id: newId("act"),
+      userId,
+      type: "refleksiya",
+      message: `Refleksiya yozildi (${contextId})`,
+      createdAt: timestamp,
+    } satisfies StoredActivity);
+  });
+
+  return rows;
+}
+
+export function reflectionsFor(userId: string, contextId: string) {
+  return db().reflections.where("contextId").equals(contextId).and((r) => r.userId === userId).toArray();
+}
+
+export async function allReflections(userId: string) {
+  const rows = await db().reflections.where("userId").equals(userId).toArray();
+  return rows.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
 /* ─────────────────────────── Tozalash ─────────────────────────── */
