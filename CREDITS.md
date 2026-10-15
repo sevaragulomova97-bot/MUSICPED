@@ -36,7 +36,7 @@ Namunalar loyihaning o'ziga joylashtirilgan va sayt bilan birga yetkaziladi — 
 | Gitara | `acoustic_guitar_nylon` | To'g'ridan-to'g'ri mos |
 | Nay | `flute` | Yaqin mos (nay — puflama cholg'u) |
 | Doira | GM zarbli to'plam: past tom, bongo, daf (tambourine) | `bum`, `tak`, `qarsak` zarblari uchun |
-| **Dutor** | `acoustic_guitar_nylon` + tembr filtri | **Yaqinlashtirilgan** |
+| **Dutor** | **O'z fizik modelimiz** (`tools/dutor-model/`) | Gitara yozuvi emas — dutor akustikasi modellashtirilgan |
 | **Rubob** | `acoustic_guitar_steel` + tembr filtri | **Yaqinlashtirilgan** |
 
 > **Halol ogohlantirish:** erkin litsenziyali **haqiqiy dutor va rubob yozuvlari topilmadi**. Shuning uchun ular eng yaqin qarindoshlari — nayloniy va metall torli gitara namunalari asosida, tembr filtrlari (past/yuqori chastota kesish, yorqinlik va reverb) bilan moslashtirilgan. Bu sintez ovozidan ancha haqiqiyroq, lekin **haqiqiy dutor/rubob tembri emas**.
@@ -45,12 +45,19 @@ Namunalar loyihaning o'ziga joylashtirilgan va sayt bilan birga yetkaziladi — 
 >
 > Agar sizda erkin foydalanish mumkin bo'lgan dutor yoki rubob yozuvlari bo'lsa, ularni `public/audio/` ga yangi papka sifatida qo'yib, `lib/audio/timbres.ts` ga bitta yozuv qo'shish kifoya — qolgan kod o'zgarmaydi.
 
+### Dutor fizik modeli
+
+`public/audio/dutor-model/` dagi 17 ta namuna hech qanday tashqi yozuvdan
+olinmagan — ular `tools/dutor-model/` dagi skript bilan raqamli to'lqin yo'li
+usulida hosil qilingan. Litsenziya cheklovi yo'q, mualliflik to'liq loyihaga
+tegishli. Batafsil: [`tools/dutor-model/README.md`](tools/dutor-model/README.md).
+
 ### Tembr variantlari uchun ishlatilgan namunalar
 
 | Variant | GM namunasi |
 |---|---|
 | Rubob — klavesin / klavinet / pitsikato | `harpsichord`, `clavinet`, `pizzicato_strings` |
-| Dutor — pitsikato | `pizzicato_strings` |
+| Dutor — yumshoq/yorqin tor, pitsikato | `acoustic_guitar_nylon`, `pizzicato_strings` |
 | Doira — chuqur baraban / past / orkestr | `taiko_drum`, `woodblock`, `standard`, `orchestra_kit` |
 
 ## Avatarlar

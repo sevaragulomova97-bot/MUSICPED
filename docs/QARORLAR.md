@@ -226,3 +226,31 @@ Bu yerda loyiha davomida qabul qilingan texnik qarorlar va ularning sabablari yo
 **Yo'l-yo'lakay topilgan xato.** Doirada balandlik **ikki marta** qo'llanar ekan: bir marta `Players` guruhiga, ikkinchi marta har bir zarbga. Shu sababli sozlash mantiqsiz ishlardi (−1 dB va +11 dB orasida 16 barobar farq, 4 barobar o'rniga). Endi guruh tembr balandligini, zarb esa faqat urish kuchini belgilaydi.
 
 **Metodologik eslatma.** Dastlabki o'lchovlar noto'g'ri edi: tembr almashtirilganda eski tugunlar tashlanadi va bu «pop» beradi, u esa cho'qqi sifatida qayd etilardi. To'g'ri natija har bir variantni **alohida, toza sahifada** o'lchaganda olindi.
+
+
+---
+
+## Dutor — fizik model
+
+### Q29. Dutor uchun namuna emas, o'z modeli yozildi
+
+**Qaror.** Dutorning standart tovushi endi **raqamli to'lqin yo'li modeli** bilan hosil qilingan namunalardan iborat (`public/audio/dutor-model/`, manbasi `tools/dutor-model/`). Gitara namunasiga asoslangan variantlar ro'yxatda qoldi, lekin standart emas.
+
+**Sabab.** Gitara yozuvini filtr bilan dutorga o'xshatish yetarli natija bermadi — bu aytildi. Erkin litsenziyali haqiqiy dutor yozuvi esa topilmadi (npm ekotizimi va GM to'plamlari tekshirildi). Uchinchi yo'l — cholg'uning o'zini modellashtirish.
+
+**Modelda nima bor.** Uchburchak chertish turtkisi (chertish nuqtasi 0,22), kechikish chizig'i + allpass, halqadagi past o'tkazgich, kvarta pastdagi **simpatik ikkinchi tor**, va korpus rezonanslari: 250 Hz (havo), 430 Hz (qopqoq), 1,2 kHz ("dimog'i" formanti), 130 Hz dan past kesish (kichik korpus).
+
+**Nega bu gitaradan boshqacha.** Gitaraning katta korpusi 100 Hz atrofida kuchli rezonans beradi va past chastotalarga boy; dutorniki kichik, rezonansi yuqoriroq va tovushi yupqaroq. Simpatik tor esa gitara namunasida umuman yo'q.
+
+### Q30. Sozlash formula bilan emas, o'lchab kalibrlangan
+
+**Qaror.** Har bir nota uchun `delay_trim` qiymati render paytida ikkilik qidiruv bilan tanlanadi: chiqish avtokorrelyatsiya orqali o'lchanadi, xato 1 sentdan kam bo'lguncha davom etadi.
+
+**Sabab.** Allpass kasr kechikishi chastotaga bog'liq, shuning uchun analitik formula xato beradi. Avvalgi urinishlarda xato ±28 sentgacha chiqdi — bu aniq eshitiladi. Kalibrlashdan keyin barcha 17 nota **±0,5 sent** ichida.
+
+### Q31. O'lchov metodikasidagi xatolar
+
+Yo'l-yo'lakay ikkita o'z xatomni tuzatdim, ikkalasi ham noto'g'ri **xulosaga** olib kelgandi:
+
+1. **Garmonikalarni oyna bilan o'lchash.** Davr butun songa bo'linmagani uchun garmonikalar FFT binlari orasiga tarqalib ketdi va men modelni buzuq deb o'yladim. To'g'ri yo'l — tahlil oynasini aniq butun sonli davrga tenglash (davrga sinxron spektr).
+2. **Sof shovqinli turtki.** Garmonikalar nisbati notadan notaga tasodifiy chiqardi. Fizik jihatdan to'g'ri turtki — chertilgan torning uchburchak shakli; u garmonikalarni `sin(nπβ)/n²` qonuni bo'yicha taqsimlaydi va natija takrorlanadigan bo'ladi.

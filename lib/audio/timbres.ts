@@ -68,6 +68,19 @@ export const TEMBRLAR: Record<InstrumentKind, Timbre[]> = {
 
   dutor: [
     {
+      // Dutorning o'z fizik modeli: ikki tor, kvarta oralig'ida; ipak torning
+      // so'nishi, uzun dastaning yumshoq zarbi, kichik tut yog'ochli korpusning
+      // rezonanslari (250 Hz havo, 430 Hz qopqoq) va 1,2 kHz dagi "dimog'i"
+      // formanti modellashtirilgan. Namunalar `tools/dutor-model/` dagi skript
+      // bilan render qilingan — gitara yozuvi emas.
+      id: "model",
+      label: "Dutor modeli (tavsiya etiladi)",
+      folder: "dutor-model",
+      // Balandlik boshqa dutor variantlari bilan tenglashtirilgan
+      // (brauzerda o'lchangan cho'qqi ~0,10).
+      shaping: { reverbDecay: 2.0, reverbWet: 0.2, volumeDb: -16, release: 1.4 },
+    },
+    {
       id: "nylon-soft",
       label: "Yumshoq ipak tor",
       folder: "nylon",
