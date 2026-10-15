@@ -533,7 +533,9 @@ export async function exportUserData(userId: string): Promise<TransferBundle> {
       taskType: s.taskType,
       area: s.area,
       bloom: s.bloom,
-      score: s.score,
+      // `-1` — ichki «baholanmagan» belgisi; faylga uni chiqarmaymiz,
+      // chunki tashqi o'quvchi uchun u ball kabi ko'rinadi.
+      score: s.score !== undefined && s.score >= 0 ? s.score : undefined,
       teacherComment: s.teacherComment,
       submittedAt: s.submittedAt,
       gradedAt: s.gradedAt,

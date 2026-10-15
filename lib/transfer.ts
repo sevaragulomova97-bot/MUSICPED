@@ -250,8 +250,11 @@ function parseSubmissions(v: unknown): TransferSubmission[] {
       taskType: isString(row.taskType) ? row.taskType : "mashq",
       area,
       bloom: isString(row.bloom) ? row.bloom : "bilish",
-      // `undefined` va `-1` farqi muhim: baholanmagan ish nolga aylanmasligi kerak.
-      score: isFiniteNumber(row.score) ? clampScore(row.score) : undefined,
+      // Baholanmagan ish ikki xil yoziladi: maydon yo'q yoki `-1`
+      // (B4 dagi ichki kelishuv). Ikkalasi ham `undefined` ga keltiriladi —
+      // aks holda manfiy ball 0 ga qirqilib, baholanmagan ish «nol ball»
+      // bo'lib qolardi va talabaning o'rtachasini asossiz pasaytirardi.
+      score: isFiniteNumber(row.score) && row.score >= 0 ? clampScore(row.score) : undefined,
       teacherComment: isString(row.teacherComment) ? row.teacherComment : undefined,
       submittedAt: row.submittedAt,
       gradedAt: isString(row.gradedAt) ? row.gradedAt : undefined,

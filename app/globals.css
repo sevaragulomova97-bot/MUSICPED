@@ -140,6 +140,14 @@
 
   html {
     -webkit-text-size-adjust: 100%;
+    /*
+     * Yopishqoq sarlavha 64px joy egallaydi. Brauzer elementni ko'rinishga
+     * olib kelganda (Tab bilan fokus, sahifa ichidagi havola, forma
+     * maydoniga o'tish) u shu sarlavha ostida qolib ketmasligi uchun
+     * aylantirish chegarasi qo'yiladi — aks holda klaviatura bilan
+     * ishlayotgan foydalanuvchi fokus qayerda ekanini ko'rmaydi.
+     */
+    scroll-padding-top: 5rem;
   }
 
   body {

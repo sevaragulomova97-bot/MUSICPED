@@ -334,3 +334,182 @@ Modelni tahrirlashda `s.index()` bilan ikki nuqta orasidagi bo'lakni almashtirmo
 **Qaror.** QR kod havolaga emas, sertifikat ma'lumotining o'ziga (ism, modul, sana, seriya raqami) ishora qiladi.
 
 **Sabab.** Serversiz saytda tekshirish uchun maxsus manzil yo'q. Ma'lumotni QR ichiga joylash tekshiruvchiga sertifikatni qaytadan o'qish imkonini beradi va hech qanday serverga bog'liq bo'lmaydi.
+
+
+---
+
+## B5 — o'qituvchi, tadqiqot, admin, PWA va testlar
+
+### Q42. Statistika uchun tashqi kutubxona olinmadi
+
+**Qaror.** t-mezon, χ², Koen d va Mann–Uitni `lib/stats.ts` da o'zimiz
+yozildi; taqsimot funksiyalari to'liqsiz beta va gamma funksiyalari orqali
+hisoblanadi.
+
+**Sabab.** Kerakli funksiyalar sanoqli, mos kutubxonalar esa butun bir
+matematik paketni olib keladi — serversiz saytda bu hajm bekorga. Muhimi,
+algoritmlar klassik va ularning aniqligini tekshirish mumkin.
+
+**Qanday ishonch hosil qilindi.** Har bir funksiya **SciPy 1.18** bilan
+solishtirildi va 12 xonadan ortiq aniqlikda mos keldi. Kutilgan qiymatlar
+testga qo'lda ko'chirilgan, ya'ni test o'z kodimizni o'zi bilan emas,
+mustaqil paket bilan solishtiradi.
+
+### Q43. Uelch varianti standart qilib olindi
+
+**Qaror.** Bog'liq bo'lmagan tanlanmalar uchun standart — **Uelch** t-mezoni;
+klassik (Styudent) variant faqat talab bo'yicha hisoblanadi.
+
+**Sabab.** Styudent varianti guruhlar dispersiyasi teng bo'lishini talab
+qiladi. Pedagogik tajribada bu shart tez-tez buziladi (tajriba guruhida
+tarqoqlik odatda kattaroq), buzilganda esa `p` asossiz kichik chiqadi.
+Uelch bu shartni talab qilmaydi va teng dispersiyada deyarli bir xil
+natija beradi — ya'ni uni standart qilish hech narsa yo'qotmaydi.
+
+### Q44. Parametrik bo'lmagan mezon yonma-yon hisoblanadi
+
+**Qaror.** Har bir guruhlararo solishtiruvda t-mezon bilan birga
+Mann–Uitni U ham hisoblanadi va interfeysda ikkalasi ham ko'rsatiladi.
+
+**Sabab.** Guruhda 12 kishi; bunday hajmda taqsimotning normalligini
+ishonchli tekshirib bo'lmaydi. Ikki mezon bir xil xulosaga olib kelsa,
+natija taqsimot shakliga bog'liq emas — bu dissertatsiya himoyasida
+beriladigan savolga tayyor javob.
+
+### Q45. Ogohlantirishlar yashirilmaydi
+
+**Qaror.** Tahlil natijasi bilan birga uning cheklovlari ham ko'rsatiladi:
+kutilgan chastota 5 dan kichik bo'lgan χ² katakchalari, guruhning kichikligi,
+boshlang'ich bir xillikning buzilishi va namunaviy ma'lumat ishtiroki.
+
+**Sabab.** Dastur sonni berishi oson, uni to'g'ri o'qish esa qiyin. Agar
+platforma faqat `p` ni ko'rsatsa, u tadqiqotchini xato xulosaga undaydi.
+Shuning uchun har bir cheklov matn bilan aytiladi.
+
+### Q46. Tahlilga faqat to'liq o'lchovli talabalar kiradi
+
+**Qaror.** Ishtirokchi tahlilga kirishi uchun **boshlang'ich va yakuniy**
+diagnostikasi ham bo'lishi, hamda tajriba/nazorat guruhi ko'rsatilgan
+bo'lishi kerak. Kirmaganlar soni va sababi sahifada yoziladi.
+
+**Sabab.** Bitta o'lchov bilan «o'sish» degan son ma'nosiz. Chetda
+qolganlarni jim tashlab ketish esa tadqiqotchini «hammasi hisobga olindi»
+deb o'ylashga majbur qiladi.
+
+### Q47. Ma'lumot fayl orqali ko'chiriladi
+
+**Qaror.** Talaba natijasi `natijalar-….json`, o'qituvchi bahosi esa
+`baholar-….json` fayli orqali ko'chiriladi. Format versiyalangan.
+
+**Sabab.** Server yo'q (Q1), shuning uchun avtomatik sinxronizatsiya ham
+yo'q. Fayl — eng sodda va eng shaffof yechim: ma'lumot foydalanuvchining
+qo'lida qoladi va u nimani berishni o'zi hal qiladi.
+
+**Format qoidasi: muhim maydonlar qat'iy, qolgani kechirimli.** Ism yoki
+identifikator yo'q bo'lsa fayl rad etiladi; bitta buzuq topshiriq qatori
+bo'lsa shu qator tashlanadi va qolgani o'qiladi. Shu sababli bitta xato
+butun eksportni yo'qotmaydi.
+
+**Kelajak versiyasi jim buzilmaydi.** `version` fayl ichida yoziladi; u
+platformanikidan yuqori bo'lsa, fayl rad etiladi va sabab aytiladi.
+
+### Q48. `-1` ball eksportga chiqmaydi
+
+**Qaror.** Ichkarida baholanmagan ish `-1` bilan belgilanadi (B4 kelishuvi),
+lekin eksport faylida u **umuman yozilmaydi**; import qilinganda manfiy
+qiymat `undefined` ga keltiriladi.
+
+**Sabab.** Bu **e2e test topgan haqiqiy xato edi**. Ball 0–100 oralig'iga
+qirqilar edi, `-1` esa 0 ga aylanardi — ya'ni «o'qituvchi bahosini kutmoqda»
+degan holat o'qituvchining ekranida «nol ball olgan ish» bo'lib ko'rinardi va
+talabaning o'rtachasini asossiz pasaytirardi. Endi ikkala chekkada ham
+tekshiriladi va unit test bilan qoplangan.
+
+### Q49. O'qituvchi bahosi o'z nusxasiga yoziladi
+
+**Qaror.** O'qituvchi baho qo'yganda u **import qilingan nusxaga** yoziladi,
+talabaning bazasiga emas; keyin fayl orqali qaytadi.
+
+**Sabab.** Bitta manba qoidasi buzilmasligi kerak: o'qituvchi nusxasi
+o'qituvchining, talaba nusxasi talabaning. Aks holda ikki tomon bir xil
+yozuvni boshqa-boshqa o'zgartirib, qaysi biri to'g'ri ekani noma'lum
+bo'lib qolardi.
+
+### Q50. Admin paneli kontentni tekshiradi, foydalanuvchilarni emas
+
+**Qaror.** Admin panelining asosiy vazifasi — **konstruktiv moslashuvni**
+tekshirish: har bir o'quv natijasining darsi va baholovchi topshirig'i bormi.
+
+**Sabab.** Serversiz platformada markaziy foydalanuvchilar ro'yxati yo'q,
+shuning uchun klassik «admin» vazifasi ma'nosiz. Kontentning yaxlitligini
+tekshirish esa aniq foyda beradi va ko'z bilan bajarib bo'lmaydi.
+
+**Birinchi natija yashirilmadi.** Audit 24 o'quv natijasidan atigi 5 tasi
+to'liq qoplanganini, 12 tasida na dars na topshiriq borligini ko'rsatdi. Bu
+to'g'ri: kontent — to'liq o'quv dasturi emas, uning namunaviy qismi. Jadval
+buni ochiq ko'rsatadi va to'ldirish tartibini beradi.
+
+### Q51. Kontent testlari kontentning o'zini tekshiradi
+
+**Qaror.** `tests/unit/content-audit.test.ts` funksiyalarni emas, kontentni
+ham tekshiradi: dasturdan tashqarida qolgan dars yoki topshiriq bo'lsa, test
+yiqiladi.
+
+**Sabab.** Kontent o'sgani sari aloqa jim uziladi. Testga qo'yilgan shart —
+«orphan yo'q» — buni birinchi push'dayoq ushlaydi.
+
+### Q52. Oflayn rejim: har bir resurs turiga alohida strategiya
+
+**Qaror.** Xizmat ishchisida uch strategiya: xeshlangan fayllar uchun avval
+kesh, sahifalar uchun avval tarmoq, qolganlari uchun avval tarmoq + kesh
+zaxirasi.
+
+**Sabab.** `/_next/static/…` fayllari nomida mazmun xeshi bor — mazmuni
+o'zgarsa nomi ham o'zgaradi, shuning uchun keshdagi nusxa hech qachon
+eskirmaydi. Sahifalar esa o'zgaradi: ularni keshdan berish yangi versiyani
+ko'rsatmay qo'yardi.
+
+**`scope` qat'iy yozilmadi.** U `self.registration.scope` dan olinadi, shuning
+uchun sayt `/` da ham, `/MUSICPED/` da ham bir xil ishlaydi — Q4 mantig'i
+davom ettirildi.
+
+### Q53. e2e testlar qurilgan sayt ustida ishlaydi
+
+**Qaror.** Playwright testlari `next dev` emas, `npm run build` natijasi
+(`out/`) ustida yuriladi.
+
+**Sabab.** Platforma aynan shu ko'rinishda joylanadi. `next dev` boshqa kodni
+sinash bo'lardi: xizmat ishchisi faqat ishlab chiqarish qurilishida
+ro'yxatdan o'tadi va yo'llar `trailingSlash` bilan yoziladi.
+
+### Q54. e2e testlar joylashni to'xtatmaydi
+
+**Qaror.** CI da e2e alohida ish sifatida yuriladi va `continue-on-error`
+bilan belgilangan; `deploy` faqat lint + unit test + build dan keyin ketadi.
+
+**Sabab.** Brauzer testlari muhit sababli vaqti-vaqti bilan yiqiladi.
+Platformani bitta odam yuritadi — tasodifiy yiqilish saytni yangilashni
+bloklab qo'ysa, foyda emas, to'siq bo'lardi. Natija baribir ko'rinadi.
+
+### Q55. `force` bilan bosish testdan olib tashlandi
+
+**Qaror.** Testlarda `check({ force: true })` ishlatilmaydi (ko'rinmas
+`sr-only` inputlardan tashqari, u yerda yorliq bosiladi).
+
+**Sabab va topilgan muammo.** `force` aktuallik tekshiruvini o'tkazib
+yuboradi va klik yopishqoq sarlavha ostidagi elementga «ko'r» yuborilishi
+mumkin — aynan shunday bo'ldi. Tekshirish shuni ko'rsatdiki, brauzer
+elementni ko'rinishga olib kelganda (Tab bilan fokus yoki sahifa ichidagi
+havola) u 64px balandlikdagi sarlavha ostida qolib ketar ekan. Shuning uchun
+`html` ga `scroll-padding-top: 5rem` qo'shildi — bu klaviatura bilan
+ishlaydigan foydalanuvchi uchun haqiqiy tuzatish.
+
+### Q56. Baho saqlanganda tasdiq kartada emas, ro'yxat ustida
+
+**Qaror.** «Saqlandi» xabari baholash kartasida emas, navbat ro'yxatining
+tepasida ko'rsatiladi.
+
+**Sabab.** Yana e2e test topdi: baho saqlangach ish navbatdan chiqadi va
+karta o'chadi — kartadagi tasdiq xabari bilan birga. O'qituvchi hech qanday
+javob ko'rmay qolardi. Endi xabar o'chmaydigan joyda chiqadi va qaysi ishga
+necha ball qo'yilganini aytadi.

@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { useLiveQuery } from "dexie-react-hooks";
-import { ClipboardCheck, Download, Send } from "lucide-react";
+import { Check, ClipboardCheck, Download, Send } from "lucide-react";
 import { useSession } from "@/components/session-provider";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,10 @@ export function Baholash() {
   const { profile } = useSession();
   const ownerId = profile?.id;
   const [faqatKutayotgan, setFaqatKutayotgan] = React.useState(true);
+  // Baho saqlanganda karta ro'yxatdan chiqib ketadi (u endi kutayotgan
+  // emas), shuning uchun tasdiq xabari kartada emas, ro'yxat ustida
+  // ko'rsatiladi — aks holda o'qituvchi hech qanday javob ko'rmaydi.
+  const [oxirgiBaho, setOxirgiBaho] = React.useState<string | null>(null);
 
   const datasets = useLiveQuery(
     async () => (ownerId ? listDatasets(ownerId) : []),
@@ -65,6 +69,16 @@ export function Baholash() {
         </label>
       </div>
 
+      {oxirgiBaho && (
+        <p
+          role="status"
+          className="flex items-center gap-2 rounded-xl bg-success-soft px-4 py-3 text-sm text-success"
+        >
+          <Check className="size-4 shrink-0" aria-hidden="true" />
+          {oxirgiBaho}
+        </p>
+      )}
+
       {datasets.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center gap-4 p-10 text-center">
@@ -98,7 +112,11 @@ export function Baholash() {
         <ul className="flex flex-col gap-4">
           {navbat.map((item) => (
             <li key={item.key}>
-              <BaholashKarta item={item} ownerId={ownerId!} />
+              <BaholashKarta
+                item={item}
+                ownerId={ownerId!}
+                onSaved={(matn) => setOxirgiBaho(matn)}
+              />
             </li>
           ))}
         </ul>
@@ -168,7 +186,15 @@ export function Baholash() {
  * «ko'zga chamalab» ball qo'ymaydi. Rubrikasi yo'q ishlar (masalan test)
  * uchun faqat umumiy ball maydoni ko'rsatiladi.
  */
-function BaholashKarta({ item, ownerId }: { item: GradingItem; ownerId: string }) {
+function BaholashKarta({
+  item,
+  ownerId,
+  onSaved,
+}: {
+  item: GradingItem;
+  ownerId: string;
+  onSaved: (matn: string) => void;
+}) {
   const task = TOPSHIRIQ_BY_ID.get(item.submission.taskId);
   const criteria = item.rubricCriteria;
   const maxBall = criteria.reduce((s, c) => s + c.maxPoints, 0);
@@ -182,7 +208,6 @@ function BaholashKarta({ item, ownerId }: { item: GradingItem; ownerId: string }
       : 0,
   );
   const [izoh, setIzoh] = React.useState(item.submission.teacherComment ?? "");
-  const [saqlandi, setSaqlandi] = React.useState(false);
 
   const rubrikaBall = criteria.length
     ? Math.round((Object.values(ballar).reduce((a, b) => a + b, 0) / maxBall) * 100)
@@ -196,8 +221,9 @@ function BaholashKarta({ item, ownerId }: { item: GradingItem; ownerId: string }
       rubrikaBall,
       izoh.trim() || undefined,
     );
-    setSaqlandi(true);
-    window.setTimeout(() => setSaqlandi(false), 2500);
+    onSaved(
+      `${item.studentName} — «${item.taskTitle}» ishiga ${rubrikaBall}% qo'yildi. Saqlandi.`,
+    );
   }
 
   return (
@@ -298,14 +324,9 @@ function BaholashKarta({ item, ownerId }: { item: GradingItem; ownerId: string }
           />
         </label>
 
-        <div className="flex items-center gap-3">
-          <Button onClick={() => void saqla()}>Bahoni saqlash</Button>
-          {saqlandi && (
-            <span className="text-sm text-success" role="status">
-              Saqlandi
-            </span>
-          )}
-        </div>
+        <Button className="w-fit" onClick={() => void saqla()}>
+          Bahoni saqlash
+        </Button>
       </CardContent>
     </Card>
   );

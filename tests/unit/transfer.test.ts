@@ -148,12 +148,12 @@ describe("eksport faylini o'qish", () => {
       JSON.stringify({
         ...TOLIQ,
         progress: [{ lessonId: "l1", courseSlug: "k", percent: 540 }],
-        submissions: [{ ...TOLIQ.submissions[0], score: -20 }],
+        submissions: [{ ...TOLIQ.submissions[0], score: 180 }],
       }),
     );
     if (!r.ok || r.value.kind !== "natijalar") throw new Error("kutilmagan");
     expect(r.value.progress[0].percent).toBe(100);
-    expect(r.value.submissions[0].score).toBe(0);
+    expect(r.value.submissions[0].score).toBe(100);
   });
 
   it("obyektni ham, matnni ham qabul qiladi", () => {
@@ -230,5 +230,53 @@ describe("fayl haqida qisqa ma'lumot", () => {
     });
     expect(nom).toMatch(/^[a-z0-9.-]+$/);
     expect(nom).toContain("yoldosheva");
+  });
+});
+
+describe("baholanmagan ish nolga aylanmaydi", () => {
+  /**
+   * Nozik joy: ichkarida baholanmagan ish `-1` bilan belgilanadi, lekin
+   * ball 0–100 oralig'iga qirqiladi. Agar `-1` to'g'ridan-to'g'ri qirqilsa,
+   * u 0 ga aylanadi va «baho kutmoqda» degan holat «nol ball» bo'lib
+   * qoladi — talabaning o'rtachasi asossiz pasayadi.
+   */
+  const bilanMinusBir = {
+    ...TOLIQ,
+    submissions: [{ ...TOLIQ.submissions[0], id: "s-kutmoqda", score: -1 }],
+  };
+
+  it("`-1` ball sifatida emas, baholanmagan sifatida o'qiladi", () => {
+    const r = parseBundle(JSON.stringify(bilanMinusBir));
+    if (!r.ok || r.value.kind !== "natijalar") throw new Error("kutilmagan");
+    expect(r.value.submissions[0].score).toBeUndefined();
+  });
+
+  it("nol ball — bu haqiqiy baho, u saqlanadi", () => {
+    const r = parseBundle(
+      JSON.stringify({
+        ...TOLIQ,
+        submissions: [{ ...TOLIQ.submissions[0], score: 0 }],
+      }),
+    );
+    if (!r.ok || r.value.kind !== "natijalar") throw new Error("kutilmagan");
+    expect(r.value.submissions[0].score).toBe(0);
+  });
+
+  it("baholar faylida ham manfiy ball qabul qilinmaydi", () => {
+    const r = parseBundle(
+      JSON.stringify({
+        app: TRANSFER_APP,
+        version: TRANSFER_VERSION,
+        kind: "baholar",
+        issuedAt: "2026-05-21T10:00:00.000Z",
+        teacherName: "O'qituvchi",
+        studentId: "talaba-01",
+        studentName: "Talaba",
+        grades: [{ submissionId: "s1", score: -5, gradedAt: "2026-05-21T10:00:00.000Z" }],
+      }),
+    );
+    if (!r.ok || r.value.kind !== "baholar") throw new Error("kutilmagan");
+    // Baholar faylida manfiy qiymat xato kiritish — u 0 ga keltiriladi.
+    expect(r.value.grades[0].score).toBe(0);
   });
 });

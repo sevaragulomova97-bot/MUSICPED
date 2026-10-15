@@ -41,7 +41,10 @@ npm run build      :: Statik saytni `out\` papkasiga quradi
 npm run lint       :: ESLint tekshiruvi
 npm run typecheck  :: TypeScript tekshiruvi
 npm test           :: Unit testlar (Vitest)
+npm run test:e2e   :: Uchdan-uchiga testlar (Playwright, qurilgan sayt ustida)
 ```
+
+`test:e2e` saytni avtomatik qurmaydi — avval `npm run build` ni bajaring.
 
 Build natijasini lokal ko'rish uchun:
 
@@ -93,8 +96,10 @@ Yangi omborda ham yuqoridagi **Settings → Pages** sozlamasi takrorlanadi.
 | Nota yozuvi | VexFlow 5 (talab bo'yicha yuklanadi) |
 | Grafiklar | Recharts 3 |
 | PDF | pdf-lib + qrcode (brauzerda) |
-| Excel | write-excel-file — *B5* |
-| Test | Vitest (unit), Playwright (e2e) |
+| Jadval eksporti | CSV (BOM bilan, Excel to'g'ri ochadi) |
+| Statistika | o'z kodimiz (SciPy bilan solishtirib tekshirilgan) |
+| Oflayn | xizmat ishchisi (service worker) + web manifest |
+| Test | Vitest (207 unit), Playwright (13 e2e) |
 
 ---
 
@@ -118,6 +123,7 @@ content/
   practice.ts           18 ta cholg'u mashqi + ritm baholash
   courses.ts            5 kurs, 9 ta to'liq dars
   tasks.ts              8 ta topshiriq + 3 ta baholash rubrikasi
+  mentorship.ts         Pedagogik amaliyotning 3 bosqichi + kuzatuv varaqasi
 lib/
   audio/engine.ts       AudioContext, klaviatura, nota yozuvchi
   audio/instruments.ts  Namunali cholg'ular (Tone.Sampler) + sintez zaxirasi
@@ -125,14 +131,24 @@ lib/
   domain/types.ts       Umumiy lug'at: Blum, ZPD, yo'nalishlar, profil turlari
   personalization.ts    IRY algoritmi (sof funksiya, testlangan)
   scoring.ts            Diagnostika baholash (sof funksiya, testlangan)
+  stats.ts              t-mezon, chi-kvadrat, Koen d, Mann-Uitni
+  research.ts           Tajriba-sinov tahlili (to'rt qadam)
+  transfer.ts           Eksport/import formati va tekshiruvi
+  teacher.ts            O'qituvchi kabineti mantig'i
+  content-audit.ts      Konstruktiv moslashuv auditi
   db/schema.ts          Dexie sxemasi
   db/repo.ts            Ma'lumotga kirishning yagona yo'li
   navigation.ts         Rol bo'yicha menyu
   analytics.ts          Natijalar statistikasi (sof funksiya, testlangan)
   export/certificate.ts PDF sertifikat (pdf-lib, brauzerda)
   utils.ts              cn(), asset(), formatDate()
+tests/
+  unit/                 Vitest — sof funksiyalar va kontent yaxlitligi
+  e2e/                  Playwright — qurilgan sayt ustidagi to'liq oqimlar
 docs/
   QARORLAR.md           Qabul qilingan texnik qarorlar
+  QOLLANMA-TALABA.md    Talaba uchun qo'llanma
+  QOLLANMA-OQITUVCHI.md O'qituvchi va tadqiqotchi uchun qo'llanma
 ```
 
 ---
@@ -145,11 +161,50 @@ docs/
       (haqiqiy namunali ovoz, yozib olish, mashq rejimi)
 - [x] **B4** — Darslar (VexFlow nota yozuvi), topshiriqlar va rubrikalar,
       natijalar grafiklari, portfolio va PDF sertifikat
-- [ ] **B5** — O'qituvchi kabineti, tadqiqot bo'limi (t-mezon, χ²), PWA, testlar
+- [x] **B5** — O'qituvchi kabineti, tadqiqot bo'limi (t-mezon, χ², Koen d,
+      Mann-Uitni), admin paneli va kontent auditi, oflayn rejim (PWA),
+      e2e testlar va qo'llanmalar
+
+---
+
+## Ma'lumotni ko'chirish (serversiz "tarmoq")
+
+Server yo'qligi uchun ma'lumot fayl orqali yuradi:
+
+```
+talaba  --  natijalar-….json  -->  o'qituvchi
+o'qituvchi  --  baholar-….json  -->  talaba
+```
+
+Talaba **Sozlamalar -> Eksport qilish** bo'limida faylni saqlaydi va
+o'qituvchiga beradi. O'qituvchi uni kabinetida qabul qiladi, rubrika bo'yicha
+baho qo'yadi va `baholar-….json` ni qaytaradi; talaba uni import qilgach baho
+va izoh natijalarida paydo bo'ladi. Fayl formati versiyalangan: eski fayl
+o'qiladi, yangiroq versiyadagi fayl esa jim buzilmay, aniq xato beradi.
+
+---
+
+## Tadqiqot bo'limi
+
+O'qituvchi kabinetidagi **Tadqiqot** sahifasi dissertatsiyaning tajriba-sinov
+qismi uchun to'rt qadamni bajaradi:
+
+1. **Guruhlar bir xilligi** — tajriba boshida farq bo'lsa ogohlantiradi
+2. **Guruhlararo farq** — Uelch t-mezoni, Koen d va Mann-Uitni U
+3. **Guruh ichidagi o'sish** — juftlashgan t-mezon
+4. **Daraja taqsimoti** — Pirson chi-kvadrat mezoni va Kramer V
+
+Natija CSV va ko'p sahifali PDF hisobot sifatida eksport qilinadi.
+
+Statistik funksiyalar platforma ichida yozilgan va **SciPy 1.18** bilan
+solishtirib tekshirilgan — natijalar 12 xonadan ortiq aniqlikda mos keldi
+(`tests/unit/stats.test.ts`).
 
 ---
 
 ## Hujjatlar
 
-- [`docs/QARORLAR.md`](docs/QARORLAR.md) — qabul qilingan texnik qarorlar va ularning sabablari
+- [`docs/QOLLANMA-TALABA.md`](docs/QOLLANMA-TALABA.md) — talaba uchun qo'llanma
+- [`docs/QOLLANMA-OQITUVCHI.md`](docs/QOLLANMA-OQITUVCHI.md) — o'qituvchi va tadqiqotchi uchun qo'llanma
+- [`docs/QARORLAR.md`](docs/QARORLAR.md) — qabul qilingan 56 ta texnik qaror va ularning sabablari
 - [`CREDITS.md`](CREDITS.md) — ishlatilgan erkin litsenziyali materiallar

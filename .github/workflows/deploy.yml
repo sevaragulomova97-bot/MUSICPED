@@ -68,6 +68,50 @@ jobs:
         with:
           path: out
 
+  e2e:
+    name: Uchdan-uchiga testlar
+    runs-on: ubuntu-latest
+    # DIQQAT: bu ish joylashni **to'xtatmaydi** (`deploy` faqat `build` ga
+    # bog'liq). Sabab: e2e testlar brauzer ustida ishlaydi va vaqti-vaqti
+    # bilan muhit sababli yiqilishi mumkin. Platformani bitta odam yuritadi,
+    # shuning uchun tasodifiy yiqilish saytni yangilashni bloklamasligi
+    # kerak — natija ko'rinadi, lekin joylash to'xtamaydi.
+    continue-on-error: true
+    steps:
+      - name: Kodni olish
+        uses: actions/checkout@v4
+
+      - name: Node.js o'rnatish
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Bog'liqliklarni o'rnatish
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+        run: npm ci
+
+      - name: Build (basePath'siz)
+        # e2e testlar saytni `/` ildizidan xizmat qiladi, Pages esa
+        # `/<ombor>/` ostidan. Shuning uchun bu yerda alohida, prefikssiz
+        # build qilinadi — Pages artefaktini qayta ishlatib bo'lmaydi.
+        run: npm run build
+
+      - name: Chromium o'rnatish
+        run: npx playwright install --with-deps chromium
+
+      - name: e2e testlar
+        run: npm run test:e2e
+
+      - name: Hisobotni saqlash
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-hisobot
+          path: playwright-report
+          retention-days: 7
+
   deploy:
     name: Joylash
     needs: build
