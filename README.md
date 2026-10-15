@@ -89,7 +89,7 @@ Yangi omborda ham yuqoridagi **Settings → Pages** sozlamasi takrorlanadi.
 | Ikonkalar | lucide-react |
 | Mavzu (dark mode) | next-themes |
 | Ma'lumot | IndexedDB (Dexie 4) |
-| Audio | Tone.js 15 + FluidR3_GM namunalari (MIT) + dutorning o'z fizik modeli |
+| Audio | Tone.js 15 + FluidR3_GM namunalari (MIT) + dutor, rubob va doiraning o'z fizik modellari |
 | Nota yozuvi | VexFlow — *B4* |
 | Grafiklar | Recharts — *B4* |
 | PDF / Excel | pdf-lib, write-excel-file — *B4–B5* |

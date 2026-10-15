@@ -35,9 +35,9 @@ Namunalar loyihaning o'ziga joylashtirilgan va sayt bilan birga yetkaziladi — 
 | Pianino | `acoustic_grand_piano` | To'g'ridan-to'g'ri mos |
 | Gitara | `acoustic_guitar_nylon` | To'g'ridan-to'g'ri mos |
 | Nay | `flute` | Yaqin mos (nay — puflama cholg'u) |
-| Doira | GM zarbli to'plam: past tom, bongo, daf (tambourine) | `bum`, `tak`, `qarsak` zarblari uchun |
-| **Dutor** | **O'z fizik modelimiz** (`tools/dutor-model/`) | Gitara yozuvi emas — dutor akustikasi modellashtirilgan |
-| **Rubob** | `acoustic_guitar_steel` + tembr filtri | **Yaqinlashtirilgan** |
+| **Dutor** | **O'z fizik modelimiz** | To'lqin yo'li modeli — gitara yozuvi emas |
+| **Rubob** | **O'z fizik modelimiz** | To'lqin yo'li modeli, 3 ta simpatik tor bilan |
+| **Doira** | **O'z fizik modelimiz** | Membrana modal sintezi (Bessel rejimlari) |
 
 > **Halol ogohlantirish:** erkin litsenziyali **haqiqiy dutor va rubob yozuvlari topilmadi**. Shuning uchun ular eng yaqin qarindoshlari — nayloniy va metall torli gitara namunalari asosida, tembr filtrlari (past/yuqori chastota kesish, yorqinlik va reverb) bilan moslashtirilgan. Bu sintez ovozidan ancha haqiqiyroq, lekin **haqiqiy dutor/rubob tembri emas**.
 >
@@ -45,12 +45,16 @@ Namunalar loyihaning o'ziga joylashtirilgan va sayt bilan birga yetkaziladi — 
 >
 > Agar sizda erkin foydalanish mumkin bo'lgan dutor yoki rubob yozuvlari bo'lsa, ularni `public/audio/` ga yangi papka sifatida qo'yib, `lib/audio/timbres.ts` ga bitta yozuv qo'shish kifoya — qolgan kod o'zgarmaydi.
 
-### Dutor fizik modeli
+### Fizik modellar
 
-`public/audio/dutor-model/` dagi 17 ta namuna hech qanday tashqi yozuvdan
-olinmagan — ular `tools/dutor-model/` dagi skript bilan raqamli to'lqin yo'li
-usulida hosil qilingan. Litsenziya cheklovi yo'q, mualliflik to'liq loyihaga
-tegishli. Batafsil: [`tools/dutor-model/README.md`](tools/dutor-model/README.md).
+`public/audio/dutor-model/`, `public/audio/rubob-model/` va
+`public/audio/doira-model/` dagi namunalar (jami 37 ta fayl) hech qanday tashqi
+yozuvdan olinmagan — ular `tools/instrument-models/` dagi skriptlar bilan
+hosil qilingan: dutor va rubob uchun raqamli to'lqin yo'li, doira uchun
+membrananing modal sintezi. Litsenziya cheklovi yo'q, mualliflik to'liq
+loyihaga tegishli.
+
+Batafsil: [`tools/instrument-models/README.md`](tools/instrument-models/README.md).
 
 ### Tembr variantlari uchun ishlatilgan namunalar
 

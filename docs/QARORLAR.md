@@ -254,3 +254,36 @@ Yo'l-yo'lakay ikkita o'z xatomni tuzatdim, ikkalasi ham noto'g'ri **xulosaga** o
 
 1. **Garmonikalarni oyna bilan o'lchash.** Davr butun songa bo'linmagani uchun garmonikalar FFT binlari orasiga tarqalib ketdi va men modelni buzuq deb o'yladim. To'g'ri yo'l — tahlil oynasini aniq butun sonli davrga tenglash (davrga sinxron spektr).
 2. **Sof shovqinli turtki.** Garmonikalar nisbati notadan notaga tasodifiy chiqardi. Fizik jihatdan to'g'ri turtki — chertilgan torning uchburchak shakli; u garmonikalarni `sin(nπβ)/n²` qonuni bo'yicha taqsimlaydi va natija takrorlanadigan bo'ladi.
+
+
+---
+
+## Rubob va doira — ular ham modelga o'tkazildi
+
+### Q32. Uch cholg'u ham o'z modeliga ega bo'ldi
+
+**Qaror.** Dutordan keyin rubob va doira ham fizik modelga o'tkazildi. Model kodi umumlashtirildi: `tools/instrument-models/` ichida `strings.py` (torli cholg'ular) va `membrane.py` (doira).
+
+**Sabab.** Dutorda usul ishladi; rubob va doira uchun GM namunalari ham mos emasligi aytildi.
+
+### Q33. Doira uchun boshqa model sinfi kerak bo'ldi
+
+**Qaror.** Doira to'lqin yo'li bilan emas, **modal sintez** bilan modellashtirildi.
+
+**Sabab.** Membrana torga o'xshamaydi: u garmonik bo'lmagan chastotalarda tebranadi va ular Bessel funksiyalarining nollari bilan belgilanadi (1,00 · 1,55 · 2,04 · 2,18 …). Aynan shu garmonik bo'lmaganlik barabanni torli cholg'udan ajratadi; uni garmonik qatorlar bilan taqlid qilib bo'lmaydi. `scipy.special.jn_zeros` va `jv` bilan rejimlar va ularning zarb joyiga bog'liq amplitudalari to'g'ridan-to'g'ri hisoblanadi.
+
+**Zarblarning farqi fizikadan kelib chiqadi.** Markazga urilganda faqat radial simmetrik rejimlar uyg'onadi — "bum" chuqur. Chetga urilganda yuqori rejimlar qo'shiladi va barmoqlar membranani bosib turgani uchun past rejimlar bo'g'iladi — "tak" qisqa va baland. O'lchangan natija: bum past/yuqori energiya nisbati 9,96 va T−20dB 1,17 s; tak 0,46 va 0,10 s; qarsak 0,03 va 0,17 s.
+
+### Q34. Dutor va rubob bir modeldan, lekin boshqa parametrlar bilan
+
+**Qaror.** Ikkalasi `StringSpec` bilan beriladi; farqlar parametrlarda.
+
+**Sabab.** Ular bir oiladan, lekin akustikasi jiddiy farq qiladi: ipak torga qarshi metall tor, barmoqqa qarshi nokka, yog'och qopqoqqa qarshi teri qoplangan kosa, bitta simpatik torga qarshi uchta.
+
+**Natija o'lchovda ko'rinadi.** C4 notasida garmonikalar: dutor `0 · −24,9 · −33,4 dB`, rubob `0 · −6,8 · −10,3 dB`. Past notalarda rubobning 2- va 3-garmonikasi asosiy tondan kuchliroq (+3,7 va +6,5 dB) — kichik korpusli metall torli cholg'u uchun xos.
+
+### Q35. Patch skripti faylni buzdi — saboq
+
+Modelni tahrirlashda `s.index()` bilan ikki nuqta orasidagi bo'lakni almashtirmoqchi bo'ldim, lekin qidirilgan satr (`y = np.zeros(n)`) faylda ikki joyda bor edi va kesim teskari chiqib, matn hamma joyga qo'shilib ketdi.
+
+**Xulosa.** Kod bo'laklarini almashtirganda qidiruv satri yagona ekaniga ishonch bo'lmasa, faylni butunlay qayta yozish xavfsizroq — shunday qilindi.

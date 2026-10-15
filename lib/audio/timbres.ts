@@ -109,6 +109,17 @@ export const TEMBRLAR: Record<InstrumentKind, Timbre[]> = {
 
   rubob: [
     {
+      // Rubobning o'z fizik modeli: metall tor (yuqori garmonikalar
+      // saqlanadi), nokka bilan ko'prikka yaqin chertish (yorqin zarb),
+      // teri qoplangan kosa rezonanslari va **uchta simpatik tor** —
+      // rubobning jarangli "shleyfi" shundan. Gitara yozuvida bunday
+      // narsa umuman yo'q. Manba: `tools/instrument-models/`.
+      id: "model",
+      label: "Rubob modeli (tavsiya etiladi)",
+      folder: "rubob-model",
+      shaping: { reverbDecay: 2.6, reverbWet: 0.26, volumeDb: -16, release: 1.2 },
+    },
+    {
       id: "steel",
       label: "Metall tor (gitara)",
       folder: "steel",
@@ -167,6 +178,18 @@ export const TEMBRLAR: Record<InstrumentKind, Timbre[]> = {
   // Barcha doira variantlari bir xil balandlikda eshitilsin deb, har birining
   // `volumeDb` qiymati brauzerda o'lchab sozlangan (cho'qqi ~0,3).
   doira: [
+    {
+      // Doiraning o'z fizik modeli — modal sintez. Membrana garmonik
+      // bo'lmagan Bessel rejimlarida tebranadi (1,00 · 1,55 · 2,04 · 2,18 …),
+      // zarb joyi esa qaysi rejim uyg'onishini belgilaydi: markazga
+      // urilganda chuqur "bum", chetga urilganda qisqa "tak", gardishda esa
+      // metall halqalarning "qarsak" jarangi.
+      id: "model",
+      label: "Doira modeli (tavsiya etiladi)",
+      folder: "doira-model",
+      // Balandlik boshqa doira variantlari bilan tenglashtirilgan (cho‘qqi ~0,30)
+      shaping: { reverbDecay: 1.2, reverbWet: 0.1, volumeDb: -7 },
+    },
     {
       id: "tom",
       label: "Tom + bongo + daf",
