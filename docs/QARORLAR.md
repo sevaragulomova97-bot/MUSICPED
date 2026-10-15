@@ -287,3 +287,50 @@ Yo'l-yo'lakay ikkita o'z xatomni tuzatdim, ikkalasi ham noto'g'ri **xulosaga** o
 Modelni tahrirlashda `s.index()` bilan ikki nuqta orasidagi bo'lakni almashtirmoqchi bo'ldim, lekin qidirilgan satr (`y = np.zeros(n)`) faylda ikki joyda bor edi va kesim teskari chiqib, matn hamma joyga qo'shilib ketdi.
 
 **Xulosa.** Kod bo'laklarini almashtirganda qidiruv satri yagona ekaniga ishonch bo'lmasa, faylni butunlay qayta yozish xavfsizroq — shunday qilindi.
+
+
+---
+
+## B4 — darslar, topshiriqlar, natijalar, portfolio
+
+### Q36. Nota yozuvi uchun VexFlow, rasm emas
+
+**Qaror.** Notalar brauzerda VexFlow 5 bilan chiziladi; tayyor rasm fayllari ishlatilmaydi.
+
+**Sabab.** Uchta foyda bir vaqtda olinadi: (1) nota kontenti kodda matn sifatida turadi, shuning uchun uni tahrirlash oson va ombor hajmi o'smaydi; (2) hech qanday mualliflik huquqi masalasi yo'q — rasm boshqa joydan olinmaydi; (3) chizilgan notani bosganda aynan shu balandlikdagi tovush chalinadi, ya'ni ko'rish va eshitish bitta harakatda bog'lanadi.
+
+**Yechilishi kerak bo'lgan muammo.** VexFlow faqat SVG chiqaradi — ekran o'quvchi uchun u jim. Shuning uchun SVG `aria-hidden` qilindi va nota nomlari alohida tugmalar sifatida beriladi: klaviatura bilan ham yurish mumkin, screen reader ham o'qiydi.
+
+### Q37. Topshiriq ikki xil baholanadi — avtomatik va rubrika bilan
+
+**Qaror.** Test tipidagi topshiriqlar darhol avtomatik baholanadi; dars ishlanmasi, ijro va tahlil topshiriqlari esa **rubrika** bilan o'qituvchi tomonidan baholanadi va baho kelmaguncha natija `-1` deb saqlanadi.
+
+**Sabab.** Shaxsga yo'naltirilgan ta'lim ijodiy ishni talab qiladi (Rogers), lekin ijodiy ishni mashina baholay olmaydi. Uch rubrika yozildi — `RUBRIKA_DARS`, `RUBRIKA_IJRO`, `RUBRIKA_TAHLIL`; har birida mezonlar va har mezon uchun daraja ta'riflari bor. Talaba rubrikani **topshirishdan oldin** ko'radi: shu bilan baholash mezonlari yashirin emas.
+
+**`-1` ning ma'nosi.** Natijalar sahifasida u "o'qituvchi bahosini kutmoqda" deb ko'rsatiladi va o'rtacha ballni hisoblashda e'tiborga olinmaydi — aks holda baholanmagan ish nolga teng bo'lib, talabaning statistikasini asossiz pasaytirardi.
+
+### Q38. Grafik yonida jadval ko'rinishi majburiy
+
+**Qaror.** Natijalar sahifasidagi chiziqli grafikda "jadval ko'rinishi" tugmasi bor va u o'sha ma'lumotni raqamlar bilan beradi.
+
+**Sabab.** Grafikda beshta yo'nalish bir vaqtda ko'rsatiladi. Palitra tekshiruvi (`scripts/validate_palette.js`) beshta chiziq ranglari orasidagi kontrastni yetarli emas deb ogohlantirdi — rang ko'rish buzilgan foydalanuvchi ikki chiziqni ajrata olmasligi mumkin. Ranglarni yana ajratish grafikni chiroyliligini buzardi, shuning uchun to'g'ri yo'l — ma'lumotni ranglardan **mustaqil** ikkinchi ko'rinishda ham berish.
+
+### Q39. Sertifikat sharti o'zgartirildi
+
+**Qaror.** Modul sertifikati quyidagi shartda beriladi: (1) modulning barcha darslari 100% yakunlangan; (2) agar modul yo'nalishlari bo'yicha baholangan topshiriqlar bo'lsa, ularning o'rtachasi ≥ 70.
+
+**Sabab.** Dastlabki shart "kamida 2 ta baholangan topshiriq" edi. Topshiriqlar bankini yozib bo'lgach ko'rindiki, ayrim modullarda baholanadigan topshiriq ikkitadan kam — ya'ni shart bajarilishi **mumkin emas** edi. Shartni darslar yakuniga bog'lash halolroq: u har bir modulda erishib bo'ladigan va o'lchanadigan.
+
+### Q40. PDF sertifikat brauzerda yasaladi
+
+**Qaror.** Sertifikat `pdf-lib` + `qrcode` bilan brauzerda hosil qilinadi va to'g'ridan-to'g'ri yuklab olinadi; server ishlatilmaydi.
+
+**Sabab.** Serversiz arxitektura (Q1) buzilmasligi kerak.
+
+**Kutilmagan to'siq.** `pdf-lib` ning standart shriftlari WinAnsi kodlash bilan ishlaydi va o'zbek lotin alifbosidagi `oʻ`/`gʻ` (U+02BB) belgisini chiza olmaydi — xato bilan to'xtaydi. Shuning uchun `toWinAnsi()` yozildi: u bu belgilarni apostrof bilan almashtiradi. Qo'shimcha shrift faylini yuklash hajmni bir necha yuz kilobaytga oshirardi.
+
+### Q41. Sertifikatdagi QR kod ichida ma'lumot bor
+
+**Qaror.** QR kod havolaga emas, sertifikat ma'lumotining o'ziga (ism, modul, sana, seriya raqami) ishora qiladi.
+
+**Sabab.** Serversiz saytda tekshirish uchun maxsus manzil yo'q. Ma'lumotni QR ichiga joylash tekshiruvchiga sertifikatni qaytadan o'qish imkonini beradi va hech qanday serverga bog'liq bo'lmaydi.

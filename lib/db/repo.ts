@@ -369,6 +369,82 @@ export async function allReflections(userId: string) {
   return rows.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
+
+/* ───────────────────────────── Portfolio ───────────────────────────── */
+
+/** Fayl hajmi chegarasi — IndexedDB kvotasini tugatib qo'ymaslik uchun. */
+export const MAX_FILE_BYTES = 25 * 1024 * 1024;
+export const MAX_PORTFOLIO_BYTES = 500 * 1024 * 1024;
+
+export async function portfolioUsage(userId: string) {
+  const rows = await db().portfolio.where("userId").equals(userId).toArray();
+  return rows.reduce((sum, r) => sum + (r.sizeBytes ?? 0), 0);
+}
+
+/**
+ * Portfolioga fayl qo'shadi.
+ *
+ * Fayl IndexedDB ichida `Blob` sifatida saqlanadi — serverga yuborilmaydi.
+ * Brauzer kvotasi cheksiz emas, shuning uchun bitta fayl va umumiy hajm
+ * cheklanadi; chegaradan oshsa aniq xato qaytariladi.
+ */
+export async function addPortfolioFile(
+  userId: string,
+  category: StoredPortfolioItem["category"],
+  title: string,
+  file: File,
+  description?: string,
+) {
+  if (file.size > MAX_FILE_BYTES) {
+    throw new Error(
+      `Fayl juda katta: ${(file.size / 1048576).toFixed(1)} MB (chegara ${MAX_FILE_BYTES / 1048576} MB)`,
+    );
+  }
+  const used = await portfolioUsage(userId);
+  if (used + file.size > MAX_PORTFOLIO_BYTES) {
+    throw new Error("Portfolio hajmi chegarasiga yetdi — eski fayllarni o'chiring.");
+  }
+
+  const row: StoredPortfolioItem = {
+    id: newId("pf"),
+    userId,
+    category,
+    title,
+    description,
+    fileName: file.name,
+    mimeType: file.type || "application/octet-stream",
+    blob: file,
+    sizeBytes: file.size,
+    createdAt: now(),
+  };
+
+  const database = db();
+  await database.transaction("rw", database.portfolio, database.activity, async () => {
+    await database.portfolio.put(row);
+    await database.activity.put({
+      id: newId("act"),
+      userId,
+      type: "portfolio",
+      message: `${title} — portfolioga qo'shildi`,
+      createdAt: row.createdAt,
+    } satisfies StoredActivity);
+  });
+
+  return row;
+}
+
+export async function listPortfolio(userId: string) {
+  const rows = await db().portfolio.where("userId").equals(userId).toArray();
+  return rows.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+}
+
+export async function deletePortfolioItem(userId: string, id: string) {
+  const row = await db().portfolio.get(id);
+  if (!row || row.userId !== userId) return false;
+  await db().portfolio.delete(id);
+  return true;
+}
+
 /* ─────────────────────────── Tozalash ─────────────────────────── */
 
 /** Foydalanuvchining barcha ma'lumotini o'chiradi (sozlamalardagi tugma uchun). */

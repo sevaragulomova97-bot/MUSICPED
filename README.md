@@ -90,9 +90,10 @@ Yangi omborda ham yuqoridagi **Settings → Pages** sozlamasi takrorlanadi.
 | Mavzu (dark mode) | next-themes |
 | Ma'lumot | IndexedDB (Dexie 4) |
 | Audio | Tone.js 15 + FluidR3_GM namunalari (MIT) + dutor, rubob va doiraning o'z fizik modellari |
-| Nota yozuvi | VexFlow — *B4* |
-| Grafiklar | Recharts — *B4* |
-| PDF / Excel | pdf-lib, write-excel-file — *B4–B5* |
+| Nota yozuvi | VexFlow 5 (talab bo'yicha yuklanadi) |
+| Grafiklar | Recharts 3 |
+| PDF | pdf-lib + qrcode (brauzerda) |
+| Excel | write-excel-file — *B5* |
 | Test | Vitest (unit), Playwright (e2e) |
 
 ---
@@ -115,6 +116,8 @@ content/
   diagnostic.ts         32 ta diagnostika savoli (8 yo'nalish)
   demo-students.ts      24 namunaviy talaba (tajriba / nazorat)
   practice.ts           18 ta cholg'u mashqi + ritm baholash
+  courses.ts            5 kurs, 9 ta to'liq dars
+  tasks.ts              8 ta topshiriq + 3 ta baholash rubrikasi
 lib/
   audio/engine.ts       AudioContext, klaviatura, nota yozuvchi
   audio/instruments.ts  Namunali cholg'ular (Tone.Sampler) + sintez zaxirasi
@@ -125,6 +128,8 @@ lib/
   db/schema.ts          Dexie sxemasi
   db/repo.ts            Ma'lumotga kirishning yagona yo'li
   navigation.ts         Rol bo'yicha menyu
+  analytics.ts          Natijalar statistikasi (sof funksiya, testlangan)
+  export/certificate.ts PDF sertifikat (pdf-lib, brauzerda)
   utils.ts              cn(), asset(), formatDate()
 docs/
   QARORLAR.md           Qabul qilingan texnik qarorlar
@@ -138,7 +143,8 @@ docs/
 - [x] **B2** — Dexie, statik kontent, diagnostika (32 savol), individual yo'nalish algoritmi
 - [x] **B3** — 6 ta virtual cholg'u: pianino, gitara, dutor, rubob, nay, doira
       (haqiqiy namunali ovoz, yozib olish, mashq rejimi)
-- [ ] **B4** — Darslar, topshiriqlar, natijalar, portfolio, sertifikatlar
+- [x] **B4** — Darslar (VexFlow nota yozuvi), topshiriqlar va rubrikalar,
+      natijalar grafiklari, portfolio va PDF sertifikat
 - [ ] **B5** — O'qituvchi kabineti, tadqiqot bo'limi (t-mezon, χ²), PWA, testlar
 
 ---
