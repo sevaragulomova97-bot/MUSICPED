@@ -160,6 +160,29 @@ export type StoredDataset = {
   importedAt: string;
 };
 
+/**
+ * Mentorlik kuzatuv varaqasi.
+ *
+ * O'qituvchi pedagogik amaliyot bosqichida talabani kuzatib, har bir mezonga
+ * 1–5 ball qo'yadi. Yozuv **o'qituvchining** bazasida qoladi; talabaga u
+ * baholar fayli bilan emas, suhbat va izoh orqali yetadi — shuning uchun
+ * `ownerId` bo'yicha indekslanadi.
+ */
+export type StoredMentorship = {
+  /** `${ownerId}:${studentId}:${stageId}` — bitta bosqich bitta yozuv */
+  id: string;
+  ownerId: string;
+  studentId: string;
+  studentName: string;
+  stageId: string;
+  /** Mezon identifikatori -> 1..5 */
+  scores: Record<string, number>;
+  comment?: string;
+  /** Kuzatuv sanasi (ISO) */
+  observedAt: string;
+  updatedAt: string;
+};
+
 export class MusicPedDatabase extends Dexie {
   profiles!: Table<StoredProfile, string>;
   diagnostics!: Table<StoredDiagnostic, string>;
@@ -171,6 +194,7 @@ export class MusicPedDatabase extends Dexie {
   portfolio!: Table<StoredPortfolioItem, string>;
   activity!: Table<StoredActivity, string>;
   datasets!: Table<StoredDataset, string>;
+  mentorship!: Table<StoredMentorship, string>;
 
   constructor() {
     super("musicped");
@@ -194,6 +218,11 @@ export class MusicPedDatabase extends Dexie {
     // ko'chirishni talab qilmaydi — Dexie yangi jadvalni o'zi qo'shadi.
     this.version(2).stores({
       datasets: "id, ownerId, studentId, experimentGroup, [ownerId+studentId]",
+    });
+
+    // B5: pedagogik amaliyot kuzatuv varaqalari.
+    this.version(3).stores({
+      mentorship: "id, ownerId, studentId, stageId, [ownerId+studentId]",
     });
   }
 }

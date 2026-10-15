@@ -9,6 +9,8 @@
  * sertifikat mazmunini tez o'qish uchun.
  */
 
+import { toWinAnsi } from "@/lib/export/winansi";
+
 export type CertificateData = {
   fullName: string;
   moduleTitle: string;
@@ -26,20 +28,6 @@ export function certificateSerial(fullName: string, moduleId: string, issuedAt: 
     hash = (hash * 31 + base.charCodeAt(i)) >>> 0;
   }
   return `MP-${hash.toString(36).toUpperCase().padStart(7, "0").slice(0, 7)}`;
-}
-
-/**
- * Lotin yozuvidagi o'zbek matnini WinAnsi kodlashga moslaydi.
- *
- * `pdf-lib` ning standart shriftlari WinAnsi kodlashdan foydalanadi va
- * `ʻ` (U+02BB) kabi belgilarni chiza olmaydi — ular oddiy apostrofga
- * almashtiriladi, aks holda PDF yaratishda xato chiqadi.
- */
-function toWinAnsi(text: string) {
-  return text
-    .replace(/[ʻʼ‘’]/g, "'")
-    .replace(/[–—]/g, "-")
-    .replace(/[“”«»]/g, '"');
 }
 
 export async function buildCertificatePdf(data: CertificateData): Promise<Blob> {
@@ -115,15 +103,6 @@ export async function buildCertificatePdf(data: CertificateData): Promise<Blob> 
   return new Blob([bytes as BlobPart], { type: "application/pdf" });
 }
 
-/** Brauzerda faylni yuklab olish. */
-export function downloadBlob(blob: Blob, filename: string) {
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  // Obyekt URL ni bo'shatamiz — aks holda xotirada qolib ketadi
-  window.setTimeout(() => URL.revokeObjectURL(url), 2000);
-}
+// Yuklab olish yordamchisi `download.ts` ga ko'chirildi (bir nechta eksport
+// turi uni ishlatadi); eski import yo'li buzilmasligi uchun qayta eksport.
+export { downloadBlob } from "@/lib/export/download";

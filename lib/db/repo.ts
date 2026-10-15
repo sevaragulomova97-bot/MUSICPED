@@ -4,6 +4,7 @@ import {
   db,
   type StoredActivity,
   type StoredDataset,
+  type StoredMentorship,
   type StoredDiagnostic,
   type StoredLearningPath,
   type StoredPortfolioItem,
@@ -820,4 +821,61 @@ export async function gradeDatasetSubmission(
   };
   await db().datasets.put(updated);
   return updated;
+}
+
+/* ═════════════════ Mentorlik kuzatuv varaqalari ═════════════════ */
+
+/**
+ * Kuzatuv varaqasini saqlaydi (bitta bosqich uchun bitta yozuv).
+ *
+ * Qayta saqlanganda eski yozuv almashtiriladi — o'qituvchi kuzatuv davomida
+ * bir necha marta tahrirlashi normal holat, har bir tahrir yangi qator
+ * yaratishi esa ro'yxatni ifloslantiradi.
+ */
+export async function saveMentorship(params: {
+  ownerId: string;
+  studentId: string;
+  studentName: string;
+  stageId: string;
+  scores: Record<string, number>;
+  comment?: string;
+  observedAt?: string;
+}): Promise<StoredMentorship> {
+  const row: StoredMentorship = {
+    id: `${params.ownerId}:${params.studentId}:${params.stageId}`,
+    ownerId: params.ownerId,
+    studentId: params.studentId,
+    studentName: params.studentName,
+    stageId: params.stageId,
+    scores: params.scores,
+    comment: params.comment,
+    observedAt: params.observedAt ?? now(),
+    updatedAt: now(),
+  };
+
+  const database = db();
+  await database.transaction("rw", database.mentorship, database.activity, async () => {
+    await database.mentorship.put(row);
+    await database.activity.put({
+      id: newId("act"),
+      userId: params.ownerId,
+      type: "mentorlik",
+      message: `${params.studentName} — kuzatuv varaqasi saqlandi`,
+      createdAt: row.updatedAt,
+    } satisfies StoredActivity);
+  });
+
+  return row;
+}
+
+export async function listMentorship(ownerId: string): Promise<StoredMentorship[]> {
+  const rows = await db().mentorship.where("ownerId").equals(ownerId).toArray();
+  return rows.sort((a, b) => b.observedAt.localeCompare(a.observedAt));
+}
+
+export async function deleteMentorship(ownerId: string, id: string) {
+  const row = await db().mentorship.get(id);
+  if (!row || row.ownerId !== ownerId) return false;
+  await db().mentorship.delete(id);
+  return true;
 }

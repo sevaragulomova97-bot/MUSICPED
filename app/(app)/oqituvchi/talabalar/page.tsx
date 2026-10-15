@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
-import { Placeholder } from "@/components/layout/placeholder";
+import { Talabalar } from "./talabalar";
 
 export const metadata: Metadata = { title: "Talabalar" };
 
 export default function Page() {
-  return (
-    <Placeholder
-      title="Talabalar"
-      description="Guruh talabalari ro'yxati va natijalari"
-      stage="B5"
-    />
-  );
+  return <Talabalar />;
 }

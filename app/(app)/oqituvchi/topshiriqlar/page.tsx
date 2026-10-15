@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
-import { Placeholder } from "@/components/layout/placeholder";
+import { Baholash } from "./baholash";
 
-export const metadata: Metadata = { title: "Topshiriqlar" };
+export const metadata: Metadata = { title: "Ishlarni baholash" };
 
 export default function Page() {
-  return (
-    <Placeholder
-      title="Topshiriqlar"
-      description="Topshiriq yaratish, rubrika tuzish va baholash"
-      stage="B5"
-    />
-  );
+  return <Baholash />;
 }

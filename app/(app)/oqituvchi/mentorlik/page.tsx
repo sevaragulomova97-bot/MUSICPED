@@ -1,14 +1,8 @@
 import type { Metadata } from "next";
-import { Placeholder } from "@/components/layout/placeholder";
+import { Mentorlik } from "./mentorlik";
 
-export const metadata: Metadata = { title: "Mentorlik" };
+export const metadata: Metadata = { title: "Pedagogik amaliyot" };
 
 export default function Page() {
-  return (
-    <Placeholder
-      title="Mentorlik"
-      description="Pedagogik amaliyot: kuzatuv, mikro-o'qitish, mustaqil dars"
-      stage="B5"
-    />
-  );
+  return <Mentorlik />;
 }
