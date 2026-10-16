@@ -694,3 +694,11 @@ yon panel ostida yo'qoladi. A ning ranglari esa aynan ochiq qolgan
 joylarga — o'ng tomon va pastki bo'shliqqa — tushadi.
 
 **Saboq:** fonni bo'sh sahifada emas, haqiqiy ilova ichida baholash kerak.
+
+**Rang muvozanati keyin sozlandi.** Boshlang'ich variantda binafsha
+ustun edi; loyiha egasining tanloviga ko'ra firuza kuchaytirildi
+(yorug' rejimda 11% -> 21%, qorong'ida 16% -> 30%) va binafsha
+kamaytirildi (17% -> 9%, 24% -> 13%). Pastki o'rta qismga uchinchi,
+yumshoq firuza dog' qo'shildi. Suzuvchi notalarning rangi ham shu
+nisbatga keltirildi: binafsha 7 tadan 4 taga tushdi, firuza 6 tadan
+9 taga chiqdi — fon bilan notalar bir xil ohangda bo'lishi uchun.

@@ -238,13 +238,18 @@
       transparent 62%
     ),
     radial-gradient(
-      48rem 34rem at 96% 4%,
-      color-mix(in oklab, var(--mp-dir-ijro) 11%, transparent),
+      64rem 48rem at 100% 10%,
+      color-mix(in oklab, var(--mp-dir-ijro) 21%, transparent),
+      transparent 64%
+    ),
+    radial-gradient(
+      52rem 40rem at 86% 108%,
+      color-mix(in oklab, var(--mp-secondary) 9%, transparent),
       transparent 60%
     ),
     radial-gradient(
-      58rem 46rem at 82% 106%,
-      color-mix(in oklab, var(--mp-secondary) 17%, transparent),
+      46rem 32rem at 58% 88%,
+      color-mix(in oklab, var(--mp-dir-ijro) 12%, transparent),
       transparent 62%
     ),
     radial-gradient(
@@ -262,13 +267,18 @@
       transparent 62%
     ),
     radial-gradient(
-      48rem 34rem at 96% 4%,
-      color-mix(in oklab, var(--mp-dir-ijro) 16%, transparent),
+      64rem 48rem at 100% 10%,
+      color-mix(in oklab, var(--mp-dir-ijro) 30%, transparent),
+      transparent 64%
+    ),
+    radial-gradient(
+      52rem 40rem at 86% 108%,
+      color-mix(in oklab, var(--mp-secondary) 13%, transparent),
       transparent 60%
     ),
     radial-gradient(
-      58rem 46rem at 82% 106%,
-      color-mix(in oklab, var(--mp-secondary) 24%, transparent),
+      46rem 32rem at 58% 88%,
+      color-mix(in oklab, var(--mp-dir-ijro) 17%, transparent),
       transparent 62%
     ),
     radial-gradient(

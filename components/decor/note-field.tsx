@@ -46,7 +46,7 @@ const NOTALAR: Nota[] = [
   { kind: "juft",      left: 21, depth: 2, size: 30, duration: 64, delay: -48, sway: 11, tone: "secondary", mobile: true },
   { kind: "bemol",     left: 28, depth: 1, size: 20, duration: 92, delay: -12, sway: 19, tone: "primary",   mobile: false },
   { kind: "sakkizlik", left: 35, depth: 3, size: 38, duration: 48, delay: -26, sway: 9,  tone: "ijro",      mobile: true },
-  { kind: "diez",      left: 43, depth: 1, size: 17, duration: 78, delay: -58, sway: 15, tone: "secondary", mobile: false },
+  { kind: "diez",      left: 43, depth: 1, size: 17, duration: 78, delay: -58, sway: 15, tone: "ijro",      mobile: false },
   { kind: "chorak",    left: 50, depth: 2, size: 27, duration: 68, delay: -8,  sway: 12, tone: "primary",   mobile: true },
   { kind: "kalit",     left: 57, depth: 1, size: 22, duration: 96, delay: -40, sway: 21, tone: "secondary", mobile: false },
   { kind: "bekar",     left: 64, depth: 2, size: 25, duration: 60, delay: -20, sway: 14, tone: "ijro",      mobile: false },
@@ -54,12 +54,12 @@ const NOTALAR: Nota[] = [
   { kind: "sakkizlik", left: 78, depth: 1, size: 19, duration: 88, delay: -2,  sway: 18, tone: "secondary", mobile: false },
   { kind: "diez",      left: 84, depth: 2, size: 24, duration: 72, delay: -54, sway: 13, tone: "primary",   mobile: false },
   { kind: "chorak",    left: 90, depth: 3, size: 36, duration: 56, delay: -16, sway: 11, tone: "ijro",      mobile: true },
-  { kind: "bemol",     left: 95, depth: 1, size: 21, duration: 94, delay: -44, sway: 20, tone: "secondary", mobile: false },
+  { kind: "bemol",     left: 95, depth: 1, size: 21, duration: 94, delay: -44, sway: 20, tone: "ijro",      mobile: false },
   { kind: "bekar",     left: 10, depth: 2, size: 26, duration: 74, delay: -62, sway: 16, tone: "primary",   mobile: false },
   { kind: "sakkizlik", left: 25, depth: 3, size: 34, duration: 58, delay: -70, sway: 10, tone: "secondary", mobile: true },
   { kind: "kalit",     left: 39, depth: 2, size: 29, duration: 66, delay: -24, sway: 12, tone: "ijro",      mobile: false },
   { kind: "juft",      left: 54, depth: 1, size: 23, duration: 90, delay: -76, sway: 18, tone: "primary",   mobile: false },
-  { kind: "chorak",    left: 67, depth: 3, size: 40, duration: 54, delay: -50, sway: 9,  tone: "secondary", mobile: true },
+  { kind: "chorak",    left: 67, depth: 3, size: 40, duration: 54, delay: -50, sway: 9,  tone: "ijro",      mobile: true },
   { kind: "diez",      left: 88, depth: 1, size: 18, duration: 84, delay: -34, sway: 17, tone: "ijro",      mobile: false },
 ];
 
