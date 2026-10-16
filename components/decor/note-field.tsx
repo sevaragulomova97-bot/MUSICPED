@@ -82,10 +82,6 @@ export function NoteField() {
 
   return (
     <div className="mp-note-field" aria-hidden="true">
-      {/* Yumshoq rangli yoritish — notalar «havoda» turganday ko'rinadi */}
-      <span className="mp-note-glow mp-note-glow-1" />
-      <span className="mp-note-glow mp-note-glow-2" />
-
       {/* Nota qog'ozi motivi */}
       {STAV_QATORLARI.map((top) => (
         <span key={top} className="mp-staff" style={{ top: `${top}%` }}>

@@ -212,38 +212,72 @@
 }
 
 /* Yumshoq rangli yoritish: fonning tekisligini yo'qotadi */
-.mp-note-glow {
+/*
+ * Fon gradiyenti.
+ *
+ * Uchta yumshoq rangli dog' diagonal bo'ylab joylashgan: chap yuqorida
+ * asosiy ko'k, o'ng yuqorida firuza, o'ng pastda binafsha. Ular uchburchak
+ * hosil qiladi va ko'zni sahifa bo'ylab yuritadi.
+ *
+ * Nega alohida `div` emas, CSS gradiyenti? Blur filtri qo'llangan katta
+ * elementlar har bir kadrda qayta rasterizatsiya talab qilishi mumkin.
+ * `radial-gradient` esa tabiatan yumshoq: u bir marta chiziladi va
+ * kompozitorni band qilmaydi. Natija bir xil, narxi esa ancha past.
+ *
+ * `color-mix` ranglarni dizayn tokenlaridan oladi — shuning uchun brend
+ * rangi o'zgarsa, fon ham o'zi moslashadi.
+ */
+.mp-note-field::before {
+  content: "";
   position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.5;
+  inset: 0;
+  background:
+    radial-gradient(
+      62rem 44rem at 8% -12%,
+      color-mix(in oklab, var(--mp-primary) 16%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      48rem 34rem at 96% 4%,
+      color-mix(in oklab, var(--mp-dir-ijro) 11%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      58rem 46rem at 82% 106%,
+      color-mix(in oklab, var(--mp-secondary) 17%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      70rem 30rem at 30% 118%,
+      color-mix(in oklab, var(--mp-primary) 9%, transparent),
+      transparent 65%
+    );
 }
 
-.mp-note-glow-1 {
-  top: -14rem;
-  left: -10rem;
-  width: 34rem;
-  height: 34rem;
-  background: radial-gradient(circle, var(--mp-primary) 0%, transparent 70%);
-  opacity: 0.16;
+.dark .mp-note-field::before {
+  background:
+    radial-gradient(
+      62rem 44rem at 8% -12%,
+      color-mix(in oklab, var(--mp-primary) 26%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      48rem 34rem at 96% 4%,
+      color-mix(in oklab, var(--mp-dir-ijro) 16%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      58rem 46rem at 82% 106%,
+      color-mix(in oklab, var(--mp-secondary) 24%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      70rem 30rem at 30% 118%,
+      color-mix(in oklab, var(--mp-primary) 14%, transparent),
+      transparent 65%
+    );
 }
 
-.mp-note-glow-2 {
-  right: -12rem;
-  bottom: -16rem;
-  width: 38rem;
-  height: 38rem;
-  background: radial-gradient(circle, var(--mp-secondary) 0%, transparent 70%);
-  opacity: 0.14;
-}
-
-.dark .mp-note-glow-1 {
-  opacity: 0.2;
-}
-
-.dark .mp-note-glow-2 {
-  opacity: 0.18;
-}
 
 /* Tashqi element — pastdan yuqoriga ko'tarilish */
 .mp-note-rise {
@@ -267,29 +301,29 @@
 
 /* Chuqurlik qatlamlari: uzoqdagisi xiraroq va mayin, yaqindagisi aniqroq */
 .mp-note-depth-1 {
-  opacity: 0.12;
+  opacity: 0.17;
   filter: blur(0.7px);
 }
 
 .mp-note-depth-2 {
-  opacity: 0.17;
+  opacity: 0.24;
   filter: blur(0.25px);
 }
 
 .mp-note-depth-3 {
-  opacity: 0.23;
+  opacity: 0.32;
 }
 
 .dark .mp-note-depth-1 {
-  opacity: 0.14;
-}
-
-.dark .mp-note-depth-2 {
   opacity: 0.2;
 }
 
+.dark .mp-note-depth-2 {
+  opacity: 0.28;
+}
+
 .dark .mp-note-depth-3 {
-  opacity: 0.26;
+  opacity: 0.36;
 }
 
 /*
@@ -313,13 +347,13 @@
   right: 0;
   height: 1px;
   background: var(--mp-text);
-  opacity: 0.055;
+  opacity: 0.075;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%, #000 78%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 22%, #000 78%, transparent);
 }
 
 .dark .mp-staff span {
-  opacity: 0.075;
+  opacity: 0.1;
 }
 
 /* Kichik ekranda notalar soni kamaytiriladi: batareya va diqqat uchun */

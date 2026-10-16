@@ -661,3 +661,36 @@ skript bilan birinchi chizishdan oldin qo'yiladi, CSS esa
 `html[data-effects="off"]` ni ko'rib qatlamni umuman chizmaydi. Aks holda
 effektni o'chirgan foydalanuvchi har safar sahifa yuklanganda notalarning
 bir lahzalik miltillashini ko'rardi.
+
+### Q67. Fon gradiyenti blur filtrsiz chizildi
+
+**Qaror.** Dastlabki variantda fon ikkita katta `div` edi, ularga
+`filter: blur(80px)` qo'llangandi. U CSS gradiyentiga almashtirildi:
+`.mp-note-field::before` ichida to'rtta `radial-gradient` qatlami.
+
+**Sabab — narx.** Blur filtri qo'llangan katta element alohida tekstura
+sifatida rasterizatsiya qilinadi va ba'zi holatlarda har bir kadrda
+qaytadan chiziladi. `radial-gradient` esa tabiatan yumshoq: u bir marta
+chiziladi va kompozitorni band qilmaydi. Ko'rinish bir xil, narxi esa
+ancha past — bu ayniqsa telefon va eski noutbukda sezilarli.
+
+**Ranglar tokenlardan olinadi.** `color-mix(in oklab, var(--mp-primary)
+16%, transparent)` — shuning uchun brend rangi o'zgarsa yoki mavzu
+almashsa, fon ham o'zi moslashadi. Qo'lda yozilgan hex yo'q.
+
+### Q68. Uch variantdan biri tanlandi
+
+Fon uchun uchta variant brauzerda chizilib solishtirildi:
+
+- **A — diagonal**: chap yuqorida ko'k, o'ng yuqorida firuza, o'ng pastda
+  binafsha; uchburchak hosil qiladi.
+- **B — sahna nuri**: tepadan bitta katta nur, pastga sovuqroq o'tish.
+- **C — qarama-qarshi burchak**: chap pastda binafsha, o'ng yuqorida ko'k.
+
+**A tanlandi.** Sabab oddiy: ilovada chap tomonni to'q yon panel, o'rtani
+esa oq kartalar egallaydi. B variantining asosiy nuri sarlavha va
+kartalar ortida qolib, deyarli ko'rinmaydi; C variantining binafsha dog'i
+yon panel ostida yo'qoladi. A ning ranglari esa aynan ochiq qolgan
+joylarga — o'ng tomon va pastki bo'shliqqa — tushadi.
+
+**Saboq:** fonni bo'sh sahifada emas, haqiqiy ilova ichida baholash kerak.
