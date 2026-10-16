@@ -1,13 +1,13 @@
 import type { Course } from "@/content/lesson-types";
 
 /**
- * O'quv kurslari va darslar.
+ * Musiqa nazariyasi kursi.
  *
- * Har bir dars modulning aniq o'quv natijasiga bog'langan (`outcomeId`) —
- * konstruktiv moslashuv talabi.
+ * Nota savodidan maqom tahliligacha: har bir dars modulning aniq o'quv
+ * natijasiga bog'langan (`outcomeId`) — konstruktiv moslashuv talabi.
  */
 
-const NAZARIYA: Course = {
+export const NAZARIYA: Course = {
   slug: "musiqa-nazariyasi",
   moduleId: "mod-nazariya",
   title: "Musiqa nazariyasi",
@@ -587,24 +587,17 @@ const NAZARIYA: Course = {
         "Intervallarni o'rganishda qaysi usul sizga qulay keldi?",
       ],
     },
-  ],
-};
 
-const IJRO: Course = {
-  slug: "ijro-amaliyoti",
-  moduleId: "mod-ijro",
-  title: "Ijro amaliyoti",
-  description: "Cholg'u texnikasi, ansambl va sahna madaniyati.",
-  lessons: [
     {
-      id: "ijr-1",
-      slug: "qol-qoyilishi",
-      title: "Mavzu 1: To'g'ri qo'l qo'yilishi",
-      summary: "Cholg'uda tabiiy va erkin qo'l holati, barmoqlarning mustaqilligi.",
-      durationMin: 25,
-      bloom: "qollash",
-      outcomeId: "on-ijr-1",
-      area: "texnika",
+      id: "naz-5",
+      slug: "maqom-lad-asoslari",
+      title: "Mavzu 5: Maqom va uning lad asoslari",
+      summary:
+        "O'zbek maqom san'ati, lad tushunchasi, usul va avj; maqom namunasini lad asosida tahlil qilish.",
+      durationMin: 45,
+      bloom: "tahlil",
+      outcomeId: "on-naz-5",
+      area: "nazariya",
       sections: [
         {
           id: "kirish",
@@ -612,7 +605,11 @@ const IJRO: Course = {
           blocks: [
             {
               kind: "matn",
-              text: "Texnikaning asosi — erkinlik. Siqilgan qo'l tez charchaydi, tovush qattiq va jonsiz chiqadi. To'g'ri qo'yilgan qo'lda og'irlik barmoqqa tabiiy tushadi.",
+              text: "Shu paytgacha biz tovushlarni Yevropa musiqa nazariyasi tilida — major va minor orqali ko'rib chiqdik. Lekin o'zbek musiqasining asosiy klassik tizimi boshqacha qurilgan. Uni maqom deb ataymiz.",
+            },
+            {
+              kind: "matn",
+              text: "Bu dars nazariy bilimni milliy musiqa bilan bog'laydi. Maktab dasturida maqom mavzusi bor, va uni o'qituvchi «bu bizning musiqamiz» deb aytibgina qo'ymasligi, balki tuzilishini tushuntira olishi kerak.",
             },
           ],
         },
@@ -621,17 +618,67 @@ const IJRO: Course = {
           title: "Asosiy tushunchalar",
           blocks: [
             {
+              kind: "matn",
+              text: "Maqom — bu bitta kuy emas, balki o'zaro bog'langan asarlar turkumi. Har bir maqomning o'z lad asosi, o'z usullari va o'ziga xos ohang burilishlari bor.",
+            },
+            {
               kind: "royxat",
               items: [
-                "Yelka va bilak bo'sh, ko'tarilmagan holatda",
-                "Bilak klaviatura (yoki grif) bilan bir chiziqda",
-                "Barmoqlar yumaloq, uchlari bilan tegadi",
-                "Zarbdan keyin barmoq darhol bo'shashadi",
+                "Shashmaqom — Buxoro-Samarqand an'anasidagi olti maqom: Buzruk, Rost, Navo, Dugoh, Segoh, Iroq",
+                "Xorazm maqomlari — Xorazm an'anasi, o'ziga xos ijro uslubi bilan",
+                "Farg'ona-Toshkent maqom yo'llari — uchinchi yirik mahalliy an'ana",
               ],
             },
             {
               kind: "eslatma",
-              text: "Mashqni sekin tempda boshlang. Tezlik — to'g'ri harakatning natijasi, maqsadi emas.",
+              text: "Shashmaqom YUNESKOning nomoddiy madaniy meros ro'yxatiga kiritilgan. Bu uni «muzeyga qo'yilgan» narsa qilmaydi: u bugun ham ijro etiladi va o'qitiladi.",
+            },
+            {
+              kind: "matn",
+              text: "Lad — tovushlarning o'zaro munosabati tizimi. Yevropa musiqasida lad asosan major va minorga keladi; maqomda esa ladni uch narsa belgilaydi: tovushqator, tayanch tovush va xarakterli ohang burilishlari.",
+            },
+            {
+              kind: "royxat",
+              items: [
+                "Tovushqator — maqomda ishlatiladigan tovushlar to'plami va ularning tartibi",
+                "Tayanch tovush — ohang qaytib keladigan va to'xtaydigan markaz",
+                "Xarakterli burilish — shu maqomni boshqasidan ajratadigan ohang shakli",
+                "Avj — asarning eng yuqori va eng kuchli cho'qqisi; maqomning dramatik markazi",
+                "Usul — doirada chalinadigan ritmik formula; har bir qismning o'z usuli bor",
+              ],
+            },
+            {
+              kind: "nota",
+              caption:
+                "Shartli misol: tayanch tovush atrofida aylanuvchi ohang (haqiqiy maqom namunasi emas)",
+              playable: true,
+              spec: {
+                clef: "treble",
+                timeSignature: "4/4",
+                notes: [
+                  { keys: ["d/4"], duration: "q", lyric: "tayanch" },
+                  { keys: ["e/4"], duration: "8" },
+                  { keys: ["f/4"], duration: "8" },
+                  { keys: ["e/4"], duration: "q" },
+                  { keys: ["d/4"], duration: "q", lyric: "qaytish" },
+                  { keys: ["g/4"], duration: "q" },
+                  { keys: ["f/4"], duration: "8" },
+                  { keys: ["e/4"], duration: "8" },
+                  { keys: ["d/4"], duration: "h", lyric: "to'xtash" },
+                ],
+              },
+            },
+            {
+              kind: "matn",
+              text: "Diqqat: yuqoridagi nota — o'quv maqsadida tuzilgan shartli misol, haqiqiy maqom asaridan ko'chirma emas. U faqat bitta g'oyani ko'rsatadi: ohang tayanch tovushdan uzoqlashadi va unga qaytadi.",
+            },
+            {
+              kind: "matn",
+              text: "Maqom tuzilmasi ham muhim. Shashmaqomning har bir maqomi ikki katta bo'limga bo'linadi: Mushkilot (cholg'u bo'limi) va Nasr (ashula bo'limi). Ularning ichida shu'balar — kichikroq qismlar turadi.",
+            },
+            {
+              kind: "eslatma",
+              text: "Avjni topish — tahlilning eng oson kirish nuqtasi. Asarni tinglang va ohang eng yuqoriga ko'tarilgan, kuchlanish eng baland bo'lgan joyni belgilang. Odatda u asarning oxirgi uchdan birida bo'ladi.",
             },
           ],
         },
@@ -641,15 +688,15 @@ const IJRO: Course = {
           blocks: [
             {
               kind: "mashq",
-              text: "Virtual pianinoda «Do-Re-Mi» mashqini sekin tempda bajaring, keyin tempni asta oshiring.",
-              instrument: "pianino",
-              exerciseId: "p-do-re-mi",
+              text: "Rubobda maqom yo'nalishidagi mashqni bajaring. Chalayotganda ikki narsaga e'tibor bering: qaysi tovushga qayta-qayta qaytyapsiz (tayanch) va ohang qayerda eng yuqoriga chiqadi (avj).",
+              instrument: "rubob",
+              exerciseId: "r-maqom",
             },
             {
               kind: "mashq",
-              text: "Dutorda «Barmoq mashqlari» ni bajaring — pardalarni ketma-ket bosib chiqing.",
-              instrument: "dutor",
-              exerciseId: "d-barmoq",
+              text: "Doirada asosiy usulni chalib ko'ring. Usul — maqomning «skeleti»: ohang o'zgarsa ham usul saqlanadi.",
+              instrument: "doira",
+              exerciseId: "doira-asosiy",
             },
           ],
         },
@@ -661,435 +708,79 @@ const IJRO: Course = {
               kind: "test",
               questions: [
                 {
-                  id: "ijr1-t1",
-                  area: "texnika",
+                  id: "naz5-t1",
+                  area: "nazariya",
+                  bloom: "bilish",
+                  kind: "single",
+                  prompt: "Shashmaqom tarkibida nechta maqom bor?",
+                  options: [
+                    { id: "a", text: "To'rtta" },
+                    { id: "b", text: "Oltita" },
+                    { id: "c", text: "O'n ikkita" },
+                    { id: "d", text: "Yigirma to'rtta" },
+                  ],
+                  correctId: "b",
+                  explanation:
+                    "«Shash» — olti degani: Buzruk, Rost, Navo, Dugoh, Segoh, Iroq.",
+                },
+                {
+                  id: "naz5-t2",
+                  area: "nazariya",
                   bloom: "tushunish",
                   kind: "single",
-                  prompt: "Mashqni qaysi tempda boshlash to'g'ri?",
+                  prompt: "Avj nima?",
                   options: [
-                    { id: "a", text: "Imkon qadar tez" },
-                    { id: "b", text: "Sekin, harakat to'g'ri bo'lguncha" },
-                    { id: "c", text: "Asar tempida" },
-                    { id: "d", text: "Tempga ahamiyat bermay" },
+                    { id: "a", text: "Asarning boshlanish qismi" },
+                    { id: "b", text: "Doirada chalinadigan ritmik formula" },
+                    { id: "c", text: "Ohangning eng yuqori va kuchli cho'qqisi" },
+                    { id: "d", text: "Maqomning cholg'u bo'limi" },
                   ],
-                  correctId: "b",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          id: "xulosa",
-          title: "Xulosa",
-          blocks: [
-            {
-              kind: "royxat",
-              items: [
-                "Erkinlik — texnikaning asosi",
-                "Sekin tempdan boshlash shart",
-                "Zarbdan keyin barmoq bo'shashadi",
-              ],
-            },
-          ],
-        },
-      ],
-      reflection: [
-        "Mashq paytida qo'lingiz qayerda siqildi?",
-        "Sekin temp sizga nimani ko'rsatdi?",
-      ],
-    },
-    {
-      id: "ijr-2",
-      slug: "sahna-madaniyati",
-      title: "Mavzu 2: Sahna madaniyati",
-      summary: "Chiqish, hayajonni boshqarish va ijro paytidagi xatti-harakat.",
-      durationMin: 20,
-      bloom: "qollash",
-      outcomeId: "on-ijr-5",
-      area: "sahna",
-      sections: [
-        {
-          id: "kirish",
-          title: "Kirish",
-          blocks: [
-            {
-              kind: "matn",
-              text: "Sahnada ijro — faqat notalarni chalish emas. Tomoshabin ijrochining ishonchini, tayyorgarligini va asarga munosabatini ko'radi.",
-            },
-          ],
-        },
-        {
-          id: "tushunchalar",
-          title: "Asosiy tushunchalar",
-          blocks: [
-            {
-              kind: "royxat",
-              items: [
-                "Sahnaga xotirjam chiqish, ta'zim qilish",
-                "Cholg'uni oldindan sozlash — sahnada emas",
-                "Nafasni rostlab, keyin boshlash",
-                "Xato bo'lsa to'xtamay davom etish",
-                "Ijro tugagach shoshmaslik, ta'zim qilish",
-              ],
-            },
-            {
-              kind: "eslatma",
-              text: "Hayajon — dushman emas. U energiya beradi; vazifa uni ijroga yo'naltirish.",
-            },
-          ],
-        },
-        {
-          id: "mashq",
-          title: "Amaliy mashq",
-          blocks: [
-            {
-              kind: "mashq",
-              text: "O'rgangan asaringizni yozib oling, keyin o'zingizni tashqaridan tinglang. Qaysi joyda shoshdingiz?",
-              instrument: "pianino",
-              exerciseId: "p-oz-kuy",
-            },
-          ],
-        },
-        {
-          id: "test",
-          title: "Test",
-          blocks: [
-            {
-              kind: "test",
-              questions: [
-                {
-                  id: "ijr2-t1",
-                  area: "sahna",
-                  bloom: "baholash",
-                  kind: "single",
-                  prompt: "Ijro paytida kichik xato bo'ldi. Eng to'g'ri yo'l?",
-                  options: [
-                    { id: "a", text: "To'xtab boshidan boshlash" },
-                    { id: "b", text: "Davom etish, e'tibor qaratmaslik" },
-                    { id: "c", text: "Uzr so'rash" },
-                    { id: "d", text: "Tempni sekinlatish" },
-                  ],
-                  correctId: "b",
+                  correctId: "c",
                   explanation:
-                    "Ijro oqimini saqlash birinchi o'rinda — ko'pchilik tinglovchi kichik xatoni sezmaydi, to'xtash esa albatta seziladi.",
+                    "Avj — maqomning dramatik markazi; odatda asarning oxirgi uchdan birida keladi.",
                 },
-              ],
-            },
-          ],
-        },
-        {
-          id: "xulosa",
-          title: "Xulosa",
-          blocks: [
-            {
-              kind: "royxat",
-              items: [
-                "Tayyorgarlik sahnadan oldin tugaydi",
-                "Oqimni saqlash xatoni tuzatishdan muhimroq",
-                "Yozib olish — eng halol o'qituvchi",
-              ],
-            },
-          ],
-        },
-      ],
-      reflection: [
-        "Yozuvni tinglaganda o'zingizda nimani payqadingiz?",
-        "Hayajonni kamaytirish uchun nima yordam beradi?",
-      ],
-    },
-  ],
-};
-
-const METODIKA: Course = {
-  slug: "musiqa-talimi-metodikasi",
-  moduleId: "mod-metodika",
-  title: "Musiqa ta'limi metodikasi",
-  description: "Dars loyihalash, o'quv maqsadlari va baholash mezonlari.",
-  lessons: [
-    {
-      id: "met-1",
-      slug: "dars-maqsadi",
-      title: "Mavzu 1: O'quv maqsadini shakllantirish",
-      summary: "Blum taksonomiyasi asosida o'lchanadigan maqsad yozish.",
-      durationMin: 30,
-      bloom: "sintez",
-      outcomeId: "on-met-2",
-      area: "metodika",
-      sections: [
-        {
-          id: "kirish",
-          title: "Kirish",
-          blocks: [
-            {
-              kind: "matn",
-              text: "«O'quvchi mavzuni biladi» — bu maqsad emas, chunki uni o'lchab bo'lmaydi. Yaxshi maqsad o'quvchi nimani bajara olishini aytadi.",
-            },
-          ],
-        },
-        {
-          id: "tushunchalar",
-          title: "Asosiy tushunchalar",
-          blocks: [
-            {
-              kind: "royxat",
-              items: [
-                "Bilish — nomlaydi, sanab beradi, takrorlaydi",
-                "Tushunish — tushuntiradi, o'z so'zi bilan aytadi",
-                "Qo'llash — bajaradi, ko'rsatadi, chalib beradi",
-                "Tahlil — qiyoslaydi, ajratadi, aniqlaydi",
-                "Sintez — tuzadi, yaratadi, loyihalaydi",
-                "Baholash — asoslaydi, tanlaydi, baho beradi",
-              ],
-            },
-            {
-              kind: "eslatma",
-              text: "Konstruktiv moslashuv: maqsad, faoliyat va baholash bir-biriga mos kelishi shart. Maqsad «tahlil qiladi» bo'lsa, test «eslab qolgan»ni tekshirsa — moslik buziladi.",
-            },
-          ],
-        },
-        {
-          id: "mashq",
-          title: "Amaliy mashq",
-          blocks: [
-            {
-              kind: "mashq",
-              text: "5-sinf uchun «Nota savodi» mavzusida uchta maqsad yozing: bilish, qo'llash va tahlil darajalarida. Har biriga mos baholash usulini ko'rsating.",
-            },
-          ],
-        },
-        {
-          id: "test",
-          title: "Test",
-          blocks: [
-            {
-              kind: "test",
-              questions: [
                 {
-                  id: "met1-t1",
-                  area: "metodika",
-                  bloom: "qollash",
+                  id: "naz5-t3",
+                  area: "nazariya",
+                  bloom: "tushunish",
                   kind: "multiple",
-                  prompt: "Qaysi fe'llar o'lchanadigan maqsad uchun mos?",
+                  prompt: "Maqomda ladni belgilaydigan omillarni tanlang.",
                   options: [
-                    { id: "a", text: "Chalib beradi" },
-                    { id: "b", text: "Tushunadi" },
-                    { id: "c", text: "Qiyoslaydi" },
-                    { id: "d", text: "Biladi" },
+                    { id: "a", text: "Tovushqator" },
+                    { id: "b", text: "Tayanch tovush" },
+                    { id: "c", text: "Xarakterli ohang burilishlari" },
+                    { id: "d", text: "Ijrochining yoshi" },
                   ],
-                  correctIds: ["a", "c"],
-                  explanation:
-                    "«Biladi» va «tushunadi» ichki holat — kuzatib bo'lmaydi. «Chalib beradi» va «qiyoslaydi» esa kuzatiladigan harakat.",
+                  correctIds: ["a", "b", "c"],
                 },
-              ],
-            },
-          ],
-        },
-        {
-          id: "xulosa",
-          title: "Xulosa",
-          blocks: [
-            {
-              kind: "royxat",
-              items: [
-                "Maqsad o'lchanadigan fe'l bilan yoziladi",
-                "Blum darajasi faoliyat turini belgilaydi",
-                "Maqsad, faoliyat va baholash bir-biriga bog'lanadi",
-              ],
-            },
-          ],
-        },
-      ],
-      reflection: [
-        "Qaysi Blum darajasida maqsad yozish sizga qiyin bo'ldi?",
-        "O'z darsingizda baholash maqsadga mos keladimi?",
-      ],
-    },
-  ],
-};
-
-const TEXNOLOGIYA: Course = {
-  slug: "musiqa-texnologiyalari",
-  moduleId: "mod-texnologiya",
-  title: "Musiqa texnologiyalari",
-  description: "Raqamli vositalar va ularni dars jarayonida qo'llash.",
-  lessons: [
-    {
-      id: "tex-1",
-      slug: "raqamli-vositalar",
-      title: "Mavzu 1: Darsda raqamli vositalar",
-      summary: "Nota yozuv dasturlari, audio tahrir va ularni tanlash mezonlari.",
-      durationMin: 25,
-      bloom: "baholash",
-      outcomeId: "on-tex-3",
-      area: "ijodkorlik",
-      sections: [
-        {
-          id: "kirish",
-          title: "Kirish",
-          blocks: [
-            {
-              kind: "matn",
-              text: "Raqamli vosita darsni avtomatik yaxshilamaydi. U faqat aniq o'quv maqsadiga xizmat qilgandagina foydali bo'ladi.",
-            },
-          ],
-        },
-        {
-          id: "tushunchalar",
-          title: "Asosiy tushunchalar",
-          blocks: [
-            {
-              kind: "royxat",
-              items: [
-                "Nota yozuv dasturlari — partitura tayyorlash",
-                "DAW — yozib olish, tahrirlash, aranjirovka",
-                "Virtual cholg'ular — cholg'u bo'lmaganda mashq qilish",
-                "Interaktiv testlar — tezkor qaytar aloqa",
-              ],
-            },
-            {
-              kind: "eslatma",
-              text: "Vositani tanlashdan oldin savol bering: bu o'quvchiga nimani o'rganishga yordam beradi? Javob topilmasa — vosita kerak emas.",
-            },
-          ],
-        },
-        {
-          id: "mashq",
-          title: "Amaliy mashq",
-          blocks: [
-            {
-              kind: "mashq",
-              text: "Virtual pianinoda qisqa kuy yarating, yozib oling va portfolioga saqlang. So'ng uni darsda qanday ishlatishingizni yozing.",
-              instrument: "pianino",
-              exerciseId: "p-oz-kuy",
-            },
-          ],
-        },
-        {
-          id: "test",
-          title: "Test",
-          blocks: [
-            {
-              kind: "test",
-              questions: [
                 {
-                  id: "tex1-t1",
-                  area: "metodika",
-                  bloom: "baholash",
-                  kind: "single",
-                  prompt: "Raqamli vositani tanlashda asosiy mezon nima?",
-                  options: [
-                    { id: "a", text: "Zamonaviyligi" },
-                    { id: "b", text: "O'quv maqsadiga mosligi" },
-                    { id: "c", text: "Narxi" },
-                    { id: "d", text: "O'quvchilarga yoqishi" },
-                  ],
-                  correctId: "b",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          id: "xulosa",
-          title: "Xulosa",
-          blocks: [
-            {
-              kind: "royxat",
-              items: [
-                "Vosita maqsadga xizmat qiladi, aksincha emas",
-                "Virtual cholg'u — cholg'u yo'qligida real yechim",
-                "Tezkor qaytar aloqa o'rganishni tezlashtiradi",
-              ],
-            },
-          ],
-        },
-      ],
-      reflection: [
-        "Qaysi vositani o'z darsingizda sinab ko'rmoqchisiz?",
-        "Vositasiz ham shu maqsadga erishib bo'ladimi?",
-      ],
-    },
-  ],
-};
-
-const AMALIYOT: Course = {
-  slug: "pedagogik-amaliyot",
-  moduleId: "mod-amaliyot",
-  title: "Pedagogik amaliyot",
-  description: "Kuzatuvdan mustaqil darsgacha: amaliyotning uch bosqichi.",
-  lessons: [
-    {
-      id: "ama-1",
-      slug: "dars-kuzatuvi",
-      title: "Mavzu 1: Dars kuzatuvi",
-      summary: "Tajribali o'qituvchi darsini mezonlar bo'yicha kuzatish.",
-      durationMin: 30,
-      bloom: "tahlil",
-      outcomeId: "on-ama-1",
-      area: "metodika",
-      sections: [
-        {
-          id: "kirish",
-          title: "Kirish",
-          blocks: [
-            {
-              kind: "matn",
-              text: "Kuzatuv — shunchaki darsda o'tirish emas. Aniq mezonlarsiz kuzatuvchi faqat umumiy taassurot oladi va undan o'rganib bo'lmaydi.",
-            },
-          ],
-        },
-        {
-          id: "tushunchalar",
-          title: "Asosiy tushunchalar",
-          blocks: [
-            {
-              kind: "royxat",
-              items: [
-                "Dars maqsadi aniq aytildimi va o'quvchilarga tushunarlimi",
-                "Vaqt bosqichlar bo'yicha qanday taqsimlandi",
-                "O'quvchilarning faol ishtiroki qanday ta'minlandi",
-                "Qaytar aloqa qanday berildi",
-                "Dars yakunida natija tekshirildimi",
-              ],
-            },
-            {
-              kind: "eslatma",
-              text: "Kuzatuv varaqasi baho qo'yish uchun emas — o'z darsingizga g'oya olish uchun to'ldiriladi.",
-            },
-          ],
-        },
-        {
-          id: "mashq",
-          title: "Amaliy mashq",
-          blocks: [
-            {
-              kind: "mashq",
-              text: "Bitta musiqa darsini yuqoridagi besh mezon bo'yicha kuzating. Har bir mezonga bitta aniq misol yozing — umumiy gap emas.",
-            },
-          ],
-        },
-        {
-          id: "test",
-          title: "Test",
-          blocks: [
-            {
-              kind: "test",
-              questions: [
-                {
-                  id: "ama1-t1",
-                  area: "metodika",
+                  id: "naz5-t4",
+                  area: "nazariya",
                   bloom: "tahlil",
                   kind: "single",
-                  prompt: "Kuzatuv yozuvi qanday bo'lsa foydaliroq?",
+                  prompt:
+                    "Ohang bir necha marta bitta tovushga qaytib, o'sha tovushda to'xtaydi. Bu tovush tahlilda qanday ataladi?",
                   options: [
-                    { id: "a", text: "«Dars qiziqarli o'tdi»" },
-                    { id: "b", text: "«O'qituvchi 7-daqiqada savol berib, 4 o'quvchini jalb qildi»" },
-                    { id: "c", text: "«O'qituvchi yaxshi tayyorlangan»" },
-                    { id: "d", text: "«Sinf intizomli»" },
+                    { id: "a", text: "Avj" },
+                    { id: "b", text: "Usul" },
+                    { id: "c", text: "Tayanch tovush" },
+                    { id: "d", text: "Shu'ba" },
+                  ],
+                  correctId: "c",
+                },
+                {
+                  id: "naz5-t5",
+                  area: "nazariya",
+                  bloom: "bilish",
+                  kind: "single",
+                  prompt: "Mushkilot va Nasr — bular nima?",
+                  options: [
+                    { id: "a", text: "Ikki xil doira usuli" },
+                    { id: "b", text: "Maqomning cholg'u va ashula bo'limlari" },
+                    { id: "c", text: "Ikki xil cholg'u nomi" },
+                    { id: "d", text: "Lad turlari" },
                   ],
                   correctId: "b",
-                  explanation:
-                    "Aniq, vaqt va raqam bilan qayd etilgan kuzatuvdan xulosa chiqarish mumkin; umumiy taassurotdan esa yo'q.",
                 },
               ],
             },
@@ -1102,42 +793,25 @@ const AMALIYOT: Course = {
             {
               kind: "royxat",
               items: [
-                "Kuzatuv mezonlar bilan olib boriladi",
-                "Aniq misol umumiy bahodan qimmatliroq",
-                "Maqsad — baho emas, o'z darsingiz uchun g'oya",
+                "Maqom — bitta kuy emas, turkum: o'z ladi, usullari va tuzilmasi bilan",
+                "Ladni tovushqator, tayanch tovush va xarakterli burilishlar belgilaydi",
+                "Avj — asarning cho'qqisi; tahlilni undan boshlash oson",
+                "Usul ohangdan mustaqil: ohang o'zgarsa ham usul saqlanadi",
+                "Shashmaqom — Buzruk, Rost, Navo, Dugoh, Segoh, Iroq",
               ],
+            },
+            {
+              kind: "eslatma",
+              text: "Keyingi qadam: «Maqom namunasi tahlili» topshirig'ida tanlagan asaringizni shu to'rt savol bo'yicha yozma tahlil qilasiz — tayanch tovush, tovushqator, avj va usul.",
             },
           ],
         },
       ],
       reflection: [
-        "Kuzatuvda qaysi mezon bo'yicha yozish qiyin bo'ldi?",
-        "Ko'rgan narsangizdan qaysi birini o'z darsingizda qo'llaysiz?",
+        "Maqom ladini Yevropa major/minor tizimidan nimasi bilan farq qiladi deb tushundingiz?",
+        "Maktab o'quvchisiga avj nima ekanini qanday tushuntirgan bo'lardingiz — ta'rif bilanmi yoki tinglatibmi?",
+        "Milliy musiqani o'qitishda eng katta qiyinchilik nima deb o'ylaysiz?",
       ],
     },
   ],
 };
-
-export const KURSLAR: Course[] = [NAZARIYA, IJRO, METODIKA, TEXNOLOGIYA, AMALIYOT];
-
-export const KURS_BY_SLUG = new Map(KURSLAR.map((k) => [k.slug, k]));
-
-export const BARCHA_DARSLAR = KURSLAR.flatMap((kurs) =>
-  kurs.lessons.map((lesson) => ({ ...lesson, courseSlug: kurs.slug, courseTitle: kurs.title })),
-);
-
-export function findLesson(courseSlug: string, lessonSlug: string) {
-  return KURS_BY_SLUG.get(courseSlug)?.lessons.find((l) => l.slug === lessonSlug);
-}
-
-/** Kursdagi darsning tartibi — «oldingi / keyingi» tugmalari uchun. */
-export function lessonNeighbours(courseSlug: string, lessonSlug: string) {
-  const lessons = KURS_BY_SLUG.get(courseSlug)?.lessons ?? [];
-  const i = lessons.findIndex((l) => l.slug === lessonSlug);
-  return {
-    prev: i > 0 ? lessons[i - 1] : undefined,
-    next: i >= 0 && i < lessons.length - 1 ? lessons[i + 1] : undefined,
-    index: i,
-    total: lessons.length,
-  };
-}

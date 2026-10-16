@@ -134,6 +134,46 @@ const RUBRIKA_TAHLIL: Rubric = {
   ],
 };
 
+/**
+ * Refleksiv va tahliliy yozma ishlar uchun rubrika.
+ *
+ * `RUBRIKA_TAHLIL` musiqa asarini tahlil qilishga mo'ljallangan; bu esa
+ * pedagogik matnlar uchun — kuzatuv varaqasi, teskari aloqa tahlili,
+ * refleksiv esse. Farqi mezonlarda: bu yerda dalil asar matnidan emas,
+ * dars amaliyotidan olinadi.
+ */
+const RUBRIKA_REFLEKSIYA: Rubric = {
+  criteria: [
+    {
+      id: "aniqlik",
+      title: "Kuzatuvning aniqligi",
+      description:
+        "Fikrlar umumiy emas: aniq lahza, aniq xatti-harakat va uning ta'siri ko'rsatilgan",
+      maxPoints: 30,
+    },
+    {
+      id: "asos",
+      title: "Nazariy asos",
+      description:
+        "Xulosalar o'rganilgan tamoyillarga (Blum, konstruktiv moslashuv, ZPD) bog'langan",
+      maxPoints: 25,
+    },
+    {
+      id: "oztahlil",
+      title: "O'z-o'zini tahlil",
+      description:
+        "Muvaffaqiyat ham, kamchilik ham ko'rsatilgan; sabab izlangan, bahona emas",
+      maxPoints: 25,
+    },
+    {
+      id: "keyingi",
+      title: "Keyingi qadam",
+      description: "Aniq, bajariladigan va o'lchanadigan vazifa belgilangan",
+      maxPoints: 20,
+    },
+  ],
+};
+
 export const TOPSHIRIQLAR: Task[] = [
   {
     id: "task-nota-test",
@@ -432,6 +472,319 @@ export const TOPSHIRIQLAR: Task[] = [
       },
     ],
   },
+
+  {
+    id: "task-interval-yozuv",
+    slug: "interval-yozuv-testi",
+    title: "Interval yozuvi testi",
+    description:
+      "Berilgan ohangda intervallarni aniqlash va ularni nota yozuvida to'g'ri ko'rsatish.",
+    type: "test",
+    moduleId: "mod-nazariya",
+    outcomeId: "on-naz-3",
+    area: "nazariya",
+    bloom: "qollash",
+    duration: "15 daqiqa",
+    timerMin: 15,
+    submission: "test",
+    questions: [
+      {
+        id: "iy1",
+        area: "nazariya",
+        bloom: "qollash",
+        kind: "single",
+        prompt: "Do va mi notalari orasidagi interval qanday ataladi?",
+        options: [
+          { id: "a", text: "Katta tersiya" },
+          { id: "b", text: "Kichik tersiya" },
+          { id: "c", text: "Kvarta" },
+          { id: "d", text: "Sekunda" },
+        ],
+        correctId: "a",
+        explanation: "Do–mi orasida ikki butun ton bor — bu katta tersiya.",
+      },
+      {
+        id: "iy2",
+        area: "nazariya",
+        bloom: "qollash",
+        kind: "single",
+        prompt: "Do va fa orasidagi interval nechta yarim tondan iborat?",
+        options: [
+          { id: "a", text: "To'rtta" },
+          { id: "b", text: "Beshta" },
+          { id: "c", text: "Oltita" },
+          { id: "d", text: "Yettita" },
+        ],
+        correctId: "b",
+        explanation: "Sof kvarta — besh yarim ton (do–do♯–re–re♯–mi–fa).",
+      },
+      {
+        id: "iy3",
+        area: "nazariya",
+        bloom: "qollash",
+        kind: "single",
+        prompt:
+          "Re notasidan yuqoriga sof kvinta qurilsa, yuqorigi nota qaysi bo'ladi?",
+        options: [
+          { id: "a", text: "Lya" },
+          { id: "b", text: "Sol" },
+          { id: "c", text: "Si" },
+          { id: "d", text: "Do" },
+        ],
+        correctId: "a",
+        explanation: "Sof kvinta — yetti yarim ton; re dan yetti yarim ton yuqorida lya turadi.",
+      },
+      {
+        id: "iy4",
+        area: "nazariya",
+        bloom: "qollash",
+        kind: "multiple",
+        prompt: "Sof intervallarni tanlang.",
+        options: [
+          { id: "a", text: "Prima" },
+          { id: "b", text: "Tersiya" },
+          { id: "c", text: "Kvarta" },
+          { id: "d", text: "Kvinta" },
+          { id: "e", text: "Oktava" },
+        ],
+        correctIds: ["a", "c", "d", "e"],
+        explanation:
+          "Prima, kvarta, kvinta va oktava sof bo'ladi; sekunda, tersiya, seksta va septima katta yoki kichik bo'ladi.",
+      },
+      {
+        id: "iy5",
+        area: "nazariya",
+        bloom: "qollash",
+        kind: "single",
+        prompt:
+          "Nota yozuvida mi va sol orasidagi intervalni yozmoqchisiz. Qaysi ta'rif to'g'ri?",
+        options: [
+          { id: "a", text: "Katta tersiya, to'rt yarim ton" },
+          { id: "b", text: "Kichik tersiya, uch yarim ton" },
+          { id: "c", text: "Sof kvarta, besh yarim ton" },
+          { id: "d", text: "Katta sekunda, ikki yarim ton" },
+        ],
+        correctId: "b",
+        explanation:
+          "Mi–fa orasida yarim ton, fa–sol orasida butun ton — jami uch yarim ton, ya'ni kichik tersiya.",
+      },
+      {
+        id: "iy6",
+        area: "eshituv",
+        bloom: "tahlil",
+        kind: "single",
+        prompt:
+          "Ohangda ketma-ket do–mi–sol tovushlari yangradi. Bu nima?",
+        options: [
+          { id: "a", text: "Minor trezvuchiye" },
+          { id: "b", text: "Major trezvuchiye" },
+          { id: "c", text: "Kvarta-kvinta ketma-ketligi" },
+          { id: "d", text: "Xromatik qator" },
+        ],
+        correctId: "b",
+        explanation:
+          "Do–mi katta tersiya, mi–sol kichik tersiya — bu major trezvuchiyening tuzilishi.",
+      },
+    ],
+  },
+
+  {
+    id: "task-maqom-tahlil",
+    slug: "maqom-namunasi-tahlili",
+    title: "Maqom namunasi tahlili",
+    description:
+      "Tanlagan maqom namunasini lad asosida yozma tahlil qiling: tovushqator, tayanch tovush, avj va usul. Tahlilni asar matnidagi aniq joylarga tayanib asoslang.",
+    type: "loyiha",
+    moduleId: "mod-nazariya",
+    outcomeId: "on-naz-5",
+    area: "nazariya",
+    bloom: "tahlil",
+    duration: "40 daqiqa",
+    timerMin: 40,
+    submission: "matn",
+    rubric: RUBRIKA_TAHLIL,
+  },
+
+
+  {
+    id: "task-ansambl-ijro",
+    slug: "ansambl-ijrosi",
+    title: "Ansambl ijrosi",
+    description:
+      "Ikki partiyali qisqa asar tayyorlang: avval jo'r partiyani yozib oling, so'ng uning ustiga asosiy ohangni chaling. Muvozanat va birga kirishga alohida e'tibor bering.",
+    type: "ijro",
+    moduleId: "mod-ijro",
+    outcomeId: "on-ijr-3",
+    area: "ritm",
+    bloom: "qollash",
+    duration: "30 daqiqa",
+    submission: "ijro",
+    instrument: "gitara",
+    exerciseId: "g-akkordlar",
+    rubric: RUBRIKA_IJRO,
+  },
+
+  {
+    id: "task-sahna-ijro",
+    slug: "sahna-ijrosi",
+    title: "Sahna ijrosi",
+    description:
+      "Tanlagan asarni boshidan oxirigacha to'xtamasdan ijro eting va yozib oling. Baholashda xatoning o'zi emas, undan keyin ijroni davom ettira olish ham hisobga olinadi — sahnada to'xtab qolish eng katta kamchilik.",
+    type: "ijro",
+    moduleId: "mod-ijro",
+    outcomeId: "on-ijr-5",
+    area: "sahna",
+    bloom: "qollash",
+    duration: "20 daqiqa",
+    submission: "ijro",
+    instrument: "dutor",
+    exerciseId: "d-erkin",
+    rubric: RUBRIKA_IJRO,
+  },
+
+
+  {
+    id: "task-dars-tuzilmasi-test",
+    slug: "dars-tuzilmasi-testi",
+    title: "Dars tuzilmasi testi",
+    description:
+      "Musiqa darsining bosqichlari, vaqt taqsimoti va faoliyat turlari bo'yicha test.",
+    type: "test",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-1",
+    area: "metodika",
+    bloom: "bilish",
+    duration: "12 daqiqa",
+    timerMin: 12,
+    submission: "test",
+    questions: [
+      {
+        id: "dt1",
+        area: "metodika",
+        bloom: "bilish",
+        kind: "single",
+        prompt: "45 daqiqalik musiqa darsi odatda nechta bosqichdan iborat?",
+        options: [
+          { id: "a", text: "Ikkita" },
+          { id: "b", text: "Uchta" },
+          { id: "c", text: "Beshta" },
+          { id: "d", text: "O'nta" },
+        ],
+        correctId: "c",
+      },
+      {
+        id: "dt2",
+        area: "metodika",
+        bloom: "tushunish",
+        kind: "single",
+        prompt: "Tashkiliy qism va musiqiy salomlashuvning vazifasi nima?",
+        options: [
+          { id: "a", text: "Yangi material berish" },
+          { id: "b", text: "Diqqatni yig'ish va ovozni uyg'otish" },
+          { id: "c", text: "Baho qo'yish" },
+          { id: "d", text: "Uyga vazifa berish" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "dt3",
+        area: "metodika",
+        bloom: "tahlil",
+        kind: "single",
+        prompt:
+          "Darsda 30 daqiqa nazariya tushuntirildi va 5 daqiqa kuylandi. Asosiy kamchilik nima?",
+        options: [
+          { id: "a", text: "Takrorlash bosqichi yo'q" },
+          { id: "b", text: "Amaliy faoliyatga vaqt yetmagan" },
+          { id: "c", text: "Dars juda qisqa" },
+          { id: "d", text: "Uyga vazifa berilmagan" },
+        ],
+        correctId: "b",
+        explanation:
+          "Musiqa darsida amaliy faoliyat yangi materialdan kam vaqt olmaydi — aks holda u ma'ruzaga aylanadi.",
+      },
+      {
+        id: "dt4",
+        area: "metodika",
+        bloom: "qollash",
+        kind: "single",
+        prompt:
+          "Boshlang'ich sinfda bitta faoliyat turi qancha davom etgani ma'qul?",
+        options: [
+          { id: "a", text: "2–3 daqiqa" },
+          { id: "b", text: "7–10 daqiqa" },
+          { id: "c", text: "15–20 daqiqa" },
+          { id: "d", text: "Butun dars davomida" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "dt5",
+        area: "metodika",
+        bloom: "bilish",
+        kind: "multiple",
+        prompt: "Musiqa darsidagi faoliyat turlarini tanlang.",
+        options: [
+          { id: "a", text: "Tinglash va musiqa haqida gapirish" },
+          { id: "b", text: "Kuylash" },
+          { id: "c", text: "Ritmik va harakatli mashqlar" },
+          { id: "d", text: "Cholg'uda chalish" },
+          { id: "e", text: "Ijodiy faoliyat" },
+        ],
+        correctIds: ["a", "b", "c", "d", "e"],
+      },
+      {
+        id: "dt6",
+        area: "metodika",
+        bloom: "tahlil",
+        kind: "single",
+        prompt:
+          "Ishlanmadagi bosqichlar jadvalining «O'quvchi» ustuni bo'sh. Bu nimani ko'rsatadi?",
+        options: [
+          { id: "a", text: "Jadval shakli noto'g'ri tanlangan" },
+          { id: "b", text: "Shu bosqichda o'quvchi passiv" },
+          { id: "c", text: "O'qituvchi yaxshi tayyorlangan" },
+          { id: "d", text: "Hech narsani" },
+        ],
+        correctId: "b",
+      },
+    ],
+  },
+
+  {
+    id: "task-mikro-dars",
+    slug: "mikro-dars-otkazish",
+    title: "Mikro-dars o'tkazish",
+    description:
+      "10–15 daqiqalik dars bo'lagini o'tkazing va yozib oling. Ishni ikki qismda topshiring: birinchi urinish, guruhdoshlar teskari aloqasi va tuzatilgan ikkinchi urinish. Baholashda ikkinchi urinishdagi o'zgarish alohida hisobga olinadi.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-4",
+    area: "metodika",
+    bloom: "qollash",
+    duration: "1 hafta",
+    submission: "fayl",
+    accept: ".mp4,.mov,.mp3,.m4a,.pdf",
+    rubric: RUBRIKA_DARS,
+  },
+
+  {
+    id: "task-rubrika-tuzish",
+    slug: "rubrika-tuzish",
+    title: "Baholash rubrikasini tuzish",
+    description:
+      "O'zingiz tanlagan ijodiy topshiriq uchun 3–5 mezonli rubrika tuzing. Har bir mezon uchun eng past va eng yuqori darajaning ta'rifini yozing va mezonlarning og'irligini asoslang. Ta'riflar kuzatiladigan tilda bo'lishi shart.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-5",
+    area: "metodika",
+    bloom: "baholash",
+    duration: "45 daqiqa",
+    timerMin: 45,
+    submission: "matn",
+    rubric: RUBRIKA_REFLEKSIYA,
+  },
+
 ];
 
 export const TOPSHIRIQ_BY_SLUG = new Map(TOPSHIRIQLAR.map((t) => [t.slug, t]));
