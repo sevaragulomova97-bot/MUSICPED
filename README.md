@@ -121,8 +121,8 @@ content/
   diagnostic.ts         32 ta diagnostika savoli (8 yo'nalish)
   demo-students.ts      24 namunaviy talaba (tajriba / nazorat)
   practice.ts           18 ta cholg'u mashqi + ritm baholash
-  courses.ts            5 kurs, 9 ta to'liq dars
-  tasks.ts              8 ta topshiriq + 3 ta baholash rubrikasi
+  courses/              5 kurs, 24 ta to'liq dars (har bir modul o'z faylida)
+  tasks.ts              24 ta topshiriq + 5 ta baholash rubrikasi
   mentorship.ts         Pedagogik amaliyotning 3 bosqichi + kuzatuv varaqasi
 lib/
   audio/engine.ts       AudioContext, klaviatura, nota yozuvchi
@@ -164,6 +164,8 @@ docs/
 - [x] **B5** — O'qituvchi kabineti, tadqiqot bo'limi (t-mezon, χ², Koen d,
       Mann-Uitni), admin paneli va kontent auditi, oflayn rejim (PWA),
       e2e testlar va qo'llanmalar
+- [x] **Kontent** — barcha 24 o'quv natijasi dars va topshiriq bilan
+      qoplandi; audit uzilishsiz
 
 ---
 
@@ -181,6 +183,24 @@ o'qituvchiga beradi. O'qituvchi uni kabinetida qabul qiladi, rubrika bo'yicha
 baho qo'yadi va `baholar-….json` ni qaytaradi; talaba uni import qilgach baho
 va izoh natijalarida paydo bo'ladi. Fayl formati versiyalangan: eski fayl
 o'qiladi, yangiroq versiyadagi fayl esa jim buzilmay, aniq xato beradi.
+
+---
+
+## O'quv dasturining qamrovi
+
+| Modul | Kredit | Darslar | Topshiriqlar | O'quv natijalari |
+|---|---|---|---|---|
+| Musiqa nazariyasi | 5 | 5 | 5 | 5 / 5 qoplangan |
+| Ijro amaliyoti | 7 | 5 | 5 | 5 / 5 qoplangan |
+| Musiqa ta'limi metodikasi | 6 | 5 | 5 | 5 / 5 qoplangan |
+| Musiqa texnologiyalari | 4 | 4 | 4 | 4 / 4 qoplangan |
+| Pedagogik amaliyot | 10 | 5 | 5 | 5 / 5 qoplangan |
+
+Har bir o'quv natijasi uchun uni **o'rgatadigan dars** ham, unga
+erishilganini **tekshiradigan topshiriq** ham bor (J. Biggsning konstruktiv
+moslashuvi). Bu shart kodda tekshiriladi: `lib/content-audit.ts` uzilishni
+topsa, unit test yiqiladi va admin panelining «Kontent» sahifasi qaysi
+natija ochiq qolganini ko'rsatadi.
 
 ---
 

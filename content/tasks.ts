@@ -174,6 +174,46 @@ const RUBRIKA_REFLEKSIYA: Rubric = {
   ],
 };
 
+/**
+ * Raqamli mahsulot (partitura, audio, aranjirovka) uchun rubrika.
+ *
+ * Bu yerda texnik bajarilish ham, pedagogik maqsadga moslik ham
+ * baholanadi: chiroyli qilingan, lekin darsda ishlatib bo'lmaydigan
+ * mahsulot maqsadga xizmat qilmaydi.
+ */
+const RUBRIKA_TEXNOLOGIYA: Rubric = {
+  criteria: [
+    {
+      id: "texnik",
+      title: "Texnik bajarilish",
+      description:
+        "Fayl to'g'ri formatda, toza va xatosiz; nota yozuvida kalit, o'lchov va davomiyliklar to'g'ri",
+      maxPoints: 30,
+    },
+    {
+      id: "maqsad",
+      title: "Pedagogik maqsadga moslik",
+      description:
+        "Mahsulot aniq dars vazifasini bajaradi va sinf imkoniyatiga mos keladi",
+      maxPoints: 30,
+    },
+    {
+      id: "mustaqillik",
+      title: "Mustaqillik va o'zlashtirish",
+      description:
+        "Vositaning imkoniyatlari ongli ishlatilgan (transpozitsiya, partiyalar, normalizatsiya)",
+      maxPoints: 20,
+    },
+    {
+      id: "huquq",
+      title: "Manba va litsenziya",
+      description:
+        "Ishlatilgan materialning manbasi ko'rsatilgan va undan foydalanishga ruxsat bor",
+      maxPoints: 20,
+    },
+  ],
+};
+
 export const TOPSHIRIQLAR: Task[] = [
   {
     id: "task-nota-test",
@@ -781,6 +821,160 @@ export const TOPSHIRIQLAR: Task[] = [
     bloom: "baholash",
     duration: "45 daqiqa",
     timerMin: 45,
+    submission: "matn",
+    rubric: RUBRIKA_REFLEKSIYA,
+  },
+
+
+  {
+    id: "task-partitura",
+    slug: "partitura-tayyorlash",
+    title: "Partitura tayyorlash",
+    description:
+      "Nota yozuv dasturida 8–16 taktli ikki partiyali partitura tayyorlang: kalit, o'lchov, tonallik va ifoda belgilari bilan. Ish faylini va PDF ni birga topshiring. Erkin dastur (masalan MuseScore) yetarli.",
+    type: "loyiha",
+    moduleId: "mod-texnologiya",
+    outcomeId: "on-tex-1",
+    area: "nazariya",
+    bloom: "qollash",
+    duration: "1 hafta",
+    submission: "fayl",
+    accept: ".pdf,.mscz,.musicxml,.xml,.mid",
+    rubric: RUBRIKA_TEXNOLOGIYA,
+  },
+
+  {
+    id: "task-audio-tahrir",
+    slug: "audio-tahrirlash",
+    title: "Audio yozuvni darsga tayyorlash",
+    description:
+      "O'z ijrongizni yozib oling va darsda ishlatishga tayyorlang: ortiqcha qismni kesing, balandlikni tenglang, kirish va chiqishni silliqlang, 192 kbit/s MP3 ga eksport qiling. Tahrirdan oldingi va keyingi faylni birga topshiring.",
+    type: "loyiha",
+    moduleId: "mod-texnologiya",
+    outcomeId: "on-tex-2",
+    area: "ijodkorlik",
+    bloom: "qollash",
+    duration: "45 daqiqa",
+    submission: "fayl",
+    accept: ".mp3,.wav,.m4a,.ogg",
+    rubric: RUBRIKA_TEXNOLOGIYA,
+  },
+
+  {
+    id: "task-vosita-tanlovi",
+    slug: "raqamli-vosita-tanlovi",
+    title: "Raqamli vositani tanlash va asoslash",
+    description:
+      "Aniq bir dars mavzusini oling va unga raqamli vosita tanlang. Tanlovni asoslang: vosita qaysi o'quv maqsadiga xizmat qiladi, uning o'rniga nima ishlatish mumkin edi va nega aynan shu yaxshiroq. Narxi, litsenziyasi va maktab sharoitidagi imkoniyatini ham hisobga oling.",
+    type: "loyiha",
+    moduleId: "mod-texnologiya",
+    outcomeId: "on-tex-3",
+    area: "ijodkorlik",
+    bloom: "baholash",
+    duration: "30 daqiqa",
+    timerMin: 30,
+    submission: "matn",
+    rubric: RUBRIKA_REFLEKSIYA,
+  },
+
+  {
+    id: "task-aranjirovka",
+    slug: "aranjirovka-loyihasi",
+    title: "Aranjirovka loyihasi",
+    description:
+      "Tanish ohangni sinf ansambli uchun aranjirovka qiling. Kamida uch qatlam bo'lsin (ohang, jo'r, ritm) va partiyalar darajalangan bo'lsin: endi boshlagan o'quvchi uchun ham, kuchli o'quvchi uchun ham partiya bo'lsin. Partitura va qisqa izoh topshiriladi.",
+    type: "loyiha",
+    moduleId: "mod-texnologiya",
+    outcomeId: "on-tex-4",
+    area: "ijodkorlik",
+    bloom: "sintez",
+    duration: "2 hafta",
+    submission: "fayl",
+    accept: ".pdf,.mscz,.musicxml,.xml,.mp3",
+    rubric: RUBRIKA_TEXNOLOGIYA,
+  },
+
+
+  {
+    id: "task-kuzatuv-varaqasi",
+    slug: "dars-kuzatuv-varaqasi",
+    title: "Dars kuzatuv varaqasi",
+    description:
+      "Tajribali o'qituvchining bitta darsini kuzatib, mezonlar bo'yicha yozma tahlil tayyorlang: darsning maqsadi, bosqichlari va vaqt taqsimoti, qo'llangan kamida uchta metodik usul va ularning ta'siri, hamda bitta kutilmagan vaziyat va o'qituvchining javobi.",
+    type: "loyiha",
+    moduleId: "mod-amaliyot",
+    outcomeId: "on-ama-1",
+    area: "metodika",
+    bloom: "tahlil",
+    duration: "45 daqiqa",
+    timerMin: 45,
+    submission: "matn",
+    rubric: RUBRIKA_REFLEKSIYA,
+  },
+
+  {
+    id: "task-mikro-dars-ijro",
+    slug: "mikro-dars-ijrosi",
+    title: "Mikro-dars o'tkazish (amaliyot)",
+    description:
+      "Haqiqiy yoki o'quv guruhida 10–15 daqiqalik dars bo'lagini mustaqil o'tkazing va yozib oling. Yozuv bilan birga qisqa izoh topshiring: maqsad nima edi, unga erishildimi va buni qanday bildingiz.",
+    type: "loyiha",
+    moduleId: "mod-amaliyot",
+    outcomeId: "on-ama-2",
+    area: "metodika",
+    bloom: "qollash",
+    duration: "1 hafta",
+    submission: "fayl",
+    accept: ".mp4,.mov,.mp3,.m4a,.pdf",
+    rubric: RUBRIKA_DARS,
+  },
+
+  {
+    id: "task-mustaqil-dars",
+    slug: "mustaqil-dars",
+    title: "To'liq darsni mustaqil o'tkazish",
+    description:
+      "To'liq darsni mustaqil loyihalang va o'tkazing. Uch hujjat topshiriladi: ishlanma (Reja B va zaxira bilan), dars yozuvi yoki mentor kuzatuv varaqasi, va darsdan keyin darhol yozilgan tahlil.",
+    type: "loyiha",
+    moduleId: "mod-amaliyot",
+    outcomeId: "on-ama-3",
+    area: "metodika",
+    bloom: "sintez",
+    duration: "2 hafta",
+    submission: "fayl",
+    accept: ".pdf,.doc,.docx,.odt,.mp4,.mov",
+    rubric: RUBRIKA_DARS,
+  },
+
+  {
+    id: "task-feedback-tahlili",
+    slug: "teskari-aloqa-tahlili",
+    title: "Mentor teskari aloqasining tahlili",
+    description:
+      "Mentordan olgan teskari aloqangizni tahlil qiling: har bir fikrni xatti-harakat yoki did sifatida ajrating, ikkitasini keyingi dars uchun tanlang va tanlovingizni asoslang. Qaysi fikr bilan rozi bo'lmaganingizni ham yozing — sababi bilan.",
+    type: "loyiha",
+    moduleId: "mod-amaliyot",
+    outcomeId: "on-ama-4",
+    area: "motivatsiya",
+    bloom: "baholash",
+    duration: "30 daqiqa",
+    timerMin: 30,
+    submission: "matn",
+    rubric: RUBRIKA_REFLEKSIYA,
+  },
+
+  {
+    id: "task-refleksiv-esse",
+    slug: "refleksiv-esse",
+    title: "Amaliyot bo'yicha refleksiv esse",
+    description:
+      "Pedagogik amaliyot yakunida refleksiv esse yozing. To'rt qismni saqlang: aniq dalil bilan tasvir, sabab, nazariy bog'lanish (ZPD, Blum, konstruktiv moslashuv) va keyingi qadam. Kamida bitta muvaffaqiyatni ham tahlil qiling — nega ishlaganini tushuntiring.",
+    type: "loyiha",
+    moduleId: "mod-amaliyot",
+    outcomeId: "on-ama-5",
+    area: "motivatsiya",
+    bloom: "baholash",
+    duration: "1 soat",
     submission: "matn",
     rubric: RUBRIKA_REFLEKSIYA,
   },

@@ -2,23 +2,26 @@ import { expect, test } from "@playwright/test";
 import { ADMIN, sessiyaBer } from "./yordamchi";
 
 test.describe("Admin paneli", () => {
-  test("kontent auditi uzilishlarni ko'rsatadi", async ({ page }) => {
+  test("kontent auditi dasturning holatini ko'rsatadi", async ({ page }) => {
     await sessiyaBer(page, ADMIN);
 
     await page.goto("/admin/");
     await expect(page.getByRole("heading", { name: /admin paneli/i })).toBeVisible();
-    // Audit xatosi bo'lmasligi kerak: dasturdan tashqarida qolgan dars yo'q.
-    await expect(page.getByText(/^0 xato$/)).toBeVisible();
+    // Dastur to'liq: har bir o'quv natijasining darsi va topshirig'i bor.
+    await expect(page.getByText(/muammo topilmadi/i)).toBeVisible();
 
     await page.goto("/admin/kontent/");
     const qatorlar = page.locator("table").first().locator("tbody tr");
     // 24 o'quv natijasi.
     await expect(qatorlar).toHaveCount(24);
 
-    // Filtr ishlaydi va uzilishlar yashirilmaydi.
+    // Hammasi «To'liq» holatida; filtr shuni tasdiqlaydi.
+    await page.getByRole("button", { name: /to'liq \(24\)/i }).click();
+    await expect(qatorlar).toHaveCount(24);
+
+    // Uzilish filtri bo'sh ro'yxat beradi — qoplanmagan natija qolmagan.
     await page.getByRole("button", { name: /ikkalasi yo'q/i }).click();
-    expect(await qatorlar.count()).toBeGreaterThan(0);
-    expect(await qatorlar.count()).toBeLessThan(24);
+    await expect(qatorlar).toHaveCount(0);
   });
 });
 

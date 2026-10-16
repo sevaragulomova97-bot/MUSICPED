@@ -513,3 +513,68 @@ tepasida ko'rsatiladi.
 karta o'chadi — kartadagi tasdiq xabari bilan birga. O'qituvchi hech qanday
 javob ko'rmay qolardi. Endi xabar o'chmaydigan joyda chiqadi va qaysi ishga
 necha ball qo'yilganini aytadi.
+
+
+---
+
+## Kontentni to'ldirish
+
+### Q57. Kurslar fayli modullarga bo'lindi
+
+**Qaror.** `content/courses.ts` o'rniga `content/courses/` papkasi: har bir
+modul o'z faylida, `index.ts` esa eski eksportlarni saqlaydi.
+
+**Sabab.** Kontent to'ldirilgach bitta fayl uch mingdan ortiq satrga
+yetardi. Bo'lingandan keyin ikki modulni parallel tahrirlash mumkin va
+o'zgarish qaysi modulga tegishli ekani commit diffida darhol ko'rinadi.
+Index saqlangani uchun hech bir import o'zgarmadi.
+
+### Q58. Barcha o'quv natijalari qoplandi
+
+**Qaror.** 15 ta yangi dars va 16 ta yangi topshiriq yozildi; natijada
+24 o'quv natijasining hammasi dars va topshiriq bilan ta'minlandi
+(oldin 5 tasi).
+
+**Sabab.** Audit (Q50) uzilishlarni ochiq ko'rsatgandi: 12 ta natijada na
+dars, na topshiriq bor edi. Dissertatsiya platformasi uchun bu jiddiy
+kamchilik — konstruktiv moslashuv qog'ozda e'lon qilinib, amalda
+bajarilmagan bo'lardi.
+
+**Endi bu test bilan qo'riqlanadi.** `tests/unit/content-audit.test.ts`
+uzilish qolsa yiqiladi va qaysi natija ochiq qolganini xabarda yozadi.
+Shuning uchun keyingi kontent qo'shilganda aloqa jim uzilmaydi.
+
+### Q59. Maqom darsidagi nota misoli «shartli» deb belgilandi
+
+**Qaror.** Maqom darsidagi nota namunasi o'zimiz tuzildi va matnda ochiq
+«shartli misol, haqiqiy maqom asaridan ko'chirma emas» deb yozildi.
+
+**Sabab ikkita.** Birinchidan, mualliflik huquqi: haqiqiy ijro yozuvi yoki
+nashr etilgan nota ko'chirilmaydi (loyiha qoidasi). Ikkinchidan, ilmiy
+halollik: bitta soddalashtirilgan iborani «maqom namunasi» deb berish
+o'quvchini chalg'itadi — maqomning lad tuzilishi bunday qisqartmaga
+sig'maydi. Misol faqat bitta g'oyani ko'rsatadi: ohang tayanch tovushdan
+uzoqlashadi va unga qaytadi.
+
+### Q60. Texnologiya kursida faqat erkin dasturlar
+
+**Qaror.** Nota yozuvi uchun MuseScore, audio uchun Audacity tavsiya
+etiladi; kursda pullik dasturlar o'rgatilmaydi.
+
+**Sabab.** Platformaning o'zi obunasiz ishlaydi (Q1); o'qituvchini pullik
+dasturga bog'laydigan kurs shu tamoyilni buzardi. Maktab kompyuteriga
+erkin dastur qonuniy o'rnatiladi va litsenziya masalasi chiqmaydi.
+Darsda esa ish tartibi o'rgatiladi — u dasturdan qat'i nazar bir xil,
+shuning uchun bilim boshqa dasturga ham ko'chadi.
+
+### Q61. Yangi rubrikalar: refleksiya va texnologiya
+
+**Qaror.** Mavjud uch rubrikaga (dars, ijro, tahlil) ikkitasi qo'shildi:
+`RUBRIKA_REFLEKSIYA` — pedagogik yozma ishlar uchun, `RUBRIKA_TEXNOLOGIYA`
+— raqamli mahsulotlar uchun.
+
+**Sabab.** `RUBRIKA_TAHLIL` musiqa asarini tahlil qilishga mo'ljallangan:
+uning mezonlari «shakl», «lad va garmoniya», «xulosa asoslanganligi».
+Refleksiv esseni shu mezonlar bilan baholab bo'lmaydi — unda dalil asar
+matnidan emas, dars amaliyotidan olinadi. Raqamli mahsulotda esa texnik
+bajarilish bilan birga manba va litsenziya ham baholanishi kerak.

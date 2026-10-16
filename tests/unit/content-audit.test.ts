@@ -53,8 +53,15 @@ describe("konstruktiv moslashuv", () => {
     }
   });
 
-  it("kamida bitta natija to'liq qoplangan", () => {
-    expect(coverage.filter((c) => c.gap === "yoq").length).toBeGreaterThan(0);
+  it("har bir o'quv natijasi dars va topshiriq bilan qoplangan", () => {
+    // Bu — ta'lim dasturining asosiy sharti. Test yiqilsa, qaysi natija
+    // ochiq qolgani xabarda ko'rinadi: unga dars yoki topshiriq yozish kerak
+    // (yoki natijaning o'zi modulda ortiqcha).
+    const uzilgan = coverage.filter((c) => c.gap !== "yoq");
+    expect(
+      uzilgan,
+      uzilgan.map((c) => `${c.outcomeId}: ${c.gap} — ${c.text}`).join("\n"),
+    ).toEqual([]);
   });
 
   it("har bir qatorda modul nomi bor", () => {
@@ -103,6 +110,12 @@ describe("audit xulosasi", () => {
   it("xato darajasidagi muammo yo'q", () => {
     const xatolar = issues.filter((i) => i.level === "xato");
     expect(xatolar, JSON.stringify(xatolar, null, 2)).toEqual([]);
+  });
+
+  it("ogohlantirish ham qolmagan — dastur to'liq", () => {
+    // Yangi o'quv natijasi qo'shilsa va unga dars yoki topshiriq
+    // yozilmasa, aynan shu test ogohlantiradi.
+    expect(issues, JSON.stringify(issues, null, 2)).toEqual([]);
   });
 
   it("har bir xabar odam o'qiydigan matn", () => {
