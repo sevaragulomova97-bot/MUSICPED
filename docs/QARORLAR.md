@@ -578,3 +578,86 @@ uning mezonlari «shakl», «lad va garmoniya», «xulosa asoslanganligi».
 Refleksiv esseni shu mezonlar bilan baholab bo'lmaydi — unda dalil asar
 matnidan emas, dars amaliyotidan olinadi. Raqamli mahsulotda esa texnik
 bajarilish bilan birga manba va litsenziya ham baholanishi kerak.
+
+
+---
+
+## Bezak: suzuvchi notalar va tugmadagi sachrash
+
+### Q62. Musiqa belgilari qo'lda chizildi
+
+**Qaror.** Yetti belgi (chorak, sakkizlik, qo'shma juft, skripka kaliti,
+diez, bemol, bekar) `components/decor/note-glyphs.tsx` ichida SVG `path`
+sifatida chizildi. Tashqi rasm, ikonka to'plami yoki musiqa shrifti
+ishlatilmadi.
+
+**Sabab.** Uchta foyda bir vaqtda: litsenziya masalasi umuman chiqmaydi
+(loyiha qoidasi), belgilar rangni `currentColor` dan oladi va mavzu
+almashganda o'zi moslashadi, hamda ular bitta koordinata maydonida bir xil
+optik og'irlikda chizilgani uchun bir oilaga tegishli ko'rinadi.
+
+**Skripka kaliti alohida mehnat talab qildi.** Dastlabki uch urinish
+«mavhum jingalak» bo'lib chiqdi va kalitga o'xshamadi. To'rtinchi variant
+anatomiyadan qurildi: yuqori jingalak, chapdagi baland kamon, o'ngdagi
+qorin, ichkaridagi spiral va pastga tushuvchi ilmoqli dum. Har bir variant
+brauzerda chizilib, ko'z bilan solishtirildi.
+
+### Q63. Fon kompozitsiyasi tasodifiy emas, qat'iy
+
+**Qaror.** Yigirma notaning joyi, o'lchami, tezligi va kechikishi kodda
+qat'iy yozilgan; `Math.random()` ishlatilmaydi.
+
+**Ikki sabab.** Birinchisi texnik: render paytida tasodifiy hisoblangan
+koordinata serverdagi va brauzerdagi HTML'ni bir-biriga mos kelmasligiga
+olib keladi (hydration mismatch). Ikkinchisi dizayn: qo'lda tanlangan
+kompozitsiya tasodifiydan chiroyliroq — notalar bir joyga to'planib
+qolmaydi va ekran bo'ylab tekis taqsimlanadi.
+
+**Chuqurlik uch qatlamdan.** Uzoqdagi notalar kichik, xira va sekin;
+yaqindagilari kattaroq, aniqroq va tezroq. Shu farq tekis sahifaga
+hajm beradi. Harakat ham ikki bosqichli: tashqi element ko'taradi, ichkisi
+tebranadi va aylanadi — natijada yo'l to'g'ri chiziq emas.
+
+### Q64. Sachrash React holatida emas, to'g'ridan-to'g'ri DOM'da
+
+**Qaror.** Tugmadan sachraydigan notalar Web Animations API bilan
+yaratiladi va animatsiya tugagach o'zini o'chiradi. React holati
+ishlatilmaydi.
+
+**Sabab.** Effekt bir soniyacha yashaydi va hech qanday ma'lumot
+saqlamaydi. Uni React holatiga bog'lash har bir kadrda qayta renderga olib
+kelardi. Elementlar `<body>` ga ulanadi, tugmaning ichiga emas — aks holda
+`overflow: hidden` bo'lgan ota element ularni qirqib tashlardi. Bir vaqtda
+ekranda 60 tadan ortiq nota bo'lmaydi.
+
+### Q65. `easing` butun animatsiyaga qo'llanadi — topilgan xato
+
+Dastlab `element.animate(...)` ning sozlamalarida
+`easing: "cubic-bezier(.17,.8,.33,1)"` berilgandi va notalar ko'rinmay
+qolayotgandi.
+
+**Sabab.** Bu yerdagi `easing` kadrlar **orasidagi** emas, butun
+animatsiyaning vaqt o'qiga qo'llanadi: u taxminan 40% real vaqtda
+animatsiyaning 95% ini «yeb» qo'yadi. Natijada notalar bir lahzada uchib,
+darhol so'nardi.
+
+**O'lchov bilan topildi.** Brauzerda har 300 millisekundda notalarning
+koordinatasi va shaffofligi o'qildi: 400 ms da shaffoflik 0,33, 700 ms da
+0,05 bo'lgan — kadrlar bo'yicha u 0,9 bo'lishi kerak edi. Tuzatish: umumiy
+`easing` ni `linear` qilish va tezlikni har bir kadrda alohida berish.
+
+### Q66. Effektlarni o'chirish mumkin, tizim sozlamasi esa ustun
+
+**Qaror.** Sozlamalarda «Bezak effektlari» tugmasi bor; tanlov
+`localStorage` da saqlanadi va `<html data-effects>` atributiga yoziladi.
+Tizimdagi `prefers-reduced-motion` esa har doim ustun turadi.
+
+**Sabab.** Harakatlanuvchi fon ba'zi foydalanuvchilarga xalaqit beradi —
+diqqat buzilishi yoki bosh aylanishi. Platforma o'quv maqsadida
+ishlatilgani uchun chalg'ituvchi narsani o'chirish imkoni bo'lishi kerak.
+
+**Miltillashning oldi olindi.** Sozlama `<head>` dagi kichik bloklovchi
+skript bilan birinchi chizishdan oldin qo'yiladi, CSS esa
+`html[data-effects="off"]` ni ko'rib qatlamni umuman chizmaydi. Aks holda
+effektni o'chirgan foydalanuvchi har safar sahifa yuklanganda notalarning
+bir lahzalik miltillashini ko'rardi.

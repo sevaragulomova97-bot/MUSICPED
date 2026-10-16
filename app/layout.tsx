@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Manrope } from "next/font/google";
+import { NoteField } from "@/components/decor/note-field";
 import { PwaRegister } from "@/components/pwa-register";
 import { SessionProvider } from "@/components/session-provider";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -44,9 +45,28 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${inter.variable} ${manrope.variable} h-full antialiased`}
     >
+      <head>
+        {/*
+          Bezak sozlamasini birinchi chizishdan OLDIN qo'yadi.
+          Aks holda effektlarni o'chirgan foydalanuvchi sahifa
+          yuklanganda suzuvchi notalarning bir lahzalik miltillashini
+          ko'rardi. Skript ataylab kichik va bloklovchi.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              'try{document.documentElement.dataset.effects=localStorage.getItem("musicped.effects.v1")==="off"?"off":"on"}catch(e){}',
+          }}
+        />
+      </head>
       <body className="min-h-full">
         <ThemeProvider>
-          <SessionProvider>{children}</SessionProvider>
+          {/* Fon qatlami — kontentdan oldin chiziladi */}
+          <NoteField />
+          {/* Kontent fon ustida turishi uchun alohida qatlamga olinadi */}
+          <div className="relative z-10">
+            <SessionProvider>{children}</SessionProvider>
+          </div>
           <PwaRegister />
         </ThemeProvider>
       </body>

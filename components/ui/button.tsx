@@ -1,5 +1,8 @@
+"use client";
+
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import { burstFromEvent } from "@/lib/note-burst";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
@@ -27,12 +30,28 @@ const buttonVariants = cva(
 );
 
 export type ButtonProps = React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants>;
+  VariantProps<typeof buttonVariants> & {
+    /** Bosilganda notalar sachramasin (masalan juda tez bosiladigan joylarda) */
+    noBurst?: boolean;
+  };
 
-export function Button({ className, variant, size, ...props }: ButtonProps) {
+/**
+ * Tugma bosilganda undan notalar sachraydi — platformaning musiqiy
+ * xarakterini interfeysga olib kiradi.
+ *
+ * Effekt `onClick` da emas, hodisa ro'yxatga olingan joyda chaqiriladi va
+ * tashqaridan berilgan `onClick` dan **oldin** ishlaydi: shunda sahifa
+ * almashsa ham sachrash boshlanib ulguradi. Effekt o'chirilgan bo'lsa yoki
+ * tizimda «harakatni kamaytirish» yoqilgan bo'lsa, u umuman chizilmaydi.
+ */
+export function Button({ className, variant, size, noBurst, onClick, ...props }: ButtonProps) {
   return (
     <button
       className={cn(buttonVariants({ variant, size }), className)}
+      onClick={(event) => {
+        if (!noBurst && !props.disabled) burstFromEvent(event);
+        onClick?.(event);
+      }}
       {...props}
     />
   );

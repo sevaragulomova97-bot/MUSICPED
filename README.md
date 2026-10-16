@@ -99,6 +99,7 @@ Yangi omborda ham yuqoridagi **Settings → Pages** sozlamasi takrorlanadi.
 | Jadval eksporti | CSV (BOM bilan, Excel to'g'ri ochadi) |
 | Statistika | o'z kodimiz (SciPy bilan solishtirib tekshirilgan) |
 | Oflayn | xizmat ishchisi (service worker) + web manifest |
+| Bezak | qo'lda chizilgan SVG nota belgilari, CSS va Web Animations |
 | Test | Vitest (207 unit), Playwright (13 e2e) |
 
 ---
@@ -116,6 +117,7 @@ app/
 components/
   ui/                   Button, Card, Badge, Progress, ProgressRing, ChoiceCard
   layout/               Sidebar, Header, MobileNav, AppShell, Logo
+  decor/                Nota belgilari va fondagi suzuvchi notalar
 content/
   modules.ts            5 modul, ECTS kredit, o'quv natijalari
   diagnostic.ts         32 ta diagnostika savoli (8 yo'nalish)

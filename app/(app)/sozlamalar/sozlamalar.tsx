@@ -11,6 +11,7 @@ import {
   LogOut,
   Monitor,
   Moon,
+  Music4,
   Sun,
   Trash2,
   Upload,
@@ -27,7 +28,9 @@ import {
 } from "@/lib/db/repo";
 import { downloadJson } from "@/lib/export/download";
 import { bundleFileName, parseBundle, summarizeBundle } from "@/lib/transfer";
+import { setEffects, useEffectsEnabled } from "@/lib/effects";
 import { useHydrated } from "@/lib/use-hydrated";
+import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 export function Sozlamalar() {
   const { profile, signOut } = useSession();
@@ -45,6 +48,7 @@ export function Sozlamalar() {
       </div>
 
       <KorinishKarta />
+      <EffektKarta />
       {profile && <MalumotKarta userId={profile.id} />}
       <SaqlashKarta />
       {profile && (
@@ -122,6 +126,55 @@ function KorinishKarta() {
             );
           })}
         </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+/* ──────────────────── Bezak effektlari ──────────────────── */
+
+/**
+ * Suzuvchi notalar va tugmadagi sachrashni o'chirish.
+ *
+ * Tizimda «harakatni kamaytirish» yoqilgan bo'lsa, effektlar bu
+ * sozlamadan qat'i nazar ko'rsatilmaydi — shuning uchun bu haqda
+ * foydalanuvchiga aytiladi, u tugma ishlamayapti deb o'ylamasin.
+ */
+function EffektKarta() {
+  const yoqilgan = useEffectsEnabled();
+  const hydrated = useHydrated();
+  const kamHarakat = useReducedMotion();
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Bezak effektlari</CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-3">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <p className="max-w-md text-sm leading-relaxed text-ink-muted">
+            Fonda sekin suzuvchi musiqa belgilari va tugma bosilganda
+            sachraydigan notalar. Bular faqat bezak — ular hech qanday
+            ma&apos;lumotni ko&apos;rsatmaydi va o&apos;chirilsa ham platforma
+            to&apos;liq ishlaydi.
+          </p>
+          <Button
+            variant={yoqilgan ? "primary" : "outline"}
+            onClick={() => setEffects(yoqilgan ? "off" : "on")}
+            aria-pressed={hydrated ? yoqilgan : undefined}
+            className="shrink-0"
+          >
+            <Music4 aria-hidden="true" />
+            {yoqilgan ? "Yoqilgan" : "O'chirilgan"}
+          </Button>
+        </div>
+
+        {kamHarakat && (
+          <p className="rounded-xl bg-surface-muted px-3 py-2 text-xs leading-relaxed text-ink-muted">
+            Tizimingizda «harakatni kamaytirish» rejimi yoqilgan, shuning uchun
+            effektlar bu sozlamadan qat&apos;i nazar ko&apos;rsatilmaydi.
+          </p>
+        )}
       </CardContent>
     </Card>
   );

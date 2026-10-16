@@ -190,3 +190,190 @@
     border-width: 0;
   }
 }
+
+/* ──────────────────────────────────────────────────────────────
+   BEZAK: suzuvchi notalar va tugmadagi nota sachrashi
+
+   Ikkala effekt ham ikki shartga bo'ysunadi:
+     • foydalanuvchi sozlamasi — `html[data-effects="off"]`;
+     • tizim sozlamasi — `prefers-reduced-motion: reduce`.
+   Ikkinchisi har doim ustun: harakatni kamaytirishni so'ragan
+   foydalanuvchiga u baribir ko'rsatilmaydi.
+   ────────────────────────────────────────────────────────────── */
+
+.mp-note-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* Fon bilan aralashib ketsin — notalar «chop etilgan» emas, «havoda» */
+  contain: strict;
+}
+
+/* Yumshoq rangli yoritish: fonning tekisligini yo'qotadi */
+.mp-note-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+}
+
+.mp-note-glow-1 {
+  top: -14rem;
+  left: -10rem;
+  width: 34rem;
+  height: 34rem;
+  background: radial-gradient(circle, var(--mp-primary) 0%, transparent 70%);
+  opacity: 0.16;
+}
+
+.mp-note-glow-2 {
+  right: -12rem;
+  bottom: -16rem;
+  width: 38rem;
+  height: 38rem;
+  background: radial-gradient(circle, var(--mp-secondary) 0%, transparent 70%);
+  opacity: 0.14;
+}
+
+.dark .mp-note-glow-1 {
+  opacity: 0.2;
+}
+
+.dark .mp-note-glow-2 {
+  opacity: 0.18;
+}
+
+/* Tashqi element — pastdan yuqoriga ko'tarilish */
+.mp-note-rise {
+  position: absolute;
+  bottom: -12vh;
+  display: block;
+  animation-name: mp-rise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+/* Ichki element — yon tebranish va sekin aylanish */
+.mp-note-sway {
+  display: block;
+  animation-name: mp-sway;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* Chuqurlik qatlamlari: uzoqdagisi xiraroq va mayin, yaqindagisi aniqroq */
+.mp-note-depth-1 {
+  opacity: 0.12;
+  filter: blur(0.7px);
+}
+
+.mp-note-depth-2 {
+  opacity: 0.17;
+  filter: blur(0.25px);
+}
+
+.mp-note-depth-3 {
+  opacity: 0.23;
+}
+
+.dark .mp-note-depth-1 {
+  opacity: 0.14;
+}
+
+.dark .mp-note-depth-2 {
+  opacity: 0.2;
+}
+
+.dark .mp-note-depth-3 {
+  opacity: 0.26;
+}
+
+/*
+ * Nota qog'ozi motivi: beshta ingichka chiziq.
+ *
+ * Chekkalarda butunlay yo'qoladi (`mask`), shuning uchun u ramka hosil
+ * qilmaydi va kontentga raqobat qilmaydi — faqat fonning tekisligini
+ * yumshatadi.
+ */
+.mp-staff {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  opacity: 0.5;
+}
+
+.mp-staff span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--mp-text);
+  opacity: 0.055;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%, #000 78%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 22%, #000 78%, transparent);
+}
+
+.dark .mp-staff span {
+  opacity: 0.075;
+}
+
+/* Kichik ekranda notalar soni kamaytiriladi: batareya va diqqat uchun */
+@media (max-width: 767px) {
+  .mp-note-wide {
+    display: none;
+  }
+}
+
+@keyframes mp-rise {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -124vh, 0);
+  }
+}
+
+@keyframes mp-sway {
+  from {
+    transform: translateX(-1.2rem) rotate(-9deg);
+  }
+  to {
+    transform: translateX(1.2rem) rotate(9deg);
+  }
+}
+
+/* ── Tugmadan sachraydigan notalar ── */
+
+.mp-burst-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.mp-burst-note {
+  position: absolute;
+  /* Element o'z markazi bo'yicha joylashadi */
+  margin-left: -0.5em;
+  margin-top: -0.5em;
+  will-change: transform, opacity;
+}
+
+/* Effektlar o'chirilgan bo'lsa — umuman chizilmaydi */
+html[data-effects="off"] .mp-note-field,
+html[data-effects="off"] .mp-burst-layer {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-note-field,
+  .mp-burst-layer {
+    display: none;
+  }
+}

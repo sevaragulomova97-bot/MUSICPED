@@ -175,7 +175,19 @@ ochiladi.
 
 ---
 
-## 10. Tez-tez beriladigan savollar
+## 10. Bezak effektlari
+
+Fonda sekin suzuvchi musiqa belgilari va tugma bosilganda sachraydigan
+notalar bor. Ular faqat bezak — hech qanday ma'lumotni ko'rsatmaydi.
+
+Agar ular chalg'itsa, **Sozlamalar → Bezak effektlari** bo'limida
+o'chiring; platforma to'liq ishlashda davom etadi. Operatsion tizimingizda
+«harakatni kamaytirish» rejimi yoqilgan bo'lsa, effektlar bu sozlamadan
+qat'i nazar ko'rsatilmaydi.
+
+---
+
+## 11. Tez-tez beriladigan savollar
 
 **Ma'lumotim yo'qolib qoldi.**
 Brauzer ma'lumotini tozalagansiz yoki boshqa brauzer/kompyuterdan kirgansiz.
