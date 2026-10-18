@@ -25,6 +25,39 @@ export function vexKeyToTone(key: string): string {
   return `${base}${accidental}${octave}`;
 }
 
+/**
+ * VexFlow kaliti -> o'zbekcha nota nomi ("f#/4" -> "fa#").
+ *
+ * Tugma yorlig'i uchun kerak. `lyric` berilmagan bo'lsa, ilgari Tone.js
+ * nomi ("C5", "E4") chiqardi — butun interfeys o'zbekcha bo'lgan joyda
+ * ilmiy balandlik yozuvi yot ko'rinadi va talabaga hech narsa aytmaydi.
+ * Oktava raqami ataylab tushirib qoldirilgan: tugma nota nomini aytadi,
+ * balandligini esa chizmadan ko'rinadi va bosilganda eshitiladi.
+ */
+const NOTA_NOMI: Record<string, string> = {
+  c: "do",
+  d: "re",
+  e: "mi",
+  f: "fa",
+  g: "sol",
+  a: "lya",
+  b: "si",
+};
+
+export function vexKeyToUzbek(key: string): string {
+  const letter = key.split("/")[0];
+  const nom = NOTA_NOMI[letter[0].toLowerCase()];
+  if (!nom) return key;
+  const alteratsiya = letter
+    .slice(1)
+    .replace(/##/g, "x")
+    .replace(/#/g, "\u266F")
+    .replace(/bb/g, "\u266D\u266D")
+    .replace(/b/g, "\u266D")
+    .replace(/n/g, "");
+  return nom + alteratsiya;
+}
+
 /** Kalitdagi alteratsiya belgisi ("f#/4" -> "#"). */
 function accidentalOf(key: string): string | null {
   const letter = key.split("/")[0];
@@ -137,12 +170,13 @@ export function Notation({
         <div className="flex flex-wrap gap-1.5">
           {spec.notes.map((n, i) => {
             const tones = n.keys.map(vexKeyToTone);
+            const yorliq = n.lyric ?? n.keys.map(vexKeyToUzbek).join("+");
             return (
               <button
                 key={`${n.keys.join("-")}-${i}`}
                 type="button"
                 onClick={() => onNoteClick(tones, i)}
-                aria-label={`${n.lyric ?? tones.join(", ")} — eshitish`}
+                aria-label={`${yorliq} — eshitish`}
                 className={cn(
                   "rounded-lg border px-2.5 py-1 text-xs font-medium transition-colors",
                   activeIndex === i
@@ -150,7 +184,7 @@ export function Notation({
                     : "border-border-subtle bg-surface text-ink-muted hover:border-primary/40 hover:bg-primary-soft",
                 )}
               >
-                {n.lyric ?? tones.join("+")}
+                {yorliq}
               </button>
             );
           })}

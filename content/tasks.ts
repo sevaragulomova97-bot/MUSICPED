@@ -363,6 +363,158 @@ const RUBRIKA_REPERTUAR: Rubric = {
   ],
 };
 
+/**
+ * O'quv maqsadi — kichik matn, lekin butun darsni belgilaydi. Shuning uchun
+ * u alohida baholanadi: maqsad noto'g'ri yozilgan bo'lsa, undan keyingi
+ * hamma narsa ham noto'g'ri quriladi.
+ */
+const RUBRIKA_MAQSAD: Rubric = {
+  criteria: [
+    {
+      id: "fel",
+      title: "O'lchanadigan fe'l",
+      description:
+        "Maqsad kuzatiladigan fe'l bilan yozilgan («aniqlay oladi», «ijro eta oladi»), «biladi», «tushunadi» kabi noaniq fe'llar ishlatilmagan",
+      maxPoints: 30,
+    },
+    {
+      id: "bloom",
+      title: "Blum darajasining mosligi",
+      description:
+        "Ko'rsatilgan daraja fe'lga va kutilayotgan natijaga mos; daraja sun'iy ko'tarilmagan",
+      maxPoints: 25,
+    },
+    {
+      id: "shart",
+      title: "Shart va mezon",
+      description:
+        "Maqsadda bajarish sharti va muvaffaqiyat mezoni ko'rsatilgan (nima bilan, qanchalik aniq)",
+      maxPoints: 25,
+    },
+    {
+      id: "moslik",
+      title: "Baholash bilan moslik",
+      description:
+        "Taklif qilingan baholash usuli aynan shu maqsadni tekshiradi (konstruktiv moslashuv)",
+      maxPoints: 20,
+    },
+  ],
+};
+
+/**
+ * Qo'shiq o'rgatishda baho **bosqichlar tartibiga** va aks-sado texnikasiga
+ * beriladi — natijaviy ijroga emas. Sinf qanday kuylagani o'qituvchining
+ * ishidan ko'ra ko'proq qo'shiq tanloviga bog'liq.
+ */
+const RUBRIKA_QOSHIQ: Rubric = {
+  criteria: [
+    {
+      id: "tayyorgarlik",
+      title: "Tayyorgarlik",
+      description:
+        "Tonallik sinf diapazoniga moslangan, qiyin joy oldindan aniqlangan va belgilab qo'yilgan",
+      maxPoints: 25,
+    },
+    {
+      id: "bosqichlar",
+      title: "Bosqichlar ketma-ketligi",
+      description:
+        "Tanishtirish — matn — bo'lak-bo'lak — qiyin joy — birlashtirish — ifoda tartibi saqlangan, birortasi tashlab ketilmagan",
+      maxPoints: 30,
+    },
+    {
+      id: "aksado",
+      title: "Aks-sado texnikasi",
+      description:
+        "Fraza ikki taktdan oshmagan, temp sekin, dinamika past; har takrorda bitta aniq vazifa qo'yilgan",
+      maxPoints: 25,
+    },
+    {
+      id: "xilmaxillik",
+      title: "Takrorning xilma-xilligi",
+      description:
+        "Ayni material turli usulda takrorlangan: ritm bilan aytish, qo'l bilan chizish, qatorlar navbatlashishi",
+      maxPoints: 20,
+    },
+  ],
+};
+
+/**
+ * Farqlashtirish rubrikasi dissertatsiyaning o'zak g'oyasini o'lchaydi.
+ * Shuning uchun undagi eng katta ball «miqdor emas, sifat» tamoyiliga
+ * beriladi: vazifa hajmini kamaytirish farqlashtirish hisoblanmaydi.
+ */
+const RUBRIKA_FARQLASH: Rubric = {
+  criteria: [
+    {
+      id: "diagnostika",
+      title: "Diagnostikaga tayanish",
+      description:
+        "Darajalar taxmin bilan emas, aniq ma'lumotga (diagnostika, kuzatuv, oldingi natija) tayanib belgilangan",
+      maxPoints: 25,
+    },
+    {
+      id: "darajalar",
+      title: "Darajalar sifati",
+      description:
+        "Har daraja uchun vazifaning turi va qo'llab-quvvatlash darajasi o'zgargan; faqat hajm kamaytirilmagan",
+      maxPoints: 30,
+    },
+    {
+      id: "yarz",
+      title: "Yaqin rivojlanish zonasi",
+      description:
+        "Har bir vazifa o'z guruhi uchun yengil ham, yetib bo'lmas ham emas; yordam vaqtinchalik rejalashtirilgan",
+      maxPoints: 25,
+    },
+    {
+      id: "yaxlitlik",
+      title: "Darsning yaxlitligi",
+      description:
+        "Turli darajadagi partiyalar bitta asarda birlashadi; hech bir guruh jarayondan chetda qolmaydi",
+      maxPoints: 20,
+    },
+  ],
+};
+
+/**
+ * Teskari aloqa rubrikasi matnning **shakliga** qaraydi: «aniq, xatti-
+ * harakatga qaratilgan, bajarib bo'ladigan» mezonlari aynan shu yerda
+ * tekshiriladi, chunki ularni o'quvchi yozgan matndan ko'rish mumkin.
+ */
+const RUBRIKA_FEEDBACK: Rubric = {
+  criteria: [
+    {
+      id: "aniqlik",
+      title: "Aniqlik",
+      description:
+        "Nima aynan ishladi va nima ishlamadi — takt, fraza yoki lahza ko'rsatilgan; «yaxshi», «bo'lmadi» kabi umumiy so'zlar yo'q",
+      maxPoints: 30,
+    },
+    {
+      id: "yonalish",
+      title: "Xatti-harakatga qaratilganlik",
+      description:
+        "Baho ishga beriladi, shaxsga emas; qobiliyat yoki xarakter haqida hukm yo'q",
+      maxPoints: 25,
+    },
+    {
+      id: "qadam",
+      title: "Keyingi qadam",
+      description:
+        "Bitta aniq, bajarib bo'ladigan qadam taklif qilingan; beshta tavsiya berilmagan",
+      maxPoints: 25,
+    },
+    {
+      id: "javob",
+      title: "Javob uchun joy",
+      description:
+        "O'quvchiga tuzatib, qayta urinish imkoni rejalashtirilgan — teskari aloqa yakun emas, qadam",
+      maxPoints: 20,
+    },
+  ],
+};
+
 export const TOPSHIRIQLAR: Task[] = [
   {
     id: "task-nota-test",
@@ -603,12 +755,13 @@ export const TOPSHIRIQLAR: Task[] = [
 
   {
     id: "task-metodika-test",
-    slug: "metodika-test",
-    title: "Pedagogik metodika testi",
-    description: "Blum taksonomiyasi, formativ baholash va rubrika bo'yicha test.",
+    slug: "baholash-testi",
+    title: "Baholash bo'yicha test",
+    description:
+      "Shakllantiruvchi va yakuniy baholash farqi, rubrikaning vazifasi va teskari aloqa qoidalari bo'yicha test.",
     type: "test",
     moduleId: "mod-metodika",
-    outcomeId: "on-met-2",
+    outcomeId: "on-met-10",
     area: "metodika",
     bloom: "tushunish",
     duration: "15 daqiqa",
@@ -618,16 +771,19 @@ export const TOPSHIRIQLAR: Task[] = [
       {
         id: "mt1",
         area: "metodika",
-        bloom: "bilish",
+        bloom: "tushunish",
         kind: "single",
-        prompt: "Blum taksonomiyasining eng yuqori darajasi qaysi?",
+        prompt:
+          "Baholashning formativ yoki summativ ekanini nima belgilaydi?",
         options: [
-          { id: "a", text: "Sintez" },
-          { id: "b", text: "Tahlil" },
-          { id: "c", text: "Baholash" },
-          { id: "d", text: "Qo'llash" },
+          { id: "a", text: "Ball qo'yilgani" },
+          { id: "b", text: "O'quvchiga tuzatib, qayta urinish imkoni qolgani" },
+          { id: "c", text: "Baholash yozma bo'lgani" },
+          { id: "d", text: "Jurnalga yozilgani" },
         ],
-        correctId: "c",
+        correctId: "b",
+        explanation:
+          "Formativ baholash jarayon ichida turadi va o'rganishni o'zgartiradi; summativ baholash natijani qayd etadi.",
       },
       {
         id: "mt2",
@@ -1571,6 +1727,212 @@ export const TOPSHIRIQLAR: Task[] = [
     submission: "fayl",
     accept: ".pdf,.doc,.docx,.odt,.musicxml,.xml,.mscz",
     rubric: RUBRIKA_REPERTUAR,
+  },
+
+  {
+    id: "task-oqitish-tizimlari-test",
+    slug: "oqitish-tizimlari-testi",
+    title: "Musiqa o'qitish tizimlari testi",
+    description:
+      "Kodai, Orf, Dalkroz, Suzuki tizimlari va ustoz-shogird an'anasining tamoyillari hamda ularni qachon qo'llash bo'yicha test.",
+    type: "test",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-6",
+    area: "metodika",
+    bloom: "tushunish",
+    duration: "15 daqiqa",
+    timerMin: 15,
+    submission: "test",
+    questions: [
+      {
+        id: "ot-1",
+        area: "metodika",
+        bloom: "bilish",
+        kind: "single",
+        prompt: "Qaysi tizimda o'rganish nutq ritmi va harakatdan boshlanadi?",
+        options: [
+          { id: "a", text: "Kodai" },
+          { id: "b", text: "Orf" },
+          { id: "c", text: "Suzuki" },
+          { id: "d", text: "Ustoz-shogird" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "ot-2",
+        area: "metodika",
+        bloom: "tushunish",
+        kind: "single",
+        prompt:
+          "Kodai tizimida xalq qo'shig'i nega materialning asosi qilib olingan?",
+        options: [
+          { id: "a", text: "U osonroq" },
+          { id: "b", text: "U bola uchun musiqaning ona tili — tanish intonatsiya va tuzilma" },
+          { id: "c", text: "Uning notasi sodda" },
+          { id: "d", text: "U qisqaroq" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "ot-3",
+        area: "metodika",
+        bloom: "qollash",
+        kind: "single",
+        prompt:
+          "Sinfda cholg'u savodi past, lekin bolalar ohangni quloq bilan yaxshi ushlaydi. Qaysi yondashuv darhol natija beradi?",
+        options: [
+          { id: "a", text: "Avval butun nota savodini o'rgatish" },
+          { id: "b", text: "Eshitib o'rganishdan boshlash, nota keyinroq kiritiladi" },
+          { id: "c", text: "Faqat tinglash darslari o'tkazish" },
+          { id: "d", text: "Repertuarni soddalashtirish" },
+        ],
+        correctId: "b",
+        explanation:
+          "Suzuki va ustoz-shogird yondashuvlari aynan shu ketma-ketlikka tayanadi: eshitish — takrorlash — yozuv.",
+      },
+      {
+        id: "ot-4",
+        area: "metodika",
+        bloom: "tahlil",
+        kind: "multiple",
+        prompt: "Dalkroz tizimining belgilari qaysilar?",
+        options: [
+          { id: "a", text: "Metr va temp harakat bilan his qilinadi" },
+          { id: "b", text: "Reaksiya mashqlari ishlatiladi" },
+          { id: "c", text: "Nisbiy solmizatsiya asosiy vosita" },
+          { id: "d", text: "Ichki eshituv rivojlantiriladi" },
+        ],
+        correctIds: ["a", "b", "d"],
+        explanation: "Nisbiy solmizatsiya — Kodai tizimining asosiy vositasi.",
+      },
+      {
+        id: "ot-5",
+        area: "metodika",
+        bloom: "baholash",
+        kind: "single",
+        prompt:
+          "Ustoz-shogird an'anasining kuchli tomoni va cheklovi qaysi javobda to'g'ri ko'rsatilgan?",
+        options: [
+          { id: "a", text: "Kuchli tomoni — tez natija; cheklovi — repertuar torligi" },
+          { id: "b", text: "Kuchli tomoni — uslub va tembrning aniq uzatilishi; cheklovi — yozuv savodi alohida ishlanishi kerakligi" },
+          { id: "c", text: "Kuchli tomoni — nota savodi; cheklovi — vaqt" },
+          { id: "d", text: "Cheklovi yo'q" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "ot-6",
+        area: "metodika",
+        bloom: "baholash",
+        kind: "single",
+        prompt: "Maktab darsida tizimlarni qanday ishlatish to'g'ri?",
+        options: [
+          { id: "a", text: "Bittasini tanlab, faqat unga amal qilish" },
+          { id: "b", text: "Dars bo'lagining maqsadiga qarab birlashtirib ishlatish" },
+          { id: "c", text: "Hech qaysisini ishlatmaslik" },
+          { id: "d", text: "Har chorakda bittasini almashtirib turish" },
+        ],
+        correctId: "b",
+      },
+    ],
+  },
+
+  {
+    id: "task-oquv-maqsadlari",
+    slug: "oquv-maqsadlarini-yozish",
+    title: "O'quv maqsadlarini yozish",
+    description:
+      "Bitta musiqa darsi uchun uchta o'quv maqsadi yozing — har biri Blum taksonomiyasining turli darajasida. Har bir maqsadda o'lchanadigan fe'l, bajarish sharti va muvaffaqiyat mezoni bo'lsin. Har bir maqsad yoniga uni aynan tekshiradigan baholash usulini ko'rsating va nega aynan shu usul mos kelishini bir jumlada asoslang.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-2",
+    area: "metodika",
+    bloom: "sintez",
+    duration: "5 kun",
+    submission: "matn",
+    rubric: RUBRIKA_MAQSAD,
+  },
+
+  {
+    id: "task-qoshiq-orgatish",
+    slug: "qoshiq-orgatish-rejasi",
+    title: "Qo'shiq o'rgatish rejasi va namoyishi",
+    description:
+      "Aniq bir sinf uchun qo'shiq tanlang va uni o'rgatish rejasini tuzing: tonallik, qiyin joy, frazalarga bo'linish va olti bosqichning har biriga ajratilgan vaqt. So'ng rejaning uchinchi bosqichini — aks-sado usulida ohang o'rgatishni — ijro etib yozib oling (audio yoki video). Yozuvda frazalar qisqa, temp sekin va har takrorda bitta vazifa qo'yilgani eshitilishi kerak.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-7",
+    area: "metodika",
+    bloom: "qollash",
+    duration: "2 hafta",
+    submission: "fayl",
+    accept: ".pdf,.doc,.docx,.odt,.mp3,.wav,.m4a,.mp4,.mov",
+    rubric: RUBRIKA_QOSHIQ,
+  },
+
+  {
+    id: "task-tinglash-darsi",
+    slug: "tinglash-darsi-bolagi",
+    title: "Musiqa tinglash darsi bo'lagi",
+    description:
+      "15 daqiqalik tinglash bo'lagini loyihalang. Asarni va uning uzunligini ko'rsating, uch bosqichni yozing: tinglashdan oldingi yo'naltiruvchi savol, tinglash paytidagi aniq vazifa va tinglashdan keyingi muhokama yoki ijodiy javob. Asar necha marta tinglanishini va har safar qanday yangi vazifa berilishini aniq yozing. Bolalarga beriladigan hissiyot lug'atini ham ilova qiling.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-8",
+    area: "metodika",
+    bloom: "qollash",
+    duration: "1 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_DARS,
+  },
+
+  {
+    id: "task-sinf-boshqaruvi",
+    slug: "sinf-boshqaruvi-tahlili",
+    title: "Sinfni boshqarish: holat tahlili",
+    description:
+      "Kuzatgan yoki boshdan kechirgan bitta aniq tartibsizlik holatini tasvirlang: nima bo'ldi, qachon va kim ishtirok etdi. So'ng sababini tahlil qiling — vazifa darajasi, ko'rsatma tartibi, cholg'u tarqatilishi yoki ishtirokdan chetda qolish. Shundan keyin shu sinf uchun to'rt-beshta qoida va bitta ovozsiz signal taklif qiling hamda ularning qanday joriy etilishini yozing. Oxirida ichki motivatsiyaning uch ustuni shu darsda qanday ta'minlanishini ko'rsating.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-11",
+    area: "motivatsiya",
+    bloom: "tahlil",
+    duration: "1 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_REFLEKSIYA,
+  },
+
+  {
+    id: "task-farqlashtirilgan-dars",
+    slug: "farqlashtirilgan-dars-loyihasi",
+    title: "Farqlashtirilgan dars loyihasi",
+    description:
+      "Bitta qo'shiq yoki asar tanlang va uni aralash darajali sinf uchun loyihalang. Avval sinfdagi darajalarni nimaga tayanib ajratganingizni yozing (diagnostika, kuzatuv, oldingi natija). So'ng to'rt darajali partiya tuzing — ostinato, asosiy ohang, ikkinchi ovoz, to'liq jo'r — va har daraja uchun qanday yordam beriladi hamda u qachon olib tashlanadi, ko'rsating. Barcha partiyalar bitta asarda birlashishi va hech bir guruh chetda qolmasligi shart.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-9",
+    area: "metodika",
+    bloom: "sintez",
+    duration: "2 hafta",
+    submission: "fayl",
+    accept: ".pdf,.doc,.docx,.odt,.musicxml,.xml,.mscz",
+    rubric: RUBRIKA_FARQLASH,
+  },
+
+  {
+    id: "task-teskari-aloqa",
+    slug: "teskari-aloqa-mashqi",
+    title: "Rivojlantiruvchi teskari aloqa",
+    description:
+      "Uchta turli ijro holatini oling (o'z yozuvingiz, kursdoshingizning ijrosi va o'quvchi ijrosi bo'lishi mumkin). Har biriga «ikki yulduz va bitta tilak» shaklida teskari aloqa yozing: ikkita aniq yutuq va bitta bajarib bo'ladigan keyingi qadam. Har bir matn ostida qaysi qoidaga amal qilganingizni va o'quvchiga qayta urinish uchun qanday imkon berishingizni ko'rsating.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-10",
+    area: "metodika",
+    bloom: "qollash",
+    duration: "1 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_FEEDBACK,
   },
 
 ];

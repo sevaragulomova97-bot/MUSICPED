@@ -216,6 +216,55 @@ export function areaMismatches(): Array<{
   return natija;
 }
 
+/**
+ * Natijani baholaydigan topshiriq uning Blum darajasiga yetadimi.
+ *
+ * Konstruktiv moslashuvning ikkinchi sharti shu. Birinchisi — bog'lanish
+ * bor-yo'qligi (`outcomeCoverage`), ikkinchisi esa **daraja mosligi**:
+ * «dars ishlanmasi tuza oladi» (sintez) degan natijani test savoli bilan
+ * tekshirib bo'lmaydi, chunki test eng ko'pi bilan tanib olishni o'lchaydi.
+ *
+ * Tekshiruv natijaga bog'langan topshiriqlarning **eng yuqorisini** oladi:
+ * bitta natija bir nechta topshiriq bilan baholanishi mumkin va ulardan
+ * biri qisqa test bo'lsa, bu xato emas — toki ularning orasida natija
+ * darajasiga yetadigani bo'lsa.
+ */
+export function bloomMismatches(): Array<{
+  outcomeId: string;
+  text: string;
+  outcomeBloom: BloomLevel;
+  bestTaskBloom: BloomLevel | null;
+  moduleTitle: string;
+}> {
+  const daraja = (b: BloomLevel) => BLOOM_DARAJALARI.indexOf(b);
+  const natija: Array<{
+    outcomeId: string;
+    text: string;
+    outcomeBloom: BloomLevel;
+    bestTaskBloom: BloomLevel | null;
+    moduleTitle: string;
+  }> = [];
+
+  for (const modul of MODULLAR) {
+    for (const o of modul.outcomes) {
+      const tasks = TOPSHIRIQLAR.filter((t) => t.outcomeId === o.id);
+      if (!tasks.length) continue; // bu holatni `outcomeCoverage` xabar qiladi
+      const eng = tasks.reduce((a, b) => (daraja(b.bloom) > daraja(a.bloom) ? b : a));
+      if (daraja(eng.bloom) < daraja(o.bloom)) {
+        natija.push({
+          outcomeId: o.id,
+          text: o.text,
+          outcomeBloom: o.bloom,
+          bestTaskBloom: eng.bloom,
+          moduleTitle: modul.title,
+        });
+      }
+    }
+  }
+
+  return natija;
+}
+
 /* ──────────────────────── Taqsimotlar ──────────────────────── */
 
 export type Distribution<K extends string> = Array<{ key: K; label: string; count: number }>;
@@ -313,6 +362,13 @@ export function auditIssues(): AuditIssue[] {
     issues.push({
       level: "xato",
       message: `«${m.moduleTitle}» moduli ${m.kind === "dars" ? "darsi" : "topshirig'i"} «${m.title}» «${m.area}» yo'nalishida, ammo modulning \`areas\` ro'yxatida bu yo'nalish yo'q — ish portfolioda modulga bog'lanmaydi.`,
+    });
+  }
+
+  for (const m of bloomMismatches()) {
+    issues.push({
+      level: "xato",
+      message: `«${m.moduleTitle}» moduli natijasi «${m.outcomeId}» ${m.outcomeBloom} darajasida, uni baholaydigan eng yuqori topshiriq esa ${m.bestTaskBloom} darajasida — baholash natijaga yetmaydi.`,
     });
   }
 

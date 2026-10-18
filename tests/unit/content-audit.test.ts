@@ -3,6 +3,7 @@ import {
   areaCoverage,
   areaMismatches,
   auditIssues,
+  bloomMismatches,
   bloomDistribution,
   inventory,
   moduleRows,
@@ -110,6 +111,15 @@ describe("modul yo'nalishlari", () => {
     // Portfolio ishni modulga aynan shu ro'yxat orqali bog'laydi. Moslik
     // buzilsa hech narsa yiqilmaydi — bajarilgan ish jim yo'qoladi.
     const nomuvofiq = areaMismatches();
+    expect(nomuvofiq, JSON.stringify(nomuvofiq, null, 2)).toEqual([]);
+  });
+});
+
+describe("Blum darajasining mosligi", () => {
+  it("har bir natijani baholaydigan topshiriq uning darajasiga yetadi", () => {
+    // Konstruktiv moslashuvning ikkinchi sharti: «tuza oladi» (sintez)
+    // degan natijani test savoli bilan tekshirib bo'lmaydi.
+    const nomuvofiq = bloomMismatches();
     expect(nomuvofiq, JSON.stringify(nomuvofiq, null, 2)).toEqual([]);
   });
 });

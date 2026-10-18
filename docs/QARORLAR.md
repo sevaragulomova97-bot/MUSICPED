@@ -897,3 +897,142 @@ Modulning ro'yxatiga `ritm` qo'shildi.
 
 **Saboq:** kontent va uni o'qiydigan kod orasidagi har bir shartni
 tekshiruvga aylantirish kerak. «Esda tutamiz» ishlamaydi.
+
+---
+
+## Metodika modulining kengaytirilishi
+
+### Q76. Dissertatsiyaning o'zak mavzusi kontentda yo'q edi
+
+Dissertatsiya mavzusi — «bo'lajak musiqa o'qituvchilarini **shaxsga
+yo'naltirilgan ta'lim texnologiyalari** asosida kasbiy faoliyatga
+tayyorlash». Metodika modulida esa shaxsga yo'naltirilgan ta'lim,
+farqlashtirish va yaqin rivojlanish zonasi haqida bitta ham dars yo'q edi.
+
+Bu — eng og'ir bo'shliq. Platformaning algoritmlari (diagnostika, YaRZ
+chegaralari, individual rivojlanish yo'li) shu nazariyaga qurilgan, lekin
+talaba uning **nomini ham ko'rmasdan** platformadan foydalanardi.
+
+**Qaror.** «Farqlashtirilgan va shaxsga yo'naltirilgan dars» darsi
+kiritildi (`on-met-9`, Blum darajasi — **sintez**). Unda K. Rojersning
+fasilitator roli, L. Vigotskiyning yaqin rivojlanish zonasi va
+farqlashtirishning to'rt yo'li (mazmun, jarayon, mahsulot, muhit)
+musiqa darsining aniq misolida beriladi: bitta qo'shiq — to'rt darajali
+partiya (ostinato, ohang, ikkinchi ovoz, jo'r), hammasi bitta asarda
+birlashadi.
+
+**Rubrikada eng katta ball sifatga beriladi.** `RUBRIKA_FARQLASH` da
+«darajalar sifati» mezoni ataylab eng og'ir qilingan: vazifa hajmini
+kamaytirish farqlashtirish hisoblanmaydi — vazifaning **turi** va
+qo'llab-quvvatlash darajasi o'zgarishi kerak.
+
+### Q77. O'qitish tizimlari, qo'shiq va tinglash metodikasi
+
+Modulda dars loyihalash bor edi, lekin **sinfda nima qilinishi** yo'q edi:
+qo'shiq qanday o'rgatiladi, tinglash darsi qanday tashkil qilinadi, tartib
+qanday ushlanadi. Ya'ni talaba dars ishlanmasini yoza olardi, lekin uning
+ichini nima bilan to'ldirishni bilmasdi.
+
+Qo'shilgan to'rtta dars shu bo'shliqni yopadi:
+
+- **Musiqa o'qitish tizimlari** (`on-met-6`) — Kodai, Orf, Dalkroz,
+  Suzuki va o'zbek ustoz-shogird an'anasi. Har biri «birinchi nima
+  keladi» degan savolga o'z javobini bergan; dars ularni qiyoslaydi va
+  tanlov mezonini beradi.
+- **Qo'shiq o'rgatish metodikasi** (`on-met-7`) — maktab darsidagi eng
+  chastotali ish. Olti bosqich va aks-sado usuli.
+- **Musiqa tinglash darsi** (`on-met-8`) — tinglashni savol boshqaradi.
+  «Yoqdimi?» savoli muhokamani tugatadi, «kayfiyat qayerda o'zgardi?»
+  esa boshlaydi.
+- **Sinfni boshqarish va motivatsiya** (`on-met-11`) — musiqa xonasi
+  maktabdagi eng shovqinli sinf; maqsad jimlik emas, boshqariladigan
+  shovqin.
+
+**Ustoz-shogird an'anasi jahon tizimlari bilan bir qatorda beriladi.**
+U «milliy qo'shimcha» sifatida emas, teng huquqli tizim sifatida: uning
+kuchli tomoni (uslub va tembrning aniq uzatilishi) ham, cheklovi (yozuv
+savodi alohida ishlanishi kerakligi) ham ochiq aytilgan.
+
+### Q78. Topilgan xato: topshiriq o'z natijasini umuman tekshirmas edi
+
+`on-met-2` natijasi — «O'quv maqsadlarini Blum taksonomiyasi bo'yicha
+**shakllantira oladi**». Uni baholaydigan yagona topshiriq
+(`task-metodika-test`) esa uchta test savolidan iborat edi va ularning
+hech biri maqsad yozish haqida emasdi: savollar Blumning eng yuqori
+darajasi, rubrikaning foydasi va formativ baholash haqida edi.
+
+Ya'ni topshiriq o'z o'quv natijasini **umuman tekshirmasdi**. Audit buni
+ko'rmadi, chunki bog'lanish mavjud edi.
+
+Ikkinchi xato shu yerda yashiringan: natijaning Blum darajasi
+`tushunish` deb belgilangan, holbuki «shakllantira oladi» — yaratish,
+ya'ni **sintez**. Daraja noto'g'ri yozilgani uchun test savoli unga
+«mos» ko'rinardi.
+
+**Uch qadamli tuzatish:**
+
+1. `on-met-2` darajasi `sintez` ga to'g'rilandi — fe'l qanday bo'lsa,
+   daraja ham shunday.
+2. Unga haqiqiy topshiriq yozildi: `task-oquv-maqsadlari` — talaba uch
+   xil darajada maqsad yozadi va har biriga mos baholash usulini
+   asoslaydi (`RUBRIKA_MAQSAD`).
+3. Eski test o'z joyiga ko'chirildi: uning savollari aslida baholash
+   haqida, shuning uchun u `on-met-10` ga (shakllantiruvchi baholash)
+   bog'landi, nomi va slug'i ham shunga moslandi. Birinchi savol —
+   Blumning eng yuqori darajasi haqidagisi — formativ va summativ
+   baholash farqi haqidagi savolga almashtirildi.
+
+### Q79. Konstruktiv moslashuvning ikkinchi sharti kodga kiritildi
+
+Q78 dagi xato turini kelajakda avtomat topish uchun `bloomMismatches()`
+qo'shildi: **natijani baholaydigan topshiriq uning Blum darajasiga
+yetishi kerak**. «Tuza oladi» (sintez) degan natijani test savoli bilan
+tekshirib bo'lmaydi — test eng ko'pi bilan tanib olishni o'lchaydi.
+
+Tekshiruv natijaga bog'langan topshiriqlarning **eng yuqorisini** oladi.
+Bu ataylab: bitta natija bir nechta topshiriq bilan baholanishi mumkin va
+ulardan biri qisqa test bo'lishi xato emas — toki orasida natija
+darajasiga yetadigani bo'lsa.
+
+**Tekshiruvning o'zi ham sinaldi.** Bo'sh yurmasligiga ishonch hosil
+qilish uchun vaqtinchalik testda natijaning darajasi sun'iy ko'tarildi va
+tekshiruv uni topdimi, ko'rildi — topdi. Hech narsa topmaydigan tekshiruv
+hech narsani qo'riqlamaydi.
+
+**Chegarasi ochiq aytiladi:** bu tekshiruv Q78 dagi asl xatoni topa
+olmas edi. U yerda daraja ham, topshiriq ham `tushunish` edi — raqam
+bo'yicha mos, mazmunan esa mos emas. Topshiriq o'z natijasini mazmunan
+tekshiradimi, degan savolga faqat odam javob bera oladi.
+
+### Q80. Nota tugmalaridagi lotin yozuvi o'zbekchaga o'tkazildi
+
+Nota misolidagi tugmalar `lyric` berilmagan notada Tone.js nomini
+ko'rsatardi: «C5», «E4», «F#4». Butunlay o'zbekcha interfeysda bu yot
+ko'rinadi va talabaga hech narsa aytmaydi.
+
+**Qaror.** Kontentning to'qqiz joyiga qo'lda yorliq yozish o'rniga
+komponentning o'zi tuzatildi: `vexKeyToUzbek()` kalitni o'zbekcha nota
+nomiga aylantiradi (`f#/4` -> `fa♯`). Bir joydagi tuzatish barcha
+mavjud va kelajakdagi notalarga yetadi.
+
+**Oktava raqami ataylab tushirib qoldirildi.** Tugma nota nomini aytadi;
+balandlik chizmada ko'rinadi va bosilganda eshitiladi — raqam yorliqni
+uzaytiradi, lekin hech narsa qo'shmaydi.
+
+**Ritm misolida nota nomi noto'g'ri bo'lardi.** Sinf signali bitta
+balandlikda takrorlanadi, shuning uchun unga nota nomi emas, ritm
+bo'g'inlari berildi: «ti-ti ta, ti-ti ta» — aynan shu darsda o'rganilgan
+Kodai tizimining o'z vositasi.
+
+### Q81. Kurs tartibi: ishlanma va mikro-dars oxiriga ko'chdi
+
+Yangi tartib uch qatlamli: **asos** (o'qitish tizimlari, dars tuzilmasi,
+maqsad) -> **sinfdagi ish** (qo'shiq, tinglash, boshqaruv, farqlashtirish)
+-> **baholash va yakun** (shakllantiruvchi baholash, rubrika, dars
+ishlanmasi, mikro-o'qitish).
+
+**Dars ishlanmasi uchinchi o'rindan o'ninchiga ko'chdi.** Avvalgi tartibda
+talaba to'liq dars ishlanmasini yozishi kerak edi, lekin qo'shiq qanday
+o'rgatilishini, tinglash darsi qanday qurilishini va sinf qanday
+boshqarilishini hali bilmasdi. Endi ishlanma — o'rganilganni birlashtiradigan
+dars, mikro-o'qitish esa uni amalda sinash.
