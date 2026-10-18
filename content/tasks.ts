@@ -214,6 +214,155 @@ const RUBRIKA_TEXNOLOGIYA: Rubric = {
   ],
 };
 
+/**
+ * Ovoz sozlashni o'tkazish — bu yerda ijro emas, **boshqaruv** baholanadi:
+ * mashqning o'zi to'g'ri bo'lsa ham, uni noto'g'ri olib borish ovozga zarar
+ * yetkazadi.
+ */
+const RUBRIKA_OVOZ: Rubric = {
+  criteria: [
+    {
+      id: "nafas",
+      title: "Nafas texnikasi",
+      description:
+        "Nafas diafragmal: yelka ko'tarilmaydi, chiqarish teng va uzoq; namoyish to'g'ri ko'rsatilgan",
+      maxPoints: 25,
+    },
+    {
+      id: "ketmaketlik",
+      title: "Mashqlar ketma-ketligi",
+      description:
+        "Tartib mantiqiy: tana — nafas — yopiq tovush — unlilar — gamma — matn; har mashqda bitta vazifa",
+      maxPoints: 25,
+    },
+    {
+      id: "diapazon",
+      title: "Diapazon va dinamika nazorati",
+      description:
+        "O'rta tovushdan boshlangan, ikki tomonga harakatlangan, dinamika past saqlangan",
+      maxPoints: 25,
+    },
+    {
+      id: "boshqaruv",
+      title: "Guruhni boshqarish",
+      description:
+        "Ko'rsatib berish, kirish ishorasi va vaqt chegarasi (5–7 daqiqa) saqlangan",
+      maxPoints: 25,
+    },
+  ],
+};
+
+/**
+ * Mashq rejasi — asosiy baho **tashxisga** beriladi. Reja qanchalik chiroyli
+ * yozilmasin, qiyin joy noto'g'ri aniqlangan bo'lsa u ishlamaydi.
+ */
+const RUBRIKA_MASHQ: Rubric = {
+  criteria: [
+    {
+      id: "tashxis",
+      title: "Tashxisning aniqligi",
+      description:
+        "Qiyin bo'lak aniq ko'rsatilgan (takt raqami bilan), «umuman qiyin» emas",
+      maxPoints: 30,
+    },
+    {
+      id: "sabab",
+      title: "Sabab tahlili",
+      description:
+        "Qiyinlik sababi nomlangan: applikatura, sakrash, ritm, nota o'qish yoki siqilish",
+      maxPoints: 25,
+    },
+    {
+      id: "reja",
+      title: "Rejaning bajarilishi",
+      description:
+        "Har bir sababga aniq harakat mos kelgan; boshlang'ich temp va tezlashtirish mezoni ko'rsatilgan",
+      maxPoints: 25,
+    },
+    {
+      id: "vaqt",
+      title: "Vaqt taqsimoti",
+      description:
+        "Mashq vaqti bosqichlarga bo'lingan va taqsimot real; oxirgi takrorlash to'xtamasdan rejalashtirilgan",
+      maxPoints: 20,
+    },
+  ],
+};
+
+/**
+ * Jo'r baholanganda yakka ijro mezonlari ishlamaydi: bu yerda savol
+ * «qanchalik yaxshi chaldi» emas, «kuylashga qanchalik qulay bo'ldi».
+ */
+const RUBRIKA_JOR: Rubric = {
+  criteria: [
+    {
+      id: "garmoniya",
+      title: "Garmoniya to'g'riligi",
+      description:
+        "Akkordlar ohangga mos, kadanslar joyida; T, S va D funksiyalari to'g'ri qo'llangan",
+      maxPoints: 30,
+    },
+    {
+      id: "faktura",
+      title: "Faktura mosligi",
+      description:
+        "Tanlangan faktura qo'shiq xarakteriga mos; kuplet va naqarot farqlangan",
+      maxPoints: 25,
+    },
+    {
+      id: "kirish",
+      title: "Kirish va temp",
+      description:
+        "Kirish tonallik va tempni aniq beradi; temp butun qo'shiq davomida barqaror",
+      maxPoints: 25,
+    },
+    {
+      id: "qollab",
+      title: "Kuylashni qo'llab-quvvatlash",
+      description:
+        "Jo'r dinamikasi kuylashdan past; ohang bosib ketilmagan, kuylovchi erkin eshitiladi",
+      maxPoints: 20,
+    },
+  ],
+};
+
+/**
+ * Repertuar tanlovida eng muhimi — **asoslash**. To'g'ri tanlangan, lekin
+ * tasodifan to'g'ri tanlangan qo'shiq keyingi safar xato tanlanadi.
+ */
+const RUBRIKA_REPERTUAR: Rubric = {
+  criteria: [
+    {
+      id: "diapazon",
+      title: "Diapazon hisobi",
+      description:
+        "Qo'shiqning eng past va eng baland notasi aniqlangan va yosh guruhi chegarasi bilan solishtirilgan",
+      maxPoints: 30,
+    },
+    {
+      id: "kochirish",
+      title: "Transponirovka to'g'riligi",
+      description:
+        "Interval to'g'ri hisoblangan, yangi kalit belgilari ko'rsatilgan, ikkala chegara qayta tekshirilgan",
+      maxPoints: 30,
+    },
+    {
+      id: "mezonlar",
+      title: "Qolgan mezonlar",
+      description:
+        "Matn, sakrashlar, nafas joylari va davomiylik bo'yicha baho berilgan",
+      maxPoints: 20,
+    },
+    {
+      id: "asos",
+      title: "Tanlovning asoslanishi",
+      description:
+        "Nega aynan shu qo'shiq va shu tonallik — javob did bilan emas, mezonlar bilan berilgan",
+      maxPoints: 20,
+    },
+  ],
+};
+
 export const TOPSHIRIQLAR: Task[] = [
   {
     id: "task-nota-test",
@@ -1229,6 +1378,199 @@ export const TOPSHIRIQLAR: Task[] = [
     instrument: "nay",
     exerciseId: "n-ohang",
     rubric: RUBRIKA_IJRO,
+  },
+
+  {
+    id: "task-ovoz-gigiyena-test",
+    slug: "ovoz-va-gigiyena-testi",
+    title: "Ovoz apparati va gigiyena testi",
+    description:
+      "Ovoz qanday hosil bo'lishi, yosh guruhlarining diapazoni, mutatsiya davri va ovozni asrash qoidalari bo'yicha test.",
+    type: "test",
+    moduleId: "mod-ijro",
+    outcomeId: "on-ijr-6",
+    area: "texnika",
+    bloom: "tushunish",
+    duration: "15 daqiqa",
+    timerMin: 15,
+    submission: "test",
+    questions: [
+      {
+        id: "tov-1",
+        area: "texnika",
+        bloom: "bilish",
+        kind: "single",
+        prompt: "Ovoz apparatining qaysi qismi havo oqimini beradi?",
+        options: [
+          { id: "a", text: "Rezonatorlar" },
+          { id: "b", text: "Nafas apparati — o'pka va diafragma" },
+          { id: "c", text: "Ovoz boylamlari" },
+          { id: "d", text: "Til va lablar" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "tov-2",
+        area: "texnika",
+        bloom: "tushunish",
+        kind: "single",
+        prompt: "6–7 yoshli bolalarning diapazoni qanday?",
+        options: [
+          { id: "a", text: "Keng, kattalarnikiga yaqin" },
+          { id: "b", text: "Tor, taxminan re¹ – si¹" },
+          { id: "c", text: "Faqat past registrda" },
+          { id: "d", text: "Yoshga bog'liq emas" },
+        ],
+        correctId: "b",
+        explanation:
+          "Bu yoshda ovoz yengil va diapazon tor; uzoq va baland kuylash tez charchatadi.",
+      },
+      {
+        id: "tov-3",
+        area: "texnika",
+        bloom: "qollash",
+        kind: "single",
+        prompt:
+          "Dars boshlanishida sinf darhol qo'shiqning eng baland joyidan kuylay boshladi. Bu nimaga olib keladi?",
+        options: [
+          { id: "a", text: "Ovoz tez ochiladi" },
+          { id: "b", text: "Sozlanmagan boylamlar zo'riqadi va shikastlanish xavfi tug'iladi" },
+          { id: "c", text: "Intonatsiya yaxshilanadi" },
+          { id: "d", text: "Hech qanday ta'siri yo'q" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "tov-4",
+        area: "texnika",
+        bloom: "tushunish",
+        kind: "single",
+        prompt: "Mutatsiya davri nima?",
+        options: [
+          { id: "a", text: "Ovoz kasalligi" },
+          { id: "b", text: "O'smirlikda ovozning o'zgarishi, sinishi" },
+          { id: "c", text: "Diapazonning kengayishi" },
+          { id: "d", text: "Tembrning yo'qolishi" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "tov-5",
+        area: "texnika",
+        bloom: "qollash",
+        kind: "multiple",
+        prompt: "Ovoz gigiyenasiga nimalar kiradi?",
+        options: [
+          { id: "a", text: "Shamollaganda kuylamaslik" },
+          { id: "b", text: "Qichqirmaslik" },
+          { id: "c", text: "Darsdan keyin ovozga dam berish" },
+          { id: "d", text: "Har kuni diapazonning chetki notalarini mashq qilish" },
+        ],
+        correctIds: ["a", "b", "c"],
+        explanation:
+          "Chegaradagi notalarni har kuni zo'riqtirib mashq qilish — foyda emas, yuk.",
+      },
+      {
+        id: "tov-6",
+        area: "texnika",
+        bloom: "tahlil",
+        kind: "single",
+        prompt:
+          "Mutatsiya davridagi o'quvchi uchun eng to'g'ri yondashuv qaysi?",
+        options: [
+          { id: "a", text: "Kuylashdan butunlay chetlatish" },
+          { id: "b", text: "Yukni kamaytirib, lekin musiqiy faoliyatda qoldirish" },
+          { id: "c", text: "Diapazonni majburan kengaytirish" },
+          { id: "d", text: "Faqat baland partiyani berish" },
+        ],
+        correctId: "b",
+      },
+    ],
+  },
+
+  {
+    id: "task-ovoz-sozlash",
+    slug: "ovoz-sozlash-mashqi",
+    title: "Ovoz sozlashni o'tkazish",
+    description:
+      "5–7 daqiqalik ovoz sozlash majmuasini tuzing va uni o'tkazib, yozib oling (audio yoki video). Yozuv bilan birga qisqa izoh bering: har bir mashq nima uchun, qaysi tovushdan boshladingiz va diapazonni qaysi tomonga harakatlantirdingiz. Yozuvda o'zingiz kuylab ko'rsatishingiz eshitilishi shart.",
+    type: "ijro",
+    moduleId: "mod-ijro",
+    outcomeId: "on-ijr-7",
+    area: "texnika",
+    bloom: "qollash",
+    duration: "1 hafta",
+    submission: "fayl",
+    accept: ".mp3,.wav,.m4a,.ogg,.mp4,.mov",
+    rubric: RUBRIKA_OVOZ,
+  },
+
+  {
+    id: "task-mashq-rejasi",
+    slug: "mashq-rejasi",
+    title: "Asar ustida mashq rejasi",
+    description:
+      "O'zingiz hozir o'rganayotgan asarni oling. Uni boshidan oxirigacha chalib, qayerda to'xtaganingizni, sekinlashganingizni va qo'l siqilganini belgilang. Keyin eng qiyin bo'lakni takt raqami bilan ko'rsating, qiyinlik sababini nomlang va shu sababga mos ikki haftalik mashq rejasini tuzing: boshlang'ich temp, tezlashtirish mezoni va 25 daqiqalik mashqning vaqt taqsimoti bilan.",
+    type: "loyiha",
+    moduleId: "mod-ijro",
+    outcomeId: "on-ijr-8",
+    area: "texnika",
+    bloom: "tahlil",
+    duration: "5 kun",
+    submission: "matn",
+    rubric: RUBRIKA_MASHQ,
+  },
+
+  {
+    id: "task-frazirovka",
+    slug: "ifodali-ijro",
+    title: "Ifodali ijro: frazirovka rejasi",
+    description:
+      "Sodda ohangni ikki marta ijro eting va yozib oling. Birinchi yozuv — frazirovkasiz, bir xil dinamikada. Ikkinchi yozuv — fraza chegaralari, kulminatsiya va dinamik reja bilan. Yozuvlarga qisqa izoh qo'shing: frazalarni qayerdan ajratdingiz, kulminatsiyani qaysi notaga qo'ydingiz va nega.",
+    type: "ijro",
+    moduleId: "mod-ijro",
+    outcomeId: "on-ijr-9",
+    area: "sahna",
+    bloom: "qollash",
+    duration: "5 kun",
+    submission: "ijro",
+    instrument: "pianino",
+    exerciseId: "p-oddiy-kuy",
+    rubric: RUBRIKA_IJRO,
+  },
+
+  {
+    id: "task-qoshiq-jori",
+    slug: "qoshiqqa-jor-tuzish",
+    title: "Bolalar qo'shig'iga jo'r tuzish",
+    description:
+      "Boshlang'ich sinfga mo'ljallangan bitta bolalar qo'shig'ini tanlang. Unga T, S va D akkordlari asosida jo'r tuzing: har bir taktga akkordni belgilang, kuplet va naqarot uchun turli faktura tanlang va ikki taktli kirish yozing. Jo'rni ijro etib yozib oling hamda akkord belgilari qo'yilgan nota yoki sxemani ilova qiling.",
+    type: "loyiha",
+    moduleId: "mod-ijro",
+    outcomeId: "on-ijr-10",
+    area: "ijodkorlik",
+    bloom: "sintez",
+    duration: "2 hafta",
+    submission: "fayl",
+    accept: ".pdf,.mp3,.wav,.m4a,.mp4,.musicxml,.xml,.mscz",
+    rubric: RUBRIKA_JOR,
+  },
+
+  {
+    id: "task-repertuar-tanlovi",
+    slug: "repertuar-va-transponirovka",
+    title: "Repertuar tanlash va transponirovka",
+    description:
+      "Aniq bir yosh guruhini tanlang (masalan, 8–10 yosh) va unga uchta qo'shiq nomzodini ko'rib chiqing. Har biri uchun eng past va eng baland notani yozing, oltita mezon bo'yicha baho bering va bittasini tanlang. Tanlangan qo'shiq diapazonga sig'masa — uni mos tonallikka ko'chiring: intervalni hisoblang, yangi kalit belgilarini ko'rsating va ikkala chegarani qayta tekshiring. Tanlovingizni mezonlar bilan asoslang.",
+    type: "loyiha",
+    moduleId: "mod-ijro",
+    outcomeId: "on-ijr-11",
+    area: "ijodkorlik",
+    bloom: "baholash",
+    duration: "2 hafta",
+    submission: "fayl",
+    accept: ".pdf,.doc,.docx,.odt,.musicxml,.xml,.mscz",
+    rubric: RUBRIKA_REPERTUAR,
   },
 
 ];

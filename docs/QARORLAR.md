@@ -783,3 +783,117 @@ uzilish va nol audit muammosini talab qiladi, yiqilganda esa qaysi natija
 ochiq qolganini chop etadi. E2e testdagi natijalar soni ham qo'lga
 yozilmaydi, `MODULLAR` dan hisoblanadi — kontent o'sganda test o'zi
 moslashadi, ammo jadval hamma natijani ko'rsatishi shart bo'lib qoladi.
+
+---
+
+## Ijro amaliyoti modulining kengaytirilishi
+
+### Q71. Modul tavsifidagi va'da bajarildi: ovoz kontenti qo'shildi
+
+**Topilgan nomuvofiqlik.** `mod-ijro` tavsifida «fortepiano, dutor, doira va
+**vokal** bo'yicha amaliy mahorat» deb yozilgan edi, ammo kursning beshta
+darsida ovoz haqida bitta ham satr yo'q edi. Ya'ni dastur hujjati va'da
+qilgan narsani kontent bermayotgandi.
+
+Bu — audit topa olmaydigan ikkinchi tur xato (birinchisi Q70 da). Audit
+natija ↔ dars ↔ topshiriq bog'lanishini tekshiradi; modul tavsifi bilan
+kontent mazmunining mosligini esa hech kim tekshirmaydi.
+
+**Qaror.** Ovoz chizig'i ikkita darsga bo'lindi — nazariy («Ovoz apparati
+va ovoz gigiyenasi») va amaliy («Nafas va ovoz sozlash»). Sabab: ovoz
+gigiyenasi bilim, sozlashni o'tkazish esa ko'nikma; ularni bitta o'quv
+natijasiga siqish Blum darajasini loyqalatardi.
+
+**Nega bu maktab o'qituvchisi uchun markaziy mavzu.** Musiqa o'qituvchisining
+asosiy cholg'usi — o'z ovozi, va u kuniga bir necha soat ishlaydi. Ovoz
+gigiyenasi bu kasb uchun xavfsizlik texnikasi bilan bir xil ahamiyatga ega,
+shuning uchun u «qo'shimcha mavzu» sifatida emas, alohida natija sifatida
+kiritildi.
+
+### Q72. Jo'r bo'lish — yakka ijrodan alohida ko'nikma sifatida ajratildi
+
+Modulda ansambl ijrosi bor edi, jo'r bo'lish yo'q edi. Bular bir xil narsa
+emas: ansamblda ijrochilar teng, jo'rda esa jo'rchi bo'ysunadi.
+
+**Qaror.** «Qo'shiqqa jo'r bo'lish» alohida dars va alohida o'quv natijasi
+(`on-ijr-10`, Blum darajasi — **sintez**) bo'ldi. Sintez tanlandi, chunki
+talaba tayyor jo'rni ijro etmaydi, balki uni **tuzadi**: akkordni tanlaydi,
+fakturani belgilaydi, kirish yozadi.
+
+**Alohida rubrika kerak bo'ldi.** `RUBRIKA_IJRO` bu ishni baholay olmaydi:
+undagi «nota aniqligi» va «tovush sifati» mezonlari yakka ijro uchun. Jo'rda
+esa savol boshqacha — kuylashga qulay bo'ldimi. Shuning uchun `RUBRIKA_JOR`
+yozildi, unda oxirgi mezon aynan shu: «jo'r dinamikasi kuylashdan past,
+ohang bosib ketilmagan».
+
+### Q73. Mashq metodikasi va repertuar tanlash — «ko'rinmas» ko'nikmalar
+
+Ikkita dars ijro texnikasini emas, **ijro atrofidagi qarorlarni** o'rgatadi.
+Ularsiz talaba konservatoriyada ham, maktabda ham o'zini yo'qotadi:
+
+- **Mashq metodikasi** (`on-ijr-8`, tahlil) — «ko'proq mashq qil» degan
+  ko'rsatma hech kimga yordam bermaydi. Dars qiyin bo'lakni aniqlash,
+  sababini nomlash (applikatura, sakrash, ritm, nota o'qish, siqilish) va
+  shu sababga mos harakat tanlashni o'rgatadi. Baho ham aynan tashxisga
+  beriladi: `RUBRIKA_MASHQ` da eng katta ball «tashxisning aniqligi» ga.
+- **Repertuar va tonallikni tanlash** (`on-ijr-11`, baholash) — chiroyli,
+  lekin diapazondan chiqqan qo'shiq bolalarni qichqirishga o'rgatadi.
+  Dars oltita mezonni va transponirovkaning olti qadamini beradi.
+
+**Nega aynan «baholash» darajasi.** Repertuar tanlashda to'g'ri javob bitta
+emas; talaba mezonlar bo'yicha o'lchab, tanlovini asoslashi kerak. Rubrikada
+ham oxirgi mezon shu: «nega aynan shu qo'shiq va shu tonallik — javob did
+bilan emas, mezonlar bilan berilgan».
+
+### Q74. Kurs tartibi ikki chiziqqa qurildi
+
+Yangi darslarni oxiriga qo'shish o'rniga butun kurs qayta tizildi:
+
+1. To'g'ri qo'l qo'yilishi
+2. Ovoz apparati va ovoz gigiyenasi
+3. Nafas va ovoz sozlash
+4. Ritmik naqsh va usul
+5. Mashq metodikasi — asarni o'rganish
+6. Ifodali ijro — fraza, dinamika, artikulyatsiya
+7. Ansamblda ijro
+8. Qo'shiqqa jo'r bo'lish
+9. Repertuar va tonallikni tanlash
+10. O'z ijrosini yozib tahlil qilish
+11. Sahna madaniyati
+
+Mantiq: avval **asbob** (qo'l, ovoz, nafas, ritm), keyin **ish usuli**
+(mashq metodikasi, ifodalilik), so'ng **boshqalar bilan** (ansambl, jo'r,
+repertuar), oxirida **o'z-o'zini baholash va sahna**.
+
+**Sahna madaniyati ikkinchi o'rindan oxirgiga ko'chdi.** U ilgari ikkinchi
+dars edi — talaba hali hech narsa ijro eta olmay turib sahnaga chiqish
+haqida o'qirdi. Endi u kursning yakuni: avval ijro, keyin uni odamlar
+oldiga olib chiqish.
+
+### Q75. Yangi audit tekshiruvi va u darhol topgan eski xato
+
+Jo'r tuzish va transponirovka `ijodkorlik` yo'nalishiga tegishli, u esa
+`mod-ijro.areas` da yo'q edi. Bu shunchaki yorliq emas: `portfolio.tsx`
+topshiriqlarni modulga aynan `modul.areas.includes(s.area)` orqali
+bog'laydi — ro'yxatga qo'shilmasa, ikkita yangi topshiriq portfolioda
+modulga umuman tushmas edi.
+
+**Xato turi — jim kechadigani.** Hech narsa yiqilmaydi, konsolda xabar
+chiqmaydi, sahifa ochiladi. Faqat talaba bajargan ish portfolioda
+ko'rinmay qoladi. Shunday xatolar eng uzoq yashaydi.
+
+**Qaror.** Buni hujjatda eslatma qoldirish bilan cheklanmasdan, kodda
+tekshiruvga aylantirildi: `areaMismatches()` har bir darsning va
+topshiriqning yo'nalishi o'z modulining `areas` ro'yxatiga kirishini
+tekshiradi, natija `auditIssues()` ga «xato» darajasida qo'shiladi va unit
+test uni qo'riqlaydi.
+
+**Tekshiruv darhol eski xatoni topdi.** `mod-nazariya.areas` `["nazariya",
+"eshituv"]` edi, ammo «Ritm va o'lchov» darsi va «Ritm va o'lchov testi»
+`ritm` yo'nalishida. Ya'ni talaba ritm testini topshirsa ham, u Musiqa
+nazariyasi moduli ostida portfolioga tushmas edi. Xato bugungi ishdan
+oldin ham bor edi va uni hech kim sezmagan — aynan jim kechgani uchun.
+Modulning ro'yxatiga `ritm` qo'shildi.
+
+**Saboq:** kontent va uni o'qiydigan kod orasidagi har bir shartni
+tekshiruvga aylantirish kerak. «Esda tutamiz» ishlamaydi.

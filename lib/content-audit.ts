@@ -158,6 +158,64 @@ export function orphanReferences(): Array<{ kind: "dars" | "topshiriq"; title: s
   return natija;
 }
 
+/**
+ * Modulning `areas` ro'yxati o'z darslari va topshiriqlari yo'nalishlarini
+ * qamrab oladimi.
+ *
+ * Bu shunchaki yorliq emas. Portfolio topshiriqni modulga aynan shu ro'yxat
+ * orqali bog'laydi (`modul.areas.includes(s.area)`), shuning uchun ro'yxatga
+ * kirmagan yo'nalishdagi ish modulga umuman tushmaydi — talaba uni bajargan
+ * bo'lsa ham, portfolioda ko'rinmaydi.
+ *
+ * Xato jim kechadi: hech narsa yiqilmaydi, faqat ish yo'qoladi. Shuning
+ * uchun u kodda tekshiriladi.
+ */
+export function areaMismatches(): Array<{
+  moduleTitle: string;
+  kind: "dars" | "topshiriq";
+  title: string;
+  area: DiagnosticArea;
+}> {
+  const natija: Array<{
+    moduleTitle: string;
+    kind: "dars" | "topshiriq";
+    title: string;
+    area: DiagnosticArea;
+  }> = [];
+
+  for (const modul of MODULLAR) {
+    const ruxsat = new Set<DiagnosticArea>(modul.areas);
+
+    for (const kurs of KURSLAR) {
+      if (kurs.moduleId !== modul.id) continue;
+      for (const dars of kurs.lessons) {
+        if (!ruxsat.has(dars.area)) {
+          natija.push({
+            moduleTitle: modul.title,
+            kind: "dars",
+            title: dars.title,
+            area: dars.area,
+          });
+        }
+      }
+    }
+
+    for (const t of TOPSHIRIQLAR) {
+      if (t.moduleId !== modul.id) continue;
+      if (!ruxsat.has(t.area)) {
+        natija.push({
+          moduleTitle: modul.title,
+          kind: "topshiriq",
+          title: t.title,
+          area: t.area,
+        });
+      }
+    }
+  }
+
+  return natija;
+}
+
 /* ──────────────────────── Taqsimotlar ──────────────────────── */
 
 export type Distribution<K extends string> = Array<{ key: K; label: string; count: number }>;
@@ -248,6 +306,13 @@ export function auditIssues(): AuditIssue[] {
     issues.push({
       level: "ogohlantirish",
       message: `${baholanmaydi.length} ta o'quv natijasi o'rgatiladi, lekin baholanmaydi.`,
+    });
+  }
+
+  for (const m of areaMismatches()) {
+    issues.push({
+      level: "xato",
+      message: `«${m.moduleTitle}» moduli ${m.kind === "dars" ? "darsi" : "topshirig'i"} «${m.title}» «${m.area}» yo'nalishida, ammo modulning \`areas\` ro'yxatida bu yo'nalish yo'q — ish portfolioda modulga bog'lanmaydi.`,
     });
   }
 

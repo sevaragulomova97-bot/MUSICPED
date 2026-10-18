@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   areaCoverage,
+  areaMismatches,
   auditIssues,
   bloomDistribution,
   inventory,
@@ -101,6 +102,15 @@ describe("taqsimotlar", () => {
     for (const row of rows) {
       expect(row.savollar, `${row.area} yo'nalishi`).toBeGreaterThan(0);
     }
+  });
+});
+
+describe("modul yo'nalishlari", () => {
+  it("har bir dars va topshiriq o'z modulining areas ro'yxatida", () => {
+    // Portfolio ishni modulga aynan shu ro'yxat orqali bog'laydi. Moslik
+    // buzilsa hech narsa yiqilmaydi — bajarilgan ish jim yo'qoladi.
+    const nomuvofiq = areaMismatches();
+    expect(nomuvofiq, JSON.stringify(nomuvofiq, null, 2)).toEqual([]);
   });
 });
 

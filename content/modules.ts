@@ -38,7 +38,7 @@ export const MODULLAR: Module[] = [
       "Nota savodi, ritm, lad va tonallik, interval va akkordlar, garmoniya, musiqa shakllari, solfedjio va maqom tahlili — musiqiy tafakkurning nazariy asosi.",
     credits: 5,
     direction: "nazariya",
-    areas: ["nazariya", "eshituv"],
+    areas: ["nazariya", "eshituv", "ritm"],
     outcomes: [
       { id: "on-naz-1", text: "Nota chiziqlari, kalit va alteratsiya belgilarini to'g'ri o'qiy oladi", bloom: "bilish" },
       { id: "on-naz-2", text: "Nota davomiyliklari, takt va o'lchov tizimini tushuntira oladi", bloom: "tushunish" },
@@ -56,16 +56,22 @@ export const MODULLAR: Module[] = [
     slug: "ijro-amaliyoti",
     title: "Ijro amaliyoti",
     description:
-      "Yakka va ansambl ijro: fortepiano, dutor, doira va vokal bo'yicha amaliy mahorat.",
+      "Cholg'u texnikasi, ovoz va nafas, mashq metodikasi, ifodali ijro, ansambl, qo'shiqqa jo'r bo'lish va sahna madaniyati.",
     credits: 7,
     direction: "ijro",
-    areas: ["texnika", "ritm", "sahna"],
+    areas: ["texnika", "ritm", "sahna", "ijodkorlik"],
     outcomes: [
       { id: "on-ijr-1", text: "Cholg'uda to'g'ri qo'l qo'yilishi va asosiy texnikani namoyish eta oladi", bloom: "qollash" },
       { id: "on-ijr-2", text: "Berilgan ritmik naqshni aniq tempda takrorlay oladi", bloom: "qollash" },
       { id: "on-ijr-3", text: "Ansamblda boshqa ijrochilar bilan muvofiq ijro eta oladi", bloom: "qollash" },
       { id: "on-ijr-4", text: "O'z ijrosini yozib olib, kamchiliklarini tahlil qila oladi", bloom: "tahlil" },
       { id: "on-ijr-5", text: "Tomoshabin oldida ishonchli va madaniy ijro eta oladi", bloom: "qollash" },
+      { id: "on-ijr-6", text: "Ovoz apparati tuzilishi, bolalar ovozi diapazoni va ovoz gigiyenasi qoidalarini tushuntira oladi", bloom: "tushunish" },
+      { id: "on-ijr-7", text: "Nafas va ovoz sozlash mashqlarini to'g'ri bajaradi hamda guruh bilan o'tkaza oladi", bloom: "qollash" },
+      { id: "on-ijr-8", text: "Asardagi qiyin bo'lakni aniqlab, sababini tahlil qiladi va mashq rejasini tuza oladi", bloom: "tahlil" },
+      { id: "on-ijr-9", text: "Ohangni frazalarga ajratib, dinamika va artikulyatsiya bilan ifodali ijro eta oladi", bloom: "qollash" },
+      { id: "on-ijr-10", text: "Bolalar qo'shig'iga oddiy jo'r tuzib, sinf kuylashiga jo'r bo'la oladi", bloom: "sintez" },
+      { id: "on-ijr-11", text: "Yosh guruhiga mos repertuar va tonallikni tanlab, tanlovini asoslay oladi", bloom: "baholash" },
     ],
   },
   {
