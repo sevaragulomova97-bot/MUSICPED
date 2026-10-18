@@ -1,5 +1,10 @@
 import { expect, test } from "@playwright/test";
+import { MODULLAR } from "@/content/modules";
 import { ADMIN, sessiyaBer } from "./yordamchi";
+
+// Natijalar soni kontentdan olinadi: dastur kengayganda testni qo'lda
+// tuzatish kerak emas, ammo jadval hamma natijani ko'rsatishi shart.
+const NATIJA_SONI = MODULLAR.reduce((s, m) => s + m.outcomes.length, 0);
 
 test.describe("Admin paneli", () => {
   test("kontent auditi dasturning holatini ko'rsatadi", async ({ page }) => {
@@ -12,12 +17,13 @@ test.describe("Admin paneli", () => {
 
     await page.goto("/admin/kontent/");
     const qatorlar = page.locator("table").first().locator("tbody tr");
-    // 24 o'quv natijasi.
-    await expect(qatorlar).toHaveCount(24);
+    await expect(qatorlar).toHaveCount(NATIJA_SONI);
 
     // Hammasi «To'liq» holatida; filtr shuni tasdiqlaydi.
-    await page.getByRole("button", { name: /to'liq \(24\)/i }).click();
-    await expect(qatorlar).toHaveCount(24);
+    await page
+      .getByRole("button", { name: new RegExp(`to'liq \\(${NATIJA_SONI}\\)`, "i") })
+      .click();
+    await expect(qatorlar).toHaveCount(NATIJA_SONI);
 
     // Uzilish filtri bo'sh ro'yxat beradi — qoplanmagan natija qolmagan.
     await page.getByRole("button", { name: /ikkalasi yo'q/i }).click();

@@ -702,3 +702,84 @@ kamaytirildi (17% -> 9%, 24% -> 13%). Pastki o'rta qismga uchinchi,
 yumshoq firuza dog' qo'shildi. Suzuvchi notalarning rangi ham shu
 nisbatga keltirildi: binafsha 7 tadan 4 taga tushdi, firuza 6 tadan
 9 taga chiqdi — fon bilan notalar bir xil ohangda bo'lishi uchun.
+
+---
+
+## Musiqa nazariyasi kursining kengaytirilishi
+
+### Q69. Nazariya moduli 5 natijadan 9 natijaga chiqarildi
+
+**Muammo.** Loyiha egasi «nazariy qism kam yoritilgan» deb baholadi va
+aniqlashtirganda gap aynan **Musiqa nazariyasi kursi** haqida ekani
+ma'lum bo'ldi. Kursda 5 ta dars bor edi: nota savodi, ritm, interval va
+akkord, asar tahlili, maqom. Musiqa nazariyasining o'zagi bo'lgan uchta
+mavzu — **lad va tonallik**, **garmoniya va kadanslar**, **solfedjio va
+diktant** — umuman yo'q edi. Shakl tahlili esa «asar tahlili» darsiga
+siqilgan, temp va dinamika atamalari esa hech qayerda o'rgatilmagan.
+
+**Qaror.** Modulga to'rtta yangi o'quv natijasi qo'shildi (`on-naz-6`
+lad va tonallik, `on-naz-7` garmonik funksiyalar va jo'r, `on-naz-8`
+temp/dinamika/ifoda atamalari, `on-naz-9` solfedjio va eshitib yozish) va
+har biriga dars hamda baholash topshirig'i yozildi. Kurs 5 darsdan
+**10 darsga**, modul 5 natijadan **9 natijaga** o'sdi.
+
+**Kredit o'zgarmadi.** Modul avvalgidek 5 ECTS. Sabab: dissertatsiyaning
+o'quv rejasi tasdiqlangan hujjat, kredit taqsimoti unga bog'liq. Qo'shilgan
+material rejadagi hajmni oshirmaydi — avval yozilmay qolgan qismini
+to'ldiradi.
+
+**Darslarning tartibi qayta tiklandi.** Yangi darslarni oxiriga qo'shib
+qo'yish oson edi, lekin platformada darslar «Oldingi / Keyingi» bilan
+ketma-ket o'qiladi, ya'ni tartib — o'qitish rejasining o'zi. Shuning
+uchun butun kurs qayta tizildi:
+
+1. Nota chiziqlari va kalitlar
+2. Nota savodi
+3. Ritm va o'lchov
+4. Lad va tonallik
+5. Interval va akkordlar
+6. Garmonik funksiyalar va kadanslar
+7. Musiqa shakllari
+8. Temp, dinamika va ifoda belgilari
+9. Solfedjio va eshituv diktanti
+10. Maqom va uning lad asoslari
+
+Mantiq: avval yozuv (1-3), keyin lad tizimi (4), uning ustiga interval va
+akkord (5), akkordlar ustiga funksiya va kadans (6), kadanslar ustiga
+shakl (7). Avvalgi tartibda shakl tahlili intervaldan keyin darhol
+turardi — talaba garmonik funksiyani bilmay turib kadansni tanishga
+majbur bo'lardi.
+
+**Maqom darsi oxiriga ko'chirildi.** U ilgari beshinchi edi. Maqom ladini
+tahlil qilish major-minor tizimini, interval tuzilishini va kadans
+tushunchasini talab qiladi; shuning uchun u endi kursning yakuniy,
+umumlashtiruvchi darsi — o'rganilgan nazariyani milliy musiqaga qo'llash.
+Kurs tavsifi («Nota savodidan maqom tahliligacha») endi so'zma-so'z
+to'g'ri.
+
+### Q70. Topilgan xato: ikki dars noto'g'ri natijaga bog'langan edi
+
+Kengaytirishdan oldin mavjud bog'lanishlar qo'lda tekshirildi va ikkita
+**haqiqiy konstruktiv moslashuv xatosi** topildi:
+
+| Dars | Bog'langan natija (xato) | To'g'ri natija |
+|---|---|---|
+| `nota-savodi` | `on-naz-3` (interval va akkord) | `on-naz-1` (nota, kalit, alteratsiya) |
+| `interval-va-akkord` | `on-naz-4` (shakl tahlili) | `on-naz-3` (interval va akkord) |
+
+Ya'ni nota savodi darsi interval natijasini «o'rgatar» edi, interval darsi
+esa shakl tahlilini. Natijada talaba nota chiziqlarini o'rgangach, tizim
+unga interval natijasi bo'yicha progress yozardi.
+
+**Nega audit buni ko'rmadi.** `lib/content-audit.ts` har bir natija uchun
+dars va topshiriq **bor-yo'qligini** tekshiradi — bog'lanish **mazmunan
+to'g'riligini** emas. Ikkala xato ham «qoplangan» ko'rinardi, chunki
+havola mavjud edi. Bunday xatoni faqat odam o'qib topadi; shuning uchun
+yangi dars yozilganda avval modul natijalari ro'yxati bilan solishtirish
+tartibga kiritildi.
+
+**Audit kuchaytirildi.** `tests/unit/content-audit.test.ts` endi nol
+uzilish va nol audit muammosini talab qiladi, yiqilganda esa qaysi natija
+ochiq qolganini chop etadi. E2e testdagi natijalar soni ham qo'lga
+yozilmaydi, `MODULLAR` dan hisoblanadi — kontent o'sganda test o'zi
+moslashadi, ammo jadval hamma natijani ko'rsatishi shart bo'lib qoladi.

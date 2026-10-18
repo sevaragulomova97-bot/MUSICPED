@@ -35,16 +35,20 @@ export const MODULLAR: Module[] = [
     slug: "musiqa-nazariyasi",
     title: "Musiqa nazariyasi",
     description:
-      "Nota savodi, interval va akkordlar, ritm, maqom tahlili — musiqiy tafakkurning nazariy asosi.",
+      "Nota savodi, ritm, lad va tonallik, interval va akkordlar, garmoniya, musiqa shakllari, solfedjio va maqom tahlili — musiqiy tafakkurning nazariy asosi.",
     credits: 5,
     direction: "nazariya",
     areas: ["nazariya", "eshituv"],
     outcomes: [
       { id: "on-naz-1", text: "Nota chiziqlari, kalit va alteratsiya belgilarini to'g'ri o'qiy oladi", bloom: "bilish" },
-      { id: "on-naz-2", text: "Interval va akkordlarni tuzilishi bo'yicha tushuntira oladi", bloom: "tushunish" },
-      { id: "on-naz-3", text: "Berilgan ohangda intervallarni aniqlab, yozib chiqa oladi", bloom: "qollash" },
+      { id: "on-naz-2", text: "Nota davomiyliklari, takt va o'lchov tizimini tushuntira oladi", bloom: "tushunish" },
+      { id: "on-naz-3", text: "Interval va akkordlarni eshitib hamda nota yozuvida aniqlay oladi", bloom: "qollash" },
       { id: "on-naz-4", text: "Musiqa asarining shakli va garmonik tuzilishini tahlil qila oladi", bloom: "tahlil" },
       { id: "on-naz-5", text: "O'zbek maqom namunalarini lad asosida tahlil qila oladi", bloom: "tahlil" },
+      { id: "on-naz-6", text: "Lad va tonallik tizimini — major, minor, kvinta doirasi va kalit belgilarini — tushuntira oladi", bloom: "tushunish" },
+      { id: "on-naz-7", text: "Garmonik funksiyalar va kadanslarni aniqlab, ohangga oddiy jo'r tuza oladi", bloom: "qollash" },
+      { id: "on-naz-8", text: "Temp, dinamika va ifoda atamalarini biladi va ularni nota matnida o'qiy oladi", bloom: "bilish" },
+      { id: "on-naz-9", text: "Solfedjio mashqlarini kuylay oladi va oddiy ohangni eshitib yozib ola oladi", bloom: "qollash" },
     ],
   },
   {

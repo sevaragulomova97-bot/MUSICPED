@@ -119,12 +119,12 @@ components/
   layout/               Sidebar, Header, MobileNav, AppShell, Logo
   decor/                Nota belgilari va fondagi suzuvchi notalar
 content/
-  modules.ts            5 modul, ECTS kredit, o'quv natijalari
+  modules.ts            5 modul, 28 o'quv natijasi, ECTS kredit
   diagnostic.ts         32 ta diagnostika savoli (8 yo'nalish)
   demo-students.ts      24 namunaviy talaba (tajriba / nazorat)
   practice.ts           18 ta cholg'u mashqi + ritm baholash
-  courses/              5 kurs, 24 ta to'liq dars (har bir modul o'z faylida)
-  tasks.ts              24 ta topshiriq + 5 ta baholash rubrikasi
+  courses/              5 kurs, 29 ta to'liq dars (har bir modul o'z faylida)
+  tasks.ts              28 ta topshiriq + 5 ta baholash rubrikasi
   mentorship.ts         Pedagogik amaliyotning 3 bosqichi + kuzatuv varaqasi
 lib/
   audio/engine.ts       AudioContext, klaviatura, nota yozuvchi
@@ -166,7 +166,7 @@ docs/
 - [x] **B5** — O'qituvchi kabineti, tadqiqot bo'limi (t-mezon, χ², Koen d,
       Mann-Uitni), admin paneli va kontent auditi, oflayn rejim (PWA),
       e2e testlar va qo'llanmalar
-- [x] **Kontent** — barcha 24 o'quv natijasi dars va topshiriq bilan
+- [x] **Kontent** — barcha 28 o'quv natijasi dars va topshiriq bilan
       qoplandi; audit uzilishsiz
 
 ---
@@ -192,7 +192,7 @@ o'qiladi, yangiroq versiyadagi fayl esa jim buzilmay, aniq xato beradi.
 
 | Modul | Kredit | Darslar | Topshiriqlar | O'quv natijalari |
 |---|---|---|---|---|
-| Musiqa nazariyasi | 5 | 5 | 5 | 5 / 5 qoplangan |
+| Musiqa nazariyasi | 5 | 10 | 9 | 9 / 9 qoplangan |
 | Ijro amaliyoti | 7 | 5 | 5 | 5 / 5 qoplangan |
 | Musiqa ta'limi metodikasi | 6 | 5 | 5 | 5 / 5 qoplangan |
 | Musiqa texnologiyalari | 4 | 4 | 4 | 4 / 4 qoplangan |

@@ -979,6 +979,258 @@ export const TOPSHIRIQLAR: Task[] = [
     rubric: RUBRIKA_REFLEKSIYA,
   },
 
+
+  {
+    id: "task-lad-tonallik-test",
+    slug: "lad-va-tonallik-testi",
+    title: "Lad va tonallik testi",
+    description:
+      "Major va minor tuzilishi, parallel va bir nomli tonalliklar, kvinta doirasi va kalit belgilari bo'yicha test.",
+    type: "test",
+    moduleId: "mod-nazariya",
+    outcomeId: "on-naz-6",
+    area: "nazariya",
+    bloom: "tushunish",
+    duration: "15 daqiqa",
+    timerMin: 15,
+    submission: "test",
+    questions: [
+      {
+        id: "lt1",
+        area: "nazariya",
+        bloom: "bilish",
+        kind: "single",
+        prompt: "Natural major gammasining tuzilishi qanday?",
+        options: [
+          { id: "a", text: "butun-butun-yarim-butun-butun-butun-yarim" },
+          { id: "b", text: "butun-yarim-butun-butun-yarim-butun-butun" },
+          { id: "c", text: "yarim-butun-butun-yarim-butun-butun-butun" },
+          { id: "d", text: "Barcha masofalar teng" },
+        ],
+        correctId: "a",
+      },
+      {
+        id: "lt2",
+        area: "nazariya",
+        bloom: "qollash",
+        kind: "single",
+        prompt: "Fa majorning kalitida nechta va qanday belgi bor?",
+        options: [
+          { id: "a", text: "Bitta diez (fa♯)" },
+          { id: "b", text: "Bitta bemol (si♭)" },
+          { id: "c", text: "Ikkita bemol" },
+          { id: "d", text: "Belgi yo'q" },
+        ],
+        correctId: "b",
+        explanation:
+          "Bitta bemolli tonallik — fa major; uning paralleli re minor.",
+      },
+      {
+        id: "lt3",
+        area: "nazariya",
+        bloom: "qollash",
+        kind: "single",
+        prompt: "Sol majorning parallel minori qaysi?",
+        options: [
+          { id: "a", text: "Mi minor" },
+          { id: "b", text: "Sol minor" },
+          { id: "c", text: "Re minor" },
+          { id: "d", text: "Lya minor" },
+        ],
+        correctId: "a",
+        explanation:
+          "Parallel minor major tonikasidan kichik tersiya pastda: sol dan mi gacha.",
+      },
+      {
+        id: "lt4",
+        area: "nazariya",
+        bloom: "bilish",
+        kind: "single",
+        prompt: "Bemollar kalitda qanday tartibda qo'yiladi?",
+        options: [
+          { id: "a", text: "fa · do · sol · re · lya · mi · si" },
+          { id: "b", text: "si · mi · lya · re · sol · do · fa" },
+          { id: "c", text: "do · re · mi · fa · sol · lya · si" },
+          { id: "d", text: "Tartibsiz" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "lt5",
+        area: "nazariya",
+        bloom: "tushunish",
+        kind: "multiple",
+        prompt: "Parallel tonalliklar haqida qaysi fikrlar to'g'ri?",
+        options: [
+          { id: "a", text: "Kalit belgilari bir xil" },
+          { id: "b", text: "Tonikasi bir xil" },
+          { id: "c", text: "Minor tonikasi majordan kichik tersiya pastda" },
+          { id: "d", text: "Tovush tarkibi bir xil" },
+        ],
+        correctIds: ["a", "c", "d"],
+        explanation:
+          "Tonikasi bir xil bo'lgani — bir nomli tonalliklar, parallel emas.",
+      },
+      {
+        id: "lt6",
+        area: "nazariya",
+        bloom: "tahlil",
+        kind: "single",
+        prompt:
+          "Asar lya minorda yozilgan, lekin ohangda sol♯ tovushi uchrayapti. Bu nima?",
+        options: [
+          { id: "a", text: "Xato yozuv" },
+          { id: "b", text: "Garmonik minor — yettinchi bosqich ko'tarilgan" },
+          { id: "c", text: "Tonallik o'zgargan" },
+          { id: "d", text: "Major gammasi" },
+        ],
+        correctId: "b",
+      },
+    ],
+  },
+
+  {
+    id: "task-jor-tuzish",
+    slug: "ohangga-jor-tuzish",
+    title: "Ohangga jo'r tuzish",
+    description:
+      "Berilgan yoki o'zingiz tanlagan sodda ohangga uchta asosiy akkord (T, S, D) yordamida jo'r tuzing. Har bir takt uchun tanlagan akkordingizni yozing va nega aynan shuni tanlaganingizni kuchli zarbdagi tovushga tayanib asoslang. Oxirida qanday kadans ishlatganingizni ko'rsating.",
+    type: "loyiha",
+    moduleId: "mod-nazariya",
+    outcomeId: "on-naz-7",
+    area: "nazariya",
+    bloom: "qollash",
+    duration: "40 daqiqa",
+    timerMin: 40,
+    submission: "matn",
+    rubric: RUBRIKA_TAHLIL,
+  },
+
+  {
+    id: "task-temp-dinamika-test",
+    slug: "temp-va-dinamika-testi",
+    title: "Temp, dinamika va ifoda belgilari testi",
+    description:
+      "Nota matnidagi ko'rsatmalar: temp atamalari, dinamika belgilari va shtrixlar bo'yicha test.",
+    type: "test",
+    moduleId: "mod-nazariya",
+    outcomeId: "on-naz-8",
+    area: "nazariya",
+    bloom: "bilish",
+    duration: "10 daqiqa",
+    timerMin: 10,
+    submission: "test",
+    questions: [
+      {
+        id: "td1",
+        area: "nazariya",
+        bloom: "bilish",
+        kind: "single",
+        prompt: "Temp atamalarini sekindan tezga qarab to'g'ri tartiblang.",
+        options: [
+          { id: "a", text: "Allegro → Andante → Largo" },
+          { id: "b", text: "Largo → Andante → Allegro" },
+          { id: "c", text: "Andante → Largo → Presto" },
+          { id: "d", text: "Presto → Allegro → Moderato" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "td2",
+        area: "nazariya",
+        bloom: "bilish",
+        kind: "single",
+        prompt: "pp belgisi nimani bildiradi?",
+        options: [
+          { id: "a", text: "Juda kuchli" },
+          { id: "b", text: "Juda sekin" },
+          { id: "c", text: "O'rtacha kuchli" },
+          { id: "d", text: "Asta pasaytirib" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "td3",
+        area: "nazariya",
+        bloom: "tushunish",
+        kind: "single",
+        prompt: "legato qanday ijroni talab qiladi?",
+        options: [
+          { id: "a", text: "Qisqa, ajratib" },
+          { id: "b", text: "Uzmasdan, bog'lab" },
+          { id: "c", text: "Juda tez" },
+          { id: "d", text: "Ta'kidlab, zarb bilan" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "td4",
+        area: "nazariya",
+        bloom: "qollash",
+        kind: "single",
+        prompt:
+          "Nota matnida «rit.» va undan keyin «a tempo» yozilgan. Ijro qanday bo'ladi?",
+        options: [
+          { id: "a", text: "Tezlashtiriladi, keyin yana tezlashtiriladi" },
+          { id: "b", text: "Sekinlashtiriladi, keyin avvalgi tempga qaytiladi" },
+          { id: "c", text: "Kuchaytiriladi, keyin pasaytiriladi" },
+          { id: "d", text: "To'xtatiladi" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "td5",
+        area: "nazariya",
+        bloom: "tushunish",
+        kind: "multiple",
+        prompt: "Qaysilari shtrix (tovush hosil qilish usuli) hisoblanadi?",
+        options: [
+          { id: "a", text: "legato" },
+          { id: "b", text: "staccato" },
+          { id: "c", text: "marcato" },
+          { id: "d", text: "crescendo" },
+        ],
+        correctIds: ["a", "b", "c"],
+        explanation: "crescendo — dinamika, shtrix emas.",
+      },
+      {
+        id: "td6",
+        area: "nazariya",
+        bloom: "tahlil",
+        kind: "single",
+        prompt:
+          "Notaning o'ng tomonida nuqta bor. Bu nimani bildiradi?",
+        options: [
+          { id: "a", text: "Staccato" },
+          { id: "b", text: "Davomiylik yarmiga uzayadi" },
+          { id: "c", text: "Akzent" },
+          { id: "d", text: "Fermata" },
+        ],
+        correctId: "b",
+        explanation:
+          "Nota yonidagi nuqta davomiylikni yarmiga uzaytiradi; staccato belgisi esa nota ustida turadi.",
+      },
+    ],
+  },
+
+  {
+    id: "task-diktant",
+    slug: "solfedjio-va-diktant",
+    title: "Solfedjio va eshituv diktanti",
+    description:
+      "Ikki qismli amaliy ish. Birinchi qism: platformadagi cholg'uda 4–8 taktli sodda ohang chalib, uni yozib oling. Ikkinchi qism: bir kun o'tgach yozuvni tinglab, ohangni notaga tushiring (o'lchov, tonallik, ritm va balandlik bilan), so'ng o'z yozuvingiz bilan solishtirib, qayerda xato qilganingizni va nega shunday bo'lganini yozing.",
+    type: "ijro",
+    moduleId: "mod-nazariya",
+    outcomeId: "on-naz-9",
+    area: "eshituv",
+    bloom: "qollash",
+    duration: "1 hafta",
+    submission: "ijro",
+    instrument: "nay",
+    exerciseId: "n-ohang",
+    rubric: RUBRIKA_IJRO,
+  },
+
 ];
 
 export const TOPSHIRIQ_BY_SLUG = new Map(TOPSHIRIQLAR.map((t) => [t.slug, t]));
