@@ -515,6 +515,234 @@ const RUBRIKA_FEEDBACK: Rubric = {
   ],
 };
 
+/**
+ * Fonogramma yakka ijro kabi baholanmaydi: u sahnada **bolalar bilan
+ * birga** ishlashi kerak. Shuning uchun oxirgi mezon zalda sinashga
+ * beriladi — naushnikda yaxshi eshitilgan fayl u yerda boshqacha chiqadi.
+ */
+const RUBRIKA_FONOGRAMMA: Rubric = {
+  criteria: [
+    {
+      id: "asos",
+      title: "Tonallik va temp",
+      description:
+        "Tonallik sinf diapazoniga moslangan, temp barqaror va hayajonni hisobga olgan holda vazmin olingan",
+      maxPoints: 25,
+    },
+    {
+      id: "tuzilma",
+      title: "Tuzilma",
+      description:
+        "Tanib olinadigan kirish, kuplet va naqarot orasida aniq o'tish, tugalangan oxir mavjud",
+      maxPoints: 25,
+    },
+    {
+      id: "muvozanat",
+      title: "Muvozanat",
+      description:
+        "Faktura qalin emas, dinamika kuylovchi ovozini bosmaydi; bas zalda ortib ketmaydi",
+      maxPoints: 30,
+    },
+    {
+      id: "tayyorlik",
+      title: "Sahnaga tayyorlik",
+      description:
+        "Zalda sinalgan, ikki nusxada saqlangan, fayl nomida tonallik va temp ko'rsatilgan",
+      maxPoints: 20,
+    },
+  ],
+};
+
+/**
+ * Bu rubrika **qaror**ni baholaydi, mahsulotni emas. Shuning uchun eng
+ * katta ball «yo'q demaslik» qiyin bo'lgan joyga — rad javobini hurmat
+ * qilishga beriladi.
+ */
+const RUBRIKA_XAVFSIZLIK: Rubric = {
+  criteria: [
+    {
+      id: "ruxsat",
+      title: "Ruxsat masalasi",
+      description:
+        "Ruxsat yozma, aniq joy uchun va qaytarib olinadigan qilib tashkil etilgan; kimdan olinishi to'g'ri ko'rsatilgan",
+      maxPoints: 25,
+    },
+    {
+      id: "kamlik",
+      title: "Ma'lumotning kamligi",
+      description:
+        "E'lon qilinadigan ma'lumot zarur minimumga tushirilgan: ism, manzil, geolokatsiya va boshqa tafsilotlar",
+      maxPoints: 25,
+    },
+    {
+      id: "rad",
+      title: "Rad javobiga munosabat",
+      description:
+        "Bitta rad javobi butun materialga taalluqli ekani tushunilgan va amaliy yechim taklif qilingan",
+      maxPoints: 30,
+    },
+    {
+      id: "saqlash",
+      title: "Saqlash va muddat",
+      description:
+        "Saqlash joyi, muddati va kimga ulashilgani oldindan belgilangan",
+      maxPoints: 20,
+    },
+  ],
+};
+
+/**
+ * Inklyuziv rejada eng muhimi — **ishtirok**. Shuning uchun «tomosha
+ * qilish» hech qanday mezon bo'yicha ball olmaydi: yonida o'tirish
+ * ishtirok emas.
+ */
+const RUBRIKA_INKLYUZIYA: Rubric = {
+  criteria: [
+    {
+      id: "manba",
+      title: "Ma'lumotga tayanish",
+      description:
+        "Reja taxminga emas, mutaxassis yoki sinf rahbari bergan ma'lumotga tayangan",
+      maxPoints: 20,
+    },
+    {
+      id: "ishtirok",
+      title: "Haqiqiy ishtirok",
+      description:
+        "Bola uchun aniq musiqiy faoliyat belgilangan — tinglash yoki kuzatish emas",
+      maxPoints: 35,
+    },
+    {
+      id: "moslashtirish",
+      title: "Moslashtirishning mosligi",
+      description:
+        "Tanlangan yechim aynan shu ehtiyojga javob beradi (tebranish, ko'rish signali, og'zaki tasvir, qisqa vazifa)",
+      maxPoints: 25,
+    },
+    {
+      id: "sinf",
+      title: "Sinf bilan yaxlitlik",
+      description:
+        "Moslashtirish bolani ajratib qo'ymaydi: u umumiy ishning bir qismi bo'lib qoladi",
+      maxPoints: 20,
+    },
+  ],
+};
+
+/**
+ * Tadbir rejasida eng ko'p unutiladigan narsa — **zaxira reja**. Shuning
+ * uchun u alohida mezon sifatida ajratilgan: fonogramma ishlamasligi
+ * kutilmagan holat emas, kutiladigan holat.
+ */
+const RUBRIKA_TADBIR: Rubric = {
+  criteria: [
+    {
+      id: "reja",
+      title: "Orqaga qarab rejalashtirish",
+      description:
+        "Sanadan ortga hisoblangan jadval bor: repertuar muddati, repetitsiyalar, zalda sinash",
+      maxPoints: 25,
+    },
+    {
+      id: "ishtirok",
+      title: "Ishtirok taqsimoti",
+      description:
+        "Har bir bolaning o'z o'rni bor; «fon» roli yo'q, partiyalar daraja bo'yicha taqsimlangan",
+      maxPoints: 25,
+    },
+    {
+      id: "sahna",
+      title: "Sahna tartibi",
+      description:
+        "Chiqish-qaytish tartibi, navbat ro'yxati, rekvizit joylashuvi va pauza uzunligi yozilgan",
+      maxPoints: 25,
+    },
+    {
+      id: "zaxira",
+      title: "Zaxira reja",
+      description:
+        "Fonogramma, yakkaxon, mikrofon va elektr bo'yicha muqobil yechimlar oldindan tayyorlangan",
+      maxPoints: 25,
+    },
+  ],
+};
+
+/**
+ * Etika holatlarida «to'g'ri javob» ro'yxatini yodlash ish bermaydi.
+ * Shuning uchun baho **asoslashga** beriladi: qaysi tamoyilga tayanib
+ * shunday qaror qilindi va uni kimga qanday tushuntirish mumkin.
+ */
+const RUBRIKA_ETIKA: Rubric = {
+  criteria: [
+    {
+      id: "chegara",
+      title: "Chegarani ko'rish",
+      description:
+        "Holatdagi kasbiy chegara aniq nomlangan va u qayerda buzilishi mumkinligi ko'rsatilgan",
+      maxPoints: 30,
+    },
+    {
+      id: "qaror",
+      title: "Qarorning amaliyligi",
+      description:
+        "Taklif qilingan harakat bajarib bo'ladigan va maktab sharoitiga mos",
+      maxPoints: 25,
+    },
+    {
+      id: "asos",
+      title: "Asoslash",
+      description:
+        "Qaror «shunday to'g'ri» emas, tamoyil bilan asoslangan; uchinchi shaxsga tushuntirib bo'ladi",
+      maxPoints: 25,
+    },
+    {
+      id: "himoya",
+      title: "Bolaning himoyasi",
+      description:
+        "Qaror avvalo bolaning manfaatini himoya qiladi, o'qituvchining qulayligini emas",
+      maxPoints: 20,
+    },
+  ],
+};
+
+/**
+ * Portfolio rubrikasi **tanlov**ni baholaydi. Ko'p material yig'ish oson,
+ * shuning uchun hajm ball bermaydi: har bir dalil nimani isbotlashi
+ * kerakligi ko'rsatilgan bo'lsin.
+ */
+const RUBRIKA_PORTFOLIO: Rubric = {
+  criteria: [
+    {
+      id: "tanlov",
+      title: "Dalillar tanlovi",
+      description:
+        "Har bir material nimani isbotlashi izohlangan; takrorlanuvchi va tasodifiy fayllar yo'q",
+      maxPoints: 30,
+    },
+    {
+      id: "osish",
+      title: "O'sishning ko'rinishi",
+      description:
+        "Boshlang'ich va keyingi holat solishtirilgan; muvaffaqiyatsiz tajriba ham xulosasi bilan berilgan",
+      maxPoints: 25,
+    },
+    {
+      id: "hisobot",
+      title: "Hisobotning tuzilmasi",
+      description:
+        "Kontekst, maqsad, natija, qiyinchilik va keyingi qadam bor; har xulosa aniq materialga tayanadi",
+      maxPoints: 25,
+    },
+    {
+      id: "axloq",
+      title: "Ruxsat va ismsizlik",
+      description:
+        "O'quvchi materiallari ruxsat bilan va ismsiz berilgan",
+      maxPoints: 20,
+    },
+  ],
+};
+
 export const TOPSHIRIQLAR: Task[] = [
   {
     id: "task-nota-test",
@@ -1933,6 +2161,362 @@ export const TOPSHIRIQLAR: Task[] = [
     duration: "1 hafta",
     submission: "matn",
     rubric: RUBRIKA_FEEDBACK,
+  },
+
+  {
+    id: "task-mualliflik-test",
+    slug: "mualliflik-huquqi-testi",
+    title: "Mualliflik huquqi va litsenziyalar testi",
+    description:
+      "Asar, yozuv va nashr huquqi, Creative Commons belgilari hamda darsda qonuniy foydalanish chegaralari bo'yicha test.",
+    type: "test",
+    moduleId: "mod-texnologiya",
+    outcomeId: "on-tex-5",
+    area: "metodika",
+    bloom: "tushunish",
+    duration: "15 daqiqa",
+    timerMin: 15,
+    submission: "test",
+    questions: [
+      {
+        id: "mh-1",
+        area: "metodika",
+        bloom: "bilish",
+        kind: "single",
+        prompt: "Bitta qo'shiqda qaysi huquqlar birga yashaydi?",
+        options: [
+          { id: "a", text: "Faqat asar huquqi" },
+          { id: "b", text: "Asar, yozuv va nashr huquqi" },
+          { id: "c", text: "Faqat yozuv huquqi" },
+          { id: "d", text: "Huquq faqat zamonaviy asarlarda bo'ladi" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "mh-2",
+        area: "metodika",
+        bloom: "tushunish",
+        kind: "single",
+        prompt: "«NC» belgisi nimani taqiqlaydi?",
+        options: [
+          { id: "a", text: "O'zgartirishni" },
+          { id: "b", text: "Tijorat maqsadida foydalanishni" },
+          { id: "c", text: "Muallifni ko'rsatmaslikni" },
+          { id: "d", text: "Nusxa ko'chirishni" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "mh-3",
+        area: "metodika",
+        bloom: "qollash",
+        kind: "single",
+        prompt:
+          "Xalq kuyini o'zingiz chalib yozdingiz va internetga joyladingiz. Yozuv huquqi kimda?",
+        options: [
+          { id: "a", text: "Hech kimda" },
+          { id: "b", text: "Sizda" },
+          { id: "c", text: "Davlatda" },
+          { id: "d", text: "Kuyni birinchi yozgan studiyada" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "mh-4",
+        area: "metodika",
+        bloom: "tahlil",
+        kind: "multiple",
+        prompt: "Qaysi holatlar «nashr» hisoblanadi va ruxsat talab qiladi?",
+        options: [
+          { id: "a", text: "Konsert videosini internetga joylash" },
+          { id: "b", text: "Sinf ichida yozuv tinglatish" },
+          { id: "c", text: "Nota matnini ko'chirib tarqatish" },
+          { id: "d", text: "Yozuvni ochiq havola bilan ulashish" },
+        ],
+        correctIds: ["a", "c", "d"],
+      },
+      {
+        id: "mh-5",
+        area: "metodika",
+        bloom: "baholash",
+        kind: "single",
+        prompt:
+          "Maktab tadbiri uchun material tanlayapsiz. Eng xavfsiz yo'l qaysi?",
+        options: [
+          { id: "a", text: "Internetdan topilgan mashhur yozuvni olish" },
+          { id: "b", text: "O'z ijroingizni yozish yoki ochiq litsenziyali materialdan foydalanish" },
+          { id: "c", text: "Manbani ko'rsatmay ishlatish" },
+          { id: "d", text: "Nomini o'zgartirib qo'yish" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "mh-6",
+        area: "metodika",
+        bloom: "qollash",
+        kind: "single",
+        prompt: "Manba qachon qayd etiladi?",
+        options: [
+          { id: "a", text: "Material olingan paytda" },
+          { id: "b", text: "Loyiha tugagach" },
+          { id: "c", text: "Faqat so'ralganda" },
+          { id: "d", text: "Qayd etish shart emas" },
+        ],
+        correctId: "a",
+      },
+    ],
+  },
+
+  {
+    id: "task-tovush-yozish",
+    slug: "tovush-yozish-ishi",
+    title: "Toza yozuv tayyorlash",
+    description:
+      "Bitta ijroni (yakka yoki guruh) yozib oling va darsda ishlatishga tayyorlang. Yozuv bilan birga qisqa texnik izoh bering: qaysi mikrofon, qanday masofa va burchak, xonani qanday tayyorladingiz, daraja qanday belgilandi. Boshida 5 soniya jimlik qoldirilgan bo'lsin. Ishlatilgan materialning manbasi va litsenziyasini ham ko'rsating.",
+    type: "ijro",
+    moduleId: "mod-texnologiya",
+    outcomeId: "on-tex-7",
+    area: "ijodkorlik",
+    bloom: "qollash",
+    duration: "1 hafta",
+    submission: "fayl",
+    accept: ".mp3,.wav,.m4a,.ogg,.flac",
+    rubric: RUBRIKA_TEXNOLOGIYA,
+  },
+
+  {
+    id: "task-fonogramma",
+    slug: "fonogramma-loyihasi",
+    title: "Maktab tadbiri uchun fonogramma",
+    description:
+      "Bitta qo'shiq uchun jo'r fonogramma tayyorlang. Tonallikni sinf diapazoniga moslang, tempni belgilang va uni oxirigacha saqlang. Fonogrammada tanib olinadigan kirish, kuplet va naqarot orasida aniq o'tish hamda tugalangan oxir bo'lsin. Tayyor faylni zalda yoki kolonkada sinab ko'ring va nima o'zgartirganingizni yozing. Fayl nomida qo'shiq nomi, tonallik va temp ko'rsatilsin.",
+    type: "loyiha",
+    moduleId: "mod-texnologiya",
+    outcomeId: "on-tex-8",
+    area: "ijodkorlik",
+    bloom: "sintez",
+    duration: "2 hafta",
+    submission: "fayl",
+    accept: ".mp3,.wav,.m4a,.ogg,.pdf",
+    rubric: RUBRIKA_FONOGRAMMA,
+  },
+
+  {
+    id: "task-raqamli-xavfsizlik",
+    slug: "raqamli-xavfsizlik-qarori",
+    title: "Bolalar yozuvlari: qaror va ruxsat varaqasi",
+    description:
+      "Ikki qismli ish. Birinchi qism: maktab konserti uchun ruxsat varaqasining matnini yozing — nima yoziladi, qayerda e'lon qilinadi, qancha vaqt turadi va ruxsatni qanday qaytarib olish mumkin. Matn ota-onaga tushunarli tilda bo'lsin. Ikkinchi qism: uchta holatni baholang va har biriga qaroringizni asoslang — (1) bir o'quvchining oilasi rad etdi, (2) video allaqachon joylangan va ruxsat qaytarib olindi, (3) hamkasb sizdan konsert yozuvini shaxsiy sahifasiga joylashni so'radi.",
+    type: "loyiha",
+    moduleId: "mod-texnologiya",
+    outcomeId: "on-tex-6",
+    area: "metodika",
+    bloom: "baholash",
+    duration: "1 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_XAVFSIZLIK,
+  },
+
+  {
+    id: "task-masofaviy-dars",
+    slug: "masofaviy-dars-rejasi",
+    title: "Masofaviy musiqa darsi rejasi",
+    description:
+      "30 daqiqalik masofaviy dars rejasini tuzing: uchta bo'lak, har biri 7–10 daqiqa. Har bo'lak uchun yozing — maqsad, bolalar aynan nima qiladi va kechikish bunga xalaqit beradimi. Kamida bitta bo'lak yozib yuborish yoki navbatma-navbat ijro formatida bo'lsin. Rejaga texnik tayyorgarlik ro'yxatini ham qo'shing va tovush uzilgan holatda ko'rsatma qanday yetkazilishini ko'rsating.",
+    type: "loyiha",
+    moduleId: "mod-texnologiya",
+    outcomeId: "on-tex-9",
+    area: "metodika",
+    bloom: "qollash",
+    duration: "1 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_DARS,
+  },
+
+  {
+    id: "task-amaliyot-tayyorgarlik-test",
+    slug: "amaliyotga-tayyorgarlik-testi",
+    title: "Amaliyotga tayyorgarlik testi",
+    description:
+      "Amaliyot hujjatlari, kundalik yuritish qoidalari va birinchi hafta tartibi bo'yicha test.",
+    type: "test",
+    moduleId: "mod-amaliyot",
+    outcomeId: "on-ama-6",
+    area: "metodika",
+    bloom: "tushunish",
+    duration: "15 daqiqa",
+    timerMin: 15,
+    submission: "test",
+    questions: [
+      {
+        id: "at-1",
+        area: "metodika",
+        bloom: "bilish",
+        kind: "single",
+        prompt: "Amaliyot kundaligi qachon to'ldiriladi?",
+        options: [
+          { id: "a", text: "Har kuni" },
+          { id: "b", text: "Haftada bir marta" },
+          { id: "c", text: "Amaliyot oxirida" },
+          { id: "d", text: "Mentor so'raganda" },
+        ],
+        correctId: "a",
+      },
+      {
+        id: "at-2",
+        area: "metodika",
+        bloom: "tushunish",
+        kind: "single",
+        prompt:
+          "Birinchi kuni maktabdan nimani aniqlab olish eng muhim?",
+        options: [
+          { id: "a", text: "O'quvchilarning baholarini" },
+          { id: "b", text: "Mentor, xona, jadval va e'tibor talab qiladigan o'quvchilar" },
+          { id: "c", text: "Maktab byudjetini" },
+          { id: "d", text: "Boshqa talabalarning jadvalini" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "at-3",
+        area: "metodika",
+        bloom: "qollash",
+        kind: "single",
+        prompt: "Kundalikda o'quvchilarning to'liq ismi nega yozilmaydi?",
+        options: [
+          { id: "a", text: "Joy tejash uchun" },
+          { id: "b", text: "Hujjat keyin boshqalar qo'liga tushishi mumkin" },
+          { id: "c", text: "Mentor taqiqlaydi" },
+          { id: "d", text: "Ismlar baribir o'zgaradi" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "at-4",
+        area: "metodika",
+        bloom: "tushunish",
+        kind: "single",
+        prompt: "Amaliyotning birinchi kunida eng to'g'ri ish qaysi?",
+        options: [
+          { id: "a", text: "Darhol dars o'tish" },
+          { id: "b", text: "Kuzatish va maktab tartibi bilan tanishish" },
+          { id: "c", text: "Hujjatlarni to'ldirish" },
+          { id: "d", text: "Repertuar tanlash" },
+        ],
+        correctId: "b",
+      },
+      {
+        id: "at-5",
+        area: "metodika",
+        bloom: "qollash",
+        kind: "multiple",
+        prompt: "Amaliyot hujjatlari ro'yxatiga nimalar kiradi?",
+        options: [
+          { id: "a", text: "Amaliyot kundaligi" },
+          { id: "b", text: "Dars kuzatuv varaqalari" },
+          { id: "c", text: "O'z darslaringiz ishlanmasi" },
+          { id: "d", text: "O'quvchilarning shaxsiy ishlari" },
+        ],
+        correctIds: ["a", "b", "c"],
+      },
+      {
+        id: "at-6",
+        area: "metodika",
+        bloom: "tahlil",
+        kind: "single",
+        prompt:
+          "Hujjatlarni amaliyot oxirida bir kunda to'ldirishning asosiy zarari nima?",
+        options: [
+          { id: "a", text: "Ko'p vaqt oladi" },
+          { id: "b", text: "Aniq lahzalar esdan chiqadi va yozuv umumiy gapga aylanadi" },
+          { id: "c", text: "Mentor imzo qo'ymaydi" },
+          { id: "d", text: "Zarari yo'q" },
+        ],
+        correctId: "b",
+      },
+    ],
+  },
+
+  {
+    id: "task-inklyuziv-reja",
+    slug: "inklyuziv-dars-rejasi",
+    title: "Inklyuziv ishtirok rejasi",
+    description:
+      "Aniq bir ehtiyojni tanlang (eshitish, ko'rish, diqqat va xulq, yoki til to'sig'i) va bitta musiqa darsi uchun shu o'quvchining ishtirok rejasini tuzing. Avval ma'lumotni qayerdan olganingizni yozing. So'ng ko'rsating: bola darsning har bosqichida aynan nima qiladi, qanday moslashtirish qo'llaniladi va bu uni sinfdan ajratib qo'ymasligini qanday ta'minlaysiz. Rejada «tinglab o'tiradi» degan bosqich bo'lmasin.",
+    type: "loyiha",
+    moduleId: "mod-amaliyot",
+    outcomeId: "on-ama-7",
+    area: "motivatsiya",
+    bloom: "qollash",
+    duration: "1 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_INKLYUZIYA,
+  },
+
+  {
+    id: "task-tadbir-loyihasi",
+    slug: "tadbir-loyihasi",
+    title: "Maktab tadbiri loyihasi",
+    description:
+      "Bitta maktab tadbirini loyihalang. Sanadan orqaga qarab 8 haftalik jadval tuzing: repertuarni yakunlash muddati, repetitsiyalar, zalda sinash. Dasturni yozing — nechta raqam, kim ishtirok etadi, umumiy davomiylik. Sahna tartibini alohida ko'rsating: kim qayerdan chiqadi va qaytadi, navbat ro'yxati, rekvizit joylashuvi. Oxirida zaxira rejani yozing: fonogramma, yakkaxon, mikrofon va elektr bo'yicha muqobil yechimlar.",
+    type: "loyiha",
+    moduleId: "mod-amaliyot",
+    outcomeId: "on-ama-8",
+    area: "sahna",
+    bloom: "sintez",
+    duration: "2 hafta",
+    submission: "fayl",
+    accept: ".pdf,.doc,.docx,.odt",
+    rubric: RUBRIKA_TADBIR,
+  },
+
+  {
+    id: "task-maktab-muhiti",
+    slug: "kasbiy-muloqot-tahlili",
+    title: "Kasbiy muloqot tahlili",
+    description:
+      "Amaliyot davomida kuzatgan yoki ishtirok etgan bitta kasbiy muloqot holatini oling — ota-ona, hamkasb yoki ma'muriyat bilan. Holatni tasvirlang: kim, qachon, nima bo'ldi. So'ng tahlil qiling: faktni fikrdan ajrating, muloqot qaysi nuqtada qiyinlashdi va nega. Oxirida shu holat uchun muqobil suhbat matnini yozing — kuchli tomondan boshlab, xatti-harakat tilida va bitta aniq keyingi qadam bilan tugatib.",
+    type: "loyiha",
+    moduleId: "mod-amaliyot",
+    outcomeId: "on-ama-9",
+    area: "motivatsiya",
+    bloom: "tahlil",
+    duration: "1 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_REFLEKSIYA,
+  },
+
+  {
+    id: "task-etika-holatlari",
+    slug: "etika-holatlari",
+    title: "Kasbiy etika: holatlar tahlili",
+    description:
+      "To'rtta holatni baholang va har biri uchun qaroringizni asoslang: (1) o'quvchi sizga ijtimoiy tarmoqda shaxsiy xabar yozdi; (2) yakka mashg'ulot maktab bo'shagandan keyinga belgilandi; (3) bola sizga uydagi jiddiy muammo haqida aytdi va «hech kimga aytmang» dedi; (4) ota-ona qimmat sovg'a berdi. Har bir javobda kasbiy chegarani nomlang, amaliy harakatni ko'rsating va qarorni tamoyil bilan asoslang. Oxirida o'zingiz uchun uchta tekshiriladigan chegara yozing.",
+    type: "loyiha",
+    moduleId: "mod-amaliyot",
+    outcomeId: "on-ama-10",
+    area: "motivatsiya",
+    bloom: "baholash",
+    duration: "1 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_ETIKA,
+  },
+
+  {
+    id: "task-amaliyot-portfoliosi",
+    slug: "amaliyot-portfoliosi",
+    title: "Amaliyot portfoliosi va yakuniy hisobot",
+    description:
+      "Amaliyot portfoliosini tuzing. Kamida sakkizta dalil tanlang va har biriga bir jumlalik izoh yozing: bu nimani ko'rsatadi va nega shu tanlandi. Kamida bittasi muvaffaqiyatsiz tajriba va undan chiqarilgan xulosa bo'lsin. Portfolioga yakuniy hisobotni qo'shing: kontekst, o'zingizga qo'ygan maqsadlar, natija, eng qiyin holat va keyingi ikki-uchta kasbiy vazifa. Har bir xulosa portfoliodagi aniq materialga havola qilsin. O'quvchi materiallari ruxsat bilan va ismsiz berilsin.",
+    type: "loyiha",
+    moduleId: "mod-amaliyot",
+    outcomeId: "on-ama-11",
+    area: "metodika",
+    bloom: "sintez",
+    duration: "Amaliyot yakunida",
+    submission: "fayl",
+    accept: ".pdf,.doc,.docx,.odt,.zip",
+    rubric: RUBRIKA_PORTFOLIO,
   },
 
 ];

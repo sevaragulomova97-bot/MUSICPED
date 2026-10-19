@@ -1036,3 +1036,159 @@ talaba to'liq dars ishlanmasini yozishi kerak edi, lekin qo'shiq qanday
 o'rgatilishini, tinglash darsi qanday qurilishini va sinf qanday
 boshqarilishini hali bilmasdi. Endi ishlanma — o'rganilganni birlashtiradigan
 dars, mikro-o'qitish esa uni amalda sinash.
+
+---
+
+## Oxirgi ikki modulning kengaytirilishi
+
+### Q82. Musiqa texnologiyalari: huquq chizig'i qo'shildi
+
+Modul raqamli vositalar, nota dasturi, audio tahriri va aranjirovkani
+qamrab olardi — ya'ni faqat **yaratishni**. Yaratilgan narsa bilan nima
+qilish mumkinligi haqida bitta ham satr yo'q edi.
+
+Bu loyiha uchun ayniqsa g'alati bo'lardi: platformaning o'z qoidalarida
+«mualliflik huquqi bilan himoyalangan material ishlatilmaydi, manbalar
+`CREDITS.md` da qayd etiladi» deb yozilgan, lekin talabaga shu qoidaning
+asosi o'rgatilmasdi.
+
+**Ikki dars qo'shildi va ular ataylab ajratildi:**
+
+- **Mualliflik huquqi va ochiq litsenziyalar** (`on-tex-5`) — nimani
+  olish mumkin. Bitta asarda uch huquq birga yashashi (asar, yozuv,
+  nashr), CC belgilari va sinf ichi bilan ochiq internet orasidagi
+  chegara.
+- **Bolalar yozuvlari va raqamli xavfsizlik** (`on-tex-6`, Blum darajasi
+  **baholash**) — nimani e'lon qilish mumkin. Ruxsat, ma'lumotning
+  kamligi, saqlash muddati.
+
+Ajratishning sababi: birinchisi boshqa odamlarning materiali haqida,
+ikkinchisi o'z o'quvchilaring haqida. Ular bir xil ko'rinadi, lekin
+qarorlar butunlay boshqa mantiqqa tayanadi.
+
+**Rubrikada eng katta ball rad javobiga.** `RUBRIKA_XAVFSIZLIK` da eng
+og'ir mezon — bitta oilaning rad javobi butun materialga taalluqli
+ekanini tushunish. Amalda aynan shu yerda eng ko'p chekiniladi.
+
+### Q83. Yozuvdan sahnagacha: yetishmayotgan amaliy bo'g'inlar
+
+Modulda audio **tahriri** bor edi, audio **yozish** yo'q edi. Ya'ni
+talabaga tovushni qanday tuzatish o'rgatilardi, lekin uni qanday olish
+o'rgatilmasdi — holbuki yomon yozilgan tovushni tahrirlab tuzatib
+bo'lmaydi.
+
+Shuningdek fonogramma yo'q edi, vaholanki maktab tadbirlarining deyarli
+hammasi unga tayanadi.
+
+- **Tovush yozish asoslari** (`on-tex-7`) — mikrofon turi, joylashuv,
+  xona va daraja. Dars qimmat jihozga emas, uchta bepul omilga urg'u
+  beradi: joylashuv, xona, daraja.
+- **Fonogramma tayyorlash** (`on-tex-8`, **sintez**) — tonallik, temp,
+  kirish, muvozanat va **zalda sinash**. `RUBRIKA_FONOGRAMMA` ning
+  oxirgi mezoni aynan shu: naushnikda yaxshi eshitilgan fayl zalda
+  boshqacha chiqadi.
+- **Onlayn va masofaviy musiqa darsi** (`on-tex-9`) — kechikish nega
+  birga kuylashni imkonsiz qiladi (150–300 ms, ansamblga 25 ms kerak) va
+  buning o'rniga nima ishlaydi.
+
+Kurs tartibi ham o'zgardi: huquq darsi ikkinchi o'ringa qo'yildi.
+Nimadir yaratishdan oldin nimani olish mumkinligini bilish kerak.
+
+### Q84. Pedagogik amaliyot: 10 kredit, 5 dars edi
+
+Eng katta modul (10 ECTS) eng kam kontentga ega edi. Unda amaliyotning
+**o'qituvchilik o'qi** bor edi — kuzatuv, mikro-dars, mustaqil dars,
+mentor, refleksiya — lekin maktabdagi **haqiqiy ish** yo'q edi.
+
+Oltita dars qo'shildi va ular o'qning atrofiga joylandi:
+
+- **Amaliyotga tayyorgarlik** (`on-ama-6`) — birinchi kun behuda
+  ketmasligi uchun. Hujjatlar, kundalik, maktab bilan tanishuv.
+- **Maktab muhiti** (`on-ama-9`) — ota-ona, hamkasb, ma'muriyat.
+  Musiqa o'qituvchisi boshqalarning dars vaqtini so'raydi va tadbir
+  tashkil qiladi; bu alohida ko'nikma.
+- **Inklyuziv ta'lim** (`on-ama-7`) — umuman yo'q edi. Musiqa darsi
+  inklyuziya uchun eng qulay fan, lekin yagona ishtirok shakli «hamma
+  birga kuylaydi» bo'lsa — eng ko'p chetda qoldiradigani.
+- **Sinfdan tashqari ish** (`on-ama-8`, **sintez**) — to'garak, bayram,
+  konsert. Maktabda musiqa o'qituvchisini ko'pincha darsidan emas,
+  bayramidan taniydilar, lekin bu ish eng kam o'rgatiladi.
+- **Pedagogik etika va o'z-o'zini asrash** (`on-ama-10`, **baholash**) —
+  kasbiy chegaralar va kasbiy charchash.
+- **Amaliyot portfoliosi va yakuniy hisobot** (`on-ama-11`, **sintez**) —
+  kursning yakuni.
+
+### Q85. Etika darsi: nega u «qoidalar ro'yxati» emas
+
+Musiqa o'qituvchisi bola bilan boshqa fan o'qituvchisidan yaqinroq
+ishlaydi: yakka mashg'ulot, repetitsiya, safar. Bu yaqinlik kasbning
+kuchi ham, xavfi ham.
+
+Dars qoidalarni sanab o'tish bilan cheklanmaydi, chunki yodlangan ro'yxat
+yangi holatda ishlamaydi. Uning o'rniga bitta tekshiriladigan mezon
+beriladi: **buni hamkasb, ota-ona va direktor ko'rsa, qanday
+tushuntirgan bo'lardingiz?** Tushuntirish noqulay bo'lsa — chegara
+allaqachon buzilgan.
+
+`RUBRIKA_ETIKA` ham shu mantiqda: eng katta ball to'g'ri javobga emas,
+**asoslashga** beriladi. Topshiriqda to'rtta holat berilgan va ularning
+hech birida bitta «kitobdagi» javob yo'q.
+
+**Charchash mavzusi ataylab shu darsga qo'shildi.** U alohida mavzu
+sifatida ko'pincha «tavsiyalar» bo'lib qoladi; etika bilan birga esa
+boshqacha ko'rinadi — «yo'q» deya olmaslik ham kasbiy chegaraning
+buzilishi.
+
+### Q86. Portfolio darsi platformaning o'z bo'limiga ulandi
+
+Platformada `Portfolio` bo'limi B4 bosqichidanoq bor edi: u diagnostika
+natijasini, bajarilgan topshiriqlarni va ijro yozuvlarini bir joyda
+saqlaydi hamda PDF sertifikat beradi. Lekin **nega** portfolio kerakligi
+va unga nimani tanlash kerakligi hech qayerda yozilmagandi.
+
+Yangi dars shu bo'shliqni yopadi va bo'limga bevosita ishora qiladi:
+amaliy mashqlardan biri talabaga o'z portfoliosini ochib ko'rishni va
+undan qaysi material hisobotga to'g'ridan-to'g'ri o'tishini aniqlashni
+so'raydi.
+
+**Asosiy g'oya — tanlov.** `RUBRIKA_PORTFOLIO` da hajm ball bermaydi:
+o'nta izohlangan dalil ellikta tasodifiy fayldan kuchli. Va kamida bitta
+dalil muvaffaqiyatsiz tajriba bo'lishi talab qilinadi — undan chiqarilgan
+xulosa bilan birga.
+
+### Q87. Dastur to'ldi: 51 natija, 52 dars, 52 topshiriq
+
+Beshta modulning hammasi kengaytirildi. Boshlang'ich holat — 24 o'quv
+natijasidan atigi 5 tasi to'liq qoplangan edi (Q42 ga qarang); hozirgi
+holat — 51 natijaning hammasi dars va topshiriq bilan ta'minlangan.
+
+| Modul | Kredit | Dars | Topshiriq | Natija |
+|---|---|---|---|---|
+| Musiqa nazariyasi | 5 | 10 | 9 | 9 |
+| Ijro amaliyoti | 7 | 11 | 11 | 11 |
+| Musiqa ta'limi metodikasi | 6 | 11 | 12 | 11 |
+| Musiqa texnologiyalari | 4 | 9 | 9 | 9 |
+| Pedagogik amaliyot | 10 | 11 | 11 | 11 |
+
+Kengaytirish davomida kontentda **to'rtta haqiqiy xato** topildi va
+tuzatildi — ularning hech birini audit o'zi topa olmas edi, chunki
+hammasi «bog'lanish bor» holatida yashiringan edi:
+
+1. Ikki dars noto'g'ri o'quv natijasiga bog'langan (Q70)
+2. Nazariya modulining `areas` ro'yxatida `ritm` yo'q — ritm testi
+   portfolioda modulga tushmas edi (Q75)
+3. Topshiriq o'z natijasini umuman tekshirmasdi va natijaning Blum
+   darajasi noto'g'ri yozilgan edi (Q78)
+4. Nota tugmalari o'zbekcha interfeysda lotin balandlik yozuvini
+   ko'rsatardi (Q80)
+
+Ikkinchisi va uchinchisi uchun avtomatik tekshiruv yozildi
+(`areaMismatches`, `bloomMismatches`), to'rtinchisi komponent darajasida
+yopildi (`vexKeyToUzbek`) va unit test bilan qo'riqlandi.
+
+**Birinchisi esa ochiq qolmoqda** — darsning o'quv natijasiga mazmunan
+mos kelishini hech qanday tekshiruv o'lchay olmaydi. `bloomMismatches`
+uni topa olmas edi: u yerda daraja ham mos edi, faqat mavzu boshqa edi.
+Bu — kontent auditining chegarasi va uni hujjatda yashirmaslik kerak:
+yangi dars yozilganda modul natijalari ro'yxati bilan qo'lda
+solishtirish tartibi shu sababdan kiritilgan.
