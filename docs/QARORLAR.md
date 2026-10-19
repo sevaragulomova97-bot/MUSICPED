@@ -1306,3 +1306,66 @@ teng bo'ldi — ilgari ularning o'lchov aniqligi har xil edi.
 **Qolgan cheklov ochiq aytiladi:** 4 savol bilan yo'nalish bali qo'pol
 o'lchov bo'lib qolaveradi. Uni yanada aniqlashtirish uchun bank yana
 kengaytirilishi yoki savollarga og'irlik (`points`) berilishi kerak.
+
+---
+
+## Oraliq nazorat
+
+### Q92. Shakl tanlash qoidasi urinish raqamidan o'lchov turiga ko'chirildi
+
+Oraliq nazorat qo'shilganda Q89 dagi qoida («birinchi o'lchov A, ikkinchisi
+B, uchinchisi yana A») ishlamay qoldi. Sabab `lib/research.ts` ichida:
+
+```
+const final =
+  [...sorted].reverse().find((d) => d.kind === "yakuniy") ??
+  [...sorted].reverse().find((d) => d.kind === "oraliq");
+```
+
+Ya'ni yakuniy o'lchov bo'lmasa, tahlil **oraliqni yakuniy o'rnida**
+ishlatadi. Urinish raqamiga asoslangan qoidada esa boshlang'ich(A) →
+oraliq(B) → yakuniy(A) ketma-ketligi chiqardi va tahlil qilinadigan
+juftlik (boshlang'ich va yakuniy) aynan bir xil shaklga tushib qolardi —
+ya'ni parallel shakllarning butun maqsadi yo'qqa chiqardi.
+
+**Qaror.** `variantForAttempt` o'rniga `variantForKind`:
+
+| O'lchov | Shakl |
+|---|---|
+| boshlangich | A |
+| oraliq | B |
+| yakuniy | B |
+
+Endi yakuniy bo'lishi mumkin bo'lgan har qanday o'lchov boshlang'ichdan
+boshqa shaklda bo'ladi.
+
+**Qoladigan cheklov ochiq aytiladi.** Ikki shakl bilan uchta mustaqil
+o'lchov qilib bo'lmaydi: talaba oraliq va yakuniyning ikkisini ham
+topshirsa, ular bir shaklda bo'ladi. Tanlov ekranida ham, hujjatda ham shu
+yozilgan. Muqobil — uchinchi shakl (C) yaratish, lekin bu bankni yana 32
+savolga kengaytirishni talab qiladi va hozircha asoslanmagan.
+
+**Test bu qoidani qo'riqlaydi:** `variantForKind("boshlangich")`
+yakuniy va oraliq shakllaridan farq qilishi aniq tekshiriladi.
+
+### Q93. Turni foydalanuvchi tanlaydi, taxmin qilinmaydi
+
+Birinchi o'lchov har doim boshlang'ich — bu yerda tanlovga o'rin yo'q.
+Keyingi o'lchovlarda esa sahifa taxmin qilmaydi, balki so'raydi: oraliq
+nazorat yoki yakuniy diagnostika.
+
+**Nega taxmin qilinmaydi.** Oraliq va yakuniy o'rtasidagi farq kalendar
+bilan emas, tajriba rejasi bilan belgilanadi. Platforma talabaning
+tajribada qaysi bosqichda ekanini bilmaydi, shuning uchun uni taxmin
+qilish noto'g'ri ma'lumot yozishga olib kelardi — va bu xato keyin
+tadqiqot tahliliga o'tib ketardi.
+
+Tanlov ekranida ikkala turning ma'nosi qisqa izohlangan va shakl cheklovi
+ham shu yerda aytiladi: talaba nimani tanlayotganini bilib tanlaydi.
+
+**Yo'l-yo'lakay tuzatilgan kamchilik:** ikkala kartada ham tugma matni
+«Boshlash» edi. Ko'z bilan farq kartaning sarlavhasidan ko'rinadi, ekran
+o'quvchi uchun esa ikkita bir xil tugma qoladi. Tugmalarga to'liq nom
+berildi (`aria-label`): «Oraliq nazoratni boshlash», «Yakuniy
+diagnostikani boshlash». Buni e2e testda selektor ikkala tugmani ham
+ajrata olmagani ko'rsatdi — test yiqilishi haqiqiy kamchilikni ochdi.

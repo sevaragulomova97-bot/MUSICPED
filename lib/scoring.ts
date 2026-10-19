@@ -13,6 +13,7 @@ import {
 import {
   type AreaScores,
   type DiagnosticArea,
+  type DiagnosticKind,
   DIAGNOSTIKA_YONALISHLARI,
   emptyAreaScores,
 } from "@/lib/domain/types";
@@ -108,15 +109,29 @@ export function questionsOfVariant(
 }
 
 /**
- * Nechanchi o'lchov ekaniga qarab shaklni tanlaydi.
+ * O'lchov turiga qarab shaklni tanlaydi.
  *
- * Birinchi o'lchov — A, ikkinchisi — B, keyin yana A va hokazo. Shu bilan
- * boshlang'ich va yakuniy o'lchov har doim turli shaklda bo'ladi. Uchinchi
- * o'lchov birinchisi bilan bir xil shaklni oladi — buni hisobotda
- * ko'rsatish kerak.
+ * Qoida urinish raqamiga emas, **turga** bog'langan va buning aniq sababi
+ * bor. `lib/research.ts` tahlilga boshlang'ichni va oxirgi yakuniyni
+ * oladi; yakuniy bo'lmasa esa **oraliqni yakuniy o'rnida** ishlatadi.
+ * Demak yakuniy bo'lishi mumkin bo'lgan har qanday o'lchov boshlang'ichdan
+ * boshqa shaklda bo'lishi shart — aks holda taqqoslanadigan juftlik bir
+ * xil savollarga tushib qoladi.
+ *
+ *   boshlangich -> A
+ *   oraliq      -> B
+ *   yakuniy     -> B
+ *
+ * Shu bilan tahlil qilinadigan juftlik (boshlang'ich ↔ yakuniy) har doim
+ * A ↔ B bo'ladi.
+ *
+ * **Qoladigan cheklov:** talaba oraliq va yakuniy o'lchovning ikkisini
+ * ham topshirsa, ular bir shaklda bo'ladi — ikki shakl bilan uchta
+ * o'lchovni butunlay mustaqil qilib bo'lmaydi. Buni hisobotda ko'rsatish
+ * kerak.
  */
-export function variantForAttempt(attempt: number): QuestionVariant {
-  return attempt % 2 === 0 ? "A" : "B";
+export function variantForKind(kind: DiagnosticKind): QuestionVariant {
+  return kind === "boshlangich" ? "A" : "B";
 }
 
 /** Yo'nalish bo'yicha savollar — test sahifasini bosqichlarga bo'lishda ishlatiladi. */

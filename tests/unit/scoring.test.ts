@@ -7,7 +7,7 @@ import {
   LIKERT_MIN,
   questionsOfVariant,
   scoreDiagnostic,
-  variantForAttempt,
+  variantForKind,
   scoreQuestion,
 } from "@/lib/scoring";
 import { DIAGNOSTIKA_SAVOLLARI, type Question } from "@/content/diagnostic";
@@ -191,10 +191,21 @@ describe("parallel shakllar", () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
-  it("navbatdagi o'lchov shakli almashib turadi", () => {
-    expect(variantForAttempt(0)).toBe("A");
-    expect(variantForAttempt(1)).toBe("B");
-    expect(variantForAttempt(2)).toBe("A");
+  it("shakl o'lchov turiga bog'lanadi", () => {
+    expect(variantForKind("boshlangich")).toBe("A");
+    expect(variantForKind("yakuniy")).toBe("B");
+    // Oraliq ham B: `toSubject` yakuniy bo'lmasa oraliqni yakuniy o'rnida
+    // ishlatadi, shuning uchun u ham boshlang'ichdan farq qilishi shart.
+    expect(variantForKind("oraliq")).toBe("B");
+  });
+
+  it("tahlil qilinadigan juftlik har doim turli shaklda", () => {
+    // `lib/research.ts` boshlang'ichni va yakuniyni (yoki uning o'rniga
+    // oraliqni) oladi — ikkisi ham bir shaklga tushmasligi kerak.
+    const boshlangich = variantForKind("boshlangich");
+    for (const yakun of ["yakuniy", "oraliq"] as const) {
+      expect(variantForKind(yakun), yakun).not.toBe(boshlangich);
+    }
   });
 
   it("bitta shakl ham barcha yo'nalishni qamrab oladi", () => {

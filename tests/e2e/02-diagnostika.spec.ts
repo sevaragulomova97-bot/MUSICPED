@@ -92,11 +92,20 @@ test("ikkinchi o'lchov yakuniy diagnostika bo'lib saqlanadi", async ({ page }) =
   await diagnostikaniToldir(page);
   await expect(page).toHaveURL(/\/yolnalish\/?$/, { timeout: 15_000 });
 
-  // Ikkinchi marta kirilganda sarlavha ham, tur ham o'zgaradi.
+  // Ikkinchi marta kirilganda avval tur tanlanadi.
   await page.goto("/diagnostika/");
   await expect(
-    page.getByRole("heading", { name: /yakuniy diagnostika/i }),
+    page.getByRole("heading", { name: /qaysi o'lchovni topshirasiz/i }),
   ).toBeVisible({ timeout: 10_000 });
+  await expect(page.getByRole("heading", { name: /oraliq nazorat/i })).toBeVisible();
+
+  await page
+    .getByRole("button", { name: /yakuniy diagnostikani boshlash/i })
+    .click();
+
+  await expect(
+    page.getByRole("heading", { level: 1, name: /yakuniy diagnostika/i }),
+  ).toBeVisible();
 
   // Parallel shakl: ikkinchi o'lchovdagi savollar birinchisidan boshqa.
   const ikkinchiSavollar = await page.locator("ol li p").allInnerTexts();
@@ -127,4 +136,52 @@ test("ikkinchi o'lchov yakuniy diagnostika bo'lib saqlanadi", async ({ page }) =
   expect(turlar).toHaveLength(2);
   expect(turlar).toContain("boshlangich");
   expect(turlar).toContain("yakuniy");
+});
+
+/**
+ * Oraliq nazorat alohida tur sifatida saqlanadi.
+ *
+ * `lib/research.ts` yakuniy bo'lmasa oraliqni yakuniy o'rnida ishlatadi,
+ * shuning uchun u ham boshlang'ichdan boshqa shaklda bo'lishi kerak.
+ */
+test("oraliq nazorat tanlanadi va alohida tur bilan saqlanadi", async ({ page }) => {
+  await sessiyaBer(page, TALABA);
+  await bazaniTozala(page);
+
+  await page.goto("/diagnostika/");
+  const birinchiSavollar = await page.locator("ol li p").allInnerTexts();
+  await diagnostikaniToldir(page);
+  await expect(page).toHaveURL(/\/yolnalish\/?$/, { timeout: 15_000 });
+
+  await page.goto("/diagnostika/");
+  await page.getByRole("button", { name: /oraliq nazoratni boshlash/i }).click();
+
+  await expect(
+    page.getByRole("heading", { level: 1, name: /oraliq nazorat/i }),
+  ).toBeVisible();
+
+  // Oraliq ham boshlang'ichdan boshqa savollarni beradi.
+  const oraliqSavollar = await page.locator("ol li p").allInnerTexts();
+  const kesishma = oraliqSavollar.filter((x) => birinchiSavollar.includes(x));
+  expect(kesishma, JSON.stringify(kesishma)).toEqual([]);
+
+  await diagnostikaniToldir(page);
+  await expect(page).toHaveURL(/\/yolnalish\/?$/, { timeout: 15_000 });
+
+  const turlar = await page.evaluate(async () => {
+    const db = await new Promise<IDBDatabase>((resolve, reject) => {
+      const req = indexedDB.open("musicped");
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+    return await new Promise<string[]>((resolve) => {
+      const tx = db.transaction("diagnostics", "readonly");
+      const req = tx.objectStore("diagnostics").getAll();
+      req.onsuccess = () =>
+        resolve((req.result as Array<{ kind: string }>).map((r) => r.kind));
+      req.onerror = () => resolve([]);
+    });
+  });
+
+  expect(turlar.sort()).toEqual(["boshlangich", "oraliq"]);
 });

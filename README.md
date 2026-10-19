@@ -183,10 +183,29 @@ yakuniy o'lchovni taqqoslaydi (juftlashgan t-mezon). Ikkala o'lchovda
 aynan bir xil savollar berilsa, ikkinchi natija qisman savollarni eslab
 qolish hisobiga ko'tariladi va o'sishni metodikaga bog'lab bo'lmaydi.
 
-Birinchi o'lchov A shaklida, ikkinchisi B shaklida o'tkaziladi; uchinchisi
-yana A ga qaytadi. Shakllar **mazmun va Blum darajasi** bo'yicha
-moslashtirilgan, empirik qiyinlik bo'yicha emas — buning uchun pilot
-ma'lumot kerak bo'lardi va buni hisobotda ko'rsatish lozim.
+Shakl o'lchov **turiga** bog'langan:
+
+| O'lchov | Shakl |
+|---|---|
+| Boshlang'ich | A |
+| Oraliq nazorat | B |
+| Yakuniy | B |
+
+Birinchi o'lchov har doim boshlang'ich; keyingilarida talaba oraliq
+nazorat bilan yakuniy diagnostika orasidan tanlaydi.
+
+Qoida urinish raqamiga emas, turga bog'langani bejiz emas:
+`lib/research.ts` tahlilga boshlang'ichni va oxirgi yakuniyni oladi,
+yakuniy bo'lmasa esa **oraliqni yakuniy o'rnida** ishlatadi. Shuning uchun
+yakuniy bo'lishi mumkin bo'lgan har qanday o'lchov boshlang'ichdan boshqa
+shaklda bo'lishi shart. Shu bilan tahlil qilinadigan juftlik har doim
+A ↔ B bo'ladi.
+
+Shakllar **mazmun va Blum darajasi** bo'yicha moslashtirilgan, empirik
+qiyinlik bo'yicha emas — buning uchun pilot ma'lumot kerak bo'lardi va
+buni hisobotda ko'rsatish lozim. Yana bir cheklov: talaba oraliq va
+yakuniy o'lchovning ikkisini ham topshirsa, ular bir shaklda bo'ladi —
+ikki shakl bilan uchta o'lchovni butunlay mustaqil qilib bo'lmaydi.
 
 **Motivatsiya shkalasida teskari bandlar bor.** Likert bandlarining bir
 qismida yuqori ball past motivatsiyani bildiradi («Mashq qilishni

@@ -10,27 +10,55 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useSession } from "@/components/session-provider";
 import { allDiagnostics, saveDiagnostic, upsertProfile } from "@/lib/db/repo";
-import { BLOOM_NOMI, YONALISH_NOMI, YONALISH_TAVSIFI } from "@/lib/domain/types";
+import {
+  BLOOM_NOMI,
+  type DiagnosticKind,
+  YONALISH_NOMI,
+  YONALISH_TAVSIFI,
+} from "@/lib/domain/types";
 import {
   type AnswerMap,
   answeredCount,
   groupQuestionsByArea,
   questionsOfVariant,
   scoreDiagnostic,
-  variantForAttempt,
+  variantForKind,
 } from "@/lib/scoring";
 
 /**
- * Nechanchi o'lchov ekani diagnostika turini ham, savollar shaklini ham
- * belgilaydi.
+ * O'lchov turi va u haqidagi matnlar.
  *
  * Ilgari bu sahifa har doim `"boshlangich"` yozardi — ya'ni talaba yakuniy
  * diagnostikani umuman topshira olmasdi va dissertatsiyaning asosiy
  * tajribasi (boshlang'ich → yakuniy) platformada o'tkazilmas edi.
+ *
+ * Birinchi o'lchov har doim boshlang'ich. Keyingilarida talaba o'zi
+ * tanlaydi: oraliq nazorat (o'quv jarayonining o'rtasida, reja uchun) yoki
+ * yakuniy diagnostika (tajribaning oxirgi o'lchovi).
  */
-function olchovTuri(oldingilarSoni: number): "boshlangich" | "yakuniy" {
-  return oldingilarSoni === 0 ? "boshlangich" : "yakuniy";
-}
+const TUR_MATNI: Record<
+  DiagnosticKind,
+  { sarlavha: string; qisqa: string; tavsif: string }
+> = {
+  boshlangich: {
+    sarlavha: "Boshlang'ich diagnostika",
+    qisqa: "Birinchi o'lchov",
+    tavsif:
+      "Natijalar asosida sizning individual o'quv rejangiz shakllantiriladi.",
+  },
+  oraliq: {
+    sarlavha: "Oraliq nazorat",
+    qisqa: "Oraliq nazorat",
+    tavsif:
+      "O'quv jarayonining o'rtasidagi o'lchov: rejani yangilash va qaysi yo'nalish orqada qolayotganini ko'rish uchun.",
+  },
+  yakuniy: {
+    sarlavha: "Yakuniy diagnostika",
+    qisqa: "Yakuniy diagnostika",
+    tavsif:
+      "Tajribaning oxirgi o'lchovi. Natija boshlang'ich diagnostika bilan solishtiriladi.",
+  },
+};
 
 export function DiagnostikaTest() {
   const { profile } = useSession();
@@ -60,11 +88,14 @@ export function DiagnostikaTest() {
     };
   }, [userId]);
 
-  const urinish = oldingilar ?? 0;
-  const variant = variantForAttempt(urinish);
+  // Keyingi o'lchovlarda tur foydalanuvchi tanlovi bilan belgilanadi.
+  const [tanlanganTur, setTanlanganTur] = React.useState<DiagnosticKind | null>(null);
+  const birinchi = oldingilar === 0;
+  const tur: DiagnosticKind | null = birinchi ? "boshlangich" : tanlanganTur;
+
+  const variant = variantForKind(tur ?? "boshlangich");
   const SAVOLLAR = React.useMemo(() => questionsOfVariant(variant), [variant]);
   const BOSQICHLAR = React.useMemo(() => groupQuestionsByArea(SAVOLLAR), [SAVOLLAR]);
-  const tur = olchovTuri(urinish);
 
   const bosqich = BOSQICHLAR[step];
   const oxirgi = step === BOSQICHLAR.length - 1;
@@ -102,7 +133,7 @@ export function DiagnostikaTest() {
         startedAt: profile.startedAt,
         direction: profile.direction,
       });
-      await saveDiagnostic(profile.id, tur, scores);
+      await saveDiagnostic(profile.id, tur ?? "boshlangich", scores);
       router.push("/yolnalish");
     } catch (cause) {
       console.error(cause);
@@ -113,16 +144,77 @@ export function DiagnostikaTest() {
     }
   }
 
+  // Baza hali o'qilmagan — tur ham, savollar ham noma'lum.
+  if (oldingilar === null) {
+    return (
+      <div className="mx-auto max-w-3xl">
+        <p className="text-sm text-ink-muted" role="status">
+          Yuklanmoqda…
+        </p>
+      </div>
+    );
+  }
+
+  // Takroriy o'lchovda turni foydalanuvchi tanlaydi.
+  if (tur === null) {
+    return (
+      <div className="mx-auto max-w-3xl">
+        <h1 className="font-display text-xl font-bold text-ink lg:text-2xl">
+          Qaysi o&apos;lchovni topshirasiz?
+        </h1>
+        <p className="mt-1.5 text-sm text-ink-muted">
+          Boshlang&apos;ich diagnostikangiz allaqachon saqlangan. Bu safargi
+          o&apos;lchov qaysi turga kirishini tanlang — tahlilda ular turlicha
+          ishlatiladi.
+        </p>
+
+        <div className="mt-5 flex flex-col gap-3">
+          {(["oraliq", "yakuniy"] as const).map((k) => (
+            <Card key={k}>
+              <CardContent className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
+                <div className="min-w-0">
+                  <h2 className="font-display text-base font-semibold text-ink">
+                    {TUR_MATNI[k].sarlavha}
+                  </h2>
+                  <p className="mt-1 text-sm leading-relaxed text-ink-muted">
+                    {TUR_MATNI[k].tavsif}
+                  </p>
+                </div>
+                <Button
+                  className="shrink-0"
+                  // Ikkala tugma ham «Boshlash» deb yozilgan: ekran o'quvchi
+                  // ularni farqlay olishi uchun to'liq nom beriladi.
+                  aria-label={`${TUR_MATNI[k].sarlavha}ni boshlash`}
+                  onClick={() => {
+                    setTanlanganTur(k);
+                    setStep(0);
+                    setAnswers({});
+                  }}
+                >
+                  Boshlash
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <p className="mt-5 text-xs leading-relaxed text-ink-muted">
+          Savollar boshlang&apos;ich diagnostikadagidan boshqa: natija
+          savollarni eslab qolish hisobiga emas, haqiqiy o&apos;zgarish
+          hisobiga solishtiriladi. Oraliq va yakuniy o&apos;lchov esa bir xil
+          shaklda bo&apos;ladi — ikkalasini ham topshirsangiz, buni hisobotda
+          ko&apos;rsating.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto max-w-3xl">
       <h1 className="font-display text-xl font-bold text-ink lg:text-2xl">
-        {tur === "boshlangich" ? "Boshlang'ich diagnostika" : "Yakuniy diagnostika"}
+        {TUR_MATNI[tur].sarlavha}
       </h1>
-      <p className="mt-1.5 text-sm text-ink-muted">
-        {tur === "boshlangich"
-          ? "Natijalar asosida sizning individual o'quv rejangiz shakllantiriladi."
-          : `Bu ${urinish + 1}-o'lchov. Savollar boshlang'ich diagnostikadagidan boshqa — natijani eslab qolish hisobiga emas, haqiqiy o'zgarish hisobiga solishtirish uchun.`}
-      </p>
+      <p className="mt-1.5 text-sm text-ink-muted">{TUR_MATNI[tur].tavsif}</p>
 
       <div className="mt-5">
         <Progress
