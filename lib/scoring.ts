@@ -6,7 +6,9 @@
 
 import {
   DIAGNOSTIKA_SAVOLLARI,
+  type DiagnosticQuestion,
   type Question,
+  type QuestionVariant,
 } from "@/content/diagnostic";
 import {
   type AreaScores,
@@ -56,7 +58,9 @@ export function scoreQuestion(question: Question, answer: Answer | undefined): n
   // likert — to'g'ri javob yo'q, shkaladagi o'rin 0–1 ga keltiriladi
   if (typeof answer !== "number") return 0;
   const chegaralangan = Math.max(LIKERT_MIN, Math.min(LIKERT_MAX, answer));
-  return (chegaralangan - LIKERT_MIN) / (LIKERT_MAX - LIKERT_MIN);
+  const nisbat = (chegaralangan - LIKERT_MIN) / (LIKERT_MAX - LIKERT_MIN);
+  // Teskari bandda yuqori ball past motivatsiyani bildiradi.
+  return question.reverse ? 1 - nisbat : nisbat;
 }
 
 /**
@@ -87,6 +91,32 @@ export function scoreDiagnostic(
     }
   }
   return result;
+}
+
+/**
+ * Berilgan shakldagi (A yoki B) savollar.
+ *
+ * Boshlang'ich va yakuniy o'lchov turli shaklda o'tkaziladi: aks holda
+ * ikkinchi natija savollarni eslab qolish hisobiga ko'tariladi va o'sishni
+ * metodikaga bog'lab bo'lmaydi.
+ */
+export function questionsOfVariant(
+  variant: QuestionVariant,
+  questions: DiagnosticQuestion[] = DIAGNOSTIKA_SAVOLLARI,
+): DiagnosticQuestion[] {
+  return questions.filter((q) => q.variant === variant);
+}
+
+/**
+ * Nechanchi o'lchov ekaniga qarab shaklni tanlaydi.
+ *
+ * Birinchi o'lchov — A, ikkinchisi — B, keyin yana A va hokazo. Shu bilan
+ * boshlang'ich va yakuniy o'lchov har doim turli shaklda bo'ladi. Uchinchi
+ * o'lchov birinchisi bilan bir xil shaklni oladi — buni hisobotda
+ * ko'rsatish kerak.
+ */
+export function variantForAttempt(attempt: number): QuestionVariant {
+  return attempt % 2 === 0 ? "A" : "B";
 }
 
 /** Yo'nalish bo'yicha savollar — test sahifasini bosqichlarga bo'lishda ishlatiladi. */

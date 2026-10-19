@@ -9,17 +9,28 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useSession } from "@/components/session-provider";
-import { DIAGNOSTIKA_SAVOLLARI } from "@/content/diagnostic";
-import { saveDiagnostic, upsertProfile } from "@/lib/db/repo";
+import { allDiagnostics, saveDiagnostic, upsertProfile } from "@/lib/db/repo";
 import { BLOOM_NOMI, YONALISH_NOMI, YONALISH_TAVSIFI } from "@/lib/domain/types";
 import {
   type AnswerMap,
   answeredCount,
   groupQuestionsByArea,
+  questionsOfVariant,
   scoreDiagnostic,
+  variantForAttempt,
 } from "@/lib/scoring";
 
-const BOSQICHLAR = groupQuestionsByArea();
+/**
+ * Nechanchi o'lchov ekani diagnostika turini ham, savollar shaklini ham
+ * belgilaydi.
+ *
+ * Ilgari bu sahifa har doim `"boshlangich"` yozardi — ya'ni talaba yakuniy
+ * diagnostikani umuman topshira olmasdi va dissertatsiyaning asosiy
+ * tajribasi (boshlang'ich → yakuniy) platformada o'tkazilmas edi.
+ */
+function olchovTuri(oldingilarSoni: number): "boshlangich" | "yakuniy" {
+  return oldingilarSoni === 0 ? "boshlangich" : "yakuniy";
+}
 
 export function DiagnostikaTest() {
   const { profile } = useSession();
@@ -28,11 +39,37 @@ export function DiagnostikaTest() {
   const [answers, setAnswers] = React.useState<AnswerMap>({});
   const [saving, setSaving] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+  // Oldingi o'lchovlar soni; `null` — hali o'qilmagan.
+  const [oldingilar, setOldingilar] = React.useState<number | null>(null);
+
+  const userId = profile?.id;
+  React.useEffect(() => {
+    if (!userId) return;
+    let bekor = false;
+    void allDiagnostics(userId)
+      .then((rows) => {
+        if (!bekor) setOldingilar(rows.length);
+      })
+      .catch(() => {
+        // Baza o'qilmasa birinchi o'lchov deb hisoblaymiz: test baribir
+        // o'tkazilishi kerak, saqlash bosqichida xato ko'rsatiladi.
+        if (!bekor) setOldingilar(0);
+      });
+    return () => {
+      bekor = true;
+    };
+  }, [userId]);
+
+  const urinish = oldingilar ?? 0;
+  const variant = variantForAttempt(urinish);
+  const SAVOLLAR = React.useMemo(() => questionsOfVariant(variant), [variant]);
+  const BOSQICHLAR = React.useMemo(() => groupQuestionsByArea(SAVOLLAR), [SAVOLLAR]);
+  const tur = olchovTuri(urinish);
 
   const bosqich = BOSQICHLAR[step];
   const oxirgi = step === BOSQICHLAR.length - 1;
-  const javobBerilgan = answeredCount(answers);
-  const umumiyFoiz = Math.round((javobBerilgan / DIAGNOSTIKA_SAVOLLARI.length) * 100);
+  const javobBerilgan = answeredCount(answers, SAVOLLAR);
+  const umumiyFoiz = Math.round((javobBerilgan / SAVOLLAR.length) * 100);
 
   const bosqichToliq = bosqich.questions.every((q) => answers[q.id] !== undefined);
 
@@ -55,7 +92,7 @@ export function DiagnostikaTest() {
     setSaving(true);
     setError(null);
     try {
-      const scores = scoreDiagnostic(answers);
+      const scores = scoreDiagnostic(answers, SAVOLLAR);
       // Profil bazada ham bo'lishi kerak — diagnostika unga bog'lanadi.
       await upsertProfile({
         id: profile.id,
@@ -65,7 +102,7 @@ export function DiagnostikaTest() {
         startedAt: profile.startedAt,
         direction: profile.direction,
       });
-      await saveDiagnostic(profile.id, "boshlangich", scores);
+      await saveDiagnostic(profile.id, tur, scores);
       router.push("/yolnalish");
     } catch (cause) {
       console.error(cause);
@@ -79,16 +116,18 @@ export function DiagnostikaTest() {
   return (
     <div className="mx-auto max-w-3xl">
       <h1 className="font-display text-xl font-bold text-ink lg:text-2xl">
-        Boshlang&apos;ich diagnostika
+        {tur === "boshlangich" ? "Boshlang'ich diagnostika" : "Yakuniy diagnostika"}
       </h1>
       <p className="mt-1.5 text-sm text-ink-muted">
-        Natijalar asosida sizning individual o&apos;quv rejangiz shakllantiriladi.
+        {tur === "boshlangich"
+          ? "Natijalar asosida sizning individual o'quv rejangiz shakllantiriladi."
+          : `Bu ${urinish + 1}-o'lchov. Savollar boshlang'ich diagnostikadagidan boshqa — natijani eslab qolish hisobiga emas, haqiqiy o'zgarish hisobiga solishtirish uchun.`}
       </p>
 
       <div className="mt-5">
         <Progress
           value={umumiyFoiz}
-          label={`${javobBerilgan} / ${DIAGNOSTIKA_SAVOLLARI.length} savolga javob berildi`}
+          label={`${javobBerilgan} / ${SAVOLLAR.length} savolga javob berildi`}
         />
       </div>
 

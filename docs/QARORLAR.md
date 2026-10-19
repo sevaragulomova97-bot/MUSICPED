@@ -1192,3 +1192,117 @@ uni topa olmas edi: u yerda daraja ham mos edi, faqat mavzu boshqa edi.
 Bu — kontent auditining chegarasi va uni hujjatda yashirmaslik kerak:
 yangi dars yozilganda modul natijalari ro'yxati bilan qo'lda
 solishtirish tartibi shu sababdan kiritilgan.
+
+---
+
+## Diagnostika bankining kengaytirilishi
+
+### Q88. Topilgan xato: yakuniy diagnostikani umuman topshirib bo'lmasdi
+
+`app/(app)/diagnostika/diagnostika-test.tsx` o'lchov turini qat'iy
+yozardi:
+
+```
+await saveDiagnostic(profile.id, "boshlangich", scores);
+```
+
+Ya'ni talaba diagnostikani necha marta topshirmasin, hammasi
+**boshlang'ich** deb saqlanardi. Natijada:
+
+- `lib/research.ts` sub'ektni tahlilga qo'shish uchun `boshlangich` va
+  `yakuniy` diagnostikaning ikkisini ham talab qiladi — demak platformada
+  yig'ilgan ma'lumot tadqiqot bo'limiga **hech qachon tushmas edi**;
+- tadqiqot bo'limi faqat namunaviy (demo) yoki tashqaridan import
+  qilingan ma'lumot bilan ishlardi;
+- dissertatsiyaning asosiy tajribasi — boshlang'ich va yakuniy o'lchovni
+  taqqoslash — platformaning o'zida o'tkazilmas edi.
+
+Xato jim kechgan: hech narsa yiqilmaydi, diagnostika ishlayveradi, faqat
+tadqiqot bo'limi bo'sh qolaveradi.
+
+**Tuzatish.** Sahifa endi profildagi oldingi o'lchovlar sonini o'qiydi:
+birinchisi — `boshlangich`, keyingilari — `yakuniy`. Sarlavha ham,
+tushuntirish matni ham shunga qarab o'zgaradi. Qo'shimcha UI kerak
+bo'lmadi.
+
+**Nega `oraliq` turi tanlanmaydi.** Uchinchi tur mavjud, lekin uni
+tanlash uchun foydalanuvchidan so'rash kerak bo'lardi. Hozircha qoida
+oddiy: birinchi o'lchov boshlang'ich, qolgani yakuniy; `research.ts`
+eng oxirgi `yakuniy` ni oladi, shuning uchun takroriy o'lchov to'g'ri
+ishlaydi. Oraliq nazorat kerak bo'lsa, bu alohida vazifa.
+
+### Q89. Bank ikkiga bo'lindi: parallel shakllar A va B
+
+Bank 32 dan 64 savolga chiqarildi va ikkita teng shaklga bo'lindi — har
+bir yo'nalishda A da 4 ta, B da 4 ta.
+
+**Asosiy sabab — o'lchov haqiqiyligi.** Agar boshlang'ich va yakuniy
+o'lchovda aynan bir xil savollar berilsa, ikkinchi natija qisman
+savollarni eslab qolish hisobiga ko'tariladi (testing effect). Juftlashgan
+t-mezon bu farqni «o'sish» deb ko'rsatadi, holbuki uning bir qismi
+metodikaga aloqador emas. Himoyada beriladigan birinchi savollardan biri
+aynan shu bo'lardi.
+
+**Test uzunligi o'zgarmadi.** Bitta o'lchov baribir 32 savol — talaba
+uchun yuk oshmadi, bank esa ikki barobar kengaydi.
+
+**Moslik qanday qilingan va qanday qilinmagan.** Shakllar yo'nalish va
+Blum darajasi bo'yicha moslashtirilgan. Empirik qiyinlik bo'yicha
+moslashtirish qilinmadi — buning uchun pilot o'tkazib, har bir savolning
+qiyinlik ko'rsatkichini olish kerak. Bu cheklov hujjatda ham, kodda ham
+ochiq yozilgan: hisobotda uni yashirmaslik kerak.
+
+**Uchinchi o'lchov A ga qaytadi.** `variantForAttempt` juft-toq bo'yicha
+almashtiradi, shuning uchun 1-va 3-o'lchov bir xil shaklda bo'ladi. Ikki
+o'lchovli tajriba uchun bu muammo emas; uch o'lchovli reja tuzilsa, buni
+hisobga olish kerak.
+
+### Q90. Motivatsiya shkalasiga teskari bandlar kiritildi
+
+Motivatsiya yo'nalishi butunlay Likert bandlaridan iborat va ularning
+hammasi bir yo'nalishda edi: «roziman» degan javob har doim yuqori ball
+berardi. Bunday shkalada hamma bandga «5» qo'yib chiqqan talaba 100% ball
+oladi — bu o'lchov emas, rozilik moyiligining (acquiescence bias) aksi.
+
+**Qaror.** Bandlarning bir qismi teskari baholanadigan qilib yozildi:
+«Mashq qilishni ko'pincha oxirgi kunga qoldiraman», «Darsda xato
+qilishdan cho'chiyman». Bu bandlarda yuqori ball **past** motivatsiyani
+bildiradi.
+
+`scoreQuestion` da bitta qator o'zgardi:
+
+```
+return question.reverse ? 1 - nisbat : nisbat;
+```
+
+**Natija test bilan qo'riqlanadi.** Ikkita test yozildi: hamma bandga
+«5» qo'yish 100% bermasligi, va bankda kamida bitta teskari band
+borligi. Ikkinchisi birinchisining bo'sh yurib qolishiga yo'l qo'ymaydi.
+
+Eski test «hamma Likertga 5 = 100%» deb yozilgan edi va u yiqildi. Bu
+to'g'ri yiqilish: testning farazi teskari bandlar paydo bo'lgach
+o'z kuchini yo'qotdi, shuning uchun kod emas, test tuzatildi.
+
+### Q91. Yangi savollar kengaytirilgan dasturni o'lchaydi
+
+Bank 24 o'quv natijasi davridan qolgan edi. Dastur 51 natijaga o'sgach,
+diagnostika o'rgatiladigan narsaning yarmini ham tekshirmay qo'ydi — ovoz
+va nafas, jo'r bo'lish, frazirovka, mualliflik huquqi, inklyuziya,
+sinfni boshqarish, mashq metodikasi bo'yicha bitta ham savol yo'q edi.
+
+Bu individual rejaga bevosita ta'sir qiladi: o'lchanmagan sohada talaba
+kuchsiz bo'lsa ham, reja uni ko'rsatmaydi.
+
+Yangi 32 savol aynan shu bo'shliqlarga yozildi va yo'nalishlar
+muvozanatga keltirildi. Ilgari texnika, sahna va ijodkorlik yo'nalishida
+atigi 3 tadan savol bor edi — bunday o'lchovda mumkin bo'lgan natijalar
+0, 33, 67 va 100 foiz, ya'ni bitta tasodifiy javob ballni 33 punktga
+siljitardi. Daraja chegaralari esa 56 va 71 da turadi.
+
+Endi har bir yo'nalishda shakl ichida 4 tadan savol bor. Bu hali ham
+ko'p emas, lekin qadam 33 dan 25 punktga tushdi va yo'nalishlar o'zaro
+teng bo'ldi — ilgari ularning o'lchov aniqligi har xil edi.
+
+**Qolgan cheklov ochiq aytiladi:** 4 savol bilan yo'nalish bali qo'pol
+o'lchov bo'lib qolaveradi. Uni yanada aniqlashtirish uchun bank yana
+kengaytirilishi yoki savollarga og'irlik (`points`) berilishi kerak.

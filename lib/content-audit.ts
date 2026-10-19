@@ -265,6 +265,32 @@ export function bloomMismatches(): Array<{
   return natija;
 }
 
+/**
+ * Diagnostikaning ikki parallel shakli muvozanatdami.
+ *
+ * Boshlang'ich o'lchov A shaklida, yakuniysi B shaklida o'tkaziladi va
+ * natijalar bevosita taqqoslanadi (`lib/research.ts`). Agar biror
+ * yo'nalishda A da 5 ta, B da 2 ta savol bo'lsa, ikki o'lchov bir xil
+ * narsani o'lchamaydi va o'sish raqami yolg'on chiqadi.
+ *
+ * Ball yo'nalish bo'yicha normallashtirilgani uchun bu xato **jim
+ * kechadi**: foiz baribir hisoblanadi, faqat u boshqa narsani bildiradi.
+ */
+export function diagnosticVariantGaps(): Array<{
+  area: DiagnosticArea;
+  a: number;
+  b: number;
+}> {
+  const natija: Array<{ area: DiagnosticArea; a: number; b: number }> = [];
+  for (const area of DIAGNOSTIKA_YONALISHLARI) {
+    const shu = DIAGNOSTIKA_SAVOLLARI.filter((q) => q.area === area);
+    const a = shu.filter((q) => q.variant === "A").length;
+    const b = shu.filter((q) => q.variant === "B").length;
+    if (a !== b || a === 0) natija.push({ area, a, b });
+  }
+  return natija;
+}
+
 /* ──────────────────────── Taqsimotlar ──────────────────────── */
 
 export type Distribution<K extends string> = Array<{ key: K; label: string; count: number }>;
@@ -369,6 +395,13 @@ export function auditIssues(): AuditIssue[] {
     issues.push({
       level: "xato",
       message: `«${m.moduleTitle}» moduli natijasi «${m.outcomeId}» ${m.outcomeBloom} darajasida, uni baholaydigan eng yuqori topshiriq esa ${m.bestTaskBloom} darajasida — baholash natijaga yetmaydi.`,
+    });
+  }
+
+  for (const g of diagnosticVariantGaps()) {
+    issues.push({
+      level: "xato",
+      message: `«${g.area}» yo'nalishida diagnostika shakllari teng emas: A da ${g.a} ta, B da ${g.b} ta savol — boshlang'ich va yakuniy o'lchov bir xil narsani o'lchamaydi.`,
     });
   }
 

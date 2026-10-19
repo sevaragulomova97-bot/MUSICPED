@@ -120,7 +120,7 @@ components/
   decor/                Nota belgilari va fondagi suzuvchi notalar
 content/
   modules.ts            5 modul, 51 o'quv natijasi, ECTS kredit
-  diagnostic.ts         32 ta diagnostika savoli (8 yo'nalish)
+  diagnostic.ts         64 ta diagnostika savoli — 8 yo'nalish x 8, A va B parallel shakli
   demo-students.ts      24 namunaviy talaba (tajriba / nazorat)
   practice.ts           18 ta cholg'u mashqi + ritm baholash
   courses/              5 kurs, 52 ta to'liq dars (har bir modul o'z faylida)
@@ -158,7 +158,7 @@ docs/
 ## Ishlab chiqish bosqichlari
 
 - [x] **B1** — Poydevor: statik eksport, dizayn tokenlari, layout, dark mode, Pages deploy
-- [x] **B2** — Dexie, statik kontent, diagnostika (32 savol), individual yo'nalish algoritmi
+- [x] **B2** — Dexie, statik kontent, diagnostika (A/B shakli, 2 x 32 savol), individual yo'nalish algoritmi
 - [x] **B3** — 6 ta virtual cholg'u: pianino, gitara, dutor, rubob, nay, doira
       (haqiqiy namunali ovoz, yozib olish, mashq rejimi)
 - [x] **B4** — Darslar (VexFlow nota yozuvi), topshiriqlar va rubrikalar,
@@ -168,6 +168,33 @@ docs/
       e2e testlar va qo'llanmalar
 - [x] **Kontent** — barcha 51 o'quv natijasi dars va topshiriq bilan
       qoplandi; audit uzilishsiz
+
+---
+
+## Diagnostika: ikkita parallel shakl
+
+Bank 64 savoldan iborat: 8 yo'nalishning har birida 8 tadan. Ular ikkita
+teng shaklga bo'lingan — **A** va **B**, har bir yo'nalishda 4 tadan.
+Bitta o'lchov 32 savoldan iborat, ya'ni talaba uchun test uzunligi
+o'zgarmagan.
+
+**Nima uchun ikki shakl.** Dissertatsiya tajribasi boshlang'ich va
+yakuniy o'lchovni taqqoslaydi (juftlashgan t-mezon). Ikkala o'lchovda
+aynan bir xil savollar berilsa, ikkinchi natija qisman savollarni eslab
+qolish hisobiga ko'tariladi va o'sishni metodikaga bog'lab bo'lmaydi.
+
+Birinchi o'lchov A shaklida, ikkinchisi B shaklida o'tkaziladi; uchinchisi
+yana A ga qaytadi. Shakllar **mazmun va Blum darajasi** bo'yicha
+moslashtirilgan, empirik qiyinlik bo'yicha emas — buning uchun pilot
+ma'lumot kerak bo'lardi va buni hisobotda ko'rsatish lozim.
+
+**Motivatsiya shkalasida teskari bandlar bor.** Likert bandlarining bir
+qismida yuqori ball past motivatsiyani bildiradi («Mashq qilishni
+ko'pincha oxirgi kunga qoldiraman»). Shu sababli hamma bandga «5» qo'yib
+chiqqan varaqa 100% emas, o'rtacha natija beradi.
+
+Shakllar muvozanati kodda tekshiriladi: biror yo'nalishda A va B dagi
+savollar soni teng bo'lmasa, audit xato beradi va unit test yiqiladi.
 
 ---
 

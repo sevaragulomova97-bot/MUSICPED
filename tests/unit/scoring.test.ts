@@ -4,7 +4,10 @@ import {
   answeredCount,
   groupQuestionsByArea,
   LIKERT_MAX,
+  LIKERT_MIN,
+  questionsOfVariant,
   scoreDiagnostic,
+  variantForAttempt,
   scoreQuestion,
 } from "@/lib/scoring";
 import { DIAGNOSTIKA_SAVOLLARI, type Question } from "@/content/diagnostic";
@@ -135,11 +138,71 @@ describe("scoreDiagnostic", () => {
     for (const q of DIAGNOSTIKA_SAVOLLARI) {
       if (q.kind === "single") answers[q.id] = q.correctId;
       else if (q.kind === "multiple") answers[q.id] = q.correctIds;
-      else answers[q.id] = LIKERT_MAX;
+      // Likertda «eng yuqori motivatsiya» teskari bandda past ballga
+      // to'g'ri keladi — shkalaning mohiyati shunda.
+      else answers[q.id] = q.reverse ? LIKERT_MIN : LIKERT_MAX;
     }
     const scores = scoreDiagnostic(answers);
     for (const area of DIAGNOSTIKA_YONALISHLARI) {
-      expect(scores[area]).toBe(100);
+      expect(scores[area], area).toBe(100);
+    }
+  });
+
+  it("hamma Likert bandiga «5» qo'yish 100% bermaydi", () => {
+    // Rozilik moyiligiga qarshi himoya: o'ylamay to'ldirilgan varaqa
+    // o'rtacha natija beradi va bu ko'rinib qoladi.
+    const answers: AnswerMap = {};
+    for (const q of DIAGNOSTIKA_SAVOLLARI) {
+      if (q.kind === "likert") answers[q.id] = LIKERT_MAX;
+    }
+    const scores = scoreDiagnostic(answers);
+    expect(scores.motivatsiya).toBeLessThan(100);
+    expect(scores.motivatsiya).toBeGreaterThan(0);
+  });
+
+  it("bankda kamida bitta teskari Likert bandi bor", () => {
+    // Yuqoridagi test bo'sh yurmasligi uchun.
+    const teskari = DIAGNOSTIKA_SAVOLLARI.filter(
+      (q) => q.kind === "likert" && q.reverse,
+    );
+    expect(teskari.length).toBeGreaterThan(0);
+  });
+});
+
+describe("parallel shakllar", () => {
+  it("A va B shakllari teng hajmda", () => {
+    const a = questionsOfVariant("A");
+    const b = questionsOfVariant("B");
+    expect(a.length).toBe(b.length);
+    expect(a.length + b.length).toBe(DIAGNOSTIKA_SAVOLLARI.length);
+  });
+
+  it("har bir yo'nalish ikkala shaklda ham bor va teng", () => {
+    for (const area of DIAGNOSTIKA_YONALISHLARI) {
+      const a = questionsOfVariant("A").filter((q) => q.area === area).length;
+      const b = questionsOfVariant("B").filter((q) => q.area === area).length;
+      expect(a, `${area} / A`).toBeGreaterThan(0);
+      expect(b, `${area} / B`).toBe(a);
+    }
+  });
+
+  it("savol identifikatorlari takrorlanmaydi", () => {
+    const ids = DIAGNOSTIKA_SAVOLLARI.map((q) => q.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it("navbatdagi o'lchov shakli almashib turadi", () => {
+    expect(variantForAttempt(0)).toBe("A");
+    expect(variantForAttempt(1)).toBe("B");
+    expect(variantForAttempt(2)).toBe("A");
+  });
+
+  it("bitta shakl ham barcha yo'nalishni qamrab oladi", () => {
+    // Aks holda o'lchovda yo'nalish tushib qolardi va uning bali
+    // `fallback` qiymatiga tushib, rejani buzardi.
+    for (const v of ["A", "B"] as const) {
+      const qamrov = new Set(questionsOfVariant(v).map((q) => q.area));
+      expect(qamrov.size, v).toBe(DIAGNOSTIKA_YONALISHLARI.length);
     }
   });
 });
