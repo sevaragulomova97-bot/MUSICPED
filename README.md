@@ -123,6 +123,8 @@ content/
   diagnostic.ts         96 ta diagnostika savoli — 8 yo'nalish x 12, A/B/C parallel shakllari
   demo-students.ts      24 namunaviy talaba (tajriba / nazorat)
   practice.ts           18 ta cholg'u mashqi + ritm baholash
+  tunes.ts              19 ta mashhur kuy (har cholg'uda 3+), jamoat mulki
+  instrument-range.ts   har bir cholg'uning chalinadigan tovushlari
   courses/              5 kurs, 52 ta to'liq dars (har bir modul o'z faylida)
   tasks.ts              52 ta topshiriq + 19 ta baholash rubrikasi
   mentorship.ts         Pedagogik amaliyotning 3 bosqichi + kuzatuv varaqasi

@@ -1,16 +1,11 @@
 "use client";
 
-import { Fretboard, RubobSvg, type StringSpec } from "@/components/music/fretboard";
+import { Fretboard, RubobSvg } from "@/components/music/fretboard";
 import { InstrumentPage } from "@/components/music/instrument-page";
 import { Slider } from "@/components/ui/slider";
+import { RUBOB_TORLARI } from "@/content/instrument-range";
 
 /** Rubob — metall torli, yorqin tovushli; uch asosiy tor. */
-const TORLAR: StringSpec[] = [
-  { nom: "Baland tor", notalar: ["D4", "E4", "F4", "G4", "A4", "B4", "C5", "D5"] },
-  { nom: "O'rta tor", notalar: ["A3", "B3", "C4", "D4", "E4", "F4", "G4", "A4"] },
-  { nom: "Past tor", notalar: ["D3", "E3", "F3", "G3", "A3", "B3", "C4", "D4"] },
-];
-
 export function RubobSahifa() {
   return (
     <InstrumentPage
@@ -19,7 +14,7 @@ export function RubobSahifa() {
       description="Metall torli an'anaviy cholg'u — yorqin, jarangdor tovush."
       render={({ active, play, targetNote, feedback }) => (
         <Fretboard
-          strings={TORLAR}
+          strings={RUBOB_TORLARI}
           active={active}
           onPluck={play}
           targetNote={targetNote ?? undefined}

@@ -1,0 +1,84 @@
+import { expect, test } from "@playwright/test";
+import { sessiyaBer, TALABA } from "./yordamchi";
+
+/**
+ * Mashhur kuylar: klavishlar yonib o'chishi bilan o'rganish.
+ *
+ * Ikki narsa qo'riqlanadi:
+ *  • klaviatura **gorizontal surishsiz** sig'adi (ijro uzilmasligi uchun);
+ *  • demo paytida klavishlar **audio holatidan qat'i nazar** yonadi —
+ *    yoritish darsning o'zi, namunalar yuklanmasa ham ishlashi kerak.
+ */
+
+const KLAVIATURA = '[aria-label="Virtual pianino klaviaturasi"]';
+
+test.describe("Klaviatura o'lchami", () => {
+  for (const kenglik of [390, 1280]) {
+    test(`pianino ${kenglik}px ekranga surishsiz sig'adi`, async ({ page }) => {
+      await page.setViewportSize({ width: kenglik, height: 900 });
+      await sessiyaBer(page, TALABA);
+      await page.goto("/asboblar/pianino/");
+      await expect(page.locator(KLAVIATURA)).toBeVisible();
+
+      const olchov = await page.locator(KLAVIATURA).evaluate((el) => ({
+        surish: el.scrollWidth > el.clientWidth + 1,
+        sahifa:
+          document.documentElement.scrollWidth >
+          document.documentElement.clientWidth + 1,
+      }));
+      expect(olchov.surish, "klaviatura surilmasligi kerak").toBe(false);
+      expect(olchov.sahifa, "sahifa gorizontal surilmasligi kerak").toBe(false);
+    });
+  }
+});
+
+test.describe("Mashhur kuylar", () => {
+  test("eshitish rejimida klavishlar yonib o'chadi", async ({ page }) => {
+    await sessiyaBer(page, TALABA);
+    await page.goto("/asboblar/pianino/");
+
+    await expect(page.getByText("Mashhur kuylar")).toBeVisible();
+    await page.getByRole("button", { name: /^Eshitish$/ }).click();
+
+    const yongan = () => page.locator(`${KLAVIATURA} button[aria-pressed="true"]`);
+
+    // Kamida bitta klavish yonadi…
+    await expect(yongan().first()).toBeVisible({ timeout: 5_000 });
+
+    // …va kuy davomida yonish o'zgarib turadi (ya'ni «o'chadi» ham).
+    const kuzatuv: number[] = [];
+    for (let i = 0; i < 10; i += 1) {
+      await page.waitForTimeout(300);
+      kuzatuv.push(await yongan().count());
+    }
+    expect(kuzatuv.some((n) => n > 0), JSON.stringify(kuzatuv)).toBe(true);
+    expect(kuzatuv.some((n) => n === 0), JSON.stringify(kuzatuv)).toBe(true);
+  });
+
+  test("o'rganish rejimida nishon klavish ko'rsatiladi", async ({ page }) => {
+    await sessiyaBer(page, TALABA);
+    await page.goto("/asboblar/pianino/");
+
+    await page.getByRole("button", { name: /^O'rganish$/ }).click();
+    await expect(page.getByText(/0 \/ \d+ nota/)).toBeVisible();
+
+    // Nishon klavish boshqa rangda yonadi.
+    const nishon = page.locator(`${KLAVIATURA} button.bg-warning-soft`);
+    await expect(nishon).toHaveCount(1);
+  });
+
+  test("har bir cholg'uda kamida uchta kuy bor", async ({ page }) => {
+    await sessiyaBer(page, TALABA);
+    for (const asbob of ["pianino", "nay", "dutor", "rubob", "gitara", "doira"]) {
+      await page.goto(`/asboblar/${asbob}/`);
+      const royxat = page.getByRole("listbox", { name: /kuylar ro'yxati/i });
+      await expect(royxat, asbob).toBeVisible();
+      expect(
+        await royxat.getByRole("option").count(),
+        asbob,
+      ).toBeGreaterThanOrEqual(3);
+      // Manba har doim ko'rsatiladi — mualliflik huquqi talabi.
+      await expect(page.getByText("Manba:", { exact: false }), asbob).toBeVisible();
+    }
+  });
+});

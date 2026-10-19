@@ -1429,7 +1429,103 @@ bor edi: eski savollarda «Do mažor», yangilarida «do major».
 Hammasi **«major»** ga keltirildi.
 
 **Nega ilgari sezilmadi.** Har bosqichda kirill harflariga tekshiruv
-o'tkazilardi (`[Ѐ-ӿ]`), `ž` esa lotin diapazonida turadi va u
+o'tkazilardi (`[\u0400-\u04FF]`), `ž` esa lotin diapazonida turadi va u
 tekshiruvga tushmasdi. Endi tekshiruv kengaytirildi: lotin diakritik
 belgilari ham ko'riladi. `Schön` (shaxs familiyasi) va `winansi.ts`
 dagi belgilar diapazoni — qonuniy istisnolar.
+
+---
+
+## Klaviatura o'lchami va mashhur kuylar
+
+### Q97. Klaviatura endi har doim ekranga sig'adi
+
+Loyiha egasi aniq kamchilikni ko'rsatdi: chalayotganda klaviaturani
+surish kerak bo'lardi va ijro uzilardi.
+
+**O'lchov xatoni tasdiqladi.** 1280 px ekranda klaviatura 728 px
+(14 oq klavish × qat'iy 52 px), konteyner esa atigi 590 px edi — 138 px
+kesilib, gorizontal surish paydo bo'lardi.
+
+Ikki o'zgarish qilindi:
+
+1. **Klavish kengligi endi konteynerdan hisoblanadi.** `ResizeObserver`
+   konteyner kengligini o'lchaydi, klavishlar esa foiz bilan
+   joylashtiriladi. Nota nomlari klavish 26 px dan tor bo'lganda
+   yashiriladi — telefon ekranida ular baribir o'qilmasdi.
+2. **Cholg'u o'z qatoriga chiqarildi.** Ilgari u yon panel bilan bitta
+   gridda turardi; endi sahifaning butun kengligini oladi.
+
+Natija: 1024 px da konteyner 334 px dan 678 px ga, 1280 px da 590 dan
+934 px ga chiqdi. Hech bir kenglikda surish yo'q.
+
+**Grif ham tuzatildi.** `components/music/fretboard.tsx` da
+`min-w-[600px]` turardi — telefon ekranida gitara va dutor ham surish
+talab qilardi. Endi tor nomi ustuni va shrift kichik ekranda
+qisqartiriladi, grif esa to'liq sig'adi.
+
+### Q98. Mashhur kuylar: har bir cholg'uda kamida uchta
+
+Yangi `content/tunes.ts` banki va cholg'u sahifalaridagi «Mashhur
+kuylar» paneli qo'shildi. Ikki rejim:
+
+- **Eshitish** — kuy o'zi chalinadi, klavishlar vaqtida yonib o'chadi;
+- **O'rganish** — keyingi nota yonib turadi, talaba uni bosadi, panel
+  xato sonini va progressni ko'rsatadi.
+
+Vaqt o'lchanmaydi: maqsad tezlik emas, to'g'ri nota va to'g'ri tartib.
+
+**Diapazon kodda tekshiriladi.** Kuydagi nota cholg'uda bo'lmasa,
+yonadigan klavish hech qayerda yonmaydi va talaba nimani bosishini
+bilmaydi — xato esa jim kechadi. Shuning uchun tor va klavish
+ro'yxatlari sahifa fayllaridan `content/instrument-range.ts` ga
+ko'chirildi va unit test har bir kuyning har bir notasi o'z cholg'usida
+chalinishini tekshiradi.
+
+### Q99. Topilgan xato: yoritish audio muvaffaqiyatiga bog'langan edi
+
+Birinchi ishlagan variantda «Eshitish» tugmasi bosilsa ham klavishlar
+**umuman yonmasdi**. Brauzerda o'lchab ko'rildi: 16 kadr davomida
+yonayotgan klavish soni 0 bo'lib qoldi.
+
+Ikkita sabab topildi va ikkalasi ham tuzatildi.
+
+**1. Taymerlar har renderda o'chirilardi.** Kuy ilgagi tozalash
+funksiyasini `useEffect(() => tozala, [tozala])` bilan bog'lagandi, 
+`tozala` esa `release` ga, u esa `useInstrument` qaytaradigan obyektga
+bog'langandi. Bu obyekt har renderda yangi bo'ladi — demak effekt har
+renderda qaytadan ishlab, endigina qo'yilgan taymerlarni o'chirardi.
+Endi `release` ref orqali ushlanadi va tozalash faqat sahifadan
+chiqilganda bajariladi; sahifa esa `instrument` obyektiga emas, uning
+ichidagi barqaror funksiyalarga bog'lanadi.
+
+**2. Yoritish audio ishga tushishiga bog'liq edi.** `attack()` avval
+audio dvigatelini kutadi va u tayyor bo'lmasa, `setActive` umuman
+chaqirilmaydi. Ya'ni namunalar yuklanayotganda yoki brauzer ovozni
+bloklaganida kuy «ko'rinmas» bo'lib qolardi.
+
+Bu shunchaki nosozlik emas, **noto'g'ri bog'liqlik**: yonib o'chadigan
+klavish — darsning o'zi, tovush esa unga qo'shimcha. Endi kuy ilgagi o'z
+`demoNote` holatini yuritadi va sahifa uni cholg'uning `active`
+to'plamiga qo'shib beradi. Natijada namunalar hali yuklanayotganda ham
+kuy ko'rinadi — buni brauzerdagi tekshiruv tasdiqladi.
+
+E2e test ikkala shartni ham qo'riqlaydi: klaviatura surilmasligi va
+demo paytida yonishning **o'zgarib turishi** (ya'ni faqat yonmay, o'chib
+ham turishi).
+
+### Q100. Repertuar tanlovi: nima uchun o'zbek kuylari yo'q
+
+Bankka faqat mualliflik huquqi muddati tugagan ohanglar kiritildi —
+xalq kuylari va 1725–1824 yillardagi asarlar. Har birining manbasi
+`CREDITS.md` da va interfeysning o'zida ko'rsatiladi.
+
+O'zbek xalq kuylari **ataylab kiritilmadi**. Sabab huquqiy emas (ular
+ham jamoat mulki), balki aniqlik: «Boychechak» yoki «Chittigul» ning
+nota matnini xotiradan yozish — taxmin. Musiqa o'qituvchilari uchun
+mo'ljallangan platformada taxminiy ohangni mashhur kuy nomi bilan
+berish eng og'ir xato bo'lardi: talaba uni to'g'ri deb o'rganadi va
+sinfga ham shunday olib boradi.
+
+Milliy repertuar nota matni bilan berilganda, u mavjud tuzilmaga
+o'zgarishsiz qo'shiladi.

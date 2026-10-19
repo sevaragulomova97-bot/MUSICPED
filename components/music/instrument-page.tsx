@@ -6,6 +6,9 @@ import { AlertTriangle } from "lucide-react";
 import { useSession } from "@/components/session-provider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RecorderControls } from "@/components/music/recorder-controls";
+import { TunePanel } from "@/components/music/tune-panel";
+import { useTunePractice } from "@/components/music/use-tune";
+import { type Tune, tunesFor } from "@/content/tunes";
 import {
   ExerciseCard,
   RhythmStatus,
@@ -60,6 +63,34 @@ export function InstrumentPage({
   const sequence = useSequencePractice(selected.sequence);
   const rhythm = useRhythmPractice(selected);
 
+  /* ── Mashhur kuylar ── */
+  const kuylar = React.useMemo(() => tunesFor(kind), [kind]);
+  const [kuy, setKuy] = React.useState<Tune | null>(() => tunesFor(kind)[0] ?? null);
+
+  const birZarbliKuy = isOneShot(kind);
+  // `instrument` obyekti har renderda yangi bo'ladi; barqaror bo'lgani —
+  // uning ichidagi funksiyalar. Aks holda kuy ilgagi taymerlarini har
+  // renderda qaytadan tozalardi.
+  const { attack: instAttack, hit: instHit, release: instRelease } = instrument;
+
+  const tuneAttack = React.useCallback(
+    (note: string) => {
+      if (birZarbliKuy) void instHit(note);
+      else void instAttack(note);
+    },
+    [birZarbliKuy, instHit, instAttack],
+  );
+  const tuneRelease = React.useCallback(
+    (note: string) => instRelease(note),
+    [instRelease],
+  );
+
+  const tune = useTunePractice(kuy, {
+    oneShot: birZarbliKuy,
+    attack: tuneAttack,
+    release: tuneRelease,
+  });
+
   const bestScores = useLiveQuery(async () => {
     if (!userId) return {};
     const entries = await Promise.all(
@@ -93,8 +124,9 @@ export function InstrumentPage({
       }
       if (selected.mode === "ketma-ket") sequence.submit(note);
       if (selected.mode === "ritm") rhythm.record(note);
+      tune.submit(note);
     },
-    [instrument, birZarbli, selected.mode, sequence, rhythm],
+    [instrument, birZarbli, selected.mode, sequence, rhythm, tune],
   );
 
   const stop = React.useCallback(
@@ -186,21 +218,30 @@ export function InstrumentPage({
         </p>
       )}
 
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
-        {/* Cholg'u */}
-        <div className="flex flex-col gap-5">
-          <Card>
-            <CardContent className="p-4 lg:p-5">
-              {render({
-                active: instrument.active,
-                play,
-                stop,
-                targetNote: sequence.target,
-                feedback: sequence.feedback,
-              })}
-            </CardContent>
-          </Card>
+      {/* Cholg'u — to'liq kenglikda.
+          Ilgari u yon panel bilan bitta gridda turardi va 1024 px
+          ekranda ustun atigi ~330 px qolardi: klavishlar siqilib,
+          klaviaturani surish kerak bo'lardi. Chalish yuzasi sahifaning
+          butun kengligini oladi. */}
+      <Card>
+        <CardContent className="p-4 lg:p-5">
+          {render({
+            // Demo paytida yonadigan nota audio holatidan mustaqil
+            // qo'shiladi: namunalar yuklanmasa ham kuy ko'rinadi.
+            active: tune.demoNote
+              ? new Set([...instrument.active, tune.demoNote])
+              : instrument.active,
+            play,
+            stop,
+            // Kuy rejimi faol bo'lsa, nishonni u belgilaydi.
+            targetNote: tune.target ?? sequence.target,
+            feedback: tune.mode === "organish" ? tune.feedback : sequence.feedback,
+          })}
+        </CardContent>
+      </Card>
 
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+        <div className="flex flex-col gap-5">
           <Card>
             <CardContent className="flex flex-col gap-4 p-5">
               <RecorderControls
@@ -280,7 +321,29 @@ export function InstrumentPage({
           </Card>
         </div>
 
-        {/* Mashqlar */}
+        {/* Mashhur kuylar + mashqlar */}
+        <div className="flex h-fit flex-col gap-6">
+        {kuy && (
+          <TunePanel
+            tunes={kuylar}
+            selected={kuy}
+            onSelect={(yangi) => {
+              // Oldingi kuyning taymerlari va osilgan notalari tozalanadi.
+              tune.reset();
+              setKuy(yangi);
+            }}
+            mode={tune.mode}
+            index={tune.index}
+            total={tune.total}
+            correct={tune.correct}
+            wrong={tune.wrong}
+            finished={tune.finished}
+            onListen={tune.listen}
+            onLearn={tune.learn}
+            onStop={tune.stop}
+          />
+        )}
+
         <Card className="h-fit">
           <CardHeader>
             <CardTitle>Mashqlar</CardTitle>
@@ -342,6 +405,7 @@ export function InstrumentPage({
             </div>
           </CardContent>
         </Card>
+        </div>
       </div>
     </div>
   );

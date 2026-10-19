@@ -36,19 +36,21 @@ export function Fretboard({
     <div className="flex flex-col gap-5">
       {illustration && <div className="flex justify-center">{illustration}</div>}
 
-      <div className="overflow-x-auto pb-2" role="group" aria-label="Grif — pardalar">
-        <div className="min-w-[600px]">
-          <div className="mb-1.5 flex gap-1.5 pl-24">
+      {/* Grif ham pianino kabi gorizontal surishsiz sig'adi: ijro
+          paytida ekranni surish kerak bo'lmasligi uchun. */}
+      <div className="w-full pb-2" role="group" aria-label="Grif — pardalar">
+        <div className="w-full">
+          <div className="mb-1.5 flex gap-1 pl-14 sm:gap-1.5 sm:pl-24">
             {Array.from({ length: pardaSoni }, (_, i) => (
-              <span key={i} className="flex-1 text-center text-[11px] text-ink-muted">
+              <span key={i} className="min-w-0 flex-1 text-center text-[10px] text-ink-muted sm:text-[11px]">
                 {i === 0 ? "bo'sh" : i}
               </span>
             ))}
           </div>
 
           {strings.map((tor) => (
-            <div key={tor.nom} className="mb-2 flex items-center gap-1.5">
-              <span className="w-[88px] shrink-0 truncate text-xs font-medium text-ink-muted">
+            <div key={tor.nom} className="mb-2 flex items-center gap-1 sm:gap-1.5">
+              <span className="w-[52px] shrink-0 truncate text-[11px] font-medium text-ink-muted sm:w-[88px] sm:text-xs">
                 {tor.nom}
               </span>
               {tor.notalar.map((note, parda) => {
@@ -64,7 +66,7 @@ export function Fretboard({
                     }}
                     aria-label={`${tor.nom}, ${parda === 0 ? "bo'sh tor" : `${parda}-parda`}, ${note}`}
                     className={cn(
-                      "h-10 flex-1 rounded-lg border text-xs font-medium transition-colors",
+                      "h-10 min-w-0 flex-1 rounded-lg border text-[10px] font-medium transition-colors sm:text-xs",
                       bosilgan && "border-primary bg-primary text-white",
                       !bosilgan && nishon && feedback === "togri" && "border-success bg-success text-white",
                       !bosilgan && nishon && feedback === "xato" && "border-danger bg-danger text-white",

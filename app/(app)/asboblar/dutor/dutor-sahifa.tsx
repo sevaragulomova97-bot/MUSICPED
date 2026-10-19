@@ -1,15 +1,11 @@
 "use client";
 
-import { DutorSvg, Fretboard, type StringSpec } from "@/components/music/fretboard";
+import { DutorSvg, Fretboard } from "@/components/music/fretboard";
 import { InstrumentPage } from "@/components/music/instrument-page";
 import { Slider } from "@/components/ui/slider";
+import { DUTOR_TORLARI } from "@/content/instrument-range";
 
 /** Dutor — ikki tor, an'anaviy sozlashga yaqin. */
-const TORLAR: StringSpec[] = [
-  { nom: "Past tor", notalar: ["G3", "A3", "B3", "C4", "D4", "E4", "F4", "G4"] },
-  { nom: "Baland tor", notalar: ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"] },
-];
-
 export function DutorSahifa() {
   return (
     <InstrumentPage
@@ -18,7 +14,7 @@ export function DutorSahifa() {
       description="Ikki torli an'anaviy cholg'u. Pardani bosib torni cherting."
       render={({ active, play, targetNote, feedback }) => (
         <Fretboard
-          strings={TORLAR}
+          strings={DUTOR_TORLARI}
           active={active}
           onPluck={play}
           targetNote={targetNote ?? undefined}

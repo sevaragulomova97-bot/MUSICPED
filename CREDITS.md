@@ -64,6 +64,37 @@ Batafsil: [`tools/instrument-models/README.md`](tools/instrument-models/README.m
 | Dutor — yumshoq/yorqin tor, pitsikato | `acoustic_guitar_nylon`, `pizzicato_strings` |
 | Doira — chuqur baraban / past / orkestr | `taiko_drum`, `woodblock`, `standard`, `orchestra_kit` |
 
+## Mashhur kuylar (`content/tunes.ts`)
+
+Cholg'u sahifalaridagi «Mashhur kuylar» bo'limiga **faqat mualliflik
+huquqi muddati tugagan** ohanglar kiritilgan. Kuylar nota ma'lumoti
+sifatida saqlanadi (yozuv emas) va platformaning o'z sintezi bilan
+chalinadi — ya'ni hech qanday tashqi audio yozuv ishlatilmaydi.
+
+| Ohang | Manba | Holat |
+|---|---|---|
+| Yulduzcha | «Ah! vous dirai-je, maman» — 18-asr fransuz xalq kuyi | Jamoat mulki |
+| Shodlik madhiyasi | L. van Beethoven, 9-simfoniya finali (1824) | Jamoat mulki |
+| Qo'zichoq | 19-asr an'anaviy bolalar kuyi | Jamoat mulki |
+| Menuet (sol major) | Ch. Petzold, BWV Anh. 114 (~1725) | Jamoat mulki |
+| Elizaga (boshlanishi) | L. van Beethoven, bagatella (1810) | Jamoat mulki |
+| Greensleeves | 16-asr ingliz xalq kuyi | Jamoat mulki |
+| Doira usullari (2/4, 3/4, 6/8) | O'quv maqsadida tuzilgan metrik naqshlar | Loyihaning o'zi |
+
+Har bir kuyning manbasi interfeysda ham ko'rsatiladi — kuylar panelining
+pastki qatorida.
+
+### O'zbek milliy repertuari haqida
+
+Bankda hozircha o'zbek xalq kuylari **yo'q**. Sabab texnik emas, balki
+aniqlik: «Boychechak», «Chittigul» kabi kuylarning nota matnini
+xotiradan yozish xavfli — musiqa o'qituvchisi uchun mo'ljallangan
+platformada taxminiy ohangni mashhur kuy nomi bilan berish eng og'ir
+xato bo'lardi.
+
+Milliy repertuar nota matni bilan birga berilsa, u xuddi shu tuzilmaga
+qo'shiladi va shu jadvalda qayd etiladi.
+
 ## Avatarlar
 
 Haqiqiy shaxslar fotosuratlari ishlatilmaydi. Avatar sifatida foydalanuvchi ismining bosh harflari ko'rsatiladi.
