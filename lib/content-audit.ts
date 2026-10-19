@@ -19,7 +19,13 @@
 import { KURSLAR } from "@/content/courses";
 import { MODULLAR, type Module } from "@/content/modules";
 import { TOPSHIRIQLAR } from "@/content/tasks";
-import { DIAGNOSTIKA_SAVOLLARI } from "@/content/diagnostic";
+import {
+  DIAGNOSTIKA_SAVOLLARI,
+  type QuestionVariant,
+} from "@/content/diagnostic";
+
+/** Diagnostikaning parallel shakllari. */
+const SHAKLLAR: readonly QuestionVariant[] = ["A", "B", "C"];
 import { MASHQLAR } from "@/content/practice";
 import { MENTORLIK_BOSQICHLARI } from "@/content/mentorship";
 import {
@@ -266,29 +272,50 @@ export function bloomMismatches(): Array<{
 }
 
 /**
- * Diagnostikaning ikki parallel shakli muvozanatdami.
+ * Diagnostikaning uch parallel shakli muvozanatdami.
  *
- * Boshlang'ich o'lchov A shaklida, yakuniysi B shaklida o'tkaziladi va
- * natijalar bevosita taqqoslanadi (`lib/research.ts`). Agar biror
- * yo'nalishda A da 5 ta, B da 2 ta savol bo'lsa, ikki o'lchov bir xil
- * narsani o'lchamaydi va o'sish raqami yolg'on chiqadi.
+ * Har bir o'lchov o'z shaklida o'tkaziladi (boshlang'ich — A, oraliq — B,
+ * yakuniy — C) va natijalar bevosita taqqoslanadi (`lib/research.ts`).
+ * Agar biror yo'nalishda A da 5 ta, C da 2 ta savol bo'lsa, o'lchovlar
+ * bir xil narsani o'lchamaydi va o'sish raqami yolg'on chiqadi.
  *
  * Ball yo'nalish bo'yicha normallashtirilgani uchun bu xato **jim
  * kechadi**: foiz baribir hisoblanadi, faqat u boshqa narsani bildiradi.
  */
 export function diagnosticVariantGaps(): Array<{
   area: DiagnosticArea;
-  a: number;
-  b: number;
+  sanoq: Record<QuestionVariant, number>;
 }> {
-  const natija: Array<{ area: DiagnosticArea; a: number; b: number }> = [];
+  const natija: Array<{ area: DiagnosticArea; sanoq: Record<QuestionVariant, number> }> = [];
   for (const area of DIAGNOSTIKA_YONALISHLARI) {
     const shu = DIAGNOSTIKA_SAVOLLARI.filter((q) => q.area === area);
-    const a = shu.filter((q) => q.variant === "A").length;
-    const b = shu.filter((q) => q.variant === "B").length;
-    if (a !== b || a === 0) natija.push({ area, a, b });
+    const sanoq = Object.fromEntries(
+      SHAKLLAR.map((v) => [v, shu.filter((q) => q.variant === v).length]),
+    ) as Record<QuestionVariant, number>;
+    const qiymatlar = SHAKLLAR.map((v) => sanoq[v]);
+    const teng = qiymatlar.every((n) => n === qiymatlar[0]);
+    if (!teng || qiymatlar[0] === 0) natija.push({ area, sanoq });
   }
   return natija;
+}
+
+/**
+ * Bankdagi savol matnlari takrorlanmasligi.
+ *
+ * Identifikator takrorlanmasligi yetarli emas: bir xil savol ikki xil
+ * `id` bilan yozilishi mumkin va u holda bitta shaklda ayni savol ikki
+ * marta beriladi yoki ikki shakl mustaqil bo'lmay qoladi. Bu xato ham
+ * jim kechadi — hech narsa yiqilmaydi.
+ */
+export function duplicateQuestionPrompts(): Array<{ prompt: string; savollar: string[] }> {
+  const boyicha = new Map<string, string[]>();
+  for (const q of DIAGNOSTIKA_SAVOLLARI) {
+    const kalit = q.prompt.trim().toLowerCase();
+    boyicha.set(kalit, [...(boyicha.get(kalit) ?? []), `${q.id} (${q.variant})`]);
+  }
+  return [...boyicha.entries()]
+    .filter(([, v]) => v.length > 1)
+    .map(([prompt, savollar]) => ({ prompt, savollar }));
 }
 
 /* ──────────────────────── Taqsimotlar ──────────────────────── */
@@ -399,9 +426,17 @@ export function auditIssues(): AuditIssue[] {
   }
 
   for (const g of diagnosticVariantGaps()) {
+    const yozuv = SHAKLLAR.map((v) => `${v}: ${g.sanoq[v]}`).join(", ");
     issues.push({
       level: "xato",
-      message: `«${g.area}» yo'nalishida diagnostika shakllari teng emas: A da ${g.a} ta, B da ${g.b} ta savol — boshlang'ich va yakuniy o'lchov bir xil narsani o'lchamaydi.`,
+      message: `«${g.area}» yo'nalishida diagnostika shakllari teng emas (${yozuv}) — o'lchovlar bir xil narsani o'lchamaydi.`,
+    });
+  }
+
+  for (const d of duplicateQuestionPrompts()) {
+    issues.push({
+      level: "xato",
+      message: `Diagnostikada bir xil savol takrorlanadi: ${d.savollar.join(", ")}.`,
     });
   }
 

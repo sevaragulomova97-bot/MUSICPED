@@ -1369,3 +1369,67 @@ o'quvchi uchun esa ikkita bir xil tugma qoladi. Tugmalarga to'liq nom
 berildi (`aria-label`): «Oraliq nazoratni boshlash», «Yakuniy
 diagnostikani boshlash». Buni e2e testda selektor ikkala tugmani ham
 ajrata olmagani ko'rsatdi — test yiqilishi haqiqiy kamchilikni ochdi.
+
+---
+
+## Uchinchi parallel shakl
+
+### Q94. C shakli qo'shildi — uchala o'lchov mustaqil bo'ldi
+
+Q92 da ikki shakl bilan uchta mustaqil o'lchov qilib bo'lmasligi ochiq
+yozilgan edi: oraliq va yakuniy bir shaklga tushardi. Loyiha egasi
+uchinchi shaklni so'radi.
+
+Bank 64 dan **96 savolga** chiqarildi — har bir yo'nalishda 12 tadan,
+uchta shaklga 4 tadan taqsimlangan. Qoida soddalashdi:
+
+| O'lchov | Shakl |
+|---|---|
+| boshlangich | A |
+| oraliq | B |
+| yakuniy | C |
+
+Endi talaba qaysi ketma-ketlikda topshirmasin, bir savolni ikki marta
+ko'rmaydi. Bitta o'lchov baribir 32 savol — test uzunligi o'zgarmadi.
+
+**Tanlov ekranidagi ogohlantirish olib tashlandi**, chunki u endi
+noto'g'ri bo'lardi: ilgari «oraliq va yakuniy bir xil shaklda bo'ladi»
+deb yozilgandi.
+
+### Q95. Topilgan xato: bank ichida bir savol ikki marta yozilgan edi
+
+C shaklini yozishdan oldin mavjud savollar ro'yxati ko'zdan kechirildi va
+«Sinkopa nima?» degan savol **ikki marta** uchrashi ma'lum bo'ldi:
+`q-rit-3` va `q-rit-5` — ikkalasi ham **A shaklida**, ikkalasi ham
+`tushunish` darajasida.
+
+Xato Q89 da bank kengaytirilganda kiritilgan: yangi savol yozilganda
+mavjud matnlar bilan solishtirilmagan.
+
+**Nega test uni ko'rmadi.** Mavjud tekshiruv faqat `id` larning
+takrorlanmasligini tekshirardi, matnni emas. Bir xil savol ikki xil `id`
+bilan yozilsa, tekshiruv jim o'tib ketardi — natijada bitta shaklda ayni
+savol ikki marta beriladi va yo'nalish bali bitta savolga ikki hissa
+beradi.
+
+**Tuzatish.** `q-rit-5` butunlay boshqa savolga almashtirildi (metr va
+temp farqi). Takrorlanishni endi ikkita narsa qo'riqlaydi: unit test va
+auditdagi `duplicateQuestionPrompts()`.
+
+### Q96. Topilgan xato: kontentda o'zbek alifbosida yo'q harf ishlatilgan
+
+Yo'l-yo'lakay butun kontent o'zbek lotin alifbosida mavjud bo'lmagan
+harflarga tekshirildi. Natija: **«mažor»** yozuvi 11 joyda uchraydi —
+diagnostikada, mashqlar bankida va nazariya kursida.
+
+`ž` harfi o'zbek lotin alifbosida yo'q; bu rus tilidan to'g'ridan-to'g'ri
+ko'chirilgan transliteratsiya. Bundan tashqari bank ichida nomuvofiqlik
+bor edi: eski savollarda «Do mažor», yangilarida «do major».
+
+Hammasi **«major»** ga keltirildi.
+
+**Nega ilgari sezilmadi.** Har bosqichda kirill harflariga tekshiruv
+o'tkazilardi (`[Ѐ-ӿ]`), `ž` esa lotin diapazonida turadi va u
+tekshiruvga tushmasdi. Endi tekshiruv kengaytirildi: lotin diakritik
+belgilari ham ko'riladi. `Schön` (shaxs familiyasi) va `winansi.ts`
+dagi belgilar diapazoni — qonuniy istisnolar.

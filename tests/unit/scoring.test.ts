@@ -169,20 +169,22 @@ describe("scoreDiagnostic", () => {
   });
 });
 
+const SHAKLLAR = ["A", "B", "C"] as const;
+
 describe("parallel shakllar", () => {
-  it("A va B shakllari teng hajmda", () => {
-    const a = questionsOfVariant("A");
-    const b = questionsOfVariant("B");
-    expect(a.length).toBe(b.length);
-    expect(a.length + b.length).toBe(DIAGNOSTIKA_SAVOLLARI.length);
+  it("uchala shakl ham teng hajmda", () => {
+    const hajmlar = SHAKLLAR.map((v) => questionsOfVariant(v).length);
+    expect(new Set(hajmlar).size, JSON.stringify(hajmlar)).toBe(1);
+    expect(hajmlar.reduce((a, b) => a + b, 0)).toBe(DIAGNOSTIKA_SAVOLLARI.length);
   });
 
-  it("har bir yo'nalish ikkala shaklda ham bor va teng", () => {
+  it("har bir yo'nalish uchala shaklda ham teng taqsimlangan", () => {
     for (const area of DIAGNOSTIKA_YONALISHLARI) {
-      const a = questionsOfVariant("A").filter((q) => q.area === area).length;
-      const b = questionsOfVariant("B").filter((q) => q.area === area).length;
-      expect(a, `${area} / A`).toBeGreaterThan(0);
-      expect(b, `${area} / B`).toBe(a);
+      const sanoq = SHAKLLAR.map(
+        (v) => questionsOfVariant(v).filter((q) => q.area === area).length,
+      );
+      expect(sanoq[0], `${area}`).toBeGreaterThan(0);
+      expect(new Set(sanoq).size, `${area}: ${JSON.stringify(sanoq)}`).toBe(1);
     }
   });
 
@@ -191,29 +193,48 @@ describe("parallel shakllar", () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
-  it("shakl o'lchov turiga bog'lanadi", () => {
-    expect(variantForKind("boshlangich")).toBe("A");
-    expect(variantForKind("yakuniy")).toBe("B");
-    // Oraliq ham B: `toSubject` yakuniy bo'lmasa oraliqni yakuniy o'rnida
-    // ishlatadi, shuning uchun u ham boshlang'ichdan farq qilishi shart.
-    expect(variantForKind("oraliq")).toBe("B");
+  it("savol matnlari ham takrorlanmaydi", () => {
+    // Bir xil savol ikki xil `id` bilan yozilishi mumkin — u holda bitta
+    // shaklda ayni savol ikki marta beriladi yoki shakllar mustaqil
+    // bo'lmay qoladi. Identifikator tekshiruvi buni ko'rmaydi.
+    const boyicha = new Map<string, string[]>();
+    for (const q of DIAGNOSTIKA_SAVOLLARI) {
+      const kalit = q.prompt.trim().toLowerCase();
+      boyicha.set(kalit, [...(boyicha.get(kalit) ?? []), `${q.id} (${q.variant})`]);
+    }
+    const takror = [...boyicha.entries()].filter(([, v]) => v.length > 1);
+    expect(takror, JSON.stringify(takror, null, 2)).toEqual([]);
   });
 
-  it("tahlil qilinadigan juftlik har doim turli shaklda", () => {
-    // `lib/research.ts` boshlang'ichni va yakuniyni (yoki uning o'rniga
-    // oraliqni) oladi — ikkisi ham bir shaklga tushmasligi kerak.
-    const boshlangich = variantForKind("boshlangich");
-    for (const yakun of ["yakuniy", "oraliq"] as const) {
-      expect(variantForKind(yakun), yakun).not.toBe(boshlangich);
-    }
+  it("shakl o'lchov turiga bog'lanadi", () => {
+    expect(variantForKind("boshlangich")).toBe("A");
+    expect(variantForKind("oraliq")).toBe("B");
+    expect(variantForKind("yakuniy")).toBe("C");
+  });
+
+  it("uchala o'lchov ham bir-biridan mustaqil", () => {
+    // `lib/research.ts` boshlang'ichni va yakuniyni (yakuniy bo'lmasa
+    // oraliqni) oladi — hech bir juftlik bir shaklga tushmasligi kerak.
+    const shakllar = (["boshlangich", "oraliq", "yakuniy"] as const).map(variantForKind);
+    expect(new Set(shakllar).size, JSON.stringify(shakllar)).toBe(3);
   });
 
   it("bitta shakl ham barcha yo'nalishni qamrab oladi", () => {
     // Aks holda o'lchovda yo'nalish tushib qolardi va uning bali
     // `fallback` qiymatiga tushib, rejani buzardi.
-    for (const v of ["A", "B"] as const) {
+    for (const v of SHAKLLAR) {
       const qamrov = new Set(questionsOfVariant(v).map((q) => q.area));
       expect(qamrov.size, v).toBe(DIAGNOSTIKA_YONALISHLARI.length);
+    }
+  });
+
+  it("har bir shaklda teskari Likert bandi bor", () => {
+    // Rozilik moyiligiga qarshi himoya uchala o'lchovda ham ishlashi kerak.
+    for (const v of SHAKLLAR) {
+      const teskari = questionsOfVariant(v).filter(
+        (q) => q.kind === "likert" && q.reverse,
+      );
+      expect(teskari.length, v).toBeGreaterThan(0);
     }
   });
 });

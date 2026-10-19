@@ -95,11 +95,11 @@ export function scoreDiagnostic(
 }
 
 /**
- * Berilgan shakldagi (A yoki B) savollar.
+ * Berilgan shakldagi (A, B yoki C) savollar.
  *
- * Boshlang'ich va yakuniy o'lchov turli shaklda o'tkaziladi: aks holda
- * ikkinchi natija savollarni eslab qolish hisobiga ko'tariladi va o'sishni
- * metodikaga bog'lab bo'lmaydi.
+ * Har bir o'lchov o'z shaklida o'tkaziladi: aks holda keyingi natija
+ * savollarni eslab qolish hisobiga ko'tariladi va o'sishni metodikaga
+ * bog'lab bo'lmaydi.
  */
 export function questionsOfVariant(
   variant: QuestionVariant,
@@ -115,23 +115,19 @@ export function questionsOfVariant(
  * bor. `lib/research.ts` tahlilga boshlang'ichni va oxirgi yakuniyni
  * oladi; yakuniy bo'lmasa esa **oraliqni yakuniy o'rnida** ishlatadi.
  * Demak yakuniy bo'lishi mumkin bo'lgan har qanday o'lchov boshlang'ichdan
- * boshqa shaklda bo'lishi shart — aks holda taqqoslanadigan juftlik bir
- * xil savollarga tushib qoladi.
+ * boshqa shaklda bo'lishi shart.
  *
  *   boshlangich -> A
  *   oraliq      -> B
- *   yakuniy     -> B
+ *   yakuniy     -> C
  *
- * Shu bilan tahlil qilinadigan juftlik (boshlang'ich ↔ yakuniy) har doim
- * A ↔ B bo'ladi.
- *
- * **Qoladigan cheklov:** talaba oraliq va yakuniy o'lchovning ikkisini
- * ham topshirsa, ular bir shaklda bo'ladi — ikki shakl bilan uchta
- * o'lchovni butunlay mustaqil qilib bo'lmaydi. Buni hisobotda ko'rsatish
- * kerak.
+ * Uchta shakl bilan uchala o'lchov ham bir-biridan mustaqil bo'ladi:
+ * talaba qaysi ketma-ketlikda topshirmasin, bir savolni ikki marta
+ * ko'rmaydi.
  */
 export function variantForKind(kind: DiagnosticKind): QuestionVariant {
-  return kind === "boshlangich" ? "A" : "B";
+  if (kind === "boshlangich") return "A";
+  return kind === "oraliq" ? "B" : "C";
 }
 
 /** Yo'nalish bo'yicha savollar — test sahifasini bosqichlarga bo'lishda ishlatiladi. */

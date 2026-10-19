@@ -120,7 +120,7 @@ components/
   decor/                Nota belgilari va fondagi suzuvchi notalar
 content/
   modules.ts            5 modul, 51 o'quv natijasi, ECTS kredit
-  diagnostic.ts         64 ta diagnostika savoli — 8 yo'nalish x 8, A va B parallel shakli
+  diagnostic.ts         96 ta diagnostika savoli — 8 yo'nalish x 12, A/B/C parallel shakllari
   demo-students.ts      24 namunaviy talaba (tajriba / nazorat)
   practice.ts           18 ta cholg'u mashqi + ritm baholash
   courses/              5 kurs, 52 ta to'liq dars (har bir modul o'z faylida)
@@ -158,7 +158,7 @@ docs/
 ## Ishlab chiqish bosqichlari
 
 - [x] **B1** — Poydevor: statik eksport, dizayn tokenlari, layout, dark mode, Pages deploy
-- [x] **B2** — Dexie, statik kontent, diagnostika (A/B shakli, 2 x 32 savol), individual yo'nalish algoritmi
+- [x] **B2** — Dexie, statik kontent, diagnostika (A/B/C shakllari, 3 x 32 savol), individual yo'nalish algoritmi
 - [x] **B3** — 6 ta virtual cholg'u: pianino, gitara, dutor, rubob, nay, doira
       (haqiqiy namunali ovoz, yozib olish, mashq rejimi)
 - [x] **B4** — Darslar (VexFlow nota yozuvi), topshiriqlar va rubrikalar,
@@ -171,12 +171,12 @@ docs/
 
 ---
 
-## Diagnostika: ikkita parallel shakl
+## Diagnostika: uchta parallel shakl
 
-Bank 64 savoldan iborat: 8 yo'nalishning har birida 8 tadan. Ular ikkita
-teng shaklga bo'lingan — **A** va **B**, har bir yo'nalishda 4 tadan.
-Bitta o'lchov 32 savoldan iborat, ya'ni talaba uchun test uzunligi
-o'zgarmagan.
+Bank 96 savoldan iborat: 8 yo'nalishning har birida 12 tadan. Ular uchta
+teng shaklga bo'lingan — **A**, **B** va **C**, har bir yo'nalishda
+4 tadan. Bitta o'lchov baribir 32 savoldan iborat, ya'ni talaba uchun
+test uzunligi o'zgarmagan.
 
 **Nima uchun ikki shakl.** Dissertatsiya tajribasi boshlang'ich va
 yakuniy o'lchovni taqqoslaydi (juftlashgan t-mezon). Ikkala o'lchovda
@@ -189,7 +189,7 @@ Shakl o'lchov **turiga** bog'langan:
 |---|---|
 | Boshlang'ich | A |
 | Oraliq nazorat | B |
-| Yakuniy | B |
+| Yakuniy | C |
 
 Birinchi o'lchov har doim boshlang'ich; keyingilarida talaba oraliq
 nazorat bilan yakuniy diagnostika orasidan tanlaydi.
@@ -201,11 +201,12 @@ yakuniy bo'lishi mumkin bo'lgan har qanday o'lchov boshlang'ichdan boshqa
 shaklda bo'lishi shart. Shu bilan tahlil qilinadigan juftlik har doim
 A ↔ B bo'ladi.
 
+Uchala o'lchov bir-biridan mustaqil: talaba qaysi ketma-ketlikda
+topshirmasin, bir savolni ikki marta ko'rmaydi.
+
 Shakllar **mazmun va Blum darajasi** bo'yicha moslashtirilgan, empirik
 qiyinlik bo'yicha emas — buning uchun pilot ma'lumot kerak bo'lardi va
-buni hisobotda ko'rsatish lozim. Yana bir cheklov: talaba oraliq va
-yakuniy o'lchovning ikkisini ham topshirsa, ular bir shaklda bo'ladi —
-ikki shakl bilan uchta o'lchovni butunlay mustaqil qilib bo'lmaydi.
+buni hisobotda ko'rsatish lozim.
 
 **Motivatsiya shkalasida teskari bandlar bor.** Likert bandlarining bir
 qismida yuqori ball past motivatsiyani bildiradi («Mashq qilishni

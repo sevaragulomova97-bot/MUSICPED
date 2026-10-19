@@ -48,7 +48,7 @@ export const NAZARIYA: Course = {
             },
             {
               kind: "nota",
-              caption: "Skripka kalitida do mažor gammasi — notani bosib eshiting",
+              caption: "Skripka kalitida do major gammasi — notani bosib eshiting",
               playable: true,
               spec: {
                 clef: "treble",
@@ -96,7 +96,7 @@ export const NAZARIYA: Course = {
           blocks: [
             {
               kind: "mashq",
-              text: "Virtual pianinoda do mažor gammasini pastdan yuqoriga va yuqoridan pastga chalib chiqing. Har bir notani ovoz chiqarib nomlang.",
+              text: "Virtual pianinoda do major gammasini pastdan yuqoriga va yuqoridan pastga chalib chiqing. Har bir notani ovoz chiqarib nomlang.",
               instrument: "pianino",
               exerciseId: "p-do-re-mi",
             },
@@ -284,7 +284,7 @@ export const NAZARIYA: Course = {
                   ],
                   correctId: "b",
                   explanation:
-                    "Stan boshidagi belgi — kalit belgisi, u butun asarga amal qiladi. Bitta diez sol mažor (yoki mi minor) tonalligini bildiradi.",
+                    "Stan boshidagi belgi — kalit belgisi, u butun asarga amal qiladi. Bitta diez sol major (yoki mi minor) tonalligini bildiradi.",
                 },
               ],
             },
@@ -760,24 +760,24 @@ export const NAZARIYA: Course = {
             },
             {
               kind: "matn",
-              text: "Trezvuk — uch tovushli akkord, terstiyalardan tuziladi. Mažor trezvuk: katta terstiya + kichik terstiya. Minor trezvuk: kichik terstiya + katta terstiya.",
+              text: "Trezvuk — uch tovushli akkord, terstiyalardan tuziladi. Major trezvuk: katta terstiya + kichik terstiya. Minor trezvuk: kichik terstiya + katta terstiya.",
             },
             {
               kind: "nota",
-              caption: "Do mažor va do minor trezvuklari",
+              caption: "Do major va do minor trezvuklari",
               playable: true,
               spec: {
                 clef: "treble",
                 timeSignature: "4/4",
                 notes: [
-                  { keys: ["c/4", "e/4", "g/4"], duration: "h", lyric: "mažor" },
+                  { keys: ["c/4", "e/4", "g/4"], duration: "h", lyric: "major" },
                   { keys: ["c/4", "eb/4", "g/4"], duration: "h", lyric: "minor" },
                 ],
               },
             },
             {
               kind: "eslatma",
-              text: "Mažor va minor trezvuklarda prima va kvinta bir xil — faqat o'rtadagi terstiya akkordning bo'yog'ini belgilaydi.",
+              text: "Major va minor trezvuklarda prima va kvinta bir xil — faqat o'rtadagi terstiya akkordning bo'yog'ini belgilaydi.",
             },
           ],
         },
@@ -787,7 +787,7 @@ export const NAZARIYA: Course = {
           blocks: [
             {
               kind: "mashq",
-              text: "Virtual pianinoda do mažor va do minor trezvuklarini navbatma-navbat chaling. Farqni quloq bilan eslab qoling.",
+              text: "Virtual pianinoda do major va do minor trezvuklarini navbatma-navbat chaling. Farqni quloq bilan eslab qoling.",
               instrument: "pianino",
             },
           ],
@@ -804,7 +804,7 @@ export const NAZARIYA: Course = {
                   area: "eshituv",
                   bloom: "tahlil",
                   kind: "single",
-                  prompt: "Mažor trezvuk qanday tuzilgan?",
+                  prompt: "Major trezvuk qanday tuzilgan?",
                   options: [
                     { id: "a", text: "Kichik terstiya + katta terstiya" },
                     { id: "b", text: "Katta terstiya + kichik terstiya" },
@@ -847,7 +847,7 @@ export const NAZARIYA: Course = {
         },
       ],
       reflection: [
-        "Mažor va minorni quloq bilan qanday farqlaysiz?",
+        "Major va minorni quloq bilan qanday farqlaysiz?",
         "Intervallarni o'rganishda qaysi usul sizga qulay keldi?",
       ],
     },

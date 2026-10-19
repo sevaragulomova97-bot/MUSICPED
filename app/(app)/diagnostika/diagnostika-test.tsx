@@ -199,11 +199,10 @@ export function DiagnostikaTest() {
         </div>
 
         <p className="mt-5 text-xs leading-relaxed text-ink-muted">
-          Savollar boshlang&apos;ich diagnostikadagidan boshqa: natija
-          savollarni eslab qolish hisobiga emas, haqiqiy o&apos;zgarish
-          hisobiga solishtiriladi. Oraliq va yakuniy o&apos;lchov esa bir xil
-          shaklda bo&apos;ladi — ikkalasini ham topshirsangiz, buni hisobotda
-          ko&apos;rsating.
+          Har bir o&apos;lchovning o&apos;z savollar to&apos;plami bor:
+          boshlang&apos;ich, oraliq va yakuniy o&apos;lchovda bir savol ikki
+          marta uchramaydi. Shuning uchun natija savollarni eslab qolish
+          hisobiga emas, haqiqiy o&apos;zgarish hisobiga solishtiriladi.
         </p>
       </div>
     );

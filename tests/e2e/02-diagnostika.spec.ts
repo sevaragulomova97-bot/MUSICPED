@@ -144,7 +144,7 @@ test("ikkinchi o'lchov yakuniy diagnostika bo'lib saqlanadi", async ({ page }) =
  * `lib/research.ts` yakuniy bo'lmasa oraliqni yakuniy o'rnida ishlatadi,
  * shuning uchun u ham boshlang'ichdan boshqa shaklda bo'lishi kerak.
  */
-test("oraliq nazorat tanlanadi va alohida tur bilan saqlanadi", async ({ page }) => {
+test("uchala o'lchov ham alohida tur va mustaqil shakl bilan saqlanadi", async ({ page }) => {
   await sessiyaBer(page, TALABA);
   await bazaniTozala(page);
 
@@ -168,6 +168,28 @@ test("oraliq nazorat tanlanadi va alohida tur bilan saqlanadi", async ({ page })
   await diagnostikaniToldir(page);
   await expect(page).toHaveURL(/\/yolnalish\/?$/, { timeout: 15_000 });
 
+  // Uchinchi o'lchov — yakuniy. Uchala shakl ham bir-biridan mustaqil.
+  await page.goto("/diagnostika/");
+  await page
+    .getByRole("button", { name: /yakuniy diagnostikani boshlash/i })
+    .click();
+  await expect(
+    page.getByRole("heading", { level: 1, name: /yakuniy diagnostika/i }),
+  ).toBeVisible();
+
+  const yakuniySavollar = await page.locator("ol li p").allInnerTexts();
+  expect(
+    yakuniySavollar.filter((x) => birinchiSavollar.includes(x)),
+    "yakuniy ↔ boshlang'ich",
+  ).toEqual([]);
+  expect(
+    yakuniySavollar.filter((x) => oraliqSavollar.includes(x)),
+    "yakuniy ↔ oraliq",
+  ).toEqual([]);
+
+  await diagnostikaniToldir(page);
+  await expect(page).toHaveURL(/\/yolnalish\/?$/, { timeout: 15_000 });
+
   const turlar = await page.evaluate(async () => {
     const db = await new Promise<IDBDatabase>((resolve, reject) => {
       const req = indexedDB.open("musicped");
@@ -183,5 +205,5 @@ test("oraliq nazorat tanlanadi va alohida tur bilan saqlanadi", async ({ page })
     });
   });
 
-  expect(turlar.sort()).toEqual(["boshlangich", "oraliq"]);
+  expect(turlar.sort()).toEqual(["boshlangich", "oraliq", "yakuniy"]);
 });

@@ -23,23 +23,24 @@ export type QuestionOption = {
 };
 
 /**
- * Parallel shakl — «A» va «B».
+ * Parallel shakllar — «A», «B» va «C».
  *
  * Dissertatsiya tajribasi boshlang'ich va yakuniy o'lchovni taqqoslaydi
  * (`lib/research.ts` da juftlashgan t-mezon). Agar ikkala o'lchovda aynan
  * bir xil savollar berilsa, ikkinchi natija qisman **savolni eslab
  * qolish** hisobiga ko'tariladi va o'sishni metodikaga bog'lab bo'lmaydi.
  *
- * Shuning uchun bank ikkita teng shaklga bo'lingan: har bir yo'nalishda
- * A da ham, B da ham 4 tadan savol bor va ular Blum darajasi bo'yicha
- * moslashtirilgan. Birinchi o'lchov A shaklida, keyingisi B shaklida
- * o'tkaziladi.
+ * Shuning uchun bank uchta teng shaklga bo'lingan: har bir yo'nalishda
+ * A, B va C da 4 tadan savol bor. O'lchov turi shaklni belgilaydi
+ * (`variantForKind`): boshlang'ich — A, oraliq nazorat — B, yakuniy — C.
+ * Shu bilan uchala o'lchov ham bir-biridan mustaqil bo'ladi va bitta
+ * o'lchov baribir 32 savoldan iborat qoladi.
  *
  * Moslik **mazmun va daraja** bo'yicha qilingan, empirik qiyinlik
  * bo'yicha emas — buning uchun pilot ma'lumot kerak bo'lardi. Shuni
  * hisobotda ko'rsatish kerak.
  */
-export type QuestionVariant = "A" | "B";
+export type QuestionVariant = "A" | "B" | "C";
 
 type Base = {
   id: string;
@@ -101,10 +102,10 @@ export const DIAGNOSTIKA_SAVOLLARI: DiagnosticQuestion[] = [
     area: "nazariya",
     bloom: "bilish",
     kind: "single",
-    prompt: "Do mažor gammasida nechta alteratsiya belgisi (diez yoki bemol) bor?",
+    prompt: "Do major gammasida nechta alteratsiya belgisi (diez yoki bemol) bor?",
     options: [t("a", "Bitta ham yo'q"), t("b", "Bitta"), t("c", "Ikkita"), t("d", "Uchta")],
     correctId: "a",
-    explanation: "Do mažor — kalit belgilarisiz yagona mažor gamma, faqat oq klavishlardan iborat.",
+    explanation: "Do major — kalit belgilarisiz yagona major gamma, faqat oq klavishlardan iborat.",
   },
   {
     id: "q-naz-3",
@@ -123,7 +124,7 @@ export const DIAGNOSTIKA_SAVOLLARI: DiagnosticQuestion[] = [
     area: "nazariya",
     bloom: "tushunish",
     kind: "single",
-    prompt: "Mažor trezvuk qanday intervallardan tuzilgan?",
+    prompt: "Major trezvuk qanday intervallardan tuzilgan?",
     options: [
       t("a", "Kichik terstiya + katta terstiya"),
       t("b", "Katta terstiya + kichik terstiya"),
@@ -132,7 +133,7 @@ export const DIAGNOSTIKA_SAVOLLARI: DiagnosticQuestion[] = [
     ],
     correctId: "b",
     explanation:
-      "Mažor trezvuk pastdan yuqoriga katta terstiya, so'ng kichik terstiyadan tuziladi. Minor trezvukda tartib teskari.",
+      "Major trezvuk pastdan yuqoriga katta terstiya, so'ng kichik terstiyadan tuziladi. Minor trezvukda tartib teskari.",
   },
   {
     id: "q-naz-5",
@@ -194,6 +195,69 @@ export const DIAGNOSTIKA_SAVOLLARI: DiagnosticQuestion[] = [
       "D → T — eng ishonchli yakun, «nuqta». Plagal kadansda S → T, yarim kadansda esa jumla dominantada to'xtaydi.",
   },
 
+  {
+    id: "q-naz-9",
+    variant: "C",
+    area: "nazariya",
+    bloom: "bilish",
+    kind: "single",
+    prompt: "Kalitda bemollar qanday tartibda qo'yiladi?",
+    options: [
+      t("a", "fa · do · sol · re · lya · mi · si"),
+      t("b", "si · mi · lya · re · sol · do · fa"),
+      t("c", "do · re · mi · fa · sol · lya · si"),
+      t("d", "Tartib yo'q, ixtiyoriy"),
+    ],
+    correctId: "b",
+    explanation: "Bemollar tartibi diezlarnikiga teskari o'qiladi.",
+  },
+  {
+    id: "q-naz-10",
+    variant: "C",
+    area: "nazariya",
+    bloom: "tushunish",
+    kind: "single",
+    prompt: "Garmonik minorda qaysi bosqich o'zgaradi?",
+    options: [
+      t("a", "Ikkinchi bosqich pasayadi"),
+      t("b", "Uchinchi bosqich ko'tariladi"),
+      t("c", "Yettinchi bosqich yarim tonga ko'tariladi"),
+      t("d", "Beshinchi bosqich pasayadi"),
+    ],
+    correctId: "c",
+    explanation:
+      "Ko'tarilgan yettinchi bosqich tonikaga tortishishni kuchaytiradi va dominanta akkordida ishlatiladi.",
+  },
+  {
+    id: "q-naz-11",
+    variant: "C",
+    area: "nazariya",
+    bloom: "qollash",
+    kind: "single",
+    prompt: "Do major tonalligida subdominanta qaysi bosqichda quriladi?",
+    options: [t("a", "I bosqich"), t("b", "IV bosqich"), t("c", "V bosqich"), t("d", "VII bosqich")],
+    correctId: "b",
+    explanation: "Subdominanta — IV bosqich akkordi; do majorda u fa major trezvugi bo'ladi.",
+  },
+  {
+    id: "q-naz-12",
+    variant: "C",
+    area: "nazariya",
+    bloom: "tahlil",
+    kind: "single",
+    prompt:
+      "Sakkiz taktli qurilma ikki jumlaga bo'linadi: birinchisi dominantada to'xtaydi, ikkinchisi tonikada tugaydi. Bu qanday shakl?",
+    options: [
+      t("a", "Variatsiya"),
+      t("b", "Period"),
+      t("c", "Rondo"),
+      t("d", "Kanon"),
+    ],
+    correctId: "b",
+    explanation:
+      "Period — ikki jumladan iborat qurilma: birinchisi «savol» (yarim kadans), ikkinchisi «javob» (to'liq kadans).",
+  },
+
   /* ───────────────────── Musiqiy eshituv ───────────────────── */
   {
     id: "q-esh-1",
@@ -239,7 +303,7 @@ export const DIAGNOSTIKA_SAVOLLARI: DiagnosticQuestion[] = [
     area: "eshituv",
     bloom: "tahlil",
     kind: "single",
-    prompt: "Mažor va minor trezvuklar bir-biridan qaysi tovush bilan farq qiladi?",
+    prompt: "Major va minor trezvuklar bir-biridan qaysi tovush bilan farq qiladi?",
     options: [t("a", "Prima"), t("b", "Terstiya"), t("c", "Kvinta"), t("d", "Oktava")],
     correctId: "b",
     explanation:
@@ -317,6 +381,72 @@ export const DIAGNOSTIKA_SAVOLLARI: DiagnosticQuestion[] = [
       "Tonallik o'zgarsa ham bo'g'inlar o'zgarmaydi — Kodai tizimining asosiy qulayligi shunda.",
   },
 
+  {
+    id: "q-esh-9",
+    variant: "C",
+    area: "eshituv",
+    bloom: "bilish",
+    kind: "single",
+    prompt: "«Do» dan «sol» gacha bo'lgan interval qanday nomlanadi?",
+    options: [t("a", "Kvarta"), t("b", "Kvinta"), t("c", "Seksta"), t("d", "Tersiya")],
+    correctId: "b",
+    explanation: "Do–sol besh pog'onani qamrab oladi, shuning uchun u kvinta deb ataladi.",
+  },
+  {
+    id: "q-esh-10",
+    variant: "C",
+    area: "eshituv",
+    bloom: "tushunish",
+    kind: "single",
+    prompt:
+      "Bir xil ohang avval past, keyin baland balandlikda chalindi. Quloq uni nega baribir «o'sha ohang» deb taniydi?",
+    options: [
+      t("a", "Tembr o'zgarmagani uchun"),
+      t("b", "Tovushlar orasidagi intervallar saqlangani uchun"),
+      t("c", "Temp bir xil bo'lgani uchun"),
+      t("d", "Dinamika bir xil bo'lgani uchun"),
+    ],
+    correctId: "b",
+    explanation:
+      "Ohangni tanib olishda balandlik emas, tovushlar orasidagi munosabat hal qiladi — transponirovkaning asosi ham shu.",
+  },
+  {
+    id: "q-esh-11",
+    variant: "C",
+    area: "eshituv",
+    bloom: "qollash",
+    kind: "single",
+    prompt:
+      "Ikki ovozli qo'shiqda o'quvchi doim asosiy ohangga «sirg'alib» ketadi. Birinchi navbatda nima qilasiz?",
+    options: [
+      t("a", "Uni asosiy ovozga o'tkazaman"),
+      t("b", "O'z partiyasini alohida, jo'r bilan mustahkamlataman"),
+      t("c", "Baland kuylashni so'rayman"),
+      t("d", "Ikki ovozdan voz kechaman"),
+    ],
+    correctId: "b",
+    explanation:
+      "Ikkinchi ovoz avval alohida mustahkamlanadi: o'z chizig'ini ichida eshitmagan bola uni ansamblda ham ushlab turolmaydi.",
+  },
+  {
+    id: "q-esh-12",
+    variant: "C",
+    area: "eshituv",
+    bloom: "tahlil",
+    kind: "single",
+    prompt:
+      "Sinf qo'shiqni asta-sekin pasaytirib kuylay boshladi. Eng ehtimolli sabab qaysi?",
+    options: [
+      t("a", "Tonallik juda past olingan"),
+      t("b", "Nafas yetmayapti va tovush qo'llab-quvvatlanmayapti"),
+      t("c", "Temp juda tez"),
+      t("d", "Matn qiyin"),
+    ],
+    correctId: "b",
+    explanation:
+      "Intonatsiyaning pasayishi ko'pincha nafas va tayanchning yo'qolishidan kelib chiqadi, quloq xatosidan emas.",
+  },
+
   /* ───────────────────────── Ritm hissi ───────────────────────── */
   {
     id: "q-rit-1",
@@ -380,16 +510,16 @@ export const DIAGNOSTIKA_SAVOLLARI: DiagnosticQuestion[] = [
     area: "ritm",
     bloom: "tushunish",
     kind: "single",
-    prompt: "Sinkopa nima?",
+    prompt: "Metr va temp orasidagi farq nimada?",
     options: [
-      t("a", "Tempning sekinlashishi"),
-      t("b", "Urg'uning kuchsiz zarbga ko'chishi"),
-      t("c", "Pauza turi"),
-      t("d", "O'lchovning o'zgarishi"),
+      t("a", "Farqi yo'q, ikkalasi bir narsa"),
+      t("b", "Metr — zarblarning tartibi, temp — ularning tezligi"),
+      t("c", "Metr — tezlik, temp — o'lchov"),
+      t("d", "Metr faqat vokal asarlarda bo'ladi"),
     ],
     correctId: "b",
     explanation:
-      "Sinkopada urg'u kutilgan kuchli zarbdan kuchsiz zarbga siljiydi — shuning uchun u «itarib yuborgandek» eshitiladi.",
+      "Bitta metr (masalan 4/4) istalgan tempda yangrashi mumkin: o'lchov tuzilmani, temp esa tezlikni belgilaydi.",
   },
   {
     id: "q-rit-6",
@@ -432,6 +562,74 @@ export const DIAGNOSTIKA_SAVOLLARI: DiagnosticQuestion[] = [
     correctId: "b",
     explanation:
       "Takrorlanish davri to'rt zarbdan iborat bo'lsa, u to'rt choraklik o'lchovga tushadi.",
+  },
+
+  {
+    id: "q-rit-9",
+    variant: "C",
+    area: "ritm",
+    bloom: "bilish",
+    kind: "single",
+    prompt: "Pauza nimani bildiradi?",
+    options: [
+      t("a", "Tempning o'zgarishini"),
+      t("b", "Belgilangan davomiylikdagi jimlikni"),
+      t("c", "Dinamikaning pasayishini"),
+      t("d", "Asarning tugashini"),
+    ],
+    correctId: "b",
+    explanation: "Pauza — o'lchanadigan jimlik; u ham ritmning bir qismi.",
+  },
+  {
+    id: "q-rit-10",
+    variant: "C",
+    area: "ritm",
+    bloom: "tushunish",
+    kind: "single",
+    prompt: "3/4 va 6/8 o'lchovlari orasidagi asosiy farq nimada?",
+    options: [
+      t("a", "3/4 da uchta urg'u, 6/8 da oltita urg'u bor"),
+      t("b", "3/4 da bitta urg'u va uch chorak, 6/8 da ikkita urg'u va ikki uchlik bor"),
+      t("c", "Farqi yo'q, bir xil hisoblanadi"),
+      t("d", "6/8 faqat tez asarlarda ishlatiladi"),
+    ],
+    correctId: "b",
+  },
+  {
+    id: "q-rit-11",
+    variant: "C",
+    area: "ritm",
+    bloom: "qollash",
+    kind: "single",
+    prompt:
+      "Sinf ritmik naqshni qarsak bilan takrorlay olmayapti. Qaysi qadam birinchi bo'lishi kerak?",
+    options: [
+      t("a", "Tempni oshirish"),
+      t("b", "Naqshni qisqartirib, sekin tempda bo'laklab berish"),
+      t("c", "Nota yozuvini ko'rsatish"),
+      t("d", "Boshqa naqshga o'tish"),
+    ],
+    correctId: "b",
+    explanation:
+      "Bo'lak kichrayganda va temp sekinlashganda naqsh ushlanadi; keyin asta tezlashtiriladi.",
+  },
+  {
+    id: "q-rit-12",
+    variant: "C",
+    area: "ritm",
+    bloom: "tahlil",
+    kind: "single",
+    prompt:
+      "Ansamblda temp asta-sekin tezlashib ketdi. Buning eng keng tarqalgan sababi nima?",
+    options: [
+      t("a", "Metronom noto'g'ri sozlangan"),
+      t("b", "Hayajon va bir-birini quvish: har kim oldingisidan ilgarilaydi"),
+      t("c", "O'lchov noto'g'ri yozilgan"),
+      t("d", "Asar juda qisqa"),
+    ],
+    correctId: "b",
+    explanation:
+      "Sahnada temp deyarli har doim tezlashadi; shuning uchun mashqda yakuniy tempdan bir oz tezroq ham ishlanadi.",
   },
 
   /* ──────────────────────── Ijro texnikasi ──────────────────────── */
@@ -560,6 +758,75 @@ export const DIAGNOSTIKA_SAVOLLARI: DiagnosticQuestion[] = [
     correctIds: ["a", "c", "d"],
     explanation:
       "Sozlanmagan ovoz bilan baland kuylash — boylam shikastining eng keng tarqalgan sababi.",
+  },
+
+  {
+    id: "q-tex-9",
+    variant: "C",
+    area: "texnika",
+    bloom: "bilish",
+    kind: "single",
+    prompt: "Ovoz apparatining qaysi qismi tovushga tembr beradi?",
+    options: [
+      t("a", "Diafragma"),
+      t("b", "Ovoz boylamlari"),
+      t("c", "Rezonator bo'shliqlari"),
+      t("d", "O'pka"),
+    ],
+    correctId: "c",
+    explanation:
+      "Boylamlar dastlabki tovushni hosil qiladi, rezonatorlar esa uni kuchaytirib, tembrini shakllantiradi.",
+  },
+  {
+    id: "q-tex-10",
+    variant: "C",
+    area: "texnika",
+    bloom: "tushunish",
+    kind: "single",
+    prompt: "Mutatsiya davrida ovozga qanday munosabatda bo'lish to'g'ri?",
+    options: [
+      t("a", "Baland notalarni ko'proq mashq qildirish"),
+      t("b", "Kuylashni butunlay taqiqlash"),
+      t("c", "Yukni kamaytirib, tor diapazonda davom ettirish"),
+      t("d", "Hech narsani o'zgartirmaslik"),
+    ],
+    correctId: "c",
+    explanation:
+      "Mutatsiya kasallik emas, o'sish; lekin shu davrda ovozga tushadigan yuk eng xavflisi bo'ladi.",
+  },
+  {
+    id: "q-tex-11",
+    variant: "C",
+    area: "texnika",
+    bloom: "qollash",
+    kind: "single",
+    prompt:
+      "25 daqiqalik mashq vaqtingiz bor. Qaysi taqsimot samaraliroq?",
+    options: [
+      t("a", "25 daqiqa asarni boshidan oxirigacha haydash"),
+      t("b", "Isinish, qiyin bo'lak, ulash va to'xtamasdan to'liq ijro"),
+      t("c", "Faqat eng yoqqan joyni takrorlash"),
+      t("d", "Faqat yangi asar o'qish"),
+    ],
+    correctId: "b",
+  },
+  {
+    id: "q-tex-12",
+    variant: "C",
+    area: "texnika",
+    bloom: "tahlil",
+    kind: "single",
+    prompt:
+      "Uzoq mashqdan keyin bilak va yelka og'riyapti. Birinchi tekshiriladigan narsa qaysi?",
+    options: [
+      t("a", "Cholg'u sozlanganmi"),
+      t("b", "Qo'l qo'yilishi va erkinlik — zarbdan keyin barmoq bo'shashyaptimi"),
+      t("c", "Repertuar qiyinmi"),
+      t("d", "Xona yorug'ligi"),
+    ],
+    correctId: "b",
+    explanation:
+      "Og'riq deyarli har doim siqilgan qo'ldan kelib chiqadi: tezlik emas, erkinlik texnikaning asosi.",
   },
 
   /* ─────────────────────── Sahna madaniyati ─────────────────────── */
@@ -703,6 +970,71 @@ export const DIAGNOSTIKA_SAVOLLARI: DiagnosticQuestion[] = [
       "Zaxira reja tadbirni saqlash uchun tuziladi; bekor qilish reja emas, uning yo'qligi.",
   },
 
+  {
+    id: "q-sah-9",
+    variant: "C",
+    area: "sahna",
+    bloom: "tushunish",
+    kind: "single",
+    prompt: "Frazadagi kulminatsiya nima?",
+    options: [
+      t("a", "Frazaning birinchi tovushi"),
+      t("b", "Fraza cho'qqisi — unga qarab o'siladi va undan pasayiladi"),
+      t("c", "Eng past tovush"),
+      t("d", "Pauza joyi"),
+    ],
+    correctId: "b",
+  },
+  {
+    id: "q-sah-10",
+    variant: "C",
+    area: "sahna",
+    bloom: "qollash",
+    kind: "single",
+    prompt: "Staccato artikulyatsiyasi qanday ijro etiladi?",
+    options: [
+      t("a", "Tovushlar uzilmasdan ulanadi"),
+      t("b", "Har tovush qisqa va yengil"),
+      t("c", "Har tovushga urg'u beriladi"),
+      t("d", "Tovushlar uzaytiriladi"),
+    ],
+    correctId: "b",
+  },
+  {
+    id: "q-sah-11",
+    variant: "C",
+    area: "sahna",
+    bloom: "tahlil",
+    kind: "single",
+    prompt:
+      "Sahnada hayajondan qo'l titrayapti va nafas yetishmayapti. Qaysi yondashuv ishlaydi?",
+    options: [
+      t("a", "Hayajonni butunlay yo'qotishga urinish"),
+      t("b", "Chiqishdan oldin nafasni sozlash va birinchi frazani yoddan, aniq rejalashtirib qo'yish"),
+      t("c", "Tempni tezlashtirish"),
+      t("d", "Ijroni qisqartirish"),
+    ],
+    correctId: "b",
+    explanation:
+      "Hayajon yo'qolmaydi, u boshqariladi: nafas va aniq boshlanish rejasi uni ishga aylantiradi.",
+  },
+  {
+    id: "q-sah-12",
+    variant: "C",
+    area: "sahna",
+    bloom: "baholash",
+    kind: "single",
+    prompt:
+      "Konsertda ijro mashqdagidan sezilarli tez chiqdi. Keyingi safar nima qilgan ma'qul?",
+    options: [
+      t("a", "Hech narsa — sahnada shunday bo'ladi"),
+      t("b", "Mashqda yakuniy tempdan bir oz tezroq ham ishlash va boshlanish tempini oldindan belgilab olish"),
+      t("c", "Asarni osonrog'iga almashtirish"),
+      t("d", "Fonogramma bilan ijro etish"),
+    ],
+    correctId: "b",
+  },
+
   /* ──────────────── Ijodkorlik va improvizatsiya ──────────────── */
   {
     id: "q-ijo-1",
@@ -843,6 +1175,75 @@ export const DIAGNOSTIKA_SAVOLLARI: DiagnosticQuestion[] = [
       "O'zingiz yozgan ijroning yozuv huquqi sizda bo'ladi; ochiq litsenziya esa ruxsatni oldindan beradi.",
   },
 
+  {
+    id: "q-ijo-9",
+    variant: "C",
+    area: "ijodkorlik",
+    bloom: "tushunish",
+    kind: "single",
+    prompt: "Jo'r fakturasi nimani belgilaydi?",
+    options: [
+      t("a", "Qo'shiqning tonalligini"),
+      t("b", "Akkordlar qanday taqsimlanishini va shu orqali xarakterni"),
+      t("c", "Qo'shiqning uzunligini"),
+      t("d", "Matnning mazmunini"),
+    ],
+    correctId: "b",
+    explanation:
+      "Bir xil akkordlar arpedjio, bas+akkord yoki blok akkord shaklida butunlay boshqa kayfiyat beradi.",
+  },
+  {
+    id: "q-ijo-10",
+    variant: "C",
+    area: "ijodkorlik",
+    bloom: "qollash",
+    kind: "single",
+    prompt: "Jo'rdagi kirish qismi nima uchun kerak?",
+    options: [
+      t("a", "Qo'shiqni uzaytirish uchun"),
+      t("b", "Sinfga tonallik va tempni berish uchun"),
+      t("c", "O'qituvchining isinishi uchun"),
+      t("d", "An'ana uchun, musiqiy ma'nosi yo'q"),
+    ],
+    correctId: "b",
+  },
+  {
+    id: "q-ijo-11",
+    variant: "C",
+    area: "ijodkorlik",
+    bloom: "tahlil",
+    kind: "single",
+    prompt:
+      "Naqarotni kupletdan ajratib ko'rsatmoqchisiz. Qaysi vosita xavfsiz va samarali?",
+    options: [
+      t("a", "Tonallikni qo'shiq o'rtasida almashtirish"),
+      t("b", "Fakturani va dinamikani o'zgartirish"),
+      t("c", "Tempni ikki barobar tezlashtirish"),
+      t("d", "Jo'rni butunlay to'xtatish"),
+    ],
+    correctId: "b",
+    explanation:
+      "Tonallikni o'rtada almashtirish sinfni adashtiradi; faktura va dinamika esa xavfsiz vositalar.",
+  },
+  {
+    id: "q-ijo-12",
+    variant: "C",
+    area: "ijodkorlik",
+    bloom: "baholash",
+    kind: "single",
+    prompt:
+      "Konsert videosini joylashga ruxsat bor, lekin bir o'quvchining oilasi rad etdi. Eng to'g'ri qaror qaysi?",
+    options: [
+      t("a", "Baribir joylayman — qolganlarning ruxsati bor"),
+      t("b", "O'sha o'quvchi ko'rinmaydigan montaj qilaman yoki videoni joylamayman"),
+      t("c", "Ism yozmayman, shunda muammo yo'q"),
+      t("d", "Oiladan qayta so'rab, baribir joylayman"),
+    ],
+    correctId: "b",
+    explanation:
+      "Bitta rad javobi butun materialga taalluqli: rad etgan bolaning tasviri e'lon qilinmaydi.",
+  },
+
   /* ──────────────────── Pedagogik metodika ──────────────────── */
   {
     id: "q-met-1",
@@ -978,6 +1379,75 @@ export const DIAGNOSTIKA_SAVOLLARI: DiagnosticQuestion[] = [
       "Farqlashtirish sifat masalasi: mazmun, jarayon, mahsulot yoki muhit o'zgaradi, hajm emas.",
   },
 
+  {
+    id: "q-met-9",
+    variant: "C",
+    area: "metodika",
+    bloom: "tushunish",
+    kind: "single",
+    prompt:
+      "Baholashning formativ yoki summativ ekanini nima belgilaydi?",
+    options: [
+      t("a", "Ball qo'yilgani"),
+      t("b", "O'quvchiga hali tuzatish imkoni qolgani"),
+      t("c", "Baholash yozma bo'lgani"),
+      t("d", "Jurnalga yozilgani"),
+    ],
+    correctId: "b",
+  },
+  {
+    id: "q-met-10",
+    variant: "C",
+    area: "metodika",
+    bloom: "qollash",
+    kind: "single",
+    prompt: "Sinf bilan ovoz sozlash odatda qancha vaqt olishi kerak?",
+    options: [
+      t("a", "1–2 daqiqa"),
+      t("b", "5–7 daqiqa"),
+      t("c", "15–20 daqiqa"),
+      t("d", "Butun dars davomida"),
+    ],
+    correctId: "b",
+    explanation:
+      "Qisqa sozlash ovozni ochadi; haddan tashqari uzun sozlash uni toliqtiradi va darsga vaqt qoldirmaydi.",
+  },
+  {
+    id: "q-met-11",
+    variant: "C",
+    area: "metodika",
+    bloom: "tahlil",
+    kind: "single",
+    prompt:
+      "Alohida ehtiyojli o'quvchi butun dars davomida sinfda o'tirdi, lekin hech qanday musiqiy faoliyatda qatnashmadi. Bu inklyuziyami?",
+    options: [
+      t("a", "Ha, u sinfda edi"),
+      t("b", "Yo'q: yonida o'tirish ishtirok emas"),
+      t("c", "Ha, agar u tinglagan bo'lsa"),
+      t("d", "Bu bolaning o'z tanlovi"),
+    ],
+    correctId: "b",
+    explanation:
+      "Inklyuziya — qo'shib qo'yish emas, ishtirok yo'lini ochish: har bola uchun kamida bitta haqiqiy faoliyat bo'lishi kerak.",
+  },
+  {
+    id: "q-met-12",
+    variant: "C",
+    area: "metodika",
+    bloom: "baholash",
+    kind: "single",
+    prompt: "Qaysi teskari aloqa eng foydali?",
+    options: [
+      t("a", "«Zo'r chaldingiz!»"),
+      t("b", "«Bo'lmadi, yana mashq qiling»"),
+      t("c", "«Uchinchi taktdagi sakrash past olindi — keyingi urinishda o'sha tovushni oldindan ichingizda eshiting»"),
+      t("d", "«Sizda qobiliyat bor, lekin tirishmaysiz»"),
+    ],
+    correctId: "c",
+    explanation:
+      "Aniq, xatti-harakatga qaratilgan va bitta bajarib bo'ladigan qadam ko'rsatilgan.",
+  },
+
   /* ─────────────────────── Motivatsiya (Likert) ─────────────────────── */
   {
     id: "q-mot-1",
@@ -1058,6 +1528,47 @@ export const DIAGNOSTIKA_SAVOLLARI: DiagnosticQuestion[] = [
     bloom: "bilish",
     kind: "likert",
     prompt: "Boshqa o'qituvchilarning darsini kuzatish va tajriba almashishga vaqt ajrataman",
+    lowLabel: "Deyarli hech qachon",
+    highLabel: "Muntazam",
+  },
+  {
+    id: "q-mot-9",
+    variant: "C",
+    area: "motivatsiya",
+    bloom: "bilish",
+    kind: "likert",
+    prompt: "Yangi asarni o'rganishni boshlash menga qiyinchilik tug'dirmaydi",
+    lowLabel: "Umuman rozi emasman",
+    highLabel: "To'liq roziman",
+  },
+  {
+    id: "q-mot-10",
+    variant: "C",
+    area: "motivatsiya",
+    bloom: "bilish",
+    kind: "likert",
+    prompt: "Natija darhol ko'rinmasa, ishni tashlab qo'yaman",
+    lowLabel: "Umuman rozi emasman",
+    highLabel: "To'liq roziman",
+    reverse: true,
+  },
+  {
+    id: "q-mot-11",
+    variant: "C",
+    area: "motivatsiya",
+    bloom: "bilish",
+    kind: "likert",
+    prompt: "Bolalar bilan ishlash menga qiziq va men bundan quvvat olaman",
+    lowLabel: "Umuman rozi emasman",
+    highLabel: "To'liq roziman",
+  },
+  {
+    id: "q-mot-12",
+    variant: "C",
+    area: "motivatsiya",
+    bloom: "bilish",
+    kind: "likert",
+    prompt: "Kasbiy adabiyot va yangi metodikalarni mustaqil o'rganaman",
     lowLabel: "Deyarli hech qachon",
     highLabel: "Muntazam",
   },

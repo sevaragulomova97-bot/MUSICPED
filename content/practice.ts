@@ -268,7 +268,7 @@ const NAY: Exercise[] = [
   {
     id: "n-gamma",
     instrument: "nay",
-    title: "Do mažor gammasi",
+    title: "Do major gammasi",
     description:
       "Gammani sekin, har bir tovushni teng davomiylikda chalib chiqing.",
     level: "oson",
