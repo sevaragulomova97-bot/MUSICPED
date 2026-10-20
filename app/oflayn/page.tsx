@@ -31,7 +31,7 @@ export default function Page() {
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <Link
             href="/bosh-sahifa"
-            className="inline-flex h-10 items-center rounded-xl bg-primary px-5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+            className="inline-flex h-10 items-center rounded-xl bg-primary-solid px-5 text-sm font-medium text-white transition-colors hover:opacity-90"
           >
             Bosh sahifa
           </Link>

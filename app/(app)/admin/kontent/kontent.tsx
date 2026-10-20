@@ -105,7 +105,7 @@ export function Kontent() {
             aria-pressed={filtr === key}
             className={
               filtr === key
-                ? "rounded-xl bg-primary px-3.5 py-1.5 text-sm font-medium text-white"
+                ? "rounded-xl bg-primary-solid px-3.5 py-1.5 text-sm font-medium text-white"
                 : "rounded-xl border border-border-subtle px-3.5 py-1.5 text-sm text-ink transition-colors hover:bg-surface-muted"
             }
           >
@@ -156,7 +156,7 @@ export function Kontent() {
       {sanoq.ikkalasi > 0 && (
         <Card>
           <CardContent className="flex items-start gap-2.5 p-4 text-sm leading-relaxed">
-            <AlertTriangle className="mt-0.5 size-4 shrink-0 text-warning" aria-hidden="true" />
+            <AlertTriangle className="mt-0.5 size-4 shrink-0 text-warning-ink" aria-hidden="true" />
             <span className="text-ink-muted">
               {sanoq.ikkalasi} ta o&apos;quv natijasi uchun hali na dars, na topshiriq
               bor. Bu kutilgan holat: platformadagi kontent — to&apos;liq o&apos;quv
@@ -247,7 +247,7 @@ export function Kontent() {
             </tbody>
           </table>
           {areas.every((a) => a.savollar > 0) && (
-            <p className="mt-2 flex items-center gap-1.5 text-xs text-success">
+            <p className="mt-2 flex items-center gap-1.5 text-xs text-success-ink">
               <CheckCircle2 className="size-3.5" aria-hidden="true" />
               Har bir yo&apos;nalish diagnostika savollari bilan qoplangan — ball
               to&apos;liq hisoblanadi.

@@ -147,7 +147,7 @@ function TopshiriqKontent({ task }: { task: Task }) {
         {qoldi !== null && (
           <div
             className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium tabular-nums ${
-              vaqtTugadi ? "bg-danger-soft text-danger" : "bg-surface-muted text-ink"
+              vaqtTugadi ? "bg-danger-soft text-danger-ink" : "bg-surface-muted text-ink"
             }`}
             aria-live="polite"
           >
@@ -166,7 +166,7 @@ function TopshiriqKontent({ task }: { task: Task }) {
       )}
 
       {error && (
-        <p role="alert" className="flex items-start gap-2.5 rounded-xl bg-danger-soft px-4 py-3 text-sm text-danger">
+        <p role="alert" className="flex items-start gap-2.5 rounded-xl bg-danger-soft px-4 py-3 text-sm text-danger-ink">
           <AlertTriangle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
           {error}
         </p>
@@ -305,7 +305,7 @@ function TopshiriqKontent({ task }: { task: Task }) {
               {task.instrument && (
                 <Link
                   href={`/asboblar/${task.instrument}`}
-                  className="inline-flex h-10 w-fit items-center gap-2 rounded-xl bg-primary px-4 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+                  className="inline-flex h-10 w-fit items-center gap-2 rounded-xl bg-primary-solid px-4 text-sm font-medium text-white transition-colors hover:opacity-90"
                 >
                   <Music4 className="size-4" aria-hidden="true" />
                   Cholg&apos;uni ochish
@@ -359,7 +359,7 @@ function TopshiriqKontent({ task }: { task: Task }) {
                   key={s.id}
                   className="flex items-center gap-3 rounded-xl bg-surface-muted p-3.5 text-sm"
                 >
-                  <CheckCircle2 className="size-4 shrink-0 text-success" aria-hidden="true" />
+                  <CheckCircle2 className="size-4 shrink-0 text-success-ink" aria-hidden="true" />
                   <span className="flex-1 text-ink-muted">
                     {formatDate(s.submittedAt)}
                   </span>

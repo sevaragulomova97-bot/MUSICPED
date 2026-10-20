@@ -185,13 +185,18 @@ Har bir yozuv uchun ijrochining ismi, yozuv sanasi, joyi va foydalanish
 ruxsati kerak — `bank.json` bu maydonlarni **majburiy** qiladi va
 ularsiz bankni umuman qabul qilmaydi.
 
-### Tembr variantlari uchun ishlatilgan namunalar
+### Olib tashlangan variantlar
 
-| Variant | GM namunasi |
-|---|---|
-| Rubob — klavesin / klavinet / pitsikato | `harpsichord`, `clavinet`, `pizzicato_strings` |
-| Dutor — yumshoq/yorqin tor, pitsikato | `acoustic_guitar_nylon`, `pizzicato_strings` |
-| Doira — chuqur baraban / past / orkestr | `taiko_drum`, `woodblock`, `standard`, `orchestra_kit` |
+Dutor, rubob va doirada ilgari General MIDI dan olingan o'rinbosar
+tembrlar ham bor edi (klavesin, klavinet, pitsikato, tom-bongo, taiko,
+orkestr to'plami). Ular namuna banki tizimidan oldin yozilgan: metadatasi
+yo'q, ya'ni interfeys ularning kelib chiqishini ko'rsata olmasdi, va
+tovush sifati bo'yicha ham yangi banklardan past edi. Shuning uchun olib
+tashlandi — har biri nima ekani aniq bo'lgan ikkita variant, kelib
+chiqishi noaniq oltitadan foydaliroq.
+
+Endi har bir cholg'uda ikkita tembr bor: **haqiqiy yozuv** (standart) va
+**fizik model**.
 
 ## Mashhur kuylar (`content/tunes.ts`)
 

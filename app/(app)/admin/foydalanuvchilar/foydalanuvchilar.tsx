@@ -73,7 +73,7 @@ export function Foydalanuvchilar() {
       {rows.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center gap-3 p-10 text-center">
-            <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary">
+            <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary-ink">
               <Users className="size-6" aria-hidden="true" />
             </span>
             <p className="max-w-sm text-sm text-ink-muted">

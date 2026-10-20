@@ -8,11 +8,11 @@ const badgeVariants = cva(
     variants: {
       variant: {
         neutral: "bg-surface-muted text-ink-muted",
-        primary: "bg-primary-soft text-primary",
-        secondary: "bg-secondary-soft text-secondary",
-        success: "bg-success-soft text-success",
-        warning: "bg-warning-soft text-warning",
-        danger: "bg-danger-soft text-danger",
+        primary: "bg-primary-soft text-primary-ink",
+        secondary: "bg-secondary-soft text-secondary-ink",
+        success: "bg-success-soft text-success-ink",
+        warning: "bg-warning-soft text-warning-ink",
+        danger: "bg-danger-soft text-danger-ink",
       },
     },
     defaultVariants: { variant: "neutral" },

@@ -34,9 +34,20 @@ export function useTunePractice(
     oneShot: boolean;
     attack: (note: string) => void;
     release: (note: string) => void;
+    /**
+     * Temp koeffitsiyenti: 1 — kuyning o'z tezligi, 0,5 — ikki barobar
+     * sekin.
+     *
+     * Yangi kuyni o'rganish sekin tempda boshlanadi — bu ijro
+     * pedagogikasining asosiy qoidasi. Kuy faqat o'z tezligida
+     * chalinsa, boshlovchi talaba uni ko'rib ham, eshitib ham
+     * ulgurmaydi.
+     */
+    tempo?: number;
   },
 ) {
   const { oneShot, attack, release } = opts;
+  const tempo = Math.max(0.25, Math.min(2, opts.tempo ?? 1));
 
   const [mode, setMode] = React.useState<TuneMode>("yoq");
   const [index, setIndex] = React.useState(0);
@@ -116,7 +127,7 @@ export function useTunePractice(
     setMode("eshitish");
     setIndex(0);
 
-    const beatMs = 60_000 / tune.bpm;
+    const beatMs = 60_000 / (tune.bpm * tempo);
     let t = 200; // boshlanishdan oldin qisqa pauza
     tune.notes.forEach((n, i) => {
       const davomiylik = n.beats * beatMs;
@@ -149,7 +160,7 @@ export function useTunePractice(
         setDemoNote(null);
       }, t + 400),
     );
-  }, [tune, tozala, attack, release, oneShot]);
+  }, [tune, tozala, attack, release, oneShot, tempo]);
 
   /** «O'rganish» rejimini boshlaydi. */
   const learn = React.useCallback(() => {

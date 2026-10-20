@@ -1724,3 +1724,69 @@ hujjatni tartibsiz ko'rsatardi.
 platformaning o'z belgisi, sertifikat seriyasi va yili. Rasmiy
 tashkilot muhrini chizish hujjatni u bermagan vakolatga da'vogar
 qilardi.
+
+### Q110. Qulaylik: WCAG 2.1 AA avtomatik tekshiriladi
+
+**Qaror.** `tests/e2e/12-qulaylik.spec.ts` har bir asosiy sahifani
+`axe-core` bilan tekshiradi — talaba, o'qituvchi va admin bo'limlari,
+yorug' va qorong'i mavzuda. Buzilish bo'lsa test yiqiladi.
+
+**Nima topildi.** Birinchi o'tkazishda **55 ta buzilish**. Eng kattasi —
+rang kontrasti: holat ranglari matn sifatida ishlatilardi, lekin ular
+grafik uchun tanlangan edi. O'lchangan qiymatlar (oq fonda):
+
+| Rang | Edi | Kerak |
+|---|---|---|
+| `success` #22c55e | 2,28 : 1 | 4,5 : 1 |
+| `warning` #f59e0b | 2,15 : 1 | 4,5 : 1 |
+| `danger` #ef4444 | 3,76 : 1 | 4,5 : 1 |
+| `ink-muted` #64748b (kulrang fonda) | 4,24 : 1 | 4,5 : 1 |
+
+Qorong'i mavzuda `bg-primary` ustidagi oq matn 3,31 : 1 berardi.
+
+**Yechim.** Bitta rangni uchala vazifaga ishlatish — xatoning sababi.
+Endi har bir vazifaga alohida token:
+
+* asosiy (`--mp-success`) — grafik va belgilar uchun;
+* `-ink` — **matn** uchun, mavzuga qarab o'zgaradi;
+* `-solid` — ustida oq matn turadigan **to'ldirish** uchun, ikkala
+  mavzuda bir xil.
+
+Shuningdek tuzatildi: nomsiz fayl maydonlari, nomsiz progressbarlar,
+pianino klavishlarining ekran o'quvchi nomi (ko'rinadigan «Do4» matni
+nom ichida bo'lishi shart — WCAG 2.5.3), matn ichidagi havolaning
+chizilishi.
+
+**Natija.** 23 sahifada, ikkala mavzuda — nol buzilish.
+
+### Q111. Qo'llanma ilovaning ichiga ko'chirildi
+
+**Qaror.** `docs/QOLLANMA-TALABA.md` va `docs/QOLLANMA-OQITUVCHI.md`
+endi `/qollanma/` sahifasida ko'rsatiladi; havola yon panelda.
+
+**Sabab.** Qo'llanmalar faqat repozitoriyda edi. Platformadan
+foydalanadigan talaba yoki o'qituvchi GitHub'ga kirmaydi — ular uchun
+qo'llanma amalda mavjud emas edi.
+
+**Nega o'z tahlilchimiz.** Matn bizniki va build paytida o'qiladi,
+foydalanuvchi kiritadigan matn bu yerga tushmaydi. Shuning uchun to'liq
+Markdown kutubxonasi ham, HTML tozalash ham kerak emas:
+`lib/markdown.ts` faqat qo'llanmalarda uchraydigan qurilmalarni biladi
+va natijani **obyektlar daraxti** qilib qaytaradi — ya'ni
+`dangerouslySetInnerHTML` hech qayerda ishlatilmaydi.
+
+Test haqiqiy qo'llanma fayllari ustida yuriladi va «matn yo'qolmasligi»
+ni tekshiradi: tahlilchi biror qurilmani tushunmay qolsa, matn jim
+yo'qoladi va buni faqat ko'z bilan payqash mumkin bo'lardi.
+
+### Q112. Kuy demosida temp tanlovi
+
+**Qaror.** Mashhur kuylar panelida uch temp: sekin (0,5), o'rtacha
+(0,75) va to'liq.
+
+**Sabab.** Yangi kuyni sekin tempda boshlash — ijro pedagogikasining
+asosiy qoidasi. Kuy faqat o'z tezligida chalinsa, boshlovchi talaba uni
+ko'rib ham, eshitib ham ulgurmaydi.
+
+E2e test demo davomiyligini **o'lchaydi**: sekin tempda kuy kamida 1,6
+barobar uzoq chalinishi kerak.

@@ -77,7 +77,7 @@ export function KurslarRoyxati() {
                         <span
                           className={`grid size-9 shrink-0 place-items-center rounded-lg ${
                             done
-                              ? "bg-success-soft text-success"
+                              ? "bg-success-soft text-success-ink"
                               : "bg-surface-muted text-ink-muted"
                           }`}
                         >

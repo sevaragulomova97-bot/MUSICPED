@@ -180,7 +180,7 @@ export function Portfolio() {
       </div>
 
       {error && (
-        <p role="alert" className="rounded-xl bg-danger-soft px-4 py-3 text-sm text-danger">
+        <p role="alert" className="rounded-xl bg-danger-soft px-4 py-3 text-sm text-danger-ink">
           {error}
         </p>
       )}
@@ -200,13 +200,13 @@ export function Portfolio() {
               className={cn(
                 "flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-colors",
                 tab === t.id
-                  ? "bg-primary text-white"
+                  ? "bg-primary-solid text-white"
                   : "bg-surface text-ink-muted hover:bg-surface-muted hover:text-ink",
               )}
             >
               <Icon className="size-4" aria-hidden="true" />
               {t.label}
-              <span className="opacity-70">{soni}</span>
+              <span className="tabular-nums">{soni}</span>
             </button>
           );
         })}
@@ -334,7 +334,7 @@ export function Portfolio() {
           {items.map((item) => (
             <Card key={item.id}>
               <CardContent className="flex h-full flex-col gap-3 p-5">
-                <span className="grid size-10 place-items-center rounded-xl bg-primary-soft text-primary">
+                <span className="grid size-10 place-items-center rounded-xl bg-primary-soft text-primary-ink">
                   {item.category === "sertifikat" ? (
                     <Award className="size-5" aria-hidden="true" />
                   ) : item.category === "ijodiy" ? (

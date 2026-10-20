@@ -78,7 +78,7 @@ export function LikertScale({
             <span
               className={cn(
                 "grid size-8 place-items-center rounded-full text-sm font-semibold",
-                value === n ? "bg-primary text-white" : "bg-surface-muted text-ink-muted",
+                value === n ? "bg-primary-solid text-white" : "bg-surface-muted text-ink-muted",
               )}
             >
               {n}

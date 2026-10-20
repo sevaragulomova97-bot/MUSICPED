@@ -35,7 +35,7 @@ export function Header() {
             >
               <span
                 aria-hidden="true"
-                className="grid size-9 shrink-0 place-items-center rounded-full bg-primary-soft text-sm font-semibold text-primary"
+                className="grid size-9 shrink-0 place-items-center rounded-full bg-primary-soft text-sm font-semibold text-primary-ink"
               >
                 {initialsOf(profile.fullName)}
               </span>

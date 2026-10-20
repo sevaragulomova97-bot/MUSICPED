@@ -19,7 +19,13 @@
  * shuning uchun sayt `/` da ham, `/MUSICPED/` da ham bir xil ishlaydi.
  */
 
-const VERSION = "musicped-v1";
+/*
+ * Kesh nomi. **Yetkaziladigan fayl nomi o'zgarmay, mazmuni o'zgarsa
+ * (masalan audio banki qayta render qilinsa) shu raqam oshiriladi** —
+ * aks holda `isImmutable` qoidasi tufayli eski nusxa keshda abadiy
+ * qolib ketadi. Nomida xesh bo'lgan fayllar uchun bu kerak emas.
+ */
+const VERSION = "musicped-v2";
 const OFFLINE_PATH = new URL("oflayn/", self.registration.scope).pathname;
 const ROOT_PATH = new URL("./", self.registration.scope).pathname;
 

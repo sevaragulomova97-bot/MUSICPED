@@ -158,7 +158,7 @@ export function Notation({
           <p className="px-2 pb-2 text-xs text-ink-muted">Nota chizilmoqda…</p>
         )}
         {error && (
-          <p role="alert" className="px-2 pb-2 text-xs text-danger">
+          <p role="alert" className="px-2 pb-2 text-xs text-danger-ink">
             {error}
           </p>
         )}
@@ -180,7 +180,7 @@ export function Notation({
                 className={cn(
                   "rounded-lg border px-2.5 py-1 text-xs font-medium transition-colors",
                   activeIndex === i
-                    ? "border-primary bg-primary text-white"
+                    ? "border-primary bg-primary-solid text-white"
                     : "border-border-subtle bg-surface text-ink-muted hover:border-primary/40 hover:bg-primary-soft",
                 )}
               >

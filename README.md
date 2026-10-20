@@ -143,6 +143,7 @@ lib/
   teacher.ts            O'qituvchi kabineti mantig'i
   content-audit.ts      Konstruktiv moslashuv auditi
   audio/bank.ts         Namuna banki: metadata va tanlov qoidalari
+  markdown.ts           Qo'llanmalar uchun kichik Markdown tahlilchisi
   audio/sampler.ts      Namunalarni chaluvchi dvigatel (Web Audio)
   db/schema.ts          Dexie sxemasi
   db/repo.ts            Ma'lumotga kirishning yagona yo'li
@@ -154,6 +155,7 @@ lib/
 tests/
   unit/                 Vitest — sof funksiyalar va kontent yaxlitligi
   e2e/                  Playwright — qurilgan sayt ustidagi to'liq oqimlar
+                        (12-qulaylik.spec.ts — WCAG 2.1 AA, axe-core)
 docs/
   QARORLAR.md           Qabul qilingan texnik qarorlar
   QOLLANMA-TALABA.md    Talaba uchun qo'llanma

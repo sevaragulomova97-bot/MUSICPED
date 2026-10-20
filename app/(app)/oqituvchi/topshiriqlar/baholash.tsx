@@ -72,7 +72,7 @@ export function Baholash() {
       {oxirgiBaho && (
         <p
           role="status"
-          className="flex items-center gap-2 rounded-xl bg-success-soft px-4 py-3 text-sm text-success"
+          className="flex items-center gap-2 rounded-xl bg-success-soft px-4 py-3 text-sm text-success-ink"
         >
           <Check className="size-4 shrink-0" aria-hidden="true" />
           {oxirgiBaho}
@@ -82,7 +82,7 @@ export function Baholash() {
       {datasets.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center gap-4 p-10 text-center">
-            <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary">
+            <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary-ink">
               <ClipboardCheck className="size-6" aria-hidden="true" />
             </span>
             <div>
@@ -94,7 +94,7 @@ export function Baholash() {
             </div>
             <Link
               href="/oqituvchi"
-              className="inline-flex h-10 items-center rounded-xl bg-primary px-5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+              className="inline-flex h-10 items-center rounded-xl bg-primary-solid px-5 text-sm font-medium text-white transition-colors hover:opacity-90"
             >
               Ma&apos;lumot yuklash
             </Link>

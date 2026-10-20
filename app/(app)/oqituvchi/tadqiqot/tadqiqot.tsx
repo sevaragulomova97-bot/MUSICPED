@@ -57,7 +57,7 @@ export function Tadqiqot() {
     return (
       <Card className="mx-auto max-w-2xl">
         <CardContent className="flex flex-col items-center gap-4 p-10 text-center">
-          <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary">
+          <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary-ink">
             <BarChart3 className="size-6" aria-hidden="true" />
           </span>
           <div>
@@ -80,7 +80,7 @@ export function Tadqiqot() {
           )}
           <Link
             href="/oqituvchi"
-            className="inline-flex h-10 items-center rounded-xl bg-primary px-5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+            className="inline-flex h-10 items-center rounded-xl bg-primary-solid px-5 text-sm font-medium text-white transition-colors hover:opacity-90"
           >
             Ma&apos;lumot yuklash
           </Link>
@@ -181,7 +181,7 @@ export function Tadqiqot() {
         <Card>
           <CardContent className="flex flex-col gap-2 p-4">
             {tahlil.warnings.map((w) => (
-              <p key={w} className="flex items-start gap-2 text-sm text-warning">
+              <p key={w} className="flex items-start gap-2 text-sm text-warning-ink">
                 <AlertTriangle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
                 <span className="leading-relaxed">{w}</span>
               </p>
@@ -387,7 +387,7 @@ export function Tadqiqot() {
                       <span
                         className={
                           Number.isFinite(c.ttest.p) && c.ttest.p < 0.05
-                            ? "text-success"
+                            ? "text-success-ink"
                             : "text-ink-muted"
                         }
                       >
@@ -486,7 +486,7 @@ export function Tadqiqot() {
                   χ² = {formatNumber(l.chi2.chi2)} · df = {l.chi2.df} ·{" "}
                   {formatP(l.chi2.p)} · Kramer V = {formatNumber(l.chi2.cramersV)}
                   {l.chi2.lowExpectedCells > 0 && (
-                    <span className="ml-2 text-warning">
+                    <span className="ml-2 text-warning-ink">
                       ({l.chi2.lowExpectedCells} katakchada kutilgan chastota &lt; 5)
                     </span>
                   )}

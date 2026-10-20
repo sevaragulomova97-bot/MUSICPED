@@ -22,6 +22,9 @@ export type TunePanelProps = {
   onListen: () => void;
   onLearn: () => void;
   onStop: () => void;
+  /** Temp koeffitsiyenti (1 — kuyning o'z tezligi) */
+  tempo: number;
+  onTempo: (qiymat: number) => void;
 };
 
 /**
@@ -44,6 +47,8 @@ export function TunePanel({
   onListen,
   onLearn,
   onStop,
+  tempo,
+  onTempo,
 }: TunePanelProps) {
   const ishlayapti = mode !== "yoq";
   const foiz = total > 0 ? Math.round((index / total) * 100) : 0;
@@ -93,6 +98,40 @@ export function TunePanel({
           })}
         </div>
 
+        {/*
+          Temp tanlovi. Yangi kuyni sekin tempda boshlash — ijro
+          pedagogikasining asosiy qoidasi; kuy faqat o'z tezligida
+          chalinsa, boshlovchi talaba uni ko'rib ham, eshitib ham
+          ulgurmaydi.
+        */}
+        <div className="flex flex-col gap-1.5 border-t border-border-subtle pt-4">
+          <span className="text-sm text-ink-muted">
+            Temp — {selected.bpm} dan {Math.round(selected.bpm * tempo)} zarb/daqiqa
+          </span>
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Temp">
+            {[
+              { v: 0.5, nom: "Sekin" },
+              { v: 0.75, nom: "O'rtacha" },
+              { v: 1, nom: "To'liq" },
+            ].map((t) => (
+              <button
+                key={t.v}
+                type="button"
+                aria-pressed={tempo === t.v}
+                onClick={() => onTempo(t.v)}
+                className={cn(
+                  "rounded-xl border px-3 py-1.5 text-sm transition-colors",
+                  tempo === t.v
+                    ? "border-primary bg-primary-solid font-medium text-white"
+                    : "border-border-subtle bg-surface text-ink hover:bg-surface-muted",
+                )}
+              >
+                {t.nom}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="flex flex-wrap gap-2 border-t border-border-subtle pt-4">
           {!ishlayapti && (
             <>
@@ -129,7 +168,7 @@ export function TunePanel({
         )}
 
         {finished && (
-          <div className="flex items-start gap-2.5 rounded-xl bg-success-soft px-3.5 py-3 text-sm text-success">
+          <div className="flex items-start gap-2.5 rounded-xl bg-success-soft px-3.5 py-3 text-sm text-success-ink">
             <CheckCircle2 className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
             <span>
               Kuy tugadi: {correct} ta nota to&apos;g&apos;ri, {wrong} ta xato.

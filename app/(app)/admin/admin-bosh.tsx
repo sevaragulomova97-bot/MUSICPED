@@ -70,7 +70,7 @@ export function AdminBosh() {
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
           {issues.length === 0 ? (
-            <p className="flex items-center gap-2 text-sm text-success">
+            <p className="flex items-center gap-2 text-sm text-success-ink">
               <CheckCircle2 className="size-4" aria-hidden="true" />
               Muammo topilmadi — har bir o&apos;quv natijasining darsi va baholovchi
               topshirig&apos;i bor.
@@ -91,8 +91,8 @@ export function AdminBosh() {
                     key={i.message}
                     className={
                       i.level === "xato"
-                        ? "flex items-start gap-2 text-sm text-danger"
-                        : "flex items-start gap-2 text-sm text-warning"
+                        ? "flex items-start gap-2 text-sm text-danger-ink"
+                        : "flex items-start gap-2 text-sm text-warning-ink"
                     }
                   >
                     <AlertTriangle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
@@ -148,7 +148,7 @@ export function AdminBosh() {
               href={b.href}
               className="flex items-start gap-3 rounded-xl border border-border-subtle p-4 transition-colors hover:bg-surface-muted"
             >
-              <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-primary-soft text-primary">
+              <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-primary-soft text-primary-ink">
                 <b.icon className="size-4.5" aria-hidden="true" />
               </span>
               <span>

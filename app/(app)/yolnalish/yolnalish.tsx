@@ -68,7 +68,7 @@ export function Yolnalish() {
         </h1>
         <Card className="mt-6">
           <CardContent className="flex flex-col items-center gap-4 p-10 text-center">
-            <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary">
+            <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary-ink">
               <Stethoscope className="size-6" aria-hidden="true" />
             </span>
             <div>
@@ -80,7 +80,7 @@ export function Yolnalish() {
             </div>
             <Link
               href="/diagnostika"
-              className="inline-flex h-11 items-center rounded-xl bg-primary px-6 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+              className="inline-flex h-11 items-center rounded-xl bg-primary-solid px-6 text-sm font-medium text-white transition-colors hover:opacity-90"
             >
               Diagnostikani boshlash
             </Link>
@@ -119,9 +119,9 @@ export function Yolnalish() {
                   <span
                     className={`grid size-10 shrink-0 place-items-center rounded-xl ${
                       joriy
-                        ? "bg-primary text-white"
+                        ? "bg-primary-solid text-white"
                         : otgan
-                          ? "bg-success-soft text-success"
+                          ? "bg-success-soft text-success-ink"
                           : "bg-surface-muted text-ink-muted"
                     }`}
                   >
@@ -173,7 +173,7 @@ export function Yolnalish() {
               <CardTitle>Sizning profilingiz</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col gap-4">
-              <p className="rounded-xl bg-secondary-soft px-4 py-3 text-sm font-medium text-secondary">
+              <p className="rounded-xl bg-secondary-soft px-4 py-3 text-sm font-medium text-secondary-ink">
                 {PROFIL_NOMI[path.profileType]}
               </p>
               <div>
@@ -206,7 +206,7 @@ export function Yolnalish() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Lightbulb className="size-4 text-warning" aria-hidden="true" />
+                <Lightbulb className="size-4 text-warning-ink" aria-hidden="true" />
                 Shaxsiy tavsiyalar
               </CardTitle>
             </CardHeader>
@@ -230,7 +230,7 @@ export function Yolnalish() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Sparkles className="size-4 text-secondary" aria-hidden="true" />
+              <Sparkles className="size-4 text-secondary-ink" aria-hidden="true" />
               Siz uchun tavsiya etilgan topshiriqlar
             </CardTitle>
           </CardHeader>
@@ -296,7 +296,7 @@ export function Yolnalish() {
               </Link>
               <Link
                 href="/topshiriqlar"
-                className="inline-flex h-10 items-center rounded-xl bg-primary px-4 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+                className="inline-flex h-10 items-center rounded-xl bg-primary-solid px-4 text-sm font-medium text-white transition-colors hover:opacity-90"
               >
                 Topshiriqlarga o&apos;tish
               </Link>

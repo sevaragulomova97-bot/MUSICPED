@@ -6,13 +6,14 @@ import {
   FolderOpen,
   GraduationCap,
   Home,
-  type LucideIcon,
+  LifeBuoy,
   Music4,
   Route,
   Settings,
   Shield,
-  Users,
   UserRound,
+  Users,
+  type LucideIcon,
 } from "lucide-react";
 
 export type Role = "TALABA" | "OQITUVCHI" | "ADMIN";
@@ -71,6 +72,18 @@ export const SETTINGS_NAV: NavItem = {
   href: "/sozlamalar",
   label: "Sozlamalar",
   icon: Settings,
+};
+
+/**
+ * Qo'llanma — barcha rollar uchun, yon panelning pastki qismida.
+ *
+ * Ilgari qo'llanmalar faqat repozitoriydagi `docs/` papkasida edi, ya'ni
+ * platformadan foydalanadigan odam ularni umuman topa olmasdi.
+ */
+export const GUIDE_NAV: NavItem = {
+  href: "/qollanma",
+  label: "Qo'llanma",
+  icon: LifeBuoy,
 };
 
 export const CERTIFICATE_NAV: NavItem = {

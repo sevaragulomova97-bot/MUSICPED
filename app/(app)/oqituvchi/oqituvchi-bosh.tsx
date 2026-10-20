@@ -126,7 +126,7 @@ export function OqituvchiBosh() {
           </CardHeader>
           <CardContent>
             {demoBor && (
-              <p className="mb-3 rounded-xl bg-warning-soft px-3 py-2 text-xs text-warning">
+              <p className="mb-3 rounded-xl bg-warning-soft px-3 py-2 text-xs text-warning-ink">
                 Ro&apos;yxatda namunaviy (o&apos;ylab topilgan) talabalar bor — ular
                 «namuna» belgisi bilan ko&apos;rsatilgan.
               </p>
@@ -194,7 +194,7 @@ export function OqituvchiBosh() {
               )}
             </p>
             {tahlil.warnings.slice(0, 2).map((w) => (
-              <p key={w} className="text-xs text-warning">{w}</p>
+              <p key={w} className="text-xs text-warning-ink">{w}</p>
             ))}
           </CardContent>
         </Card>
@@ -216,7 +216,7 @@ export function OqituvchiBosh() {
               href={b.href}
               className="flex items-start gap-3 rounded-xl border border-border-subtle p-4 transition-colors hover:bg-surface-muted"
             >
-              <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-primary-soft text-primary">
+              <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-primary-soft text-primary-ink">
                 <b.icon className="size-4.5" aria-hidden="true" />
               </span>
               <span>

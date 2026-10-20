@@ -191,7 +191,11 @@ export function Piano({
             <button
               key={key.note}
               type="button"
-              aria-label={`${key.solfege} ${key.octave}`}
+              // Ko'rinadigan matn «Do4» — WCAG 2.5.3 bo'yicha u ekran
+              // o'quvchi nomining **ichida** bo'lishi shart, aks holda
+              // ovoz bilan boshqaradigan foydalanuvchi klavishni nomi
+              // bilan chaqira olmaydi.
+              aria-label={`${key.solfege}${key.octave}, ${key.octave}-oktava`}
               aria-pressed={active.has(key.note)}
               onPointerDown={(e) => {
                 e.preventDefault();
@@ -203,10 +207,10 @@ export function Piano({
               className={cn(
                 "absolute bottom-0 top-0 rounded-b-lg border border-ink/15 transition-colors",
                 "flex items-end justify-center pb-3",
-                state === "bosilgan" && "bg-primary text-white",
+                state === "bosilgan" && "bg-primary-solid text-white",
                 state === "nishon" && "bg-warning-soft",
-                state === "togri" && "bg-success text-white",
-                state === "xato" && "bg-danger text-white",
+                state === "togri" && "bg-success-solid text-white",
+                state === "xato" && "bg-danger-solid text-white",
                 !state && "bg-white text-ink-muted hover:bg-primary-soft",
               )}
               style={{

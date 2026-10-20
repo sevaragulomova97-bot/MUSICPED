@@ -67,9 +67,9 @@ export function Fretboard({
                     aria-label={`${tor.nom}, ${parda === 0 ? "bo'sh tor" : `${parda}-parda`}, ${note}`}
                     className={cn(
                       "h-10 min-w-0 flex-1 rounded-lg border text-[10px] font-medium transition-colors sm:text-xs",
-                      bosilgan && "border-primary bg-primary text-white",
-                      !bosilgan && nishon && feedback === "togri" && "border-success bg-success text-white",
-                      !bosilgan && nishon && feedback === "xato" && "border-danger bg-danger text-white",
+                      bosilgan && "border-primary bg-primary-solid text-white",
+                      !bosilgan && nishon && feedback === "togri" && "border-success-solid bg-success-solid text-white",
+                      !bosilgan && nishon && feedback === "xato" && "border-danger-solid bg-danger-solid text-white",
                       !bosilgan && nishon && !feedback && "border-warning bg-warning-soft text-ink",
                       !bosilgan && !nishon &&
                         "border-border-subtle bg-surface text-ink-muted hover:border-primary/40 hover:bg-primary-soft",

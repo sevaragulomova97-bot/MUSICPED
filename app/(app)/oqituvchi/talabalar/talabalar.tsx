@@ -60,7 +60,7 @@ export function Talabalar() {
     return (
       <Card className="mx-auto max-w-2xl">
         <CardContent className="flex flex-col items-center gap-4 p-10 text-center">
-          <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary">
+          <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary-ink">
             <Users className="size-6" aria-hidden="true" />
           </span>
           <div>
@@ -73,7 +73,7 @@ export function Talabalar() {
           </div>
           <Link
             href="/oqituvchi"
-            className="inline-flex h-10 items-center rounded-xl bg-primary px-5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+            className="inline-flex h-10 items-center rounded-xl bg-primary-solid px-5 text-sm font-medium text-white transition-colors hover:opacity-90"
           >
             Ma&apos;lumot yuklash
           </Link>
@@ -226,8 +226,8 @@ export function Talabalar() {
                           <span
                             className={
                               o.latestOverall >= o.baselineOverall
-                                ? "ml-1.5 text-xs text-success"
-                                : "ml-1.5 text-xs text-danger"
+                                ? "ml-1.5 text-xs text-success-ink"
+                                : "ml-1.5 text-xs text-danger-ink"
                             }
                           >
                             {o.latestOverall >= o.baselineOverall ? "+" : ""}

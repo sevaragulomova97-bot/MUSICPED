@@ -5,14 +5,14 @@ import { usePathname } from "next/navigation";
 import { LogOut } from "lucide-react";
 import { Logo } from "@/components/layout/logo";
 import { useSession } from "@/components/session-provider";
-import { findActiveHref, NAV_BY_ROLE, SETTINGS_NAV } from "@/lib/navigation";
+import { findActiveHref, GUIDE_NAV, NAV_BY_ROLE, SETTINGS_NAV } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
 export function Sidebar() {
   const pathname = usePathname();
   const { profile, signOut } = useSession();
   const items = NAV_BY_ROLE[profile?.role ?? "TALABA"];
-  const activeHref = findActiveHref(pathname, [...items, SETTINGS_NAV]);
+  const activeHref = findActiveHref(pathname, [...items, GUIDE_NAV, SETTINGS_NAV]);
 
   return (
     <aside className="sticky top-0 hidden h-dvh w-60 shrink-0 flex-col bg-sidebar lg:flex">
@@ -49,6 +49,19 @@ export function Sidebar() {
       </nav>
 
       <div className="border-t border-white/10 p-3">
+        <Link
+          href={GUIDE_NAV.href}
+          aria-current={activeHref === GUIDE_NAV.href ? "page" : undefined}
+          className={cn(
+            "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors",
+            activeHref === GUIDE_NAV.href
+              ? "bg-sidebar-active font-medium text-sidebar-ink-active"
+              : "text-sidebar-ink hover:bg-sidebar-hover hover:text-sidebar-ink-active",
+          )}
+        >
+          <GUIDE_NAV.icon className="size-[18px] shrink-0" aria-hidden="true" />
+          {GUIDE_NAV.label}
+        </Link>
         <Link
           href={SETTINGS_NAV.href}
           aria-current={activeHref === SETTINGS_NAV.href ? "page" : undefined}

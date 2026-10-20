@@ -106,6 +106,7 @@ export function ImportPanel({ ownerId }: { ownerId: string }) {
             ref={inputRef}
             id="talaba-fayllari"
             type="file"
+            aria-label="Talaba natijalari faylini tanlash"
             accept="application/json,.json"
             multiple
             className="sr-only"
@@ -131,8 +132,8 @@ export function ImportPanel({ ownerId }: { ownerId: string }) {
                 <span
                   className={
                     n.ok
-                      ? "mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-success-soft text-success"
-                      : "mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-warning-soft text-warning"
+                      ? "mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-success-soft text-success-ink"
+                      : "mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-warning-soft text-warning-ink"
                   }
                 >
                   {n.ok ? (

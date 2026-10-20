@@ -120,7 +120,7 @@ export function Profil() {
 
             <Link
               href="/yolnalish"
-              className="inline-flex h-10 w-fit items-center gap-2 rounded-xl bg-primary px-4 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+              className="inline-flex h-10 w-fit items-center gap-2 rounded-xl bg-primary-solid px-4 text-sm font-medium text-white transition-colors hover:opacity-90"
             >
               <Route className="size-4" aria-hidden="true" />
               Individual yo&apos;nalishim
@@ -172,7 +172,7 @@ export function Profil() {
       ) : (
         <Card>
           <CardContent className="flex flex-col items-center gap-4 p-8 text-center">
-            <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary">
+            <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary-ink">
               <UserRound className="size-6" aria-hidden="true" />
             </span>
             <p className="max-w-sm text-sm text-ink-muted">
@@ -181,7 +181,7 @@ export function Profil() {
             </p>
             <Link
               href="/diagnostika"
-              className="inline-flex h-10 items-center rounded-xl bg-primary px-5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+              className="inline-flex h-10 items-center rounded-xl bg-primary-solid px-5 text-sm font-medium text-white transition-colors hover:opacity-90"
             >
               Diagnostikadan o&apos;tish
             </Link>
@@ -334,7 +334,7 @@ function ProfilForm({
               {holat === "saqlanmoqda" ? "Saqlanmoqda…" : "Saqlash"}
             </Button>
             {holat === "saqlandi" && (
-              <span className="text-sm text-success" role="status">
+              <span className="text-sm text-success-ink" role="status">
                 Saqlandi
               </span>
             )}

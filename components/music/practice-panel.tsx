@@ -223,7 +223,7 @@ export function SequenceStatus({
       <Card className="border-success">
         <CardContent className="flex flex-col gap-3 p-5">
           <div className="flex items-center gap-2.5">
-            <CheckCircle2 className="size-5 text-success" aria-hidden="true" />
+            <CheckCircle2 className="size-5 text-success-ink" aria-hidden="true" />
             <p className="font-display font-semibold text-ink">Mashq yakunlandi</p>
           </div>
           <Progress value={run.accuracy} label="Aniqlik" />

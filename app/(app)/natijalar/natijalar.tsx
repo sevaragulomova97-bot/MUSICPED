@@ -119,7 +119,7 @@ export function Natijalar() {
       {bosh ? (
         <Card>
           <CardContent className="flex flex-col items-center gap-4 p-10 text-center">
-            <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary">
+            <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary-ink">
               <BarChart3 className="size-6" aria-hidden="true" />
             </span>
             <div>
@@ -132,7 +132,7 @@ export function Natijalar() {
             <div className="flex flex-wrap justify-center gap-2">
               <Link
                 href="/diagnostika"
-                className="inline-flex h-10 items-center rounded-xl bg-primary px-5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+                className="inline-flex h-10 items-center rounded-xl bg-primary-solid px-5 text-sm font-medium text-white transition-colors hover:opacity-90"
               >
                 Diagnostika
               </Link>
@@ -160,7 +160,7 @@ export function Natijalar() {
                     <span
                       className={cn(
                         "flex items-center gap-0.5 text-sm font-medium",
-                        kartalar.ozgarish > 0 ? "text-success" : "text-danger",
+                        kartalar.ozgarish > 0 ? "text-success-ink" : "text-danger-ink",
                       )}
                     >
                       {kartalar.ozgarish > 0 ? (

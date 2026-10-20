@@ -234,9 +234,9 @@ export function DiagnostikaTest() {
                 aria-current={i === step ? "step" : undefined}
                 className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors ${
                   i === step
-                    ? "bg-primary text-white"
+                    ? "bg-primary-solid text-white"
                     : toliq
-                      ? "bg-success-soft text-success"
+                      ? "bg-success-soft text-success-ink"
                       : "bg-surface-muted text-ink-muted hover:text-ink"
                 }`}
               >
@@ -334,7 +334,7 @@ export function DiagnostikaTest() {
       {error && (
         <p
           role="alert"
-          className="mt-4 rounded-xl bg-danger-soft px-4 py-3 text-sm text-danger"
+          className="mt-4 rounded-xl bg-danger-soft px-4 py-3 text-sm text-danger-ink"
         >
           {error}
         </p>

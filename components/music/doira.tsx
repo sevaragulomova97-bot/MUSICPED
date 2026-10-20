@@ -162,7 +162,7 @@ export function Doira({
             className={cn(
               "rounded-xl border px-4 py-2 text-sm font-medium transition-colors",
               active.has(stroke)
-                ? "border-primary bg-primary text-white"
+                ? "border-primary bg-primary-solid text-white"
                 : "border-border-subtle bg-surface text-ink hover:bg-surface-muted",
             )}
           >

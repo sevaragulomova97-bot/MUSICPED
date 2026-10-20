@@ -70,6 +70,8 @@ export function InstrumentPage({
    * qiymatlarni dvigatel o'zi hisoblaydi.
    */
   const [kuch, setKuch] = React.useState(0.7);
+  /** Kuy demosining tezligi — 1 kuyning o'z tempi. */
+  const [tempo, setTempo] = React.useState(1);
 
   const instrument = useInstrument(kind);
   const sequence = useSequencePractice(selected.sequence);
@@ -101,6 +103,7 @@ export function InstrumentPage({
     oneShot: birZarbliKuy,
     attack: tuneAttack,
     release: tuneRelease,
+    tempo,
   });
 
   const bestScores = useLiveQuery(async () => {
@@ -223,7 +226,7 @@ export function InstrumentPage({
       {xato && (
         <p
           role="alert"
-          className="flex items-start gap-2.5 rounded-xl bg-danger-soft px-4 py-3 text-sm text-danger"
+          className="flex items-start gap-2.5 rounded-xl bg-danger-soft px-4 py-3 text-sm text-danger-ink"
         >
           <AlertTriangle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
           {xato}
@@ -283,7 +286,7 @@ export function InstrumentPage({
                 </p>
               )}
               {instrument.usingFallback && (
-                <p className="text-xs text-warning">
+                <p className="text-xs text-warning-ink">
                   Namunalarni yuklab bo&apos;lmadi — vaqtincha soddalashtirilgan
                   sintez ovozi ishlatilmoqda.
                 </p>
@@ -302,8 +305,8 @@ export function InstrumentPage({
                   <span
                     className={
                       instrument.bank.tur === "model"
-                        ? "font-medium text-warning"
-                        : "font-medium text-success"
+                        ? "font-medium text-warning-ink"
+                        : "font-medium text-success-ink"
                     }
                   >
                     {
@@ -372,7 +375,7 @@ export function InstrumentPage({
                         onClick={() => setKuch(k.velocity)}
                         className={
                           kuch === k.velocity
-                            ? "rounded-xl border border-primary bg-primary px-3 py-1.5 text-sm font-medium text-white"
+                            ? "rounded-xl border border-primary bg-primary-solid px-3 py-1.5 text-sm font-medium text-white"
                             : "rounded-xl border border-border-subtle bg-surface px-3 py-1.5 text-sm text-ink hover:bg-surface-muted"
                         }
                       >
@@ -415,6 +418,8 @@ export function InstrumentPage({
             onListen={tune.listen}
             onLearn={tune.learn}
             onStop={tune.stop}
+            tempo={tempo}
+            onTempo={setTempo}
           />
         )}
 

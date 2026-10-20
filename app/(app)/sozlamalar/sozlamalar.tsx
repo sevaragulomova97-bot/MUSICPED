@@ -116,7 +116,7 @@ function KorinishKarta() {
                 aria-pressed={tanlangan}
                 className={
                   tanlangan
-                    ? "flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white"
+                    ? "flex items-center gap-2 rounded-xl bg-primary-solid px-4 py-2 text-sm font-medium text-white"
                     : "flex items-center gap-2 rounded-xl border border-border-subtle px-4 py-2 text-sm text-ink transition-colors hover:bg-surface-muted"
                 }
               >
@@ -281,6 +281,7 @@ function MalumotKarta({ userId }: { userId: string }) {
             ref={inputRef}
             id="import-fayl"
             type="file"
+            aria-label="Import uchun JSON fayl tanlash"
             accept="application/json,.json"
             className="sr-only"
             onChange={(e) => void importQil(e.target.files?.[0])}
@@ -296,8 +297,8 @@ function MalumotKarta({ userId }: { userId: string }) {
             role="status"
             className={
               xabar.ok
-                ? "flex items-start gap-2 rounded-xl bg-success-soft p-3 text-sm text-success"
-                : "flex items-start gap-2 rounded-xl bg-warning-soft p-3 text-sm text-warning"
+                ? "flex items-start gap-2 rounded-xl bg-success-soft p-3 text-sm text-success-ink"
+                : "flex items-start gap-2 rounded-xl bg-warning-soft p-3 text-sm text-warning-ink"
             }
           >
             {xabar.ok ? (
@@ -373,7 +374,7 @@ function SaqlashKarta() {
         <CardTitle>Brauzer xotirasi</CardTitle>
       </CardHeader>
       <CardContent className="flex items-center gap-3 text-sm">
-        <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary-soft text-primary">
+        <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary-soft text-primary-ink">
           <Database className="size-5" aria-hidden="true" />
         </span>
         {holat ? (
@@ -427,7 +428,7 @@ function TozalashKarta({
 
         <div className="rounded-xl border border-danger/30 bg-danger-soft/40 p-4">
           <p className="flex items-center gap-2 text-sm font-medium text-ink">
-            <AlertTriangle className="size-4 text-danger" aria-hidden="true" />
+            <AlertTriangle className="size-4 text-danger-ink" aria-hidden="true" />
             Barcha ma&apos;lumotni o&apos;chirish
           </p>
           <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
@@ -455,7 +456,7 @@ function TozalashKarta({
           )}
 
           {tozalandi && (
-            <p role="status" className="mt-3 text-sm text-success">
+            <p role="status" className="mt-3 text-sm text-success-ink">
               Ma&apos;lumot o&apos;chirildi.
             </p>
           )}

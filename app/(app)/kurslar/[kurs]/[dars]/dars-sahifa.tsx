@@ -192,7 +192,7 @@ function DarsKontent({
             {block.instrument && (
               <Link
                 href={`/asboblar/${block.instrument}`}
-                className="mt-3 inline-flex h-9 items-center gap-2 rounded-lg bg-primary px-3.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+                className="mt-3 inline-flex h-9 items-center gap-2 rounded-lg bg-primary-solid px-3.5 text-sm font-medium text-white transition-colors hover:opacity-90"
               >
                 <Music4 className="size-4" aria-hidden="true" />
                 Cholg&apos;uni ochish
@@ -360,9 +360,9 @@ function DarsKontent({
                       className={cn(
                         "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors",
                         i === current
-                          ? "bg-primary text-white"
+                          ? "bg-primary-solid text-white"
                           : seen
-                            ? "text-success hover:bg-surface-muted"
+                            ? "text-success-ink hover:bg-surface-muted"
                             : "text-ink-muted hover:bg-surface-muted hover:text-ink",
                       )}
                     >
@@ -452,7 +452,7 @@ function DarsKontent({
               next ? (
                 <Link
                   href={`/kurslar/${courseSlug}/${next.slug}`}
-                  className="inline-flex h-10 items-center gap-2 rounded-xl bg-primary px-4 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+                  className="inline-flex h-10 items-center gap-2 rounded-xl bg-primary-solid px-4 text-sm font-medium text-white transition-colors hover:opacity-90"
                 >
                   Keyingi dars
                   <ArrowRight className="size-4" aria-hidden="true" />

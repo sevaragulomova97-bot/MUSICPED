@@ -14,25 +14,56 @@
   --mp-surface-muted: #eef2f9;
   --mp-border: #e2e8f3;
 
-  /* Matn */
+  /* Matn.
+     `--mp-text-muted` WCAG AA uchun o'lchab tanlangan: eng qorong'i
+     fonda ham (`--mp-surface-muted`) kontrast 5,4 : 1. Oldingi qiymat
+     (#64748b) o'sha fonda 4,24 edi — talabdan past. */
   --mp-text: #0f172a;
-  --mp-text-muted: #64748b;
+  --mp-text-muted: #586375;
   --mp-text-inverse: #ffffff;
 
   /* Brend ranglari */
   --mp-primary: #3b5bdb;
-  --mp-primary-hover: #3550c4;
   --mp-primary-soft: #e8edfc;
+  /* Matn uchun — `-soft` fonlar ustida ham 4,5 : 1 dan yuqori. */
+  --mp-primary-ink: #3b5bdb;
   --mp-secondary: #7c5cff;
   --mp-secondary-soft: #efeaff;
+  /* Matn uchun to'qroq variant: #7c5cff yumshoq binafsha fonda atigi
+     3,7 : 1 beradi. */
+  --mp-secondary-ink: #5b31e0;
 
-  /* Holat ranglari */
+  /* Holat ranglari.
+     Uch xil vazifa — uch xil qiymat:
+
+       • asosiy (`--mp-success`) — grafik va belgilar uchun, yorqin;
+       • `-ink` — **matn** uchun, fon ustida 4,5 : 1 dan yuqori;
+       • `-solid` — ustida oq matn turadigan **to'ldirish** uchun.
+
+     Yorqin yashil (#22c55e) matn sifatida oq fonda atigi 2,28 : 1
+     beradi — ya'ni uni matnga ishlatib bo'lmaydi. Bitta rangni uchala
+     vazifaga ishlatish aynan shu xatoga olib kelgandi. */
   --mp-success: #22c55e;
   --mp-success-soft: #dcfce7;
+  --mp-success-ink: #167c3b;
   --mp-warning: #f59e0b;
   --mp-warning-soft: #fef3c7;
+  --mp-warning-ink: #a35a07;
   --mp-danger: #ef4444;
   --mp-danger-soft: #fee2e2;
+  --mp-danger-ink: #b91c1c;
+
+  /* To'ldirish ranglari ikkala mavzuda bir xil: ularning ustida doim
+     oq matn turadi, shuning uchun fon emas, matn kontrasti hal qiladi. */
+  /* Ustida oq matn turadigan tugmalar uchun. Qorong'i mavzudagi
+     ochiq ko'k (#6b87f0) bilan oq matn atigi 3,31 : 1 berardi; bu
+     qiymat ikkala mavzuda ham ishlaydi (oq matn 5,53 : 1, qorong'i
+     fonda tugmaning chegarasi 3,07 : 1). */
+  --mp-primary-solid: #455fd0;
+  --mp-secondary-solid: #5b31e0;
+  --mp-success-solid: #15803d;
+  --mp-warning-solid: #a35a07;
+  --mp-danger-solid: #b91c1c;
 
   /* Yon panel (sidebar) */
   --mp-sidebar: #14224a;
@@ -62,11 +93,19 @@
   --mp-text-muted: #94a3bc;
   --mp-text-inverse: #0b1222;
 
+  /* Qorong'i fonda matn ochiq rangda bo'lishi kerak — yorug' mavzudagi
+     to'q qiymatlar bu yerda o'qilmaydi. */
+  --mp-success-ink: #4ade80;
+  --mp-warning-ink: #fbbf24;
+  --mp-danger-ink: #f87171;
+
   --mp-primary: #6b87f0;
-  --mp-primary-hover: #7f98f5;
   --mp-primary-soft: #1d2a52;
+  /* Qorong'i mavzuda asosiy rang `-soft` fonda atigi 4,22 : 1 berardi. */
+  --mp-primary-ink: #9db2f7;
   --mp-secondary: #9d84ff;
   --mp-secondary-soft: #2a2152;
+  --mp-secondary-ink: #b9a6ff;
 
   --mp-success: #4ade80;
   --mp-success-soft: #14321f;
@@ -103,17 +142,26 @@
   --color-ink-inverse: var(--mp-text-inverse);
 
   --color-primary: var(--mp-primary);
-  --color-primary-hover: var(--mp-primary-hover);
   --color-primary-soft: var(--mp-primary-soft);
+  --color-primary-ink: var(--mp-primary-ink);
+  --color-primary-solid: var(--mp-primary-solid);
   --color-secondary: var(--mp-secondary);
   --color-secondary-soft: var(--mp-secondary-soft);
+  --color-secondary-ink: var(--mp-secondary-ink);
+  --color-secondary-solid: var(--mp-secondary-solid);
 
   --color-success: var(--mp-success);
   --color-success-soft: var(--mp-success-soft);
+  --color-success-ink: var(--mp-success-ink);
+  --color-success-solid: var(--mp-success-solid);
   --color-warning: var(--mp-warning);
   --color-warning-soft: var(--mp-warning-soft);
+  --color-warning-ink: var(--mp-warning-ink);
+  --color-warning-solid: var(--mp-warning-solid);
   --color-danger: var(--mp-danger);
   --color-danger-soft: var(--mp-danger-soft);
+  --color-danger-ink: var(--mp-danger-ink);
+  --color-danger-solid: var(--mp-danger-solid);
 
   --color-sidebar: var(--mp-sidebar);
   --color-sidebar-hover: var(--mp-sidebar-hover);

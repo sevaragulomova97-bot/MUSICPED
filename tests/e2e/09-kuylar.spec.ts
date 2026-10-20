@@ -82,3 +82,36 @@ test.describe("Mashhur kuylar", () => {
     }
   });
 });
+
+test.describe("Temp boshqaruvi", () => {
+  test("sekin tempda kuy sezilarli uzoqroq chalinadi", async ({ page }) => {
+    test.slow();
+    await sessiyaBer(page, TALABA);
+    await page.goto("/asboblar/pianino/");
+    await expect(page.getByText("Mashhur kuylar")).toBeVisible();
+
+    const yongan = () => page.locator(`${KLAVIATURA} button[aria-pressed="true"]`);
+
+    /** Kuy boshlanib, so'ng butunlay to'xtaguncha o'tgan vaqt. */
+    async function olcha() {
+      const boshlandi = Date.now();
+      await page.getByRole("button", { name: /^Eshitish$/ }).click();
+      await expect.poll(() => yongan().count(), { timeout: 15_000 }).toBeGreaterThan(0);
+      await expect
+        .poll(() => page.getByRole("button", { name: /^Eshitish$/ }).count(), {
+          timeout: 60_000,
+          intervals: [200],
+        })
+        .toBe(1);
+      return Date.now() - boshlandi;
+    }
+
+    const toliq = await olcha();
+    await page.locator('[aria-label="Temp"] button').first().click();
+    const sekin = await olcha();
+
+    // Yarim temp — taxminan ikki barobar uzoq. Chegara keng olingan:
+    // brauzerdagi taymerlar aniq emas, lekin farq shubhasiz bo'lishi kerak.
+    expect(sekin, `to'liq ${toliq} ms, sekin ${sekin} ms`).toBeGreaterThan(toliq * 1.6);
+  });
+});

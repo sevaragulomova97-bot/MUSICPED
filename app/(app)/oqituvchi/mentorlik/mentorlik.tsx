@@ -94,7 +94,7 @@ export function Mentorlik() {
             onClick={() => setBosqichId(b.id)}
             className={
               b.id === bosqichId
-                ? "rounded-xl bg-primary px-4 py-2 text-sm font-medium text-white"
+                ? "rounded-xl bg-primary-solid px-4 py-2 text-sm font-medium text-white"
                 : "rounded-xl border border-border-subtle px-4 py-2 text-sm text-ink transition-colors hover:bg-surface-muted"
             }
           >
@@ -115,7 +115,12 @@ export function Mentorlik() {
             <p className="text-sm leading-relaxed text-ink-muted">
               Kuzatuv varaqasini to&apos;ldirish uchun avval talaba ma&apos;lumotini
               qabul qiling —{" "}
-              <Link href="/oqituvchi" className="text-primary hover:underline">
+              {/*
+                Matn ichidagi havola doim chiziladi: faqat rang bilan
+                ajratish rang ko'rishi buzilgan foydalanuvchi uchun
+                havolani ko'rinmas qiladi (WCAG 1.4.1).
+              */}
+              <Link href="/oqituvchi" className="text-primary underline">
                 kabinet bosh sahifasi
               </Link>
               .
@@ -366,7 +371,7 @@ function VaraqaForm({
       <div className="flex items-center gap-3">
         <Button onClick={() => void saqla()}>Varaqani saqlash</Button>
         {saqlandi && (
-          <span className="text-sm text-success" role="status">
+          <span className="text-sm text-success-ink" role="status">
             Saqlandi
           </span>
         )}

@@ -81,7 +81,7 @@ export function BoshSahifa() {
         /* Bo'sh holat — hali diagnostikadan o'tmagan */
         <Card>
           <CardContent className="flex flex-col items-center gap-4 p-10 text-center">
-            <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary">
+            <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary-ink">
               <Stethoscope className="size-6" aria-hidden="true" />
             </span>
             <div>
@@ -96,7 +96,7 @@ export function BoshSahifa() {
             </div>
             <Link
               href="/diagnostika"
-              className="inline-flex h-11 items-center rounded-xl bg-primary px-6 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+              className="inline-flex h-11 items-center rounded-xl bg-primary-solid px-6 text-sm font-medium text-white transition-colors hover:opacity-90"
             >
               Diagnostikani boshlash
             </Link>

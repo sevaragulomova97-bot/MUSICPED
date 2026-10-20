@@ -6,6 +6,13 @@ type ProgressProps = {
   label?: string;
   /** CSS rang qiymati, masalan `var(--mp-dir-nazariya)` */
   color?: string;
+  /**
+   * Ekran o'quvchi uchun nom — `label` ko'rinmaydigan joylarda.
+   *
+   * Nomsiz progressbar ekran o'quvchida «progressbar, 100 foiz» bo'lib
+   * eshitiladi: nimaning foizi ekani noma'lum qoladi.
+   */
+  ariaLabel?: string;
   showValue?: boolean;
   className?: string;
 };
@@ -15,6 +22,7 @@ export function Progress({
   value,
   label,
   color,
+  ariaLabel,
   showValue = true,
   className,
 }: ProgressProps) {
@@ -35,7 +43,7 @@ export function Progress({
         aria-valuenow={pct}
         aria-valuemin={0}
         aria-valuemax={100}
-        aria-label={label}
+        aria-label={ariaLabel ?? label ?? "Bajarilish darajasi"}
         className="h-2 w-full overflow-hidden rounded-full bg-surface-muted"
       >
         <div

@@ -76,7 +76,7 @@ export default function LandingPage() {
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/kirish"
-                className="inline-flex h-12 items-center rounded-xl bg-primary px-7 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+                className="inline-flex h-12 items-center rounded-xl bg-primary-solid px-7 text-sm font-medium text-white transition-colors hover:opacity-90"
               >
                 Boshlash
               </Link>
@@ -99,7 +99,7 @@ export default function LandingPage() {
                 <li key={q.title}>
                   <Card className="h-full">
                     <CardContent className="flex h-full flex-col gap-3 p-6">
-                      <span className="grid size-11 place-items-center rounded-xl bg-primary-soft text-primary">
+                      <span className="grid size-11 place-items-center rounded-xl bg-primary-soft text-primary-ink">
                         <Icon className="size-5" aria-hidden="true" />
                       </span>
                       <div>
@@ -138,7 +138,7 @@ export default function LandingPage() {
               return (
                 <Card key={item.title}>
                   <CardContent className="flex gap-4 p-6">
-                    <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-secondary-soft text-secondary">
+                    <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-secondary-soft text-secondary-ink">
                       <Icon className="size-5" aria-hidden="true" />
                     </span>
                     <div>

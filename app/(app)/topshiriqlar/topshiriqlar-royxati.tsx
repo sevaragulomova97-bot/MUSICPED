@@ -83,12 +83,12 @@ export function TopshiriqlarRoyxati() {
             className={cn(
               "rounded-xl px-4 py-2 text-sm font-medium transition-colors",
               tab === t.id
-                ? "bg-primary text-white"
+                ? "bg-primary-solid text-white"
                 : "bg-surface text-ink-muted hover:bg-surface-muted hover:text-ink",
             )}
           >
             {t.label}
-            <span className="ml-1.5 opacity-70">{tasksByType(t.id).length}</span>
+            <span className="ml-1.5 tabular-nums">{tasksByType(t.id).length}</span>
           </button>
         ))}
       </div>

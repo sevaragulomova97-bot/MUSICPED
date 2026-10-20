@@ -106,7 +106,7 @@ export function KirishForm() {
                           onChange={() => setTanlangan(profil.id)}
                           className="size-4 accent-[var(--mp-primary)]"
                         />
-                        <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-primary-soft text-primary">
+                        <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-primary-soft text-primary-ink">
                           <Icon className="size-5" aria-hidden="true" />
                         </span>
                         <span className="min-w-0">
@@ -127,7 +127,7 @@ export function KirishForm() {
 
           <button
             type="submit"
-            className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-xl bg-primary px-6 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
+            className="mt-6 inline-flex h-12 w-full items-center justify-center rounded-xl bg-primary-solid px-6 text-sm font-medium text-white transition-colors hover:opacity-90"
           >
             Davom etish
           </button>
