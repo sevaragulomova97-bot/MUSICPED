@@ -1529,3 +1529,29 @@ sinfga ham shunday olib boradi.
 
 Milliy repertuar nota matni bilan berilganda, u mavjud tuzilmaga
 o'zgarishsiz qo'shiladi.
+
+### Q101. Ikki bosqichli sertifikat: oraliq va yakuniy
+
+**Qaror.** Har bir o'quv kursi yakunlanganda **oraliq sertifikat**
+beriladi; beshala kurs yakunlanganda esa qo'shimcha ravishda **yakuniy
+sertifikat** beriladi. Ikkalasi ham `pdf-lib` bilan brauzerda yasaladi
+va bir xil shartga bo'ysunadi (Q39): darslar 100%, baholangan
+topshiriqlar o'rtachasi ≥ 70.
+
+**Sabab.** Oldin faqat modul sertifikati bor edi va dasturni to'liq
+tamomlagan talabaning qo'lida beshta alohida varaq qolardi — butun
+dasturni yakunlagani hech qayerda ko'rinmasdi.
+
+**Tuzilish.** Qoidalar komponentdan ajratib, `lib/certificates.ts` ga
+ko'chirildi (`moduleStatuses`, `finalStatus`). Sabab: «talaba kursni
+tamomladimi» degan savol baholash qoidasi — uni tugma chizadigan
+funksiya ichida qoldirib bo'lmaydi, chunki uni test bilan qamrab
+bo'lmaydi. Endi 11 ta birlik testi aynan shu qoidani tekshiradi.
+
+**PDF farqi.** Yakuniy sertifikat ikkinchi ramka, boshqa sarlavha va
+kurslar ro'yxati bilan ajratiladi: qog'ozda ikkalasi yonma-yon
+turganda qaysi biri nima ekani birinchi qarashda ko'rinishi kerak.
+
+**O'rtacha ball.** Faqat **baholangan** topshiriqlari bor kurslar
+bo'yicha hisoblanadi. Aks holda topshiriqsiz kurs o'rtachani nolga
+tortib tushirardi.

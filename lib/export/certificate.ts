@@ -11,14 +11,35 @@
 
 import { toWinAnsi } from "@/lib/export/winansi";
 
-export type CertificateData = {
-  fullName: string;
-  moduleTitle: string;
-  credits: number;
-  score: number;
-  issuedAt: Date;
-  serial: string;
-};
+/**
+ * Ikki xil sertifikat.
+ *
+ *  • **oraliq** — bitta o'quv kursi yakunlanganda;
+ *  • **yakuniy** — barcha kurslar yakunlanganda.
+ *
+ * Ajratilgan tip qo'llanadi: yakuniy sertifikatda bitta modul nomi emas,
+ * butun ro'yxat bo'ladi, shuning uchun ularni bitta ixtiyoriy maydonli
+ * obyektga siqish chaqiruv joyida xatoga olib kelardi.
+ */
+export type CertificateData =
+  | {
+      kind: "oraliq";
+      fullName: string;
+      moduleTitle: string;
+      credits: number;
+      score: number;
+      issuedAt: Date;
+      serial: string;
+    }
+  | {
+      kind: "yakuniy";
+      fullName: string;
+      modules: Array<{ title: string; credits: number }>;
+      totalCredits: number;
+      score: number;
+      issuedAt: Date;
+      serial: string;
+    };
 
 /** Sertifikat raqami — ism va modul asosida barqaror hosil qilinadi. */
 export function certificateSerial(fullName: string, moduleId: string, issuedAt: Date) {
@@ -68,23 +89,67 @@ export async function buildCertificatePdf(data: CertificateData): Promise<Blob> 
     page.drawText(safe, { x: (width - w) / 2, y, size, font, color });
   };
 
-  center("MusicPed", height - 90, 26, bold, primary);
-  center("SERTIFIKAT", height - 135, 36, bold, ink);
-  center("Quyidagi talaba modulni muvaffaqiyatli yakunladi", height - 175, 13, regular, muted);
-  center(data.fullName, height - 235, 30, bold, ink);
-  center(data.moduleTitle, height - 285, 18, bold, primary);
+  const yakuniy = data.kind === "yakuniy";
+
+  // Yakuniy sertifikat ikkinchi ramka bilan ajratiladi — qog'ozda ham,
+  // ekranda ham uni oraliq sertifikatdan darhol farqlash kerak.
+  if (yakuniy) {
+    page.drawRectangle({
+      x: 34,
+      y: 34,
+      width: width - 68,
+      height: height - 68,
+      borderColor: primary,
+      borderWidth: 0.8,
+    });
+  }
+
+  center("MusicPed", height - 86, 26, bold, primary);
+  center(yakuniy ? "YAKUNIY SERTIFIKAT" : "ORALIQ SERTIFIKAT", height - 130, 34, bold, ink);
   center(
-    `${data.credits} ECTS kredit  ·  Natija: ${data.score}%`,
-    height - 315,
+    yakuniy
+      ? "Quyidagi talaba dasturning barcha kurslarini muvaffaqiyatli yakunladi"
+      : "Quyidagi talaba o'quv kursini muvaffaqiyatli yakunladi",
+    height - 168,
     13,
     regular,
     muted,
   );
+  center(data.fullName, height - 224, 30, bold, ink);
+
+  if (data.kind === "oraliq") {
+    center(data.moduleTitle, height - 272, 18, bold, primary);
+    center(
+      `${data.credits} ECTS kredit  ·  Natija: ${data.score}%`,
+      height - 302,
+      13,
+      regular,
+      muted,
+    );
+  } else {
+    center(
+      `${data.modules.length} ta kurs  ·  ${data.totalCredits} ECTS kredit  ·  Natija: ${data.score}%`,
+      height - 262,
+      13,
+      regular,
+      muted,
+    );
+    // Kurslar ro'yxati: hujjat qaysi kurslarni qamraganini ko'rsatadi.
+    let y = height - 296;
+    for (const m of data.modules) {
+      center(`${m.title}  —  ${m.credits} ECTS`, y, 12, regular, ink);
+      y -= 20;
+    }
+  }
 
   const payload = JSON.stringify({
     seriya: data.serial,
+    tur: data.kind,
     ism: data.fullName,
-    modul: data.moduleTitle,
+    modul:
+      data.kind === "oraliq"
+        ? data.moduleTitle
+        : data.modules.map((m) => m.title).join(", "),
     natija: data.score,
     sana: data.issuedAt.toISOString().slice(0, 10),
   });

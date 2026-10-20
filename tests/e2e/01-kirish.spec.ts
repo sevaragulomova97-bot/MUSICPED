@@ -20,11 +20,11 @@ test.describe("Kirish", () => {
   test("talaba profili tanlanadi va bosh sahifaga o'tadi", async ({ page }) => {
     await page.goto("/kirish/");
 
-    await page.getByText("Sevaraxon Egamnazarova").click();
+    await page.getByText("Bobur Akbarov").click();
     await page.getByRole("button", { name: /davom|kirish/i }).click();
 
     await expect(page).toHaveURL(/\/bosh-sahifa\/?$/);
-    await expect(page.getByText("Sevaraxon Egamnazarova").first()).toBeVisible();
+    await expect(page.getByText("Bobur Akbarov").first()).toBeVisible();
   });
 
   test("o'qituvchi o'z kabinetiga tushadi", async ({ page }) => {

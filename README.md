@@ -4,6 +4,8 @@
 
 Pedagogika fanlari bo'yicha dissertatsiya (13.00.02 — Ta'lim va tarbiya nazariyasi va metodikasi, Qo'qon davlat universiteti) natijalarini amalda joriy etuvchi web platforma.
 
+**Dissertatsiya muallifi:** Bobur Akbarov.
+
 ---
 
 ## Eng muhimi: bu platforma serversiz ishlaydi
@@ -144,6 +146,7 @@ lib/
   db/repo.ts            Ma'lumotga kirishning yagona yo'li
   navigation.ts         Rol bo'yicha menyu
   analytics.ts          Natijalar statistikasi (sof funksiya, testlangan)
+  certificates.ts       Sertifikat qoidalari (oraliq va yakuniy)
   export/certificate.ts PDF sertifikat (pdf-lib, brauzerda)
   utils.ts              cn(), asset(), formatDate()
 tests/
@@ -164,7 +167,8 @@ docs/
 - [x] **B3** — 6 ta virtual cholg'u: pianino, gitara, dutor, rubob, nay, doira
       (haqiqiy namunali ovoz, yozib olish, mashq rejimi)
 - [x] **B4** — Darslar (VexFlow nota yozuvi), topshiriqlar va rubrikalar,
-      natijalar grafiklari, portfolio va PDF sertifikat
+      natijalar grafiklari, portfolio hamda PDF sertifikat — har bir kurs
+      uchun oraliq, barcha kurslar uchun yakuniy
 - [x] **B5** — O'qituvchi kabineti, tadqiqot bo'limi (t-mezon, χ², Koen d,
       Mann-Uitni), admin paneli va kontent auditi, oflayn rejim (PWA),
       e2e testlar va qo'llanmalar

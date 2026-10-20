@@ -16,8 +16,8 @@ import { cn } from "@/lib/utils";
  */
 const DEMO_PROFILLAR: Array<Profile & { icon: typeof UserRound; tavsif: string }> = [
   {
-    id: "talaba-sevaraxon",
-    fullName: "Sevaraxon Egamnazarova",
+    id: "talaba-bobur",
+    fullName: "Bobur Akbarov",
     role: "TALABA",
     group: "MT-24",
     startedAt: "2025-09-01",

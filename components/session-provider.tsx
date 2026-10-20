@@ -131,7 +131,7 @@ export function useSession() {
   return ctx;
 }
 
-/** Ism va familiyadan avatar uchun bosh harflar: "Sevaraxon Egamnazarova" -> "SE" */
+/** Ism va familiyadan avatar uchun bosh harflar: "Bobur Akbarov" -> "BA" */
 export function initialsOf(fullName: string) {
   return fullName
     .split(/\s+/)

@@ -16,8 +16,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { KURSLAR } from "@/content/courses";
-import { MODULLAR } from "@/content/modules";
 import {
   addPortfolioFile,
   deletePortfolioItem,
@@ -28,6 +26,7 @@ import {
   portfolioUsage,
   allProgress,
 } from "@/lib/db/repo";
+import { finalStatus, moduleStatuses } from "@/lib/certificates";
 import type { StoredPortfolioItem } from "@/lib/db/schema";
 import {
   buildCertificatePdf,
@@ -68,49 +67,13 @@ export function Portfolio() {
   const items = (data?.items ?? []).filter((i) => i.category === tab);
   const used = data?.used ?? 0;
 
-  /**
-   * Modul bo'yicha sertifikat olish sharti:
-   *
-   *  1. modul kursidagi **barcha darslar** yakunlangan bo'lsin (100%);
-   *  2. shu modul yo'nalishlari bo'yicha baholangan topshiriqlar bo'lsa,
-   *     ularning o'rtachasi 70% dan kam bo'lmasin.
-   *
-   * Dastlab shart «2 ta baholangan topshiriq» edi, lekin topshiriqlar bankida
-   * ba'zi modullarga bitta avtomatik baholanadigan topshiriq to'g'ri keladi —
-   * sertifikat umuman olinmas edi. Darslar yakunlanishi modul tugaganini
-   * ancha to'g'ri ko'rsatadi.
-   */
-  const OTISH_BALI = 70;
-
-  const modulHolati = MODULLAR.map((modul) => {
-    const kurs = KURSLAR.find((k) => k.moduleId === modul.id);
-    const darslar = kurs?.lessons ?? [];
-    const tugagan = darslar.filter((l) =>
-      (data?.prog ?? []).some((p) => p.lessonId === l.id && p.percent >= 100),
-    ).length;
-
-    const tegishli = (data?.subs ?? []).filter(
-      (s) => typeof s.score === "number" && s.score >= 0 && modul.areas.includes(s.area),
-    );
-    const ortacha = tegishli.length
-      ? Math.round(tegishli.reduce((x, s) => x + (s.score ?? 0), 0) / tegishli.length)
-      : 0;
-
-    const darsTayyor = darslar.length > 0 && tugagan === darslar.length;
-    const ballTayyor = tegishli.length === 0 || ortacha >= OTISH_BALI;
-
-    return {
-      modul,
-      darslar: darslar.length,
-      tugagan,
-      soni: tegishli.length,
-      ortacha,
-      tayyor: darsTayyor && ballTayyor,
-      sabab: !darsTayyor
-        ? `Yana ${darslar.length - tugagan} ta dars qoldi`
-        : `O'rtacha ${OTISH_BALI}% dan yuqori bo'lishi kerak (hozir ${ortacha}%)`,
-    };
-  });
+  // Sertifikat shartlari `lib/certificates.ts` da — u yerda ular unit
+  // test bilan qo'riqlanadi.
+  const modulHolati = React.useMemo(
+    () => moduleStatuses(data?.prog ?? [], data?.subs ?? []),
+    [data?.prog, data?.subs],
+  );
+  const yakuniyHolat = React.useMemo(() => finalStatus(modulHolati), [modulHolati]);
 
   async function upload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -135,6 +98,7 @@ export function Portfolio() {
     try {
       const issuedAt = new Date();
       const blob = await buildCertificatePdf({
+        kind: "oraliq",
         fullName: profile.fullName,
         moduleTitle: modul.title,
         credits: modul.credits,
@@ -142,18 +106,58 @@ export function Portfolio() {
         issuedAt,
         serial: certificateSerial(profile.fullName, modul.id, issuedAt),
       });
-      downloadBlob(blob, `sertifikat-${modul.slug}.pdf`);
+      downloadBlob(blob, `oraliq-sertifikat-${modul.slug}.pdf`);
       // Sertifikat portfolioda ham qoladi
       await addPortfolioFile(
         userId!,
         "sertifikat",
-        `Sertifikat — ${modul.title}`,
-        new File([blob], `sertifikat-${modul.slug}.pdf`, { type: "application/pdf" }),
+        `Oraliq sertifikat — ${modul.title}`,
+        new File([blob], `oraliq-sertifikat-${modul.slug}.pdf`, { type: "application/pdf" }),
         `${modul.credits} ECTS · ${ortacha}%`,
       );
     } catch (cause) {
       console.error(cause);
       setError("Sertifikatni yaratib bo'lmadi.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  /**
+   * Yakuniy sertifikat — barcha kurslar yakunlanganda.
+   *
+   * Tugma faqat shart bajarilganda faol bo'ladi; aks holda qaysi kurslar
+   * qolgani ro'yxat bilan ko'rsatiladi.
+   */
+  async function finalCertificate() {
+    if (!profile || !yakuniyHolat.tayyor) return;
+    setBusy(true);
+    setError(null);
+    try {
+      const issuedAt = new Date();
+      const blob = await buildCertificatePdf({
+        kind: "yakuniy",
+        fullName: profile.fullName,
+        modules: modulHolati.map((m) => ({
+          title: m.modul.title,
+          credits: m.modul.credits,
+        })),
+        totalCredits: yakuniyHolat.jamiKredit,
+        score: yakuniyHolat.ortacha || 100,
+        issuedAt,
+        serial: certificateSerial(profile.fullName, "yakuniy", issuedAt),
+      });
+      downloadBlob(blob, "yakuniy-sertifikat.pdf");
+      await addPortfolioFile(
+        userId!,
+        "sertifikat",
+        "Yakuniy sertifikat — barcha kurslar",
+        new File([blob], "yakuniy-sertifikat.pdf", { type: "application/pdf" }),
+        `${yakuniyHolat.jamiKredit} ECTS · ${yakuniyHolat.ortacha}%`,
+      );
+    } catch (cause) {
+      console.error(cause);
+      setError("Yakuniy sertifikatni yaratib bo'lmadi.");
     } finally {
       setBusy(false);
     }
@@ -208,11 +212,11 @@ export function Portfolio() {
         })}
       </div>
 
-      {/* Sertifikatlar bo'limi — modul holati */}
+      {/* Sertifikatlar bo'limi — har bir kurs uchun oraliq sertifikat */}
       {tab === "sertifikat" && (
         <Card>
           <CardHeader>
-            <CardTitle>Modullar bo&apos;yicha sertifikat</CardTitle>
+            <CardTitle>Oraliq sertifikatlar — har bir kurs uchun</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="flex flex-col gap-3">
@@ -234,7 +238,7 @@ export function Portfolio() {
                   {m.tayyor ? (
                     <Button size="sm" onClick={() => void certificate(i)} disabled={busy}>
                       <Download aria-hidden="true" />
-                      Sertifikat olish
+                      Oraliq sertifikat
                     </Button>
                   ) : (
                     <Badge variant="neutral">{m.sabab}</Badge>
@@ -242,6 +246,57 @@ export function Portfolio() {
                 </li>
               ))}
             </ul>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Yakuniy sertifikat — barcha kurslar yakunlanganda */}
+      {tab === "sertifikat" && (
+        <Card
+          className={cn(
+            yakuniyHolat.tayyor && "border-primary/50 bg-primary-soft/30",
+          )}
+        >
+          <CardHeader>
+            <CardTitle>Yakuniy sertifikat</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-4">
+            <p className="text-sm leading-relaxed text-ink-muted">
+              Dasturning barcha {yakuniyHolat.jami} ta kursi yakunlanganda
+              beriladi. Hujjatda kurslar ro&apos;yxati, jami{" "}
+              {yakuniyHolat.jamiKredit} ECTS kredit va umumiy natija
+              ko&apos;rsatiladi.
+            </p>
+
+            <Progress
+              value={Math.round(
+                (yakuniyHolat.tugagan / Math.max(1, yakuniyHolat.jami)) * 100,
+              )}
+              label={`${yakuniyHolat.tugagan} / ${yakuniyHolat.jami} kurs yakunlandi`}
+            />
+
+            {yakuniyHolat.tayyor ? (
+              <div className="flex flex-wrap items-center gap-3">
+                <Button onClick={() => void finalCertificate()} disabled={busy}>
+                  <Award aria-hidden="true" />
+                  Yakuniy sertifikatni olish
+                </Button>
+                <span className="text-xs text-ink-muted">
+                  Umumiy natija: {yakuniyHolat.ortacha}%
+                </span>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-2">
+                <p className="text-sm text-ink">Yakunlanmagan kurslar:</p>
+                <ul className="flex flex-wrap gap-2">
+                  {yakuniyHolat.qolgan.map((nom) => (
+                    <li key={nom}>
+                      <Badge variant="neutral">{nom}</Badge>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </CardContent>
         </Card>
       )}
