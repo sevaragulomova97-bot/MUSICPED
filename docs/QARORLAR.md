@@ -1662,3 +1662,65 @@ turganday» ko'rinadi.
 
 Testlar mutatsiya bilan tekshirildi — variantlar navbatini va kuch
 qatlami tanlovini ataylab buzib ko'rilganda aynan tegishli test yiqildi.
+
+### Q108. Standart tovush — qarindosh cholg'ularning haqiqiy yozuvi
+
+**Qaror.** Dutor, rubob va doiraning standart tembri endi fizik model
+emas, **haqiqiy akustik yozuv**: doira uchun ramkali baraban va dafcha
+(VCSL, CC0), rubob uchun sitor, dutor uchun nayloniy torli cholg'u
+(MusyngKite, MIT). Fizik modellar ikkinchi tembr sifatida qoldi.
+
+**Sabab.** Model sozlanishi jihatidan aniq edi (barcha notalar ±0,5
+sent), lekin quloqqa baribir sintetik eshitildi. Haqiqiy yozuvda
+cholg'uning korpusi, xonaning akustikasi va ijrochining qo'li bor —
+buni modellashtirib bo'lmaydi.
+
+**Nega «qarindosh» degan uchinchi tur kiritildi.** Bular o'zbek
+cholg'ularining o'z yozuvi emas. Ularni `"tur": "yozuv"` deb belgilash
+foydalanuvchini aldash bo'lardi, `"model"` deb belgilash esa yolg'on
+bo'lardi. Shuning uchun `BankTuri` ga uchinchi qiymat qo'shildi va
+interfeys uni «Qarindosh cholg'u yozuvi» deb ko'rsatadi, manbasi bilan.
+
+**Nega aynan shu manbalar.** Moslik akustik, nom bo'yicha emas:
+
+| | Qarindoshlik asosi |
+|---|---|
+| Doira ← ramkali baraban | membrana, yog'och gardish, metall halqalar |
+| Rubob ← sitor | metall tor, nokka, simpatik torlar, rezonator kosa |
+| Dutor ← nayloniy torli cholg'u | nayloniy tor, yog'och qopqoq, barmoq chertishi |
+
+Doira zarblari ham akustik o'lchov bo'yicha moslashtirildi: `bum` —
+katta barabanning ochiq zarbi (~88 Hz), `bosiq` — o'sha barabanning
+bo'g'iq zarbi, `tak` — kichik barabanniki (~225 Hz), `qarsak` —
+dafchaning halqalari.
+
+**Filtr qayerda ishlatilgan.** Manbalarda ijro kuchining har bir
+darajasi uchun alohida yozuv yo'q. Yo'q joyda qatlam filtr bilan
+olinadi va **har bir namuna uchun** `bank.json` da `"hosil": "filtr"`
+deb belgilanadi. Buni yashirish mumkin edi — ko'rinishda farqi yo'q —
+lekin o'qituvchi tayyorlaydigan platformada tovushning kelib chiqishi
+haqida yolg'on gapirib bo'lmaydi.
+
+### Q109. Sertifikat dizayni qayta ishlandi
+
+**Qaror.** Sertifikat oddiy ramka va markazlashgan matndan rasmiy
+hujjat ko'rinishiga keltirildi: ikki qavat ramka (yakuniyda uch),
+burchak bezaklari, harflari ajratilgan sarlavha, ism ostidagi chiziq,
+to'lqinli ajratgich, seriya raqami yozilgan muhr, imzo chizig'i va
+ramkalangan QR.
+
+**Texnik eslatma.** `pdf-lib` da harflar orasidagi masofani sozlash
+yo'q, shuning uchun sarlavhalar harfma-harf chiziladi
+(`spacedCenter`). Bu hujjatga rasmiy ko'rinish beradigan asosiy
+detal — usiz sarlavha oddiy qalin matndan farq qilmasdi.
+
+**Joylashuv hisobi.** Yakuniy sertifikatda kurslar ro'yxati uzun
+bo'lishi mumkin, shuning uchun bezak chizig'i qat'iy joyda turmaydi:
+oxirgi satrdan pastda hisoblanadi. Ro'yxat esa chapdan tekislanadi —
+har bir qatorni alohida markazlashtirish nomlarni tishli qilib,
+hujjatni tartibsiz ko'rsatardi.
+
+**Muhr haqida.** Muhrda tashkilot nomi yoki gerbi yo'q — faqat
+platformaning o'z belgisi, sertifikat seriyasi va yili. Rasmiy
+tashkilot muhrini chizish hujjatni u bermagan vakolatga da'vogar
+qilardi.

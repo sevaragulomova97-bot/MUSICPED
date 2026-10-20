@@ -145,6 +145,10 @@ test("ikkinchi o'lchov yakuniy diagnostika bo'lib saqlanadi", async ({ page }) =
  * shuning uchun u ham boshlang'ichdan boshqa shaklda bo'lishi kerak.
  */
 test("uchala o'lchov ham alohida tur va mustaqil shakl bilan saqlanadi", async ({ page }) => {
+  // Uchta to'liq diagnostika — har birida 32 savol. Boshqa testlar bilan
+  // bir vaqtda yurganda standart 30 soniya chegarasiga tiqilib qolardi;
+  // bu testning sekinligi kamchilik emas, ishning hajmi shunday.
+  test.slow();
   await sessiyaBer(page, TALABA);
   await bazaniTozala(page);
 

@@ -301,14 +301,18 @@ export function InstrumentPage({
                 >
                   <span
                     className={
-                      instrument.bank.tur === "yozuv"
-                        ? "font-medium text-success"
-                        : "font-medium text-warning"
+                      instrument.bank.tur === "model"
+                        ? "font-medium text-warning"
+                        : "font-medium text-success"
                     }
                   >
-                    {instrument.bank.tur === "yozuv"
-                      ? "Haqiqiy yozuv"
-                      : "Fizik model"}
+                    {
+                      {
+                        yozuv: "Haqiqiy yozuv",
+                        qarindosh: "Qarindosh cholg'u yozuvi",
+                        model: "Fizik model",
+                      }[instrument.bank.tur]
+                    }
                   </span>
                   {" — "}
                   {instrument.bank.turiIzoh}. {instrument.bank.namunalar.length}{" "}

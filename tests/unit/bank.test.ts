@@ -34,11 +34,21 @@ function bankOqi(papka: string): SampleBank {
   return parseBank(JSON.parse(readFileSync(yol, "utf8")));
 }
 
-const BANKLAR = {
+/** Modelli banklar — fizik model bilan hosil qilingan. */
+const MODEL = {
   dutor: "dutor-model",
   rubob: "rubob-model",
   doira: "doira-model",
 } as const;
+
+/** Haqiqiy yozuvga asoslangan banklar (standart tembr shular). */
+const YOZUV = {
+  dutor: "dutor-yozuv",
+  rubob: "rubob-yozuv",
+  doira: "doira-yozuv",
+} as const;
+
+const BANKLAR = MODEL;
 
 /* ───────────────────────── Nota nomlari ───────────────────────── */
 
@@ -267,6 +277,70 @@ describe("yetkazilgan banklar", () => {
           (n) => n.zarb === zarb && n.kuch === k.id,
         ).length;
         expect(soni, `${zarb}/${k.id}`).toBeGreaterThanOrEqual(3);
+      }
+    }
+  });
+});
+
+/* ──────────────── Haqiqiy yozuvga asoslangan banklar ──────────────── */
+
+describe("yozuv banklari", () => {
+  for (const [cholgu, papka] of Object.entries(YOZUV)) {
+    describe(cholgu, () => {
+      const bank = bankOqi(papka);
+
+      it("e'lon qilgan har bir fayl diskda bor", () => {
+        const yoq = bank.namunalar
+          .map((n) => n.fayl)
+          .filter((f) => !existsSync(path.join(AUDIO, papka, f)));
+        expect(yoq, `yo'q fayllar: ${yoq.join(", ")}`).toHaveLength(0);
+      });
+
+      it("qarindosh cholg'u yozuvi deb belgilangan", () => {
+        // Bular o'zbek cholg'usining o'z yozuvi emas — «yozuv» deb
+        // belgilash foydalanuvchini aldash bo'lardi.
+        expect(bank.tur).toBe("qarindosh");
+        expect(bank.turiIzoh.length).toBeGreaterThan(20);
+      });
+
+      it("manba va litsenziya ko'rsatilgan", () => {
+        expect(bank.manba).toMatch(/https?:\/\//);
+        expect(bank.litsenziya).toMatch(/CC0|MIT/);
+      });
+
+      it("filtr bilan hosil qilingan namunalar belgilangan", () => {
+        // Har bir namuna yo yozuvdan, yo filtrdan — uchinchisi yo'q.
+        for (const n of bank.namunalar) {
+          expect(["yozuv", "filtr"], n.fayl).toContain(n.hosil);
+        }
+        // Kamida yarmi to'g'ridan-to'g'ri yozuvdan bo'lishi kerak,
+        // aks holda bankni «yozuv banki» deb atash asossiz bo'lardi.
+        const yozuv = bank.namunalar.filter((n) => n.hosil === "yozuv").length;
+        expect(yozuv / bank.namunalar.length).toBeGreaterThanOrEqual(0.33);
+      });
+    });
+  }
+
+  for (const cholgu of ["dutor", "rubob"] as const) {
+    it(`${cholgu}: chalinadigan har bir nota uchun o'z namunasi bor`, () => {
+      const bank = bankOqi(YOZUV[cholgu]);
+      const bor = new Set(
+        bank.namunalar.filter((n) => n.nota).map((n) => notaMidi(n.nota!)),
+      );
+      for (const nota of CHOLGU_NOTALARI[cholgu]) {
+        expect(bor.has(notaMidi(nota)), `${cholgu} ${nota}`).toBe(true);
+      }
+    });
+  }
+
+  it("doira: har bir zarb har bir kuch qatlamida bor", () => {
+    const bank = bankOqi(YOZUV.doira);
+    for (const zarb of DOIRA_ZARBLARI) {
+      for (const k of bank.kuchlar) {
+        const soni = bank.namunalar.filter(
+          (n) => n.zarb === zarb && n.kuch === k.id,
+        ).length;
+        expect(soni, `${zarb}/${k.id}`).toBeGreaterThan(0);
       }
     }
   });

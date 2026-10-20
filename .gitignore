@@ -49,3 +49,7 @@ next-env.d.ts
 # dagi MP3 lar. 42 MB WAV ni saqlashning ma'nosi yo'q.
 tools/instrument-models/wav/
 tools/instrument-models/__pycache__/
+
+# Yuklab olingan xom yozuvlar: `tools/samples/fetch.py` ularni qayta
+# yuklaydi, yetkaziladigani esa `public/audio/` dagi tayyor banklar.
+tools/samples/dl/

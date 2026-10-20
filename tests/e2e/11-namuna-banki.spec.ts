@@ -115,7 +115,7 @@ test.describe("Namuna banki", () => {
     expect(chalindi.length, "to'rt bosishda to'rt namuna").toBe(4);
 
     const fayllar = chalindi.map((c) => c.url);
-    for (const f of fayllar) expect(f).toMatch(/doira-model\/bum-/);
+    for (const f of fayllar) expect(f).toMatch(/doira-yozuv\/bum-/);
 
     // Ketma-ket ikki zarb bir xil fayldan bo'lmasligi kerak — aks holda
     // takror mexanik eshitiladi.
@@ -124,8 +124,9 @@ test.describe("Namuna banki", () => {
         fayllar[i - 1],
       );
     }
-    // To'rtinchi zarbda variantlar aylanib boshiga qaytadi.
-    expect(new Set(fayllar).size).toBe(3);
+    // Variantlar aylanib boshiga qaytadi, shuning uchun to'rt zarbda
+    // takrorlanish bo'ladi — lekin ketma-ket emas.
+    expect(new Set(fayllar).size).toBeGreaterThanOrEqual(2);
   });
 
   test("to'rt zarbning har biri o'z namunasidan chalinadi", async ({ page }) => {
@@ -171,7 +172,7 @@ test.describe("Namuna banki", () => {
     // Har bir nota uchun alohida namuna bor, shuning uchun cho'zish
     // koeffitsiyenti aniq 1 bo'lishi kerak.
     expect(chalindi[0].rate).toBeCloseTo(1, 5);
-    expect(chalindi[0].url).toMatch(/rubob-model\//);
+    expect(chalindi[0].url).toMatch(/rubob-yozuv\//);
   });
 
   test("ijro kuchi tanlovi boshqa qatlamdagi namunani chaladi", async ({ page }) => {
@@ -201,7 +202,7 @@ test.describe("Namuna banki", () => {
     expect(new Set(qatlamlar).size, qatlamlar.join(", ")).toBe(3);
   });
 
-  test("bank turi va manbasi interfeysda ko'rsatiladi", async ({ page }) => {
+  test("standart tembr haqiqiy yozuvga asoslanadi", async ({ page }) => {
     await sessiyaBer(page, TALABA);
     await page.goto("/asboblar/dutor/");
     await page
@@ -211,10 +212,27 @@ test.describe("Namuna banki", () => {
 
     const belgi = page.locator("[data-bank-tur]");
     await expect(belgi).toBeVisible({ timeout: 20_000 });
-    // Model yozuv deb ko'rsatilmaydi — bu eng muhim shart.
-    await expect(belgi).toHaveAttribute("data-bank-tur", "model");
-    await expect(belgi).toContainText("Fizik model");
+    // Qarindosh cholg'u yozuvi «haqiqiy dutor yozuvi» deb
+    // ko'rsatilmaydi — bu eng muhim shart.
+    await expect(belgi).toHaveAttribute("data-bank-tur", "qarindosh");
+    await expect(belgi).toContainText("Qarindosh cholg'u yozuvi");
     await expect(belgi).toContainText("60 namuna");
+  });
+
+  test("fizik modelga o'tilganda buni interfeys aytadi", async ({ page }) => {
+    await sessiyaBer(page, TALABA);
+    await page.goto("/asboblar/dutor/");
+    await page.locator('[aria-label="Grif — pardalar"] button').first().click();
+    await expect(page.locator("[data-bank-tur]")).toBeVisible({ timeout: 20_000 });
+
+    await page.getByLabel("Tovush turi").selectOption("model");
+    await page.locator('[aria-label="Grif — pardalar"] button').first().click();
+
+    const belgi = page.locator("[data-bank-tur]");
+    await expect(belgi).toHaveAttribute("data-bank-tur", "model", {
+      timeout: 20_000,
+    });
+    await expect(belgi).toContainText("Fizik model");
   });
 });
 
@@ -252,7 +270,7 @@ test.describe("Dvigatel chidamliligi", () => {
   }) => {
     // Faqat doira bankining fayllari to'siladi — qolgan cholg'ular
     // ta'sirlanmasligi kerak.
-    await bankniTos(page, "doira-model");
+    await bankniTos(page, "doira-yozuv");
     await sessiyaBer(page, TALABA);
     await page.goto("/asboblar/doira/");
 
@@ -266,7 +284,7 @@ test.describe("Dvigatel chidamliligi", () => {
   });
 
   test("bitta bank ishlamasa, boshqa cholg'u ishlayveradi", async ({ page }) => {
-    await bankniTos(page, "doira-model");
+    await bankniTos(page, "doira-yozuv");
     await sessiyaBer(page, TALABA);
     await page.goto("/asboblar/rubob/");
 

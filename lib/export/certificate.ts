@@ -7,6 +7,21 @@
  * ma'lumotini **o'z ichida** olib yuradi (serverga murojaat qilmaydi),
  * shuning uchun u haqiqiylikni kriptografik tasdiqlamaydi; u faqat
  * sertifikat mazmunini tez o'qish uchun.
+ *
+ * Dizayn chizmasi (A4 landshaft, 842 x 595):
+ *
+ *   ┌───────────────────────────────────────────┐  tashqi ramka
+ *   │ ┌───────────────────────────────────────┐ │  ichki oltin chiziq
+ *   │ │      MusicPed  (harflar ajratilgan)   │ │
+ *   │ │      ──────◆──────                    │ │
+ *   │ │        ORALIQ SERTIFIKAT              │ │
+ *   │ │      izoh satri                       │ │
+ *   │ │        Talabaning ismi                │ │
+ *   │ │      ─────────────────                │ │
+ *   │ │        kurs / kurslar ro'yxati        │ │
+ *   │ │  imzo        muhr        QR           │ │
+ *   │ └───────────────────────────────────────┘ │
+ *   └───────────────────────────────────────────┘
  */
 
 import { toWinAnsi } from "@/lib/export/winansi";
@@ -63,84 +78,257 @@ export async function buildCertificatePdf(data: CertificateData): Promise<Blob> 
 
   const bold = await pdf.embedFont(StandardFonts.HelveticaBold);
   const regular = await pdf.embedFont(StandardFonts.Helvetica);
+  const italic = await pdf.embedFont(StandardFonts.HelveticaOblique);
 
-  const primary = rgb(0.231, 0.357, 0.859);
-  const ink = rgb(0.059, 0.09, 0.165);
-  const muted = rgb(0.392, 0.455, 0.545);
+  const siyoh = rgb(0.055, 0.078, 0.149); // deyarli qora ko'k
+  const asosiy = rgb(0.192, 0.282, 0.737); // indigo
+  const oltin = rgb(0.706, 0.573, 0.286);
+  const kulrang = rgb(0.42, 0.47, 0.55);
+  const qogoz = rgb(0.996, 0.992, 0.98);
 
-  page.drawRectangle({
-    x: 24,
-    y: 24,
-    width: width - 48,
-    height: height - 48,
-    borderColor: primary,
-    borderWidth: 2,
-  });
+  const yakuniy = data.kind === "yakuniy";
+
+  /* ── Yordamchilar ── */
+
+  /**
+   * Harflari ajratilgan matn.
+   *
+   * `pdf-lib` da harflar orasidagi masofani sozlash yo'q, shuning uchun
+   * har bir harf alohida chiziladi. Sarlavhalarda bu muhim: ajratilgan
+   * harflar hujjatga rasmiy ko'rinish beradi va uni oddiy hisobotdan
+   * ajratib turadi.
+   */
+  const spacedWidth = (text: string, size: number, font: typeof bold, gap: number) => {
+    const safe = toWinAnsi(text);
+    let w = 0;
+    for (const ch of safe) w += font.widthOfTextAtSize(ch, size) + gap;
+    return w - gap;
+  };
+
+  const spacedCenter = (
+    text: string,
+    y: number,
+    size: number,
+    font: typeof bold,
+    color = siyoh,
+    gap = 2,
+  ) => {
+    const safe = toWinAnsi(text);
+    let x = (width - spacedWidth(text, size, font, gap)) / 2;
+    for (const ch of safe) {
+      page.drawText(ch, { x, y, size, font, color });
+      x += font.widthOfTextAtSize(ch, size) + gap;
+    }
+  };
 
   const center = (
     text: string,
     y: number,
     size: number,
     font = regular,
-    color = ink,
+    color = siyoh,
   ) => {
     const safe = toWinAnsi(text);
     const w = font.widthOfTextAtSize(safe, size);
     page.drawText(safe, { x: (width - w) / 2, y, size, font, color });
+    return w;
   };
 
-  const yakuniy = data.kind === "yakuniy";
+  const chiziq = (x1: number, y1: number, x2: number, y2: number, color = oltin, t = 0.6) =>
+    page.drawLine({ start: { x: x1, y: y1 }, end: { x: x2, y: y2 }, thickness: t, color });
 
-  // Yakuniy sertifikat ikkinchi ramka bilan ajratiladi — qog'ozda ham,
-  // ekranda ham uni oraliq sertifikatdan darhol farqlash kerak.
+  /** Romb — chiziqlar orasidagi bezak. */
+  const romb = (cx: number, cy: number, r: number, color = oltin) => {
+    page.drawLine({ start: { x: cx - r, y: cy }, end: { x: cx, y: cy + r }, thickness: 1.1, color });
+    page.drawLine({ start: { x: cx, y: cy + r }, end: { x: cx + r, y: cy }, thickness: 1.1, color });
+    page.drawLine({ start: { x: cx + r, y: cy }, end: { x: cx, y: cy - r }, thickness: 1.1, color });
+    page.drawLine({ start: { x: cx, y: cy - r }, end: { x: cx - r, y: cy }, thickness: 1.1, color });
+  };
+
+  /* ── Fon va ramkalar ── */
+
+  page.drawRectangle({ x: 0, y: 0, width, height, color: qogoz });
+
+  // Tashqi ramka — qalin, asosiy rang.
+  page.drawRectangle({
+    x: 20,
+    y: 20,
+    width: width - 40,
+    height: height - 40,
+    borderColor: asosiy,
+    borderWidth: 2.4,
+  });
+  // Ichki ingichka oltin chiziq — ikkisi orasidagi bo'shliq hujjatga
+  // «chop etilgan» ko'rinish beradi.
+  page.drawRectangle({
+    x: 29,
+    y: 29,
+    width: width - 58,
+    height: height - 58,
+    borderColor: oltin,
+    borderWidth: 0.7,
+  });
+  // Yakuniy sertifikat uchinchi ramka bilan ajratiladi — qog'ozda
+  // ikkalasi yonma-yon turganda qaysi biri nima ekani birinchi
+  // qarashda ko'rinishi kerak.
   if (yakuniy) {
     page.drawRectangle({
-      x: 34,
-      y: 34,
-      width: width - 68,
-      height: height - 68,
-      borderColor: primary,
-      borderWidth: 0.8,
+      x: 35,
+      y: 35,
+      width: width - 70,
+      height: height - 70,
+      borderColor: asosiy,
+      borderWidth: 0.7,
     });
   }
 
-  center("MusicPed", height - 86, 26, bold, primary);
-  center(yakuniy ? "YAKUNIY SERTIFIKAT" : "ORALIQ SERTIFIKAT", height - 130, 34, bold, ink);
+  // Burchak bezaklari: ikki qisqa chiziq va romb.
+  const burchak = (cx: number, cy: number, sx: number, sy: number) => {
+    chiziq(cx, cy, cx + 34 * sx, cy, oltin, 1.2);
+    chiziq(cx, cy, cx, cy + 34 * sy, oltin, 1.2);
+    romb(cx + 9 * sx, cy + 9 * sy, 3.4);
+  };
+  const ichki = yakuniy ? 44 : 38;
+  burchak(ichki, ichki, 1, 1);
+  burchak(width - ichki, ichki, -1, 1);
+  burchak(ichki, height - ichki, 1, -1);
+  burchak(width - ichki, height - ichki, -1, -1);
+
+  /* ── Sarlavha ── */
+
+  spacedCenter("MUSICPED", height - 82, 13, bold, asosiy, 4.5);
+
+  // Nozik ajratgich: ikki chiziq va o'rtada romb.
+  const ajr = height - 100;
+  chiziq(width / 2 - 150, ajr, width / 2 - 14, ajr);
+  chiziq(width / 2 + 14, ajr, width / 2 + 150, ajr);
+  romb(width / 2, ajr, 5);
+
+  spacedCenter(
+    yakuniy ? "YAKUNIY SERTIFIKAT" : "ORALIQ SERTIFIKAT",
+    height - 150,
+    29,
+    bold,
+    siyoh,
+    3.5,
+  );
+
   center(
     yakuniy
-      ? "Quyidagi talaba dasturning barcha kurslarini muvaffaqiyatli yakunladi"
+      ? "Quyidagi talaba dasturning barcha o'quv kurslarini muvaffaqiyatli yakunladi"
       : "Quyidagi talaba o'quv kursini muvaffaqiyatli yakunladi",
-    height - 168,
-    13,
-    regular,
-    muted,
+    height - 178,
+    10.5,
+    italic,
+    kulrang,
   );
-  center(data.fullName, height - 224, 30, bold, ink);
+
+  /* ── Ism ── */
+
+  const ismO = height - 238;
+  const ismW = center(data.fullName, ismO, 30, bold, siyoh);
+  // Ism ostidagi chiziq matndan biroz keng — ism hujjatning markazi.
+  const yarim = Math.min(width / 2 - 90, ismW / 2 + 34);
+  chiziq(width / 2 - yarim, ismO - 12, width / 2 + yarim, ismO - 12, oltin, 1);
+
+  /* ── Kurs ma'lumoti ── */
+
+  // Bezak chizig'i oxirgi matn satridan pastda turishi kerak — yakuniy
+  // sertifikatda kurslar ro'yxati uzun bo'lsa, u pastga suriladi.
+  let oxirgiSatr = height - 316;
 
   if (data.kind === "oraliq") {
-    center(data.moduleTitle, height - 272, 18, bold, primary);
+    center(data.moduleTitle, height - 292, 17, bold, asosiy);
     center(
-      `${data.credits} ECTS kredit  ·  Natija: ${data.score}%`,
-      height - 302,
-      13,
+      `${data.credits} ECTS kredit   ·   Natija: ${data.score}%`,
+      height - 316,
+      11.5,
       regular,
-      muted,
+      kulrang,
     );
   } else {
     center(
-      `${data.modules.length} ta kurs  ·  ${data.totalCredits} ECTS kredit  ·  Natija: ${data.score}%`,
-      height - 262,
-      13,
+      `${data.modules.length} ta kurs   ·   ${data.totalCredits} ECTS kredit   ·   Natija: ${data.score}%`,
+      height - 272,
+      11.5,
       regular,
-      muted,
+      kulrang,
     );
     // Kurslar ro'yxati: hujjat qaysi kurslarni qamraganini ko'rsatadi.
-    let y = height - 296;
-    for (const m of data.modules) {
-      center(`${m.title}  —  ${m.credits} ECTS`, y, 12, regular, ink);
-      y -= 20;
+    //
+    // Qatorlar **chapdan tekislanadi**, har biri alohida markazlashmaydi:
+    // markazlashgan ro'yxatda kurs nomlari tishli chiqib, hujjat
+    // tartibsiz ko'rinardi.
+    const satrlar = data.modules.map((m) => `${m.title}  —  ${m.credits} ECTS`);
+    const eng = Math.max(
+      ...satrlar.map((t) => regular.widthOfTextAtSize(toWinAnsi(t), 11.5)),
+    );
+    const x0 = (width - eng) / 2;
+    let y = height - 302;
+    for (const matn of satrlar) {
+      // Har bir qator oldidagi kichik romb — ro'yxatni tartibga soladi.
+      romb(x0 - 14, y + 4, 2.6);
+      page.drawText(toWinAnsi(matn), { x: x0, y, size: 11.5, font: regular, color: siyoh });
+      y -= 19;
     }
+    oxirgiSatr = y + 19;
   }
+
+  /* ── Bezak chizig'i ── */
+
+  // Matn bloki bilan pastki qator orasidagi bo'shliqni to'ldiradi.
+  // Bo'sh maydon hujjatni «tugallanmagan» ko'rsatadi; to'lqin esa uni
+  // ikki qismga ajratib, ko'zni pastki ma'lumotlarga olib tushadi.
+  const tolqin = (y: number, x1: number, x2: number, amp: number, davr: number) => {
+    const qadam = 4;
+    let oldingi = { x: x1, y: y + Math.sin(0) * amp };
+    for (let x = x1 + qadam; x <= x2; x += qadam) {
+      const n = { x, y: y + Math.sin(((x - x1) / davr) * Math.PI * 2) * amp };
+      page.drawLine({ start: oldingi, end: n, thickness: 0.6, color: oltin });
+      oldingi = n;
+    }
+  };
+  const bezakY = Math.min(208, oxirgiSatr - 28);
+  tolqin(bezakY, 190, 652, 4, 148);
+  romb(176, bezakY, 3.4);
+  romb(666, bezakY, 3.4);
+
+  /* ── Muhr ── */
+
+  // Muhr — bu rasmiy tashkilot muhri emas, platformaning o'z belgisi.
+  // Shuning uchun unda tashkilot nomi yoki gerb emas, sertifikat
+  // seriyasi va yili turadi.
+  const mx = width / 2;
+  const my = 132;
+  page.drawCircle({ x: mx, y: my, size: 38, borderColor: oltin, borderWidth: 1.2 });
+  page.drawCircle({ x: mx, y: my, size: 32, borderColor: asosiy, borderWidth: 0.6 });
+  for (let i = 0; i < 16; i += 1) {
+    const a = (i / 16) * Math.PI * 2;
+    romb(mx + Math.cos(a) * 44, my + Math.sin(a) * 44, 2.2);
+  }
+  const seriyaW = bold.widthOfTextAtSize(toWinAnsi(data.serial), 9);
+  page.drawText(toWinAnsi(data.serial), {
+    x: mx - seriyaW / 2,
+    y: my + 4,
+    size: 9,
+    font: bold,
+    color: asosiy,
+  });
+  const yil = String(data.issuedAt.getFullYear());
+  const yilW = regular.widthOfTextAtSize(yil, 8);
+  page.drawText(yil, { x: mx - yilW / 2, y: my - 11, size: 8, font: regular, color: kulrang });
+
+  /* ── Imzo va sana ── */
+
+  chiziq(70, 132, 250, 132, kulrang, 0.7);
+  page.drawText(toWinAnsi("O'qituvchi imzosi"), {
+    x: 70, y: 118, size: 9, font: regular, color: kulrang,
+  });
+  page.drawText(toWinAnsi(`Berilgan sana: ${data.issuedAt.toLocaleDateString("uz-UZ")}`), {
+    x: 70, y: 98, size: 9, font: regular, color: kulrang,
+  });
+
+  /* ── QR ── */
 
   const payload = JSON.stringify({
     seriya: data.serial,
@@ -155,14 +343,21 @@ export async function buildCertificatePdf(data: CertificateData): Promise<Blob> 
   });
   const qrDataUrl = await QRCode.toDataURL(payload, { margin: 1, width: 240 });
   const qrImage = await pdf.embedPng(qrDataUrl);
-  page.drawImage(qrImage, { x: width - 170, y: 70, width: 100, height: 100 });
-
-  const left = (text: string, y: number, size: number, color = muted) =>
-    page.drawText(toWinAnsi(text), { x: 70, y, size, font: regular, color });
-
-  left(`Seriya: ${data.serial}`, 120, 11);
-  left(`Berilgan sana: ${data.issuedAt.toLocaleDateString("uz-UZ")}`, 100, 11);
-  left("QR-kod sertifikat ma'lumotini o'zida saqlaydi.", 78, 9);
+  const qx = width - 162;
+  const qy = 98;
+  page.drawRectangle({
+    x: qx - 6, y: qy - 6, width: 92, height: 92,
+    borderColor: oltin, borderWidth: 0.7,
+  });
+  page.drawImage(qrImage, { x: qx, y: qy, width: 80, height: 80 });
+  const izoh = toWinAnsi("QR-kod sertifikat ma'lumotini o'zida saqlaydi");
+  page.drawText(izoh, {
+    x: qx + 40 - regular.widthOfTextAtSize(izoh, 6.5) / 2,
+    y: qy - 18,
+    size: 6.5,
+    font: regular,
+    color: kulrang,
+  });
 
   const bytes = await pdf.save();
   return new Blob([bytes as BlobPart], { type: "application/pdf" });

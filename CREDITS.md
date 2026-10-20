@@ -81,25 +81,70 @@ Uch narsa ataylab shunday qilingan:
 
 Batafsil: [`tools/instrument-models/README.md`](tools/instrument-models/README.md).
 
-### Nega haqiqiy yozuv emas
+### Haqiqiy yozuvga asoslangan banklar (standart tembr)
 
-Erkin litsenziyali **haqiqiy doira, dutor va qashqar rubobi yozuvlari
-topilmadi**. Tekshirilgani: npm ekotizimi, General MIDI to'plamlari
-(FluidR3_GM, SGM v2.01), ochiq namuna kutubxonalari (oramics/sampled,
-VSCO 2 CE). Ularda sitar, tanbur, setar ham yo'q. Bundan tashqari bu
+Dutor, rubob va doiraning **standart tovushi** endi haqiqiy akustik
+cholg'u yozuvlaridan keladi. Erkin litsenziyali o'zbek cholg'ulari
+yozuvlari topilmadi, shuning uchun eng yaqin akustik qarindoshlarning
+haqiqiy yozuvlari olindi — va bank buni ochiq e'lon qiladi
+(`"tur": "qarindosh"`), hech qayerda «o'zbek dutorining yozuvi» deb
+ko'rsatilmaydi.
+
+| Bank | Manba | Litsenziya | Nega aynan shu |
+|---|---|---|---|
+| `doira-yozuv` | [VCSL](https://github.com/sgossner/VCSL) — Frame Drum va Tambourine 1 | CC0 1.0 | Doira — ramkali baraban. Membrana, yog'och gardish va metall halqalar bir xil |
+| `rubob-yozuv` | [MusyngKite](https://github.com/gleitz/midi-js-soundfonts) — `sitar` | MIT | Metall tor, nokka bilan chertish, simpatik torlar va rezonator kosa |
+| `dutor-yozuv` | [MusyngKite](https://github.com/gleitz/midi-js-soundfonts) — `acoustic_guitar_nylon` | MIT | Nayloniy tor va yog'och qopqoq, barmoq bilan chertish |
+
+Doira zarblarining moslashuvi:
+
+| Zarb | Manba yozuvi |
+|---|---|
+| `bum` | `HDrumL_Hit` — katta ramkali barabanning ochiq zarbi (~88 Hz) |
+| `bosiq` | `HDrumL_HitMuted` — o'sha barabanning bo'g'iq zarbi |
+| `tak` | `HDrumS_Hit` — kichik barabanning ochiq zarbi (~225 Hz) |
+| `qarsak` | `Tamb1_Hit` / `Tamb1_Shake` — dafchaning halqalari |
+
+**Qayerda filtr ishlatilgan.** Manbalarda ijro kuchining har bir
+darajasi uchun alohida yozuv har doim ham yo'q. Yo'q joyda qatlam
+mavjud yozuvdan filtr bilan olinadi va `bank.json` da har bir namuna
+uchun `"hosil": "filtr"` deb belgilanadi (yozuvdan to'g'ridan-to'g'ri
+olinganlarida `"hosil": "yozuv"`). Doirada 21 namunadan 17 tasi
+to'g'ridan-to'g'ri yozuv; torli cholg'ularda har uch qatlamdan bittasi
+(o'rta) yozuv, qolgan ikkitasi — past o'tkazgich va yorqinlik filtri.
+Birlik testi har bir namunada shu belgining borligini talab qiladi.
+
+Yozuvlarni qayta yig'ish:
+
+```bash
+python3 -I tools/samples/fetch.py    # manbalarni yuklab oladi
+python3 -I tools/samples/build.py    # banklarni quradi
+```
+
+Manbalar va ularning litsenziyalari `tools/samples/manbalar.json` da
+e'lon qilingan va shu yerdan `bank.json` ga ko'chiriladi.
+
+### Nega o'zbek cholg'ularining o'z yozuvi emas
+
+Erkin litsenziyali **aynan o'zbek doirasi, dutori va qashqar rubobining
+yozuvlari topilmadi**. Tekshirilgani: npm ekotizimi, General MIDI
+to'plamlari (FluidR3_GM, MusyngKite, SGM v2.01), ochiq namuna
+kutubxonalari (VCSL, oramics/sampled, VSCO 2 CE). Bundan tashqari bu
 loyiha ishlab chiqilayotgan muhitdan Freesound, Internet Archive va
 Wikimedia Commons ga umuman kirib bo'lmaydi (tarmoq siyosati faqat
 paket registrlari va GitHub ga ruxsat beradi), shuning uchun u yerdagi
 yozuvlarni tekshirish ham mumkin bo'lmadi.
 
-Shu sababli tizim **haqiqiy yozuvlar qo'shilishiga tayyor** qilib
-qurildi, sintetik tovush esa hech qayerda yozuv deb ko'rsatilmaydi:
+Shu sababli ikki yo'l birga ishlatiladi: **qarindosh cholg'ularning
+haqiqiy yozuvlari** (standart tembr) va **fizik modellar** (ikkinchi
+tembr). Ikkalasining ham kelib chiqishi ochiq ko'rsatiladi:
 
-* har bir bankda `tur` maydoni bor — `model` yoki `yozuv`;
-* cholg'u sahifasida shu qiymat ko'rsatiladi («Fizik model» yoki
-  «Haqiqiy yozuv»);
-* birlik testi modelning `tur` qiymati `yozuv` bo'lib qolishini
-  bevosita taqiqlaydi.
+* har bir bankda `tur` maydoni bor — `yozuv`, `qarindosh` yoki `model`;
+* cholg'u sahifasida shu qiymat ko'rsatiladi («Haqiqiy yozuv»,
+  «Qarindosh cholg'u yozuvi» yoki «Fizik model»), manbasi bilan;
+* birlik testi modelning `tur` qiymati `yozuv` bo'lib qolishini va
+  qarindosh yozuvlarning `yozuv` deb belgilanishini bevosita
+  taqiqlaydi.
 
 **Haqiqiy yozuv qo'shish uchun** `public/audio/` ga yangi papka qo'yib,
 unga shu ko'rinishdagi `bank.json` yoziladi:

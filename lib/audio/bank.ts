@@ -23,8 +23,19 @@ import { type InstrumentKind } from "@/lib/domain/instruments";
  * qoidalari sof funksiya bo'lib, test bilan to'liq qoplanadi.
  */
 
-/** Bank haqiqiy yozuvdanmi yoki modeldanmi — interfeysda ham ko'rsatiladi. */
-export type BankTuri = "yozuv" | "model";
+/**
+ * Bankning kelib chiqishi — interfeysda ham ko'rsatiladi.
+ *
+ *  • `yozuv` — aynan shu cholg'uning haqiqiy yozuvi;
+ *  • `qarindosh` — boshqa, lekin akustik jihatdan yaqin cholg'uning
+ *    haqiqiy yozuvi (masalan doira uchun ramkali baraban);
+ *  • `model` — fizik model, yozuv emas.
+ *
+ * Uchinchi qiymat ataylab kiritilgan: erkin litsenziyali o'zbek
+ * cholg'ulari yozuvlari topilmagani uchun qarindosh cholg'u yozuvi
+ * ishlatiladi, va uni «haqiqiy dutor yozuvi» deb ko'rsatish mumkin emas.
+ */
+export type BankTuri = "yozuv" | "qarindosh" | "model";
 
 export type KuchQatlami = {
   id: string;
@@ -47,6 +58,15 @@ export type BankNamuna = {
   /** Soniya */
   davomiylik: number;
   loop: { boshi: number; oxiri: number } | null;
+  /**
+   * Namuna qanday hosil bo'lgani: `yozuv` — to'g'ridan-to'g'ri yozuvdan,
+   * `filtr` — mavjud yozuvdan filtr bilan olingan.
+   *
+   * Ijro kuchining har bir darajasi uchun alohida yozuv har doim ham
+   * mavjud bo'lmaydi. Yo'q joyda filtr ishlatiladi, lekin buni yashirish
+   * noto'g'ri bo'lardi: bank har bir namuna uchun ochiq aytadi.
+   */
+  hosil?: "yozuv" | "filtr";
 };
 
 export type SampleBank = {
@@ -117,8 +137,8 @@ export function parseBank(raw: unknown): SampleBank {
   const o = raw as Record<string, unknown>;
 
   const tur = matn(o.tur, "«tur» yo'q");
-  if (tur !== "yozuv" && tur !== "model") {
-    xato(`«tur» faqat «yozuv» yoki «model» bo'ladi, kelgani: ${tur}`);
+  if (tur !== "yozuv" && tur !== "qarindosh" && tur !== "model") {
+    xato(`«tur» faqat «yozuv», «qarindosh» yoki «model» bo'ladi, kelgani: ${tur}`);
   }
 
   const kuchlarRaw = Array.isArray(o.kuchlar) ? o.kuchlar : xato("«kuchlar» ro'yxat emas");
@@ -156,6 +176,7 @@ export function parseBank(raw: unknown): SampleBank {
       variant: son(nn.variant, "namunada «variant» yo'q"),
       davomiylik: son(nn.davomiylik, "namunada «davomiylik» yo'q"),
       loop: (nn.loop as BankNamuna["loop"]) ?? null,
+      hosil: nn.hosil === "filtr" ? "filtr" : "yozuv",
     };
   });
 

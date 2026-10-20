@@ -1,0 +1,265 @@
+{
+  "cholgu": "doira",
+  "nom": "Doira — ramkali baraban yozuvi",
+  "tur": "qarindosh",
+  "turi_izoh": "haqiqiy ramkali baraban va dafcha yozuvi; o'zbek doirasining o'z yozuvi emas",
+  "manba": "Versilian Community Sample Library (VCSL) (https://github.com/sgossner/VCSL)",
+  "litsenziya": "CC0 1.0 (jamoat mulki)",
+  "sampleRate": 44100,
+  "kuchlar": [
+    {
+      "id": "yumshoq",
+      "nom": "Yumshoq",
+      "velocity": 0.35
+    },
+    {
+      "id": "orta",
+      "nom": "O'rta",
+      "velocity": 0.7
+    },
+    {
+      "id": "kuchli",
+      "nom": "Kuchli",
+      "velocity": 1.0
+    }
+  ],
+  "zarblar": [
+    "bum",
+    "bosiq",
+    "tak",
+    "qarsak"
+  ],
+  "namunalar": [
+    {
+      "fayl": "bum-yumshoq-1.mp3",
+      "zarb": "bum",
+      "kuch": "yumshoq",
+      "variant": 1,
+      "registr": "past",
+      "davomiylik": 0.93,
+      "loop": null,
+      "asl": "HDrumL_Hand_rr1_Sum.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "bum-orta-1.mp3",
+      "zarb": "bum",
+      "kuch": "orta",
+      "variant": 1,
+      "registr": "past",
+      "davomiylik": 1.9,
+      "loop": null,
+      "asl": "HDrumL_Hit_v2_rr1_Sum.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "bum-orta-2.mp3",
+      "zarb": "bum",
+      "kuch": "orta",
+      "variant": 2,
+      "registr": "past",
+      "davomiylik": 1.9,
+      "loop": null,
+      "asl": "HDrumL_Hit_v2_rr2_Sum.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "bum-kuchli-1.mp3",
+      "zarb": "bum",
+      "kuch": "kuchli",
+      "variant": 1,
+      "registr": "past",
+      "davomiylik": 1.9,
+      "loop": null,
+      "asl": "HDrumL_Hit_v3_rr1_Sum.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "bum-kuchli-2.mp3",
+      "zarb": "bum",
+      "kuch": "kuchli",
+      "variant": 2,
+      "registr": "past",
+      "davomiylik": 1.76,
+      "loop": null,
+      "asl": "HDrumL_Hit_v3_rr2_Sum.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "bosiq-yumshoq-1.mp3",
+      "zarb": "bosiq",
+      "kuch": "yumshoq",
+      "variant": 1,
+      "registr": "past",
+      "davomiylik": 0.9,
+      "loop": null,
+      "asl": "HDrumL_HitMuted_v2_rr1_Sum.wav",
+      "hosil": "filtr"
+    },
+    {
+      "fayl": "bosiq-orta-1.mp3",
+      "zarb": "bosiq",
+      "kuch": "orta",
+      "variant": 1,
+      "registr": "past",
+      "davomiylik": 0.9,
+      "loop": null,
+      "asl": "HDrumL_HitMuted_v2_rr1_Sum.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "bosiq-orta-2.mp3",
+      "zarb": "bosiq",
+      "kuch": "orta",
+      "variant": 2,
+      "registr": "past",
+      "davomiylik": 0.9,
+      "loop": null,
+      "asl": "HDrumL_HitMuted_v2_rr2_Sum.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "bosiq-kuchli-1.mp3",
+      "zarb": "bosiq",
+      "kuch": "kuchli",
+      "variant": 1,
+      "registr": "past",
+      "davomiylik": 0.68,
+      "loop": null,
+      "asl": "HDrumL_HitMuted_v3_rr1_Sum.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "bosiq-kuchli-2.mp3",
+      "zarb": "bosiq",
+      "kuch": "kuchli",
+      "variant": 2,
+      "registr": "past",
+      "davomiylik": 0.77,
+      "loop": null,
+      "asl": "HDrumL_HitMuted_v3_rr2_Sum.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "tak-yumshoq-1.mp3",
+      "zarb": "tak",
+      "kuch": "yumshoq",
+      "variant": 1,
+      "registr": "baland",
+      "davomiylik": 0.67,
+      "loop": null,
+      "asl": "HDrumS_Hand_v1_rr1_Sum.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "tak-orta-1.mp3",
+      "zarb": "tak",
+      "kuch": "orta",
+      "variant": 1,
+      "registr": "baland",
+      "davomiylik": 1.2,
+      "loop": null,
+      "asl": "HDrumS_Hit_v2_rr1_Sum.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "tak-orta-2.mp3",
+      "zarb": "tak",
+      "kuch": "orta",
+      "variant": 2,
+      "registr": "baland",
+      "davomiylik": 1.2,
+      "loop": null,
+      "asl": "HDrumS_Hit_v2_rr2_Sum.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "tak-kuchli-1.mp3",
+      "zarb": "tak",
+      "kuch": "kuchli",
+      "variant": 1,
+      "registr": "baland",
+      "davomiylik": 1.2,
+      "loop": null,
+      "asl": "HDrumS_Hit_v3_rr1_Sum.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "tak-kuchli-2.mp3",
+      "zarb": "tak",
+      "kuch": "kuchli",
+      "variant": 2,
+      "registr": "baland",
+      "davomiylik": 1.2,
+      "loop": null,
+      "asl": "HDrumS_Hit_v3_rr2_Sum.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "qarsak-yumshoq-1.mp3",
+      "zarb": "qarsak",
+      "kuch": "yumshoq",
+      "variant": 1,
+      "registr": "baland",
+      "davomiylik": 1.4,
+      "loop": null,
+      "asl": "Tamb1_Hit_v1_rr1_Mid.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "qarsak-yumshoq-2.mp3",
+      "zarb": "qarsak",
+      "kuch": "yumshoq",
+      "variant": 2,
+      "registr": "baland",
+      "davomiylik": 0.88,
+      "loop": null,
+      "asl": "Tamb1_Shake_rr1_Mid.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "qarsak-orta-1.mp3",
+      "zarb": "qarsak",
+      "kuch": "orta",
+      "variant": 1,
+      "registr": "baland",
+      "davomiylik": 1.0,
+      "loop": null,
+      "asl": "Tamb1_Hit_v2_rr1_Mid.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "qarsak-orta-2.mp3",
+      "zarb": "qarsak",
+      "kuch": "orta",
+      "variant": 2,
+      "registr": "baland",
+      "davomiylik": 0.9,
+      "loop": null,
+      "asl": "Tamb1_Shake_rr2_Mid.wav",
+      "hosil": "yozuv"
+    },
+    {
+      "fayl": "qarsak-kuchli-1.mp3",
+      "zarb": "qarsak",
+      "kuch": "kuchli",
+      "variant": 1,
+      "registr": "baland",
+      "davomiylik": 1.0,
+      "loop": null,
+      "asl": "Tamb1_Hit_v2_rr1_Mid.wav",
+      "hosil": "filtr"
+    },
+    {
+      "fayl": "qarsak-kuchli-2.mp3",
+      "zarb": "qarsak",
+      "kuch": "kuchli",
+      "variant": 2,
+      "registr": "baland",
+      "davomiylik": 0.9,
+      "loop": null,
+      "asl": "Tamb1_Shake_rr2_Mid.wav",
+      "hosil": "filtr"
+    }
+  ]
+}

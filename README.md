@@ -169,7 +169,9 @@ docs/
 - [x] **B3** — 6 ta virtual cholg'u: pianino, gitara, dutor, rubob, nay, doira
       (namunali ovoz, yozib olish, mashq rejimi)
 - [x] **Audio** — dutor, rubob va doira uchun namuna banki: har yarim tonda
-      alohida namuna, uch ijro kuchi qatlami, doirada zarb variantlari
+      alohida namuna, uch ijro kuchi qatlami, doirada zarb variantlari.
+      Standart tovush — qarindosh cholg'ularning haqiqiy yozuvi (CC0/MIT),
+      ikkinchi tembr — o'z fizik modelimiz
 - [x] **B4** — Darslar (VexFlow nota yozuvi), topshiriqlar va rubrikalar,
       natijalar grafiklari, portfolio hamda PDF sertifikat — har bir kurs
       uchun oraliq, barcha kurslar uchun yakuniy

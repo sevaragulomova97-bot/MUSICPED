@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { buildCertificatePdf } from "@/lib/export/certificate";
 import {
   finalStatus,
   moduleStatuses,
@@ -120,4 +121,63 @@ describe("certificateSerial", () => {
     const s = certificateSerial("Bobur Akbarov", "yakuniy", new Date());
     expect(s).toMatch(/^MP-[0-9A-Z]{7}$/);
   });
+});
+
+/* ───────────────────────── PDF chizilishi ───────────────────────── */
+
+describe("sertifikat PDF", () => {
+  const sana = new Date("2026-10-20T00:00:00Z");
+
+  it("oraliq va yakuniy sertifikat PDF hosil qiladi", async () => {
+    const oraliq = await buildCertificatePdf({
+      kind: "oraliq",
+      fullName: "Bobur Akbarov",
+      moduleTitle: "Musiqa nazariyasi va solfedjio",
+      credits: 5,
+      score: 92,
+      issuedAt: sana,
+      serial: "MP-TEST01",
+    });
+    const yakuniy = await buildCertificatePdf({
+      kind: "yakuniy",
+      fullName: "Bobur Akbarov",
+      modules: [
+        { title: "Musiqa nazariyasi", credits: 5 },
+        { title: "Ijro amaliyoti", credits: 7 },
+      ],
+      totalCredits: 12,
+      score: 88,
+      issuedAt: sana,
+      serial: "MP-TEST02",
+    });
+
+    for (const [nom, blob] of [["oraliq", oraliq], ["yakuniy", yakuniy]] as const) {
+      const bosh = new TextDecoder().decode(
+        (await blob.arrayBuffer()).slice(0, 5) as ArrayBuffer,
+      );
+      expect(bosh, nom).toBe("%PDF-");
+      expect(blob.size, nom).toBeGreaterThan(1000);
+    }
+    // Yakuniy sertifikatda kurslar ro'yxati va qo'shimcha ramka bor,
+    // shuning uchun u kattaroq chiqishi kerak.
+    expect(yakuniy.size).toBeGreaterThan(oraliq.size);
+  }, 30_000);
+
+  it("uzun ism va ko'p kurs bilan ham chiziladi", async () => {
+    // Chizma hisob-kitobi (ism ostidagi chiziq, ro'yxat kengligi,
+    // bezakning joyi) chegaraviy qiymatlarda ham buzilmasligi kerak.
+    const blob = await buildCertificatePdf({
+      kind: "yakuniy",
+      fullName: "Abdurahmonov Abdusamadjon Abdurashidovich",
+      modules: Array.from({ length: 8 }, (_, i) => ({
+        title: `Juda uzun nomli o'quv kursi raqami ${i + 1}`,
+        credits: 6,
+      })),
+      totalCredits: 48,
+      score: 75,
+      issuedAt: sana,
+      serial: "MP-TEST03",
+    });
+    expect(blob.size).toBeGreaterThan(1000);
+  }, 30_000);
 });
