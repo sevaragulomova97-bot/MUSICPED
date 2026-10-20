@@ -56,12 +56,25 @@ export function isOneShot(kind: InstrumentKind) {
   return !SUSTAINED.has(kind);
 }
 
-/** Doira zarblari. */
-export const DOIRA_ZARBLARI = ["bum", "tak", "qarsak"] as const;
+/**
+ * Doira zarblari.
+ *
+ * Ikki o'lchov bo'yicha farq qiladi: **qayerga** urilgani (markaz, chet,
+ * gardish) va membrana **ochiq yoki bosilgani**. Ikkinchisi ramkali
+ * baraban ijrosining asosi: markazga urilgan zarb kaft bilan bosib
+ * turilsa, past tovush darhol so'nadi va butunlay boshqa zarb hosil
+ * bo'ladi.
+ *
+ * Nomlar o'quv maqsadida shartli olingan — o'zbek ijro maktablarida
+ * atamalar bir xil emas, shuning uchun interfeysda har birining
+ * **qanday chalinishi** ham yoziladi.
+ */
+export const DOIRA_ZARBLARI = ["bum", "bosiq", "tak", "qarsak"] as const;
 export type DoiraStroke = (typeof DOIRA_ZARBLARI)[number];
 
 export const DOIRA_ZARB_NOMI: Record<DoiraStroke, string> = {
-  bum: "Bum (markaz)",
+  bum: "Bum (markaz, ochiq)",
+  bosiq: "Bosiq (markaz, kaft bosib)",
   tak: "Tak (chet)",
   qarsak: "Qarsak (gardish)",
 };

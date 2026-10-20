@@ -53,7 +53,7 @@ const ASBOBLAR: Array<{
     kind: "doira",
     href: "/asboblar/doira",
     tavsif:
-      "Zarbli cholg'u: bum, tak va qarsak. Ritm mashqlari vaqt aniqligi bilan baholanadi.",
+      "Zarbli cholg'u: ochiq va bo'g'iq zarblar, uch xil ijro kuchi. Ritm mashqlari vaqt aniqligi bilan baholanadi.",
     rang: "var(--mp-dir-kasbiy)",
   },
 ];

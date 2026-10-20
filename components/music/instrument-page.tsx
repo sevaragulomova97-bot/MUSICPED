@@ -58,6 +58,18 @@ export function InstrumentPage({
   const [saved, setSaved] = React.useState(false);
   const [saveError, setSaveError] = React.useState<string | null>(null);
   const [demoPlaying, setDemoPlaying] = React.useState(false);
+  /**
+   * Ijro kuchi.
+   *
+   * Sichqoncha va klaviatura bosish kuchini o'lchamaydi, shuning uchun
+   * namuna bankidagi kuch qatlamlariga boshqa yo'l bilan yetib
+   * bo'lmasdi — cholg'u doim bitta kuchda chalinardi va uchta qatlam
+   * amalda ikkitasi ishlatilmay qolardi.
+   *
+   * Qiymatlar bank qatlamlarining nominal kuchiga teng; oraliq
+   * qiymatlarni dvigatel o'zi hisoblaydi.
+   */
+  const [kuch, setKuch] = React.useState(0.7);
 
   const instrument = useInstrument(kind);
   const sequence = useSequencePractice(selected.sequence);
@@ -75,10 +87,10 @@ export function InstrumentPage({
 
   const tuneAttack = React.useCallback(
     (note: string) => {
-      if (birZarbliKuy) void instHit(note);
-      else void instAttack(note);
+      if (birZarbliKuy) void instHit(note, kuch);
+      else void instAttack(note, kuch);
     },
-    [birZarbliKuy, instHit, instAttack],
+    [birZarbliKuy, instHit, instAttack, kuch],
   );
   const tuneRelease = React.useCallback(
     (note: string) => instRelease(note),
@@ -118,15 +130,15 @@ export function InstrumentPage({
   const play = React.useCallback(
     (note: string) => {
       if (birZarbli) {
-        void instrument.hit(note);
+        void instrument.hit(note, kuch);
       } else {
-        void instrument.attack(note);
+        void instrument.attack(note, kuch);
       }
       if (selected.mode === "ketma-ket") sequence.submit(note);
       if (selected.mode === "ritm") rhythm.record(note);
       tune.submit(note);
     },
-    [instrument, birZarbli, selected.mode, sequence, rhythm, tune],
+    [instrument, birZarbli, kuch, selected.mode, sequence, rhythm, tune],
   );
 
   const stop = React.useCallback(
@@ -141,7 +153,7 @@ export function InstrumentPage({
     setDemoPlaying(true);
     await instrument.ensure();
     for (const beat of selected.pattern) {
-      window.setTimeout(() => void instrument.hit(beat.stroke), beat.timeMs);
+      window.setTimeout(() => void instrument.hit(beat.stroke, kuch), beat.timeMs);
     }
     const total = Math.max(...selected.pattern.map((p) => p.timeMs)) + 600;
     window.setTimeout(() => setDemoPlaying(false), total);
@@ -276,6 +288,33 @@ export function InstrumentPage({
                   sintez ovozi ishlatilmoqda.
                 </p>
               )}
+              {/*
+                Ovozning kelib chiqishi yashirilmaydi: bu fizik modelmi
+                yoki haqiqiy cholg'u yozuvimi — musiqa o'qituvchisi uchun
+                muhim farq. Model yozuv deb ko'rsatilsa, talaba noto'g'ri
+                tembrni «haqiqiy dutor» deb o'rganib qolardi.
+              */}
+              {instrument.bank && (
+                <p
+                  className="text-xs text-ink-muted"
+                  data-bank-tur={instrument.bank.tur}
+                >
+                  <span
+                    className={
+                      instrument.bank.tur === "yozuv"
+                        ? "font-medium text-success"
+                        : "font-medium text-warning"
+                    }
+                  >
+                    {instrument.bank.tur === "yozuv"
+                      ? "Haqiqiy yozuv"
+                      : "Fizik model"}
+                  </span>
+                  {" — "}
+                  {instrument.bank.turiIzoh}. {instrument.bank.namunalar.length}{" "}
+                  namuna, {instrument.bank.kuchlar.length} ijro kuchi.
+                </p>
+              )}
             </CardContent>
           </Card>
 
@@ -309,6 +348,37 @@ export function InstrumentPage({
                   <p className="text-xs text-ink-muted">
                     Qaysi variant haqiqiyroq eshitilsa, o&apos;shani tanlang —
                     tanlovingiz eslab qolinadi.
+                  </p>
+                </div>
+              )}
+
+              {instrument.bank && instrument.bank.kuchlar.length > 1 && (
+                <div className="flex flex-col gap-1.5">
+                  <span className="text-sm text-ink-muted">Ijro kuchi</span>
+                  <div
+                    className="flex flex-wrap gap-2"
+                    role="group"
+                    aria-label="Ijro kuchi"
+                  >
+                    {instrument.bank.kuchlar.map((k) => (
+                      <button
+                        key={k.id}
+                        type="button"
+                        aria-pressed={kuch === k.velocity}
+                        onClick={() => setKuch(k.velocity)}
+                        className={
+                          kuch === k.velocity
+                            ? "rounded-xl border border-primary bg-primary px-3 py-1.5 text-sm font-medium text-white"
+                            : "rounded-xl border border-border-subtle bg-surface px-3 py-1.5 text-sm text-ink hover:bg-surface-muted"
+                        }
+                      >
+                        {k.nom}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="text-xs text-ink-muted">
+                    Har bir kuch uchun alohida namuna yozilgan — kuchli ijro
+                    balandroq emas, <strong>yorqinroq</strong> ham eshitiladi.
                   </p>
                 </div>
               )}

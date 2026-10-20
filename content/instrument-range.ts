@@ -1,4 +1,4 @@
-import { type InstrumentKind } from "@/lib/domain/instruments";
+import { DOIRA_ZARBLARI, type InstrumentKind } from "@/lib/domain/instruments";
 
 /**
  * Har bir cholg'uda chalish mumkin bo'lgan tovushlar.
@@ -62,5 +62,5 @@ export const CHOLGU_NOTALARI: Record<InstrumentKind, readonly string[]> = {
   dutor: [...new Set(DUTOR_TORLARI.flatMap((t) => t.notalar))],
   rubob: [...new Set(RUBOB_TORLARI.flatMap((t) => t.notalar))],
   gitara: [...new Set(GITARA_TORLARI.flatMap((t) => t.notalar))],
-  doira: ["bum", "tak", "qarsak"],
+  doira: [...DOIRA_ZARBLARI],
 };

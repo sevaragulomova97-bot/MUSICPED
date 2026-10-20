@@ -5,6 +5,7 @@ import {
   DOIRA_ZARBLARI,
   type DoiraStroke,
   type InstrumentKind,
+  isOneShot,
   isSustained,
 } from "@/lib/domain/instruments";
 import {
@@ -14,6 +15,8 @@ import {
   type Timbre,
 } from "@/lib/audio/timbres";
 import { asset } from "@/lib/utils";
+import { asosiyQatlam, type SampleBank } from "@/lib/audio/bank";
+import { BankPlayer, bankYukla, zanjirYarat } from "@/lib/audio/sampler";
 
 /**
  * Virtual cholg'ular — **haqiqiy yozib olingan namunalar** asosida.
@@ -45,8 +48,20 @@ export type Instrument = {
   setVolume: (db: number) => void;
   setReverb: (wet: number) => void;
   dispose: () => void;
+  /**
+   * Jaranglab turgan hamma narsani darhol to'xtatadi.
+   *
+   * Ilgari «to'xtatish» faqat navbatdagi notalarni bekor qilardi va
+   * allaqachon boshlangan namunalar oxirigacha jaranglayverardi.
+   */
+  stopAll: () => void;
   /** Namunalar yuklanmay, sintezga tushib qolindimi */
   usingFallback: boolean;
+  /**
+   * Namuna banki — bor bo'lsa, interfeys uning turini (haqiqiy yozuvmi
+   * yoki modelmi) va manbasini ko'rsatadi.
+   */
+  bank?: SampleBank;
 };
 
 /* ───────────────────── Tembr zanjiri (effektlar) ───────────────────── */
@@ -138,6 +153,7 @@ async function createSampled(
     release: (note) => sampler.triggerRelease(note),
     trigger: (note, velocity = 0.8) =>
       sampler.triggerAttackRelease(note, "2n", undefined, velocity),
+    stopAll: () => sampler.releaseAll(),
     setVolume: (db) => {
       sampler.volume.value = db;
     },
@@ -184,6 +200,7 @@ async function createDoira(T: Tone, timbre: Timbre): Promise<Instrument> {
       // Zarbli cholg'u — zarb o'zi tugaydi.
     },
     trigger: (stroke, velocity = 0.9) => fire(stroke, velocity),
+    stopAll: () => players.stopAll(),
     setVolume: (db) => {
       players.volume.value = db;
     },
@@ -193,6 +210,64 @@ async function createDoira(T: Tone, timbre: Timbre): Promise<Instrument> {
       chain.dispose();
     },
     usingFallback: false,
+  };
+}
+
+/* ────────────────── Namuna banki ustidagi cholg'u ────────────────── */
+
+/**
+ * `bank.json` bor papkadan cholg'u yasaydi.
+ *
+ * Yuklash ikki bosqichli: avval o'rta kuch qatlami kutiladi va cholg'u
+ * shu bilan ishlay boshlaydi, qolgan qatlamlar esa fonda keladi. 60–80
+ * faylning hammasini kutish cholg'uni bir necha soniya jim qoldirardi,
+ * holbuki talabaning birinchi bosishi darhol javob berishi kerak.
+ *
+ * Agar asosiy qatlamdan bitta ham fayl kelmasa — xato tashlanadi va
+ * chaqiruvchi sintezga tushadi: jim cholg'udan ko'ra soddaroq tovush
+ * yaxshiroq.
+ */
+async function createBanked(
+  T: Tone,
+  kind: InstrumentKind,
+  timbre: Timbre,
+): Promise<Instrument> {
+  // Tone.js ning kontekstida ishlaymiz: ikkinchi AudioContext ochish
+  // mobil brauzerlarda ovozni butunlay o'chirib qo'yishi mumkin.
+  const ctx = T.getContext().rawContext as unknown as BaseAudioContext;
+  const bank = await bankYukla(timbre.folder);
+
+  const zanjir = zanjirYarat(ctx, ctx.destination, timbre.shaping);
+  const player = new BankPlayer(ctx, zanjir, bank, timbre.folder);
+
+  const yuklandi = await player.qatlamYukla(asosiyQatlam(bank).id);
+  if (!yuklandi) {
+    player.dispose();
+    throw new Error(`«${bank.nom}» bankidan birorta namuna yuklanmadi`);
+  }
+  player.qolganiniYukla();
+
+  const oneShot = isOneShot(kind);
+  const chal = (note: string, velocity: number) => {
+    if (kind === "doira") player.zarb(note, velocity);
+    else player.nota(note, velocity);
+  };
+
+  return {
+    kind,
+    attack: (note, velocity = oneShot ? 0.9 : 0.8) => chal(note, velocity),
+    release: () => {
+      // Chertma va zarbli cholg'u — namuna tabiiy ravishda so'nadi.
+      // Uni qo'yib yuborishda kesish haqiqiy cholg'uda bo'lmaydigan
+      // hodisa bo'lardi.
+    },
+    trigger: (note, velocity = oneShot ? 0.9 : 0.8) => chal(note, velocity),
+    stopAll: () => player.stopAll(),
+    setVolume: (db) => player.setVolume(db),
+    setReverb: (wet) => player.setReverb(wet),
+    dispose: () => player.dispose(),
+    usingFallback: false,
+    bank,
   };
 }
 
@@ -226,6 +301,10 @@ function createFallback(T: Tone, kind: InstrumentKind): Instrument {
       attack: (s, v = 0.9) => fire(s, v),
       release: () => {},
       trigger: (s, v = 0.9) => fire(s, v),
+      stopAll: () => {
+        membrane.triggerRelease();
+        noise.triggerRelease();
+      },
       setVolume: (db) => {
         membrane.volume.value = db;
       },
@@ -255,6 +334,7 @@ function createFallback(T: Tone, kind: InstrumentKind): Instrument {
     attack: (n, v = 0.8) => synth.triggerAttack(n, undefined, v),
     release: (n) => synth.triggerRelease(n),
     trigger: (n, v = 0.8) => synth.triggerAttackRelease(n, "8n", undefined, v),
+    stopAll: () => synth.releaseAll(),
     setVolume: (db) => {
       synth.volume.value = db;
     },
@@ -287,6 +367,7 @@ export async function createInstrument(
   const T = await startAudio();
   const timbre = findTimbre(kind, timbreId);
   try {
+    if (timbre.bank) return await createBanked(T, kind, timbre);
     if (kind === "doira") return await createDoira(T, timbre);
     return await createSampled(T, kind, timbre);
   } catch (cause) {

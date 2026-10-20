@@ -35,9 +35,9 @@ Namunalar loyihaning o'ziga joylashtirilgan va sayt bilan birga yetkaziladi — 
 | Pianino | `acoustic_grand_piano` | To'g'ridan-to'g'ri mos |
 | Gitara | `acoustic_guitar_nylon` | To'g'ridan-to'g'ri mos |
 | Nay | `flute` | Yaqin mos (nay — puflama cholg'u) |
-| **Dutor** | **O'z fizik modelimiz** | To'lqin yo'li modeli — gitara yozuvi emas |
-| **Rubob** | **O'z fizik modelimiz** | To'lqin yo'li modeli, 3 ta simpatik tor bilan |
-| **Doira** | **O'z fizik modelimiz** | Membrana modal sintezi (Bessel rejimlari) |
+| **Dutor** | **O'z fizik modelimiz** (namuna banki) | To'lqin yo'li modeli — gitara yozuvi emas |
+| **Rubob** | **O'z fizik modelimiz** (namuna banki) | To'lqin yo'li modeli, 3 ta simpatik tor bilan |
+| **Doira** | **O'z fizik modelimiz** (namuna banki) | Membrana modal sintezi (Bessel rejimlari) |
 
 > **Halol ogohlantirish:** erkin litsenziyali **haqiqiy dutor va rubob yozuvlari topilmadi**. Shuning uchun ular eng yaqin qarindoshlari — nayloniy va metall torli gitara namunalari asosida, tembr filtrlari (past/yuqori chastota kesish, yorqinlik va reverb) bilan moslashtirilgan. Bu sintez ovozidan ancha haqiqiyroq, lekin **haqiqiy dutor/rubob tembri emas**.
 >
@@ -45,16 +45,100 @@ Namunalar loyihaning o'ziga joylashtirilgan va sayt bilan birga yetkaziladi — 
 >
 > Agar sizda erkin foydalanish mumkin bo'lgan dutor yoki rubob yozuvlari bo'lsa, ularni `public/audio/` ga yangi papka sifatida qo'yib, `lib/audio/timbres.ts` ga bitta yozuv qo'shish kifoya — qolgan kod o'zgarmaydi.
 
-### Fizik modellar
+### Fizik modellar va namuna banklari
 
 `public/audio/dutor-model/`, `public/audio/rubob-model/` va
-`public/audio/doira-model/` dagi namunalar (jami 37 ta fayl) hech qanday tashqi
+`public/audio/doira-model/` dagi namunalar (jami 177 ta fayl) hech qanday tashqi
 yozuvdan olinmagan — ular `tools/instrument-models/` dagi skriptlar bilan
 hosil qilingan: dutor va rubob uchun raqamli to'lqin yo'li, doira uchun
 membrananing modal sintezi. Litsenziya cheklovi yo'q, mualliflik to'liq
 loyihaga tegishli.
 
+Har bir papkada `bank.json` bor — unda har bir namunaning notasi yoki
+zarbi, asosiy chastotasi, registri, ijro kuchi, varianti, davomiyligi,
+manbasi va litsenziyasi yozilgan. Dvigatel namunalarni shu fayl bo'yicha
+tanlaydi, kodda hech qanday fayl nomi qotirilmagan.
+
+| Bank | Fayl | Tuzilishi |
+|---|---|---|
+| `dutor-model` | 60 | 20 nota (Gb3–Db5, har yarim tonda) x 3 ijro kuchi |
+| `rubob-model` | 81 | 27 nota (Db3–Eb5, har yarim tonda) x 3 ijro kuchi |
+| `doira-model` | 36 | 4 zarb x 3 ijro kuchi x 3 variant |
+
+Uch narsa ataylab shunday qilingan:
+
+1. **Har yarim tonda alohida namuna.** Ilgari har 3 yarim tonda bittasi
+   olinib, oraliq notalar namunani cho'zish bilan hosil qilinardi.
+   Cho'zish tovush balandligi bilan birga korpus rezonanslarini ham
+   suradi — natijada bitta cholg'u turli notada turli o'lchamdagi
+   cholg'uga o'xshab qolardi.
+2. **Ijro kuchining uch qatlami.** Har biri alohida render qilingan:
+   kuch ortganda tovush faqat balandlashmaydi, tembri ham o'zgaradi
+   (dutorda spektr markazi 360 -> 448 Hz, rubobda 786 -> 1104 Hz).
+   Buni bitta namunani balandroq chalish bilan hosil qilib bo'lmaydi.
+3. **Zarb variantlari.** Har bir doira zarbining uch ijrosi bor va ular
+   navbat bilan chalinadi; aks holda takroriy zarb mexanik eshitiladi.
+
 Batafsil: [`tools/instrument-models/README.md`](tools/instrument-models/README.md).
+
+### Nega haqiqiy yozuv emas
+
+Erkin litsenziyali **haqiqiy doira, dutor va qashqar rubobi yozuvlari
+topilmadi**. Tekshirilgani: npm ekotizimi, General MIDI to'plamlari
+(FluidR3_GM, SGM v2.01), ochiq namuna kutubxonalari (oramics/sampled,
+VSCO 2 CE). Ularda sitar, tanbur, setar ham yo'q. Bundan tashqari bu
+loyiha ishlab chiqilayotgan muhitdan Freesound, Internet Archive va
+Wikimedia Commons ga umuman kirib bo'lmaydi (tarmoq siyosati faqat
+paket registrlari va GitHub ga ruxsat beradi), shuning uchun u yerdagi
+yozuvlarni tekshirish ham mumkin bo'lmadi.
+
+Shu sababli tizim **haqiqiy yozuvlar qo'shilishiga tayyor** qilib
+qurildi, sintetik tovush esa hech qayerda yozuv deb ko'rsatilmaydi:
+
+* har bir bankda `tur` maydoni bor — `model` yoki `yozuv`;
+* cholg'u sahifasida shu qiymat ko'rsatiladi («Fizik model» yoki
+  «Haqiqiy yozuv»);
+* birlik testi modelning `tur` qiymati `yozuv` bo'lib qolishini
+  bevosita taqiqlaydi.
+
+**Haqiqiy yozuv qo'shish uchun** `public/audio/` ga yangi papka qo'yib,
+unga shu ko'rinishdagi `bank.json` yoziladi:
+
+```json
+{
+  "cholgu": "rubob",
+  "nom": "Qashqar rubobi — studiya yozuvi",
+  "tur": "yozuv",
+  "turi_izoh": "ijrochi va yozuv sanasi",
+  "manba": "kim yozgani, qayerda",
+  "litsenziya": "CC BY 4.0 / ruxsatnoma",
+  "sampleRate": 44100,
+  "kuchlar": [{ "id": "orta", "nom": "O'rta", "velocity": 0.7 }],
+  "namunalar": [
+    {
+      "fayl": "A3-orta.mp3", "nota": "A3", "f0": 220.0,
+      "registr": "orta", "kuch": "orta", "variant": 1,
+      "davomiylik": 3.2, "loop": null
+    }
+  ]
+}
+```
+
+So'ng `lib/audio/timbres.ts` ga bitta yozuv qo'shiladi (`folder` va
+`bank: true`). Boshqa hech narsa o'zgarmaydi — dvigatel, tanlov
+qoidalari va interfeys o'sha-o'sha qoladi.
+
+### Hali kerak bo'lgan yozuvlar
+
+| Cholg'u | Nima kerak |
+|---|---|
+| Doira | Har bir zarb (markazga ochiq, markazga kaft bosib, chet, gardish) uchun kamida 3 ijro, 3 kuch darajasida. Barmoq bezaklari alohida. |
+| Qashqar rubobi | Db3–Eb5 oralig'ida har yarim ton, 3 kuch darajasida; bo'sh tor va pardalangan nota alohida bo'lsa — yaxshi. |
+| Dutor | Gb3–Db5 oralig'ida har yarim ton, 3 kuch darajasida; ikki torning birgalikdagi jarangi alohida. |
+
+Har bir yozuv uchun ijrochining ismi, yozuv sanasi, joyi va foydalanish
+ruxsati kerak — `bank.json` bu maydonlarni **majburiy** qiladi va
+ularsiz bankni umuman qabul qilmaydi.
 
 ### Tembr variantlari uchun ishlatilgan namunalar
 

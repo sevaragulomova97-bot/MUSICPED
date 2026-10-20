@@ -4,14 +4,21 @@ import { DOIRA_ZARB_NOMI, DOIRA_ZARBLARI, type DoiraStroke } from "@/lib/domain/
 import { cn } from "@/lib/utils";
 
 /**
- * Doira — uch zonaga bosiladi:
- *  • markaz  → «bum» (past, to'liq tovush)
+ * Doira — to'rt zonaga bosiladi:
+ *  • markaz  → «bum» (past, ochiq, uzoq jaranglaydi)
+ *  • markaz atrofi → «bosiq» (o'sha past tovush, lekin kaft bosib turadi)
  *  • o'rta halqa → «tak» (baland, qisqa)
  *  • tashqi gardish → «qarsak» (shovqinli)
+ *
+ * Haqiqiy doirada «bosiq» zarb «bum» bilan **bir joyga** uriladi; farqi
+ * ikkinchi qo'lning membranani bosib turishida. Alohida halqa — shu
+ * farqni sichqoncha bilan ham, ekran o'quvchi bilan ham berish uchun
+ * qilingan interfeys yechimi, cholg'uning chizmasi emas.
  */
 
 const ZONA_RANGI: Record<DoiraStroke, string> = {
   bum: "#8b5a2b",
+  bosiq: "#9c6834",
   tak: "#b5804a",
   qarsak: "#d8b483",
 };
@@ -71,11 +78,23 @@ export function Doira({
             onHit("tak");
           }}
         />
+        {/* Markaz atrofi — bosiq */}
+        <circle
+          cx="140"
+          cy="140"
+          r="88"
+          fill={zoneFill("bosiq")}
+          className="cursor-pointer transition-[fill] duration-100"
+          onPointerDown={(e) => {
+            e.preventDefault();
+            onHit("bosiq");
+          }}
+        />
         {/* Markaz — bum */}
         <circle
           cx="140"
           cy="140"
-          r="56"
+          r="52"
           fill={zoneFill("bum")}
           className="cursor-pointer transition-[fill] duration-100"
           onPointerDown={(e) => {
@@ -111,17 +130,30 @@ export function Doira({
         </text>
         <text
           x="140"
-          y="98"
+          y="74"
           textAnchor="middle"
           className="fill-white/85 text-[12px] font-medium"
           pointerEvents="none"
         >
           TAK
         </text>
+        <text
+          x="140"
+          y="218"
+          textAnchor="middle"
+          className="fill-white/85 text-[11px] font-medium"
+          pointerEvents="none"
+        >
+          BOSIQ
+        </text>
       </svg>
 
       {/* Klaviatura va ekran o'quvchi uchun muqobil boshqaruv */}
-      <div className="flex flex-wrap justify-center gap-2">
+      <div
+        className="flex flex-wrap justify-center gap-2"
+        role="group"
+        aria-label="Doira zarblari"
+      >
         {DOIRA_ZARBLARI.map((stroke) => (
           <button
             key={stroke}

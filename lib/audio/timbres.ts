@@ -30,6 +30,15 @@ export type Timbre = {
   /** `public/audio/<folder>/` */
   folder: string;
   shaping: Shaping;
+  /**
+   * Papkada `bank.json` bormi.
+   *
+   * Bank bo'lsa, cholg'u yangi dvigatelda chalinadi: ijro kuchi
+   * qatlamlari, zarb variantlari va ovozlarni boshqarish bilan
+   * (`lib/audio/sampler.ts`). Boshqa tembrlar eski `Tone.Sampler`
+   * yo'lidan ketaveradi — pianino va gitara ovozi o'zgarmaydi.
+   */
+  bank?: boolean;
 };
 
 /** Namunalar olingan notalar (har 3 yarim tonda bitta). */
@@ -76,6 +85,7 @@ export const TEMBRLAR: Record<InstrumentKind, Timbre[]> = {
       id: "model",
       label: "Dutor modeli (tavsiya etiladi)",
       folder: "dutor-model",
+      bank: true,
       // Balandlik boshqa dutor variantlari bilan tenglashtirilgan
       // (brauzerda o'lchangan cho'qqi ~0,10).
       shaping: { reverbDecay: 2.0, reverbWet: 0.2, volumeDb: -16, release: 1.4 },
@@ -117,7 +127,8 @@ export const TEMBRLAR: Record<InstrumentKind, Timbre[]> = {
       id: "model",
       label: "Rubob modeli (tavsiya etiladi)",
       folder: "rubob-model",
-      shaping: { reverbDecay: 2.6, reverbWet: 0.26, volumeDb: -16, release: 1.2 },
+      bank: true,
+      shaping: { reverbDecay: 2.6, reverbWet: 0.26, volumeDb: -15, release: 1.2 },
     },
     {
       id: "steel",
@@ -187,8 +198,9 @@ export const TEMBRLAR: Record<InstrumentKind, Timbre[]> = {
       id: "model",
       label: "Doira modeli (tavsiya etiladi)",
       folder: "doira-model",
-      // Balandlik boshqa doira variantlari bilan tenglashtirilgan (cho‘qqi ~0,30)
-      shaping: { reverbDecay: 1.2, reverbWet: 0.1, volumeDb: -7 },
+      bank: true,
+      // Balandlik brauzerda o'lchab tenglashtirilgan (cho'qqi ~0,30)
+      shaping: { reverbDecay: 1.2, reverbWet: 0.1, volumeDb: -5.5 },
     },
     {
       id: "tom",

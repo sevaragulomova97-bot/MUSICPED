@@ -46,9 +46,44 @@ class DoiraSpec:
 STROKES = {
     #                r/R    so'nish  gardish (Hz, kuch)  jarang  past rejim
     "bum":    dict(r=0.00, decay=1.00, knock=(900, 0.18), jingle=0.03, low_damp=1.00),
+    "bosiq":  dict(r=0.00, decay=0.22, knock=(700, 0.12), jingle=0.02, low_damp=1.00),
     "tak":    dict(r=0.82, decay=0.26, knock=(2600, 0.50), jingle=0.20, low_damp=0.18),
     "qarsak": dict(r=0.97, decay=0.14, knock=(4200, 0.32), jingle=1.00, low_damp=0.07),
 }
+
+# `bosiq` — markazga urilgan, lekin ikkinchi qo'l kafti membranani bosib
+# turgan zarb. Joyi `bum` bilan bir xil (shuning uchun r=0), farqi so'nishda:
+# kaft tebranishni deyarli darhol yutadi, shuning uchun past rejimlar
+# qo'zg'aladi-yu, uzoq jaranglamaydi. Ochiq va bo'g'iq zarb farqi —
+# ramkali barabanlar ijrosining asosi.
+
+
+@dataclass(frozen=True)
+class Force:
+    """Zarb kuchining bir qatlami.
+
+    Kuchli zarb qo'lni membranaga tezroq uradi. Tezroq teginish qisqaroq
+    impuls beradi, qisqa impuls esa kengroq spektrni qo'zg'aydi — shuning
+    uchun kuchli zarbda **yuqori rejimlar** ko'proq uyg'onadi va tovush
+    nafaqat balandroq, yorqinroq ham bo'ladi.
+    """
+    id: str
+    label: str
+    velocity: float        # 0..1
+    tilt: float            # yuqori rejimlarning qo'shimcha kuchayishi
+    knock_mult: float      # gardish zarbining kuchayishi
+    jingle_mult: float     # halqalar jarangining kuchayishi
+    peak: float
+
+
+FORCES = (
+    Force("yumshoq", "Yumshoq", 0.35, tilt=-0.22, knock_mult=0.70,
+          jingle_mult=0.60, peak=0.40),
+    Force("orta", "O'rta", 0.70, tilt=0.00, knock_mult=1.00,
+          jingle_mult=1.00, peak=0.65),
+    Force("kuchli", "Kuchli", 1.00, tilt=+0.22, knock_mult=1.25,
+          jingle_mult=1.30, peak=0.88),
+)
 
 
 def _modes(spec: DoiraSpec):
@@ -107,35 +142,50 @@ def _jingles(n: int, rng, count: int = 9) -> np.ndarray:
     return out / count + noise * 0.35
 
 
-def render_stroke(spec: DoiraSpec, stroke: str, seed: int) -> np.ndarray:
-    """Bitta zarbni render qiladi: `bum`, `tak` yoki `qarsak`."""
+def render_stroke(spec: DoiraSpec, stroke: str, seed: int,
+                  force: "Force | None" = None,
+                  jitter: float = 0.0) -> np.ndarray:
+    """Bitta zarbni render qiladi.
+
+    `jitter` — zarb joyining kichik siljishi (0,02 ≈ barmoq eni). Haqiqiy
+    ijrochi bir joyga ikki marta aynan bir xil urolmaydi, shuning uchun
+    har bir zarb uchun bir nechta variant render qilinadi va dvigatel
+    ularni navbat bilan chaladi. Siljishsiz takroriy zarb mexanik
+    eshitiladi — bu bitta namunani qayta-qayta chalishning eng ko'zga
+    tashlanadigan kamchiligi.
+    """
     if stroke not in STROKES:
         raise ValueError(f"noma'lum zarb: {stroke}")
     cfg = STROKES[stroke]
+    f = FORCES[1] if force is None else force
 
     rng = np.random.default_rng(seed)
     n = int(FS * spec.dur)
     t = np.arange(n) / FS
     rows = _modes(spec)
-    amps = _strike_amplitudes(rows, cfg["r"])
+    r = float(np.clip(cfg["r"] + jitter, 0.0, 0.985))
+    amps = _strike_amplitudes(rows, r)
 
     out = np.zeros(n)
     for (ratio, _m, _z), amp in zip(rows, amps):
-        f = spec.f0 * ratio
-        if f > FS / 2 * 0.9:
+        freq = spec.f0 * ratio
+        if freq > FS / 2 * 0.9:
             continue
         gain = amp * (cfg["low_damp"] if ratio < 1.8 else 1.0)
+        # Kuch qatlami: yuqori rejimlar ratio darajasi bilan kuchayadi
+        # yoki susayadi.
+        gain *= ratio ** f.tilt
         decay = spec.decay0 * cfg["decay"] / (ratio ** spec.decay_exp)
-        out += gain * np.sin(2 * np.pi * f * t + rng.uniform(0, 2 * np.pi)) * np.exp(-t / decay)
+        out += gain * np.sin(2 * np.pi * freq * t + rng.uniform(0, 2 * np.pi)) * np.exp(-t / decay)
 
     peak = np.max(np.abs(out))
     if peak > 0:
         out /= peak
 
     knock_cut, knock_gain = cfg["knock"]
-    out += _frame_knock(n, rng, knock_cut, 0.012) * knock_gain
+    out += _frame_knock(n, rng, knock_cut, 0.012) * knock_gain * f.knock_mult
     if cfg["jingle"] > 0:
-        out += _jingles(n, rng) * cfg["jingle"]
+        out += _jingles(n, rng) * cfg["jingle"] * f.jingle_mult
 
     # Karnay chiqara olmaydigan juda past chastotalarni kesamiz
     b, a = signal.butter(2, 45 / (FS / 2), btype="high")
@@ -146,7 +196,7 @@ def render_stroke(spec: DoiraSpec, stroke: str, seed: int) -> np.ndarray:
 
     peak = np.max(np.abs(out))
     if peak > 0:
-        out = out / peak * 0.85
+        out = out / peak * f.peak
     return out.astype(np.float32)
 
 

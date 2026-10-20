@@ -1555,3 +1555,110 @@ turganda qaysi biri nima ekani birinchi qarashda ko'rinishi kerak.
 **O'rtacha ball.** Faqat **baholangan** topshiriqlari bor kurslar
 bo'yicha hisoblanadi. Aks holda topshiriqsiz kurs o'rtachani nolga
 tortib tushirardi.
+
+### Q102. Namuna banki: metadata fayl sifatida, kodda emas
+
+**Qaror.** Har bir cholg'u namunalari `public/audio/<papka>/bank.json`
+da e'lon qilinadi: nota yoki zarb, asosiy chastota, registr, ijro
+kuchi, variant, davomiylik, manba va litsenziya. Kodda birorta fayl
+nomi qotirilmagan.
+
+**Sabab.** Ilgari namunalar ro'yxati `lib/audio/timbres.ts` ichidagi
+`SAMPLE_NOTES` massivi edi va u **barcha** cholg'ular uchun bir xil
+bo'lishga majbur qilardi. Haqiqiy dutor yozuvi qo'lga kirganda uning
+diapazoni boshqa bo'ladi, qatlamlari boshqacha nomlanadi — bunday
+ro'yxatga u sig'maydi.
+
+Litsenziya va manba maydonlari **majburiy**: `parseBank` ularsiz bankni
+umuman qabul qilmaydi. Kelib chiqishi noma'lum audio faylni saytga
+qo'yib bo'lmaydi, shuning uchun bu tekshiruvni odamning diqqatiga
+qoldirmaslik kerak.
+
+### Q103. Nega Tone.Sampler emas, o'z dvigatelimiz
+
+**Qaror.** Dutor, rubob va doira `lib/audio/sampler.ts` dagi Web Audio
+dvigatelida chalinadi. Pianino, gitara va nay o'zgarmadi — ular eski
+`Tone.Sampler` yo'lidan ketaveradi.
+
+**Sabab.** `Tone.Sampler` har bir nota uchun **bitta** fayl kutadi va
+ijro kuchini faqat balandlik bilan beradi. Shuning uchun u quyidagilarni
+umuman qila olmaydi:
+
+* ijro kuchining qatlamlari (kuchli ijro — boshqa tembr, balandroq
+  tovush emas);
+* zarb variantlari (bitta namunani takrorlash mexanik eshitiladi);
+* ovozlar sonini cheklash (tez ijroda namunalar bir-birining ustiga
+  yig'ilib, tovush loyqalanadi);
+* qatlamlarni bosqichma-bosqich yuklash (80 faylni kutish cholg'uni bir
+  necha soniya jim qoldiradi).
+
+Pianino va gitarani ham ko'chirish mumkin edi, lekin ularning ovozi
+yaxshi va ularda bu muammolar yo'q — ishlab turgan narsani sababsiz
+qayta yozish xavf, foyda emas.
+
+### Q104. Ijro kuchi: uchta qatlam alohida render qilinadi
+
+**Qaror.** Har bir nota va zarb uch marta — yumshoq, o'rta va kuchli
+ijroda — **alohida** render qilinadi.
+
+**Sabab.** Kuch ortganda tovush faqat balandlashmaydi. Torni kuchli
+chertganda barmoq tor bilan tor yuzada tegadi, burchak o'tkir qoladi
+va yuqori garmonikalar saqlanadi. O'lchangan natija (spektr markazi,
+zarbning dastlabki 50 ms i): dutor G3 da 361 -> 448 Hz, rubob G3 da
+786 -> 1105 Hz. Bitta namunaning balandligini oshirish bu farqni
+bermaydi.
+
+**Qanday ishlatiladi.** Sichqoncha va klaviatura bosish kuchini
+o'lchamaydi, shuning uchun cholg'u sahifasiga «Ijro kuchi» tanlovi
+qo'shildi. Busiz uchta qatlamning ikkitasi hech qachon ishlatilmay
+qolardi — namuna bor-u, unga yo'l yo'q.
+
+### Q105. Doirada to'rtinchi zarb — «bosiq»
+
+**Qaror.** `bum`, `tak`, `qarsak` ga `bosiq` qo'shildi: markazga
+urilgan, lekin kaft bilan bo'g'ilgan zarb.
+
+**Sabab.** Ochiq va bo'g'iq zarb farqi — ramkali baraban ijrosining
+asosi. Uni filtr bilan taqlid qilib bo'lmaydi: `bum` va `bosiq` bir xil
+chastotada jaranglaydi (98 Hz), farqi **so'nishda** — 1,19 s ga qarshi
+0,29 s.
+
+Interfeysda u alohida halqa sifatida chiziladi. Bu cholg'uning chizmasi
+emas: haqiqiy doirada ikkala zarb bir joyga uriladi. Lekin sichqoncha
+bilan «ikkinchi qo'l bilan bosib turish» ni ko'rsatib bo'lmaydi, shuning
+uchun zona — yagona yo'l. Komponent izohida shu yozilgan.
+
+**Atamalar.** Zarb nomlari o'zbek ijro maktablarida bir xil emas,
+shuning uchun interfeysda har birining **qanday chalinishi** ham
+yoziladi («Bosiq (markaz, kaft bosib)»), nomning o'zi yetarli deb
+hisoblanmaydi.
+
+### Q106. Har yarim tonda alohida namuna
+
+**Qaror.** Dutor Gb3–Db5, rubob Db3–Eb5 oralig'ida **har yarim tonda**
+namuna oladi (20 va 27 nota).
+
+**Sabab.** Ilgari har 3 yarim tonda bitta namuna olinib, oraliqdagilar
+cho'zish bilan hosil qilinardi — ya'ni ±1,5 yarim tongacha. Cho'zish
+tovush balandligi bilan birga **korpus rezonanslarini** ham suradi:
+9% siljish kichik korpusli cholg'uni boshqa o'lchamdagi cholg'uga
+o'xshatib qo'yadi. Endi cho'zish koeffitsiyenti chalinadigan notalarda
+aniq 1 ga teng — buni e2e test brauzerda o'lchab tekshiradi.
+
+Hajm 0,95 MB dan 4,4 MB ga oshdi, lekin yuklash emas: cholg'u ochilganda
+faqat o'rta qatlam yuklanadi (bitta cholg'u uchun ~0,5 MB) va qolgani
+fonda keladi.
+
+### Q107. Tovushni o'lchab tekshirish
+
+**Qaror.** Audio dvigateli e2e testda **o'lchov bilan** tekshiriladi:
+brauzerda `AudioBufferSourceNode.start` ushlanadi va qaysi fayl, qanday
+cho'zish koeffitsiyenti bilan chalingani yozib boriladi.
+
+**Sabab.** «Ovoz chiqdi» degan tekshiruv bu yerda deyarli hech narsa
+bermaydi. Ijro kuchi qatlamlari, zarb variantlari va ovoz chegarasi
+ko'z bilan ko'rinmaydi: ular ishlamay qolsa sahifa baribir «ishlab
+turganday» ko'rinadi.
+
+Testlar mutatsiya bilan tekshirildi — variantlar navbatini va kuch
+qatlami tanlovini ataylab buzib ko'rilganda aynan tegishli test yiqildi.

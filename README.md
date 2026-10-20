@@ -142,6 +142,8 @@ lib/
   transfer.ts           Eksport/import formati va tekshiruvi
   teacher.ts            O'qituvchi kabineti mantig'i
   content-audit.ts      Konstruktiv moslashuv auditi
+  audio/bank.ts         Namuna banki: metadata va tanlov qoidalari
+  audio/sampler.ts      Namunalarni chaluvchi dvigatel (Web Audio)
   db/schema.ts          Dexie sxemasi
   db/repo.ts            Ma'lumotga kirishning yagona yo'li
   navigation.ts         Rol bo'yicha menyu
@@ -165,7 +167,9 @@ docs/
 - [x] **B1** — Poydevor: statik eksport, dizayn tokenlari, layout, dark mode, Pages deploy
 - [x] **B2** — Dexie, statik kontent, diagnostika (A/B/C shakllari, 3 x 32 savol), individual yo'nalish algoritmi
 - [x] **B3** — 6 ta virtual cholg'u: pianino, gitara, dutor, rubob, nay, doira
-      (haqiqiy namunali ovoz, yozib olish, mashq rejimi)
+      (namunali ovoz, yozib olish, mashq rejimi)
+- [x] **Audio** — dutor, rubob va doira uchun namuna banki: har yarim tonda
+      alohida namuna, uch ijro kuchi qatlami, doirada zarb variantlari
 - [x] **B4** — Darslar (VexFlow nota yozuvi), topshiriqlar va rubrikalar,
       natijalar grafiklari, portfolio hamda PDF sertifikat — har bir kurs
       uchun oraliq, barcha kurslar uchun yakuniy

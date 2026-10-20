@@ -43,3 +43,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Cholg'u modellarining oraliq fayllari: `render.py` ularni bir xil
+# urug'lardan qayta hosil qiladi, yetkaziladigani esa `public/audio/`
+# dagi MP3 lar. 42 MB WAV ni saqlashning ma'nosi yo'q.
+tools/instrument-models/wav/
+tools/instrument-models/__pycache__/

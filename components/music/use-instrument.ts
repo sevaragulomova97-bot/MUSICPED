@@ -5,6 +5,7 @@ import { createInstrument, type Instrument, playEvents } from "@/lib/audio/instr
 import { type InstrumentKind } from "@/lib/domain/instruments";
 import { NoteRecorder, type NoteEvent } from "@/lib/audio/engine";
 import { useHydrated } from "@/lib/use-hydrated";
+import type { SampleBank } from "@/lib/audio/bank";
 import {
   defaultTimbre,
   TIMBRE_STORAGE_PREFIX,
@@ -31,6 +32,13 @@ export type InstrumentState = {
   timbre: Timbre;
   /** Shu cholg'u uchun mavjud tembrlar */
   timbres: Timbre[];
+  /**
+   * Namuna banki — ovoz qayerdan kelayotgani.
+   *
+   * Interfeys buni ko'rsatadi: tovush haqiqiy yozuvdanmi yoki fizik
+   * modeldanmi — foydalanuvchi bilishi kerak.
+   */
+  bank: SampleBank | null;
 };
 
 /** Tanlangan tembrni brauzer xotirasidan o'qiydi (yo'q bo'lsa — birinchisi). */
@@ -84,6 +92,7 @@ export function useInstrument(kind: InstrumentKind) {
   const [playing, setPlaying] = React.useState(false);
   const [events, setEvents] = React.useState<NoteEvent[]>([]);
   const [active, setActive] = React.useState<ReadonlySet<string>>(new Set());
+  const [bank, setBank] = React.useState<SampleBank | null>(null);
 
   recorderRef.current ??= new NoteRecorder();
 
@@ -115,6 +124,7 @@ export function useInstrument(kind: InstrumentKind) {
         instrumentRef.current = instrument;
         setReady(true);
         setUsingFallback(instrument.usingFallback);
+        setBank(instrument.bank ?? null);
         setError(null);
         return instrument;
       })
@@ -213,10 +223,20 @@ export function useInstrument(kind: InstrumentKind) {
     });
   }, [ensure, events]);
 
+  /**
+   * Ijroni to'xtatadi.
+   *
+   * Navbatdagi notalarni bekor qilish yetarli emas edi: allaqachon
+   * boshlangan namunalar oxirigacha jaranglayverardi va «to'xtatish»
+   * tugmasi bosilgandan keyin ham ovoz kelardi. Endi jaranglab turgan
+   * ovozlar ham yumshoq so'ndiriladi.
+   */
   const stopPlayback = React.useCallback(() => {
     stopPlaybackRef.current?.();
     stopPlaybackRef.current = null;
+    instrumentRef.current?.stopAll();
     setPlaying(false);
+    setActive(new Set());
   }, []);
 
   const setVolume = React.useCallback((db: number) => {
@@ -244,6 +264,7 @@ export function useInstrument(kind: InstrumentKind) {
       setPlaying(false);
       setReady(false);
       setUsingFallback(false);
+      setBank(null);
       setActive(new Set());
       setChosen(next);
       writeStoredTimbre(kind, next.id);
@@ -269,6 +290,7 @@ export function useInstrument(kind: InstrumentKind) {
     active,
     timbre,
     timbres: timbresFor(kind),
+    bank,
   };
 
   return {

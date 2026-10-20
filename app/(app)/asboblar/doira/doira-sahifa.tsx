@@ -9,7 +9,7 @@ export function DoiraSahifa() {
     <InstrumentPage
       kind="doira"
       title="Virtual doira"
-      description="Markazga bossangiz «bum», chetiga «tak», gardishga «qarsak» tovushi chiqadi."
+      description="Markazga bossangiz «bum», uning atrofiga «bosiq» (kaft bilan bo'g'ilgan o'sha tovush), chetiga «tak», gardishga «qarsak» tovushi chiqadi."
       render={({ active, play }) => (
         <Doira active={active} onHit={(stroke) => play(stroke)} />
       )}

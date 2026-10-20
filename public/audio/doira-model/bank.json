@@ -1,0 +1,358 @@
+{
+  "cholgu": "doira",
+  "nom": "Doira — fizik model",
+  "tur": "model",
+  "turi_izoh": "haqiqiy cholg'u yozuvi emas, raqamli model bilan hosil qilingan",
+  "manba": "tools/instrument-models/ (raqamli to'lqin yo'li / modal sintez)",
+  "litsenziya": "MusicPed loyihasi — tashqi yozuvdan olinmagan, cheklovsiz",
+  "sampleRate": 44100,
+  "kuchlar": [
+    {
+      "id": "yumshoq",
+      "nom": "Yumshoq",
+      "velocity": 0.35
+    },
+    {
+      "id": "orta",
+      "nom": "O'rta",
+      "velocity": 0.7
+    },
+    {
+      "id": "kuchli",
+      "nom": "Kuchli",
+      "velocity": 1.0
+    }
+  ],
+  "zarblar": [
+    "bum",
+    "bosiq",
+    "tak",
+    "qarsak"
+  ],
+  "namunalar": [
+    {
+      "fayl": "bum-yumshoq-1.mp3",
+      "zarb": "bum",
+      "kuch": "yumshoq",
+      "variant": 1,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bum-yumshoq-2.mp3",
+      "zarb": "bum",
+      "kuch": "yumshoq",
+      "variant": 2,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bum-yumshoq-3.mp3",
+      "zarb": "bum",
+      "kuch": "yumshoq",
+      "variant": 3,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bum-orta-1.mp3",
+      "zarb": "bum",
+      "kuch": "orta",
+      "variant": 1,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bum-orta-2.mp3",
+      "zarb": "bum",
+      "kuch": "orta",
+      "variant": 2,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bum-orta-3.mp3",
+      "zarb": "bum",
+      "kuch": "orta",
+      "variant": 3,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bum-kuchli-1.mp3",
+      "zarb": "bum",
+      "kuch": "kuchli",
+      "variant": 1,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bum-kuchli-2.mp3",
+      "zarb": "bum",
+      "kuch": "kuchli",
+      "variant": 2,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bum-kuchli-3.mp3",
+      "zarb": "bum",
+      "kuch": "kuchli",
+      "variant": 3,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bosiq-yumshoq-1.mp3",
+      "zarb": "bosiq",
+      "kuch": "yumshoq",
+      "variant": 1,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bosiq-yumshoq-2.mp3",
+      "zarb": "bosiq",
+      "kuch": "yumshoq",
+      "variant": 2,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bosiq-yumshoq-3.mp3",
+      "zarb": "bosiq",
+      "kuch": "yumshoq",
+      "variant": 3,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bosiq-orta-1.mp3",
+      "zarb": "bosiq",
+      "kuch": "orta",
+      "variant": 1,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bosiq-orta-2.mp3",
+      "zarb": "bosiq",
+      "kuch": "orta",
+      "variant": 2,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bosiq-orta-3.mp3",
+      "zarb": "bosiq",
+      "kuch": "orta",
+      "variant": 3,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bosiq-kuchli-1.mp3",
+      "zarb": "bosiq",
+      "kuch": "kuchli",
+      "variant": 1,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bosiq-kuchli-2.mp3",
+      "zarb": "bosiq",
+      "kuch": "kuchli",
+      "variant": 2,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "bosiq-kuchli-3.mp3",
+      "zarb": "bosiq",
+      "kuch": "kuchli",
+      "variant": 3,
+      "registr": "past",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "tak-yumshoq-1.mp3",
+      "zarb": "tak",
+      "kuch": "yumshoq",
+      "variant": 1,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "tak-yumshoq-2.mp3",
+      "zarb": "tak",
+      "kuch": "yumshoq",
+      "variant": 2,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "tak-yumshoq-3.mp3",
+      "zarb": "tak",
+      "kuch": "yumshoq",
+      "variant": 3,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "tak-orta-1.mp3",
+      "zarb": "tak",
+      "kuch": "orta",
+      "variant": 1,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "tak-orta-2.mp3",
+      "zarb": "tak",
+      "kuch": "orta",
+      "variant": 2,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "tak-orta-3.mp3",
+      "zarb": "tak",
+      "kuch": "orta",
+      "variant": 3,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "tak-kuchli-1.mp3",
+      "zarb": "tak",
+      "kuch": "kuchli",
+      "variant": 1,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "tak-kuchli-2.mp3",
+      "zarb": "tak",
+      "kuch": "kuchli",
+      "variant": 2,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "tak-kuchli-3.mp3",
+      "zarb": "tak",
+      "kuch": "kuchli",
+      "variant": 3,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "qarsak-yumshoq-1.mp3",
+      "zarb": "qarsak",
+      "kuch": "yumshoq",
+      "variant": 1,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "qarsak-yumshoq-2.mp3",
+      "zarb": "qarsak",
+      "kuch": "yumshoq",
+      "variant": 2,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "qarsak-yumshoq-3.mp3",
+      "zarb": "qarsak",
+      "kuch": "yumshoq",
+      "variant": 3,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "qarsak-orta-1.mp3",
+      "zarb": "qarsak",
+      "kuch": "orta",
+      "variant": 1,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "qarsak-orta-2.mp3",
+      "zarb": "qarsak",
+      "kuch": "orta",
+      "variant": 2,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "qarsak-orta-3.mp3",
+      "zarb": "qarsak",
+      "kuch": "orta",
+      "variant": 3,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "qarsak-kuchli-1.mp3",
+      "zarb": "qarsak",
+      "kuch": "kuchli",
+      "variant": 1,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "qarsak-kuchli-2.mp3",
+      "zarb": "qarsak",
+      "kuch": "kuchli",
+      "variant": 2,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    },
+    {
+      "fayl": "qarsak-kuchli-3.mp3",
+      "zarb": "qarsak",
+      "kuch": "kuchli",
+      "variant": 3,
+      "registr": "orta",
+      "davomiylik": 1.6,
+      "loop": null
+    }
+  ]
+}
