@@ -1887,3 +1887,19 @@ chiqadi: foydalanuvchi javoblar qayerdan kelganini bilishi kerak.
 joyda bajariladi — `react-hooks/set-state-in-effect` qoidasi effekt
 ichida holat o'rnatishni taqiqlaydi va u haq: bu kaskadli render
 berardi.
+
+### Q117. Qoralama mexanizmi topshiriqlarga ham qo'llandi
+
+**Qaror.** Q116 dagi qoralama umumlashtirildi (`lib/draft.ts`) va
+matnli hamda testli topshiriqlarga ham qo'llandi
+(`lib/task-draft.ts`).
+
+**Sabab.** Diagnostikadagi kamchilik topshiriqlarda ham bor edi, va u
+yerda og'irroq: dars ishlanmasi yoki asar tahlili uzun yoziladi.
+Yozilgan matn faqat komponent holatida turardi — sahifa yangilansa
+yo'qolardi.
+
+**Texnik eslatma.** Topshiriqda qoralama birinchi renderdayoq
+o'qiladi (`useState` ning dangasa boshlang'ich qiymati), diagnostikada
+esa turni aniqlaydigan joyda: ikkalasida ham effekt ichida holat
+o'rnatilmaydi, chunki bu kaskadli render berardi.

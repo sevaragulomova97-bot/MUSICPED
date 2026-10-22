@@ -67,7 +67,7 @@ describe("eskirish", () => {
   it("chegaradan oldingisi tiklanadi", () => {
     localStorage.setItem(
       kalit("u1", "boshlangich"),
-      JSON.stringify({ answers: { "q-1": "a" }, step: 0, updatedAt: soatOldin(ESKIRISH_SOATI - 1) }),
+      JSON.stringify({ qiymat: { answers: { "q-1": "a" }, step: 0 }, updatedAt: soatOldin(ESKIRISH_SOATI - 1) }),
     );
     expect(qoralamaniOqi("u1", "boshlangich", HOZIR)).not.toBeNull();
   });
@@ -75,7 +75,7 @@ describe("eskirish", () => {
   it("eskirgani tiklanmaydi", () => {
     localStorage.setItem(
       kalit("u1", "boshlangich"),
-      JSON.stringify({ answers: { "q-1": "a" }, step: 0, updatedAt: soatOldin(ESKIRISH_SOATI + 1) }),
+      JSON.stringify({ qiymat: { answers: { "q-1": "a" }, step: 0 }, updatedAt: soatOldin(ESKIRISH_SOATI + 1) }),
     );
     expect(qoralamaniOqi("u1", "boshlangich", HOZIR)).toBeNull();
   });
@@ -85,9 +85,9 @@ describe("buzuq ma'lumot", () => {
   for (const [nom, qiymat] of [
     ["JSON emas", "{ bu json emas"],
     ["bo'sh obyekt", "{}"],
-    ["javoblari yo'q", JSON.stringify({ step: 1, updatedAt: new Date().toISOString() })],
-    ["sanasi yo'q", JSON.stringify({ answers: {}, step: 1 })],
-    ["sanasi noto'g'ri", JSON.stringify({ answers: {}, step: 1, updatedAt: "kecha" })],
+    ["javoblari yo'q", JSON.stringify({ qiymat: { step: 1 }, updatedAt: new Date().toISOString() })],
+    ["sanasi yo'q", JSON.stringify({ qiymat: { answers: {}, step: 1 } })],
+    ["sanasi noto'g'ri", JSON.stringify({ qiymat: { answers: {}, step: 1 }, updatedAt: "kecha" })],
   ] as const) {
     it(`${nom} — null qaytaradi, xato tashlamaydi`, () => {
       localStorage.setItem(kalit("u1", "boshlangich"), qiymat);
@@ -123,7 +123,6 @@ describe("javoblar soni", () => {
       qoralamaSoni({
         answers: { a: "x", b: [], c: ["m"], d: undefined },
         step: 0,
-        updatedAt: HOZIR.toISOString(),
       }),
     ).toBe(2);
   });

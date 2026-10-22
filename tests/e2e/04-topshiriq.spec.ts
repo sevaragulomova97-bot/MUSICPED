@@ -56,3 +56,38 @@ test.describe("Topshiriqlar", () => {
     await expect(page.getByText(/baholashini kutmoqda/i)).toBeVisible({ timeout: 10_000 });
   });
 });
+
+test.describe("Yarim qolgan topshiriq", () => {
+  test("yozilgan matn sahifa yangilangandan keyin ham turadi", async ({ page }) => {
+    await sessiyaBer(page, TALABA);
+    await page.goto("/topshiriqlar/musiqa-asarlari-tahlili/");
+    await page.waitForLoadState("networkidle");
+
+    const maydon = page.locator("textarea").first();
+    await expect(maydon).toBeVisible();
+    const matn =
+      "Dars ishlanmasi. Maqsad: o'quvchilar ritmik naqshni qarsak bilan takrorlay oladi.";
+    await maydon.fill(matn);
+
+    await page.reload();
+    await page.waitForLoadState("networkidle");
+
+    await expect(page.getByText(/Yarim qolgan ishingiz tiklandi/)).toBeVisible({
+      timeout: 15_000,
+    });
+    await expect(page.locator("textarea").first()).toHaveValue(matn);
+  });
+
+  test("«tozalab, boshidan boshlash» matnni o'chiradi", async ({ page }) => {
+    await sessiyaBer(page, TALABA);
+    await page.goto("/topshiriqlar/musiqa-asarlari-tahlili/");
+    await page.waitForLoadState("networkidle");
+    await page.locator("textarea").first().fill("vaqtinchalik matn");
+    await page.reload();
+    await page.waitForLoadState("networkidle");
+
+    await page.getByRole("button", { name: /Tozalab, boshidan boshlash/ }).click();
+    await expect(page.locator("textarea").first()).toHaveValue("");
+    await expect(page.getByText(/Yarim qolgan ishingiz tiklandi/)).toHaveCount(0);
+  });
+});

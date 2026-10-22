@@ -5,6 +5,12 @@ import Link from "next/link";
 import { useLiveQuery } from "dexie-react-hooks";
 import { AlertTriangle, CheckCircle2, ChevronRight, Clock3, Music4, Upload } from "lucide-react";
 import { useSession } from "@/components/session-provider";
+import {
+  taskQoralamaBormi,
+  taskQoralamaniOqi,
+  taskQoralamaniSaqla,
+  taskQoralamaniTozala,
+} from "@/lib/task-draft";
 import { ChoiceCard } from "@/components/ui/radio-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -29,8 +35,22 @@ function TopshiriqKontent({ task }: { task: Task }) {
   const { profile } = useSession();
   const userId = profile?.id;
 
-  const [answers, setAnswers] = React.useState<AnswerMap>({});
-  const [text, setText] = React.useState("");
+  /* ── Yarim qolgan ish ──
+     Matnli topshiriqlar uzun yoziladi; sahifa yangilansa yoki brauzer
+     yorliqni xotiradan chiqarsa, yozilgan matn yo'qolmasligi kerak.
+     Qoralama birinchi renderdayoq o'qiladi (`useState` ning dangasa
+     boshlang'ich qiymati) — effektda o'qish kaskadli render berardi. */
+  const boshlangich = React.useMemo(() => {
+    if (!userId) return null;
+    const q = taskQoralamaniOqi(userId, task.id);
+    return q && taskQoralamaBormi(q) ? q : null;
+  }, [userId, task.id]);
+
+  const [answers, setAnswers] = React.useState<AnswerMap>(
+    () => (boshlangich?.answers as AnswerMap) ?? {},
+  );
+  const [text, setText] = React.useState(() => boshlangich?.text ?? "");
+  const [tiklandi, setTiklandi] = React.useState(() => Boolean(boshlangich));
   const [file, setFile] = React.useState<File | null>(null);
   const [saving, setSaving] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
@@ -42,6 +62,20 @@ function TopshiriqKontent({ task }: { task: Task }) {
     if (!userId) return [];
     return (await listSubmissions(userId)).filter((s) => s.taskId === task.id);
   }, [userId, task.id]);
+
+  // Har bir o'zgarishdan keyin yoziladi: `localStorage` ga yozish arzon.
+  React.useEffect(() => {
+    if (!userId) return;
+    if (!text.trim() && !Object.keys(answers).length) return;
+    taskQoralamaniSaqla(userId, task.id, answers, text);
+  }, [userId, task.id, answers, text]);
+
+  function qoralamaniTashla() {
+    if (userId) taskQoralamaniTozala(userId, task.id);
+    setAnswers({});
+    setText("");
+    setTiklandi(false);
+  }
 
   // Taymer — faqat vaqt chegarasi bor topshiriqlarda
   React.useEffect(() => {
@@ -91,6 +125,9 @@ function TopshiriqKontent({ task }: { task: Task }) {
         title: task.title,
         details,
       });
+      // Ish topshirildi — qoralama endi kerak emas.
+      taskQoralamaniTozala(userId, task.id);
+      setTiklandi(false);
       setResult(score ?? null);
     } catch (cause) {
       console.error(cause);
@@ -208,6 +245,24 @@ function TopshiriqKontent({ task }: { task: Task }) {
           </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-5">
+          {tiklandi && result === null && (
+            // Tiklash jim bajarilmaydi: foydalanuvchi matn qayerdan
+            // kelganini bilishi va xohlasa tozalay olishi kerak.
+            <p
+              role="status"
+              className="flex flex-wrap items-center gap-2 rounded-xl bg-primary-soft px-4 py-3 text-sm text-ink"
+            >
+              <span>Yarim qolgan ishingiz tiklandi.</span>
+              <button
+                type="button"
+                onClick={qoralamaniTashla}
+                className="rounded-lg px-2 py-0.5 font-medium text-primary-ink underline underline-offset-2"
+              >
+                Tozalab, boshidan boshlash
+              </button>
+            </p>
+          )}
+
           {task.submission === "test" &&
             task.questions?.map((q, i) => (
               <div key={q.id}>
