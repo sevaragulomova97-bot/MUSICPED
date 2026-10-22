@@ -22,6 +22,7 @@ const TALABA_SAHIFALARI = [
   "/diagnostika/",
   "/yolnalish/",
   "/kurslar/",
+  "/kurslar/musiqa-nazariyasi/",
   "/kurslar/musiqa-nazariyasi/nota-savodi/",
   "/asboblar/",
   "/asboblar/pianino/",
@@ -34,6 +35,7 @@ const TALABA_SAHIFALARI = [
   "/profil/",
   "/sozlamalar/",
   "/qollanma/",
+  "/bildirishnomalar/",
 ];
 
 const OQITUVCHI_SAHIFALARI = [

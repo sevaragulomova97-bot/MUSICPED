@@ -144,6 +144,8 @@ lib/
   content-audit.ts      Konstruktiv moslashuv auditi
   audio/bank.ts         Namuna banki: metadata va tanlov qoidalari
   markdown.ts           Qo'llanmalar uchun kichik Markdown tahlilchisi
+  notifications.ts      Bildirishnomalar (mavjud ma'lumotdan hisoblanadi)
+  db/mavjudlik.ts       Brauzer saqlashga ruxsat beradimi
   audio/sampler.ts      Namunalarni chaluvchi dvigatel (Web Audio)
   db/schema.ts          Dexie sxemasi
   db/repo.ts            Ma'lumotga kirishning yagona yo'li

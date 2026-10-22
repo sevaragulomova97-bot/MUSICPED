@@ -18,6 +18,7 @@ const TUR_NOMI: Record<string, { nom: string; variant: "primary" | "secondary" |
   refleksiya: { nom: "Refleksiya", variant: "neutral" },
   portfolio: { nom: "Portfolio", variant: "success" },
   import: { nom: "Import", variant: "warning" },
+  eksport: { nom: "Eksport", variant: "primary" },
   baho: { nom: "Baho", variant: "success" },
   mentorlik: { nom: "Mentorlik", variant: "primary" },
 };

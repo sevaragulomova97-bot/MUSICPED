@@ -48,7 +48,12 @@ export function KurslarRoyxati() {
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="min-w-0">
                   <h2 className="font-display text-lg font-semibold text-ink">
-                    {kurs.title}
+                    <Link
+                      href={`/kurslar/${kurs.slug}`}
+                      className="rounded transition-colors hover:text-primary"
+                    >
+                      {kurs.title}
+                    </Link>
                   </h2>
                   <p className="mt-1 text-sm text-ink-muted">{kurs.description}</p>
                 </div>

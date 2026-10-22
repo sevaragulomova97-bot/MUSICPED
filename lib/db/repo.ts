@@ -14,6 +14,7 @@ import {
   type StoredReflection,
   type StoredSubmission,
 } from "@/lib/db/schema";
+import { BARCHA_DARSLAR } from "@/content/courses";
 import { buildLearningPath } from "@/lib/personalization";
 import {
   type AreaScores,
@@ -161,8 +162,12 @@ export async function setProgress(
   courseSlug: string,
   percent: number,
 ) {
+  const database = db();
+  const id = `${userId}:${lessonId}`;
+  const oldingi = await database.progress.get(id);
+
   const row: StoredProgress = {
-    id: `${userId}:${lessonId}`,
+    id,
     userId,
     lessonId,
     courseSlug,
@@ -170,7 +175,27 @@ export async function setProgress(
     completedAt: percent >= 100 ? now() : undefined,
     updatedAt: now(),
   };
-  await db().progress.put(row);
+
+  // Dars yakunlangani faoliyat jurnaliga **bir marta** yoziladi: dars
+  // sahifasi progressni har bo'limda qayta saqlaydi, shuning uchun
+  // shartsiz yozuv jurnalni takrorlar bilan to'ldirib yuborardi.
+  const yakunlandi = row.percent >= 100 && (oldingi?.percent ?? 0) < 100;
+
+  await database.transaction("rw", database.progress, database.activity, async () => {
+    await database.progress.put(row);
+    if (yakunlandi) {
+      const dars = BARCHA_DARSLAR.find((d) => d.id === lessonId);
+      await database.activity.put({
+        id: newId("act"),
+        userId,
+        type: "dars",
+        message: dars
+          ? `«${dars.title}» darsi yakunlandi`
+          : "Dars yakunlandi",
+        createdAt: row.updatedAt,
+      } satisfies StoredActivity);
+    }
+  });
   return row;
 }
 
@@ -490,6 +515,9 @@ export async function wipeUserData(userId: string) {
 export async function exportUserData(userId: string): Promise<TransferBundle> {
   const profile = await getProfile(userId);
   if (!profile) throw new Error("Profil topilmadi — eksport qilish mumkin emas.");
+  // Eksport sanasi jurnalga yoziladi: bildirishnomalar «oxirgi
+  // eksportdan necha kun o'tdi» degan eslatmani shundan hisoblaydi.
+  await logActivity(userId, "eksport", "Ma'lumot eksport qilindi");
 
   const [diagnostics, progress, submissions, reflections, portfolio] = await Promise.all([
     allDiagnostics(userId),

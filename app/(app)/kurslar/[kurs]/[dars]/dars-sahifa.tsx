@@ -320,8 +320,12 @@ function DarsKontent({
         <Link href="/kurslar" className="rounded hover:text-ink">
           O&apos;quv kurslari
         </Link>
+        <ChevronRight className="size-4" aria-hidden="true" />
+        <Link href={`/kurslar/${courseSlug}`} className="rounded hover:text-ink">
+          {kurs?.title ?? "Kurs"}
+        </Link>
         <ChevronRight className="size-3.5" aria-hidden="true" />
-        <span className="text-ink">{kurs.title}</span>
+        <span className="truncate text-ink">{dars.title}</span>
       </nav>
 
       <div>

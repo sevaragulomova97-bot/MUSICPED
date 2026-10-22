@@ -1790,3 +1790,70 @@ ko'rib ham, eshitib ham ulgurmaydi.
 
 E2e test demo davomiyligini **o'lchaydi**: sekin tempda kuy kamida 1,6
 barobar uzoq chalinishi kerak.
+
+### Q113. Saqlash bloklangan muhit alohida ishlanadi
+
+**Qaror.** Ilova ishga tushganda IndexedDB ochilishi sinab ko'riladi
+(`lib/db/mavjudlik.ts`). Ochilmasa, interfeys o'rniga tushuntirish
+chiqadi (`components/storage-guard.tsx`).
+
+**Sabab.** Shaxsiy (inkognito) rejimda yoki sayt ma'lumotlari
+o'chirilganda brauzer IndexedDB ga murojaatni rad etadi. Oldin bunday
+holatda kirish muvaffaqiyatli o'tardi, so'ng sahifa **«Yuklanmoqda…»
+yozuvi bilan abadiy osilib qolardi**: `useLiveQuery` so'rovi xatoga
+uchraydi va `undefined` qaytaradi, komponent esa buni «hali
+yuklanmoqda» deb tushunadi. Foydalanuvchi nima bo'lganini bilmasdi.
+
+Serversiz platformada saqlashsiz hech narsa ishlamaydi, shuning uchun
+ogohlantirish emas, to'liq to'siq qo'yildi — interfeysni ko'rsatib
+qo'yish foydalanuvchini chalg'itadi: u ishlayapti deb o'ylab, mehnatini
+yo'qotadi.
+
+Sinov uchun asosiy baza emas, kichik alohida baza ochiladi:
+asosiysini ochish migratsiyalarni ishga tushirib yuborardi.
+
+### Q114. Bildirishnomalar — hisoblanadi, saqlanmaydi
+
+**Qaror.** `/bildirishnomalar/` sahifasi (ilgari «hali tayyor emas»
+degan zaxira sahifa edi) endi ishlaydi. Eslatmalar
+`lib/notifications.ts` dagi sof funksiya bilan **mavjud ma'lumotdan
+hisoblanadi**: baholangan ishlar, baho kutayotganlari, o'tilmagan yoki
+eskirgan diagnostika, yarim qolgan darslar, eksport eslatmasi va
+yakunlangan kurslar.
+
+**Sabab.** Serverda xabar yuboruvchi yo'q, lekin eslatish kerak bo'lgan
+narsalar bor va ularning hammasi brauzerdagi ma'lumotdan kelib chiqadi.
+Yangi jadval ham, migratsiya ham kerak emas; qoida esa test bilan
+to'liq qoplanadi (13 ta birlik testi).
+
+Sertifikat eslatmasi `lib/certificates.ts` dagi qoidaning **o'zini**
+chaqiradi, shuning uchun xabar bilan portfoliodagi tugma holati hech
+qachon bir-biriga zid bo'lmaydi.
+
+**Yondosh tuzatish.** Faoliyat jurnalida `dars` va `eksport` turlari
+e'lon qilingan edi, lekin ularni hech kim yozmasdi — admin jurnali
+va o'qituvchi kabinetidagi «so'nggi faoliyat» shu turlar bo'yicha doim
+bo'sh qolardi. Endi dars 100% ga yetganda (faqat **bir marta**,
+takroriy saqlashda emas) va eksport qilinganda yozuv tushadi; eksport
+sanasi bildirishnomaga ham shundan keladi.
+
+### Q115. Kurs sahifasi qo'shildi
+
+**Qaror.** `/kurslar/<kurs>/` marshruti yaratildi: kursning tavsifi,
+o'quv natijalari, darslar ro'yxati (progress bilan) va shu kursni
+baholaydigan topshiriqlar.
+
+**Sabab.** Bu yo'l umuman mavjud emas edi — ro'yxatdan
+to'g'ridan-to'g'ri darsga o'tilardi. Oraliq segment bo'sh bo'lgani
+uchun Next.js yo'naltiruvchisi uni oldindan yuklashga urinib xato
+olardi (statik serverda 500, GitHub Pages'da 404), qo'lda kirgan
+foydalanuvchi esa «sahifa topilmadi» ko'rardi.
+
+Pedagogik foyda ham bor: talaba kursni boshlashdan oldin undan nima
+kutilishini ko'rishi kerak — J. Biggsning konstruktiv moslashuvi shuni
+talab qiladi, lekin o'quv natijalari ilgari faqat admin auditida
+ko'rinardi.
+
+**Qo'riqlash.** Endi e2e test uchala rolda barcha ichki havolalarni
+yig'ib (136 ta), har birining holatini tekshiradi — shunga o'xshash
+uzilish qaytmasligi uchun.
