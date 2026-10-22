@@ -36,6 +36,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# …namuna fayldan tashqari: unda maxfiy narsa yo'q va u yangi
+# ishtirokchiga qaysi o'zgaruvchilar borligini ko'rsatadi.
+!.env.example
 
 # vercel
 .vercel
