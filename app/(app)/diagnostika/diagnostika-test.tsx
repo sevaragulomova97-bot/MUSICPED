@@ -9,6 +9,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useSession } from "@/components/session-provider";
+import {
+  qoralamaniOqi,
+  qoralamaniSaqla,
+  qoralamaniTozala,
+  qoralamaSoni,
+} from "@/lib/diagnostic-draft";
 import { allDiagnostics, saveDiagnostic, upsertProfile } from "@/lib/db/repo";
 import {
   BLOOM_NOMI,
@@ -69,14 +75,38 @@ export function DiagnostikaTest() {
   const [error, setError] = React.useState<string | null>(null);
   // Oldingi o'lchovlar soni; `null` — hali o'qilmagan.
   const [oldingilar, setOldingilar] = React.useState<number | null>(null);
+  /* ── Yarim qolgan ish ──
+     32 savol — o'n besh daqiqalik ish. Sahifa yangilansa yoki brauzer
+     yorliqni xotiradan chiqarsa (mobil brauzerlar buni muntazam
+     qiladi), javoblar yo'qolib ketmasligi kerak.
+
+     Tiklash **effektda emas**, turni aniqlaydigan joyda bajariladi:
+     effekt ichida holatni o'rnatish kaskadli renderga olib keladi. */
+  const [tiklandi, setTiklandi] = React.useState<number | null>(null);
 
   const userId = profile?.id;
+
+  /** Qoralama bo'lsa, javoblarni tiklaydi. */
+  function tiklaIfBor(id: string, kind: DiagnosticKind) {
+    const q = qoralamaniOqi(id, kind);
+    if (!q) return;
+    const soni = qoralamaSoni(q);
+    if (!soni) return;
+    setAnswers(q.answers as AnswerMap);
+    setStep(q.step);
+    setTiklandi(soni);
+  }
+
   React.useEffect(() => {
     if (!userId) return;
     let bekor = false;
     void allDiagnostics(userId)
       .then((rows) => {
-        if (!bekor) setOldingilar(rows.length);
+        if (bekor) return;
+        setOldingilar(rows.length);
+        // Birinchi o'lchovda tur darhol ma'lum, demak qoralamani ham
+        // shu yerda tiklash mumkin.
+        if (rows.length === 0) tiklaIfBor(userId, "boshlangich");
       })
       .catch(() => {
         // Baza o'qilmasa birinchi o'lchov deb hisoblaymiz: test baribir
@@ -103,6 +133,22 @@ export function DiagnostikaTest() {
   const umumiyFoiz = Math.round((javobBerilgan / SAVOLLAR.length) * 100);
 
   const bosqichToliq = bosqich.questions.every((q) => answers[q.id] !== undefined);
+
+  // Har bir javobdan keyin yoziladi: qancha tez-tez bo'lsa, shuncha kam
+  // yo'qotiladi, va `localStorage` ga yozish arzon.
+  React.useEffect(() => {
+    if (!userId || !tur) return;
+    const soni = Object.keys(answers).length;
+    if (!soni) return;
+    qoralamaniSaqla(userId, tur, answers, step);
+  }, [userId, tur, answers, step]);
+
+  function boshidanBoshla() {
+    if (userId && tur) qoralamaniTozala(userId, tur);
+    setAnswers({});
+    setStep(0);
+    setTiklandi(null);
+  }
 
   function setAnswer(id: string, value: AnswerMap[string]) {
     setAnswers((prev) => ({ ...prev, [id]: value }));
@@ -134,6 +180,8 @@ export function DiagnostikaTest() {
         direction: profile.direction,
       });
       await saveDiagnostic(profile.id, tur ?? "boshlangich", scores);
+      // Natija saqlandi — qoralama endi kerak emas.
+      qoralamaniTozala(profile.id, tur ?? "boshlangich");
       router.push("/yolnalish");
     } catch (cause) {
       console.error(cause);
@@ -187,6 +235,7 @@ export function DiagnostikaTest() {
                   aria-label={`${TUR_MATNI[k].sarlavha}ni boshlash`}
                   onClick={() => {
                     setTanlanganTur(k);
+                    if (userId) tiklaIfBor(userId, k);
                     setStep(0);
                     setAnswers({});
                   }}
@@ -214,6 +263,26 @@ export function DiagnostikaTest() {
         {TUR_MATNI[tur].sarlavha}
       </h1>
       <p className="mt-1.5 text-sm text-ink-muted">{TUR_MATNI[tur].tavsif}</p>
+
+      {tiklandi !== null && (
+        // Tiklash jim bajarilmaydi: foydalanuvchi javoblar qayerdan
+        // kelganini bilishi va xohlasa boshidan boshlay olishi kerak.
+        <p
+          role="status"
+          className="mt-4 flex flex-wrap items-center gap-2 rounded-xl bg-primary-soft px-4 py-3 text-sm text-ink"
+        >
+          <span>
+            Yarim qolgan ish tiklandi — {tiklandi} ta javob saqlangan edi.
+          </span>
+          <button
+            type="button"
+            onClick={boshidanBoshla}
+            className="rounded-lg px-2 py-0.5 font-medium text-primary-ink underline underline-offset-2"
+          >
+            Boshidan boshlash
+          </button>
+        </p>
+      )}
 
       <div className="mt-5">
         <Progress

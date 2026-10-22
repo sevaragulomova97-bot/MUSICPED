@@ -211,3 +211,55 @@ test("uchala o'lchov ham alohida tur va mustaqil shakl bilan saqlanadi", async (
 
   expect(turlar.sort()).toEqual(["boshlangich", "oraliq", "yakuniy"]);
 });
+
+test.describe("Yarim qolgan ish", () => {
+  test("sahifa yangilansa javoblar yo'qolmaydi", async ({ page }) => {
+    await sessiyaBer(page, TALABA);
+    await bazaniTozala(page);
+    await page.goto("/diagnostika/");
+    // Hidratatsiyagacha bosilgan javob React holatiga tushmaydi.
+    await page.waitForLoadState("networkidle");
+
+    // Birinchi bosqichning barcha savollariga javob beramiz.
+    const radiolar = page.getByRole("radio");
+    const soni = await radiolar.count();
+    const korilgan = new Set<string>();
+    for (let i = 0; i < soni; i += 1) {
+      const el = radiolar.nth(i);
+      const nomi = await el.getAttribute("name");
+      if (!nomi || korilgan.has(nomi)) continue;
+      korilgan.add(nomi);
+      await el.locator("xpath=ancestor::label[1]").click();
+    }
+
+    const oldin = await page.getByText(/savolga javob berildi/).innerText();
+    const berilgan = Number(oldin.split("/")[0].trim());
+    expect(berilgan, "javoblar qayd etilishi kerak").toBeGreaterThan(0);
+
+    // Tasodifiy yangilash — maktab kompyuterida odatiy hol.
+    await page.reload();
+    await page.waitForLoadState("networkidle");
+
+    await expect(page.getByText(/Yarim qolgan ish tiklandi/)).toBeVisible({
+      timeout: 15_000,
+    });
+    const keyin = await page.getByText(/savolga javob berildi/).innerText();
+    expect(keyin).toBe(oldin);
+  });
+
+  test("«boshidan boshlash» javoblarni tozalaydi", async ({ page }) => {
+    await sessiyaBer(page, TALABA);
+    await bazaniTozala(page);
+    await page.goto("/diagnostika/");
+
+    await page.waitForLoadState("networkidle");
+    const birinchi = page.getByRole("radio").first();
+    await birinchi.locator("xpath=ancestor::label[1]").click();
+    await page.reload();
+    await page.waitForLoadState("networkidle");
+
+    await page.getByRole("button", { name: "Boshidan boshlash" }).click();
+    await expect(page.getByText(/Yarim qolgan ish tiklandi/)).toHaveCount(0);
+    await expect(page.getByText(/^0 \//)).toBeVisible();
+  });
+});

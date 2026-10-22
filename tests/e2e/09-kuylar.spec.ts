@@ -46,13 +46,22 @@ test.describe("Mashhur kuylar", () => {
     await expect(yongan().first()).toBeVisible({ timeout: 5_000 });
 
     // …va kuy davomida yonish o'zgarib turadi (ya'ni «o'chadi» ham).
+    //
+    // Namuna tez-tez va shart bajarilishi bilanoq to'xtab olinadi:
+    // kam sonli uzoq oraliqlar bilan o'lchaganda, boshqa testlar bilan
+    // bir vaqtda yurgizilsa, o'chgan lahzalar orasidan o'tib ketardi.
     const kuzatuv: number[] = [];
-    for (let i = 0; i < 10; i += 1) {
-      await page.waitForTimeout(300);
-      kuzatuv.push(await yongan().count());
+    let yondi = false;
+    let ochdi = false;
+    for (let i = 0; i < 80 && !(yondi && ochdi); i += 1) {
+      await page.waitForTimeout(100);
+      const n = await yongan().count();
+      kuzatuv.push(n);
+      if (n > 0) yondi = true;
+      else if (yondi) ochdi = true;
     }
-    expect(kuzatuv.some((n) => n > 0), JSON.stringify(kuzatuv)).toBe(true);
-    expect(kuzatuv.some((n) => n === 0), JSON.stringify(kuzatuv)).toBe(true);
+    expect(yondi, `yonmadi: ${JSON.stringify(kuzatuv)}`).toBe(true);
+    expect(ochdi, `o'chmadi: ${JSON.stringify(kuzatuv)}`).toBe(true);
   });
 
   test("o'rganish rejimida nishon klavish ko'rsatiladi", async ({ page }) => {

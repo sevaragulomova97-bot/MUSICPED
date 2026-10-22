@@ -1857,3 +1857,33 @@ ko'rinardi.
 **Qo'riqlash.** Endi e2e test uchala rolda barcha ichki havolalarni
 yig'ib (136 ta), har birining holatini tekshiradi — shunga o'xshash
 uzilish qaytmasligi uchun.
+
+### Q116. Yarim qolgan diagnostika saqlanadi
+
+**Qaror.** Diagnostika javoblari har bir tanlovdan keyin
+`localStorage` ga yoziladi (`lib/diagnostic-draft.ts`) va sahifa qayta
+ochilganda tiklanadi. Natija bazaga saqlangach qoralama o'chiriladi.
+
+**Sabab.** 32 savol — o'n besh daqiqalik ish. Ilgari javoblar faqat
+komponent holatida turardi: sahifa yangilansa, «orqaga» bosilsa yoki
+brauzer yorliqni xotiradan chiqarib yuborsa (mobil brauzerlar buni
+muntazam qiladi) **hammasi yo'qolardi**. Maktab va universitet
+kompyuterlarida bu tez-tez uchraydi, va yo'qotilgan ishni talaba
+qaytadan bajarishga majbur bo'lardi.
+
+**Nega `localStorage`.** IndexedDB dan yengilroq va har bir javobdan
+keyin yozish uchun mos; qoralama vaqtinchalik ma'lumot, eksportga ham
+kirmaydi.
+
+**Eskirish.** Qoralama 24 soatdan keyin e'tiborga olinmaydi. Bir hafta
+oldin yarim tashlangan o'lchov bugungi javoblar bilan aralashib ketsa,
+natija ma'nosiz bo'lardi va buni foydalanuvchi sezmasdi ham.
+
+**Tiklash jim bajarilmaydi.** Sahifada «Yarim qolgan ish tiklandi —
+N ta javob saqlangan edi» yozuvi va «Boshidan boshlash» tugmasi
+chiqadi: foydalanuvchi javoblar qayerdan kelganini bilishi kerak.
+
+**Texnik eslatma.** Tiklash effekt ichida emas, turni aniqlaydigan
+joyda bajariladi — `react-hooks/set-state-in-effect` qoidasi effekt
+ichida holat o'rnatishni taqiqlaydi va u haq: bu kaskadli render
+berardi.
