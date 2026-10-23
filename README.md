@@ -94,7 +94,7 @@ Yangi omborda ham yuqoridagi **Settings → Pages** sozlamasi takrorlanadi.
 | Ikonkalar | lucide-react |
 | Mavzu (dark mode) | next-themes |
 | Ma'lumot | IndexedDB (Dexie 4) |
-| Audio | Tone.js 15 + FluidR3_GM namunalari (MIT) + dutor, rubob va doiraning o'z fizik modellari |
+| Audio | Pianino, gitara, nay — FluidR3_GM yozuvlari (MIT, `Tone.Sampler`); dutor, rubob, doira — qarindosh cholg'ularning haqiqiy yozuvlari (CC0/MIT) va loyihaning o'z fizik modellari, Web Audio dvigateli bilan |
 | Nota yozuvi | VexFlow 5 (talab bo'yicha yuklanadi) |
 | Grafiklar | Recharts 3 |
 | PDF | pdf-lib + qrcode (brauzerda) |

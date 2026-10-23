@@ -25,6 +25,7 @@
  */
 
 import { toWinAnsi } from "@/lib/export/winansi";
+import { formatDateLong } from "@/lib/utils";
 
 /**
  * Ikki xil sertifikat.
@@ -56,8 +57,34 @@ export type CertificateData =
       serial: string;
     };
 
+/**
+ * Matn berilgan enga sig'adigan eng katta kegl.
+ *
+ * Ism kegli qat'iy 30 edi. 45 belgilik ism (masalan «Abdurahmonov
+ * Muhammadaminjon Abdurashidovich») ramkaning ichki chekkasiga tegib
+ * ketardi, undan uzunrog'i esa ramkadan chiqib ketardi — hujjat
+ * buzilgan ko'rinardi. Endi kegl matn sig'guncha kichrayadi.
+ *
+ * `olcha` — berilgan keglda matn enini qaytaruvchi funksiya; shu sabab
+ * bu yerda PDF kutubxonasi kerak emas va qoida brauzersiz sinaladi.
+ */
+export function sigdirilganKegl(
+  olcha: (kegl: number) => number,
+  maxEn: number,
+  boshlangich = 30,
+  engKichik = 15,
+) {
+  let kegl = boshlangich;
+  while (kegl > engKichik && olcha(kegl) > maxEn) kegl -= 0.5;
+  return Math.max(engKichik, kegl);
+}
+
 /** Sertifikat raqami — ism va modul asosida barqaror hosil qilinadi. */
-export function certificateSerial(fullName: string, moduleId: string, issuedAt: Date) {
+export function certificateSerial(
+  fullName: string,
+  moduleId: string,
+  issuedAt: Date,
+) {
   const base = `${fullName}|${moduleId}|${issuedAt.toISOString().slice(0, 10)}`;
   let hash = 0;
   for (let i = 0; i < base.length; i += 1) {
@@ -66,7 +93,9 @@ export function certificateSerial(fullName: string, moduleId: string, issuedAt: 
   return `MP-${hash.toString(36).toUpperCase().padStart(7, "0").slice(0, 7)}`;
 }
 
-export async function buildCertificatePdf(data: CertificateData): Promise<Blob> {
+export async function buildCertificatePdf(
+  data: CertificateData,
+): Promise<Blob> {
   const [{ PDFDocument, StandardFonts, rgb }, QRCode] = await Promise.all([
     import("pdf-lib"),
     import("qrcode"),
@@ -98,7 +127,12 @@ export async function buildCertificatePdf(data: CertificateData): Promise<Blob> 
    * harflar hujjatga rasmiy ko'rinish beradi va uni oddiy hisobotdan
    * ajratib turadi.
    */
-  const spacedWidth = (text: string, size: number, font: typeof bold, gap: number) => {
+  const spacedWidth = (
+    text: string,
+    size: number,
+    font: typeof bold,
+    gap: number,
+  ) => {
     const safe = toWinAnsi(text);
     let w = 0;
     for (const ch of safe) w += font.widthOfTextAtSize(ch, size) + gap;
@@ -134,15 +168,47 @@ export async function buildCertificatePdf(data: CertificateData): Promise<Blob> 
     return w;
   };
 
-  const chiziq = (x1: number, y1: number, x2: number, y2: number, color = oltin, t = 0.6) =>
-    page.drawLine({ start: { x: x1, y: y1 }, end: { x: x2, y: y2 }, thickness: t, color });
+  const chiziq = (
+    x1: number,
+    y1: number,
+    x2: number,
+    y2: number,
+    color = oltin,
+    t = 0.6,
+  ) =>
+    page.drawLine({
+      start: { x: x1, y: y1 },
+      end: { x: x2, y: y2 },
+      thickness: t,
+      color,
+    });
 
   /** Romb — chiziqlar orasidagi bezak. */
   const romb = (cx: number, cy: number, r: number, color = oltin) => {
-    page.drawLine({ start: { x: cx - r, y: cy }, end: { x: cx, y: cy + r }, thickness: 1.1, color });
-    page.drawLine({ start: { x: cx, y: cy + r }, end: { x: cx + r, y: cy }, thickness: 1.1, color });
-    page.drawLine({ start: { x: cx + r, y: cy }, end: { x: cx, y: cy - r }, thickness: 1.1, color });
-    page.drawLine({ start: { x: cx, y: cy - r }, end: { x: cx - r, y: cy }, thickness: 1.1, color });
+    page.drawLine({
+      start: { x: cx - r, y: cy },
+      end: { x: cx, y: cy + r },
+      thickness: 1.1,
+      color,
+    });
+    page.drawLine({
+      start: { x: cx, y: cy + r },
+      end: { x: cx + r, y: cy },
+      thickness: 1.1,
+      color,
+    });
+    page.drawLine({
+      start: { x: cx + r, y: cy },
+      end: { x: cx, y: cy - r },
+      thickness: 1.1,
+      color,
+    });
+    page.drawLine({
+      start: { x: cx, y: cy - r },
+      end: { x: cx - r, y: cy },
+      thickness: 1.1,
+      color,
+    });
   };
 
   /* ── Fon va ramkalar ── */
@@ -226,7 +292,13 @@ export async function buildCertificatePdf(data: CertificateData): Promise<Blob> 
   /* ── Ism ── */
 
   const ismO = height - 238;
-  const ismW = center(data.fullName, ismO, 30, bold, siyoh);
+  // Ramkaning ichki chekkasigacha bo'lgan en — ikki tomondan nafas
+  // joyi qoldirilgan.
+  const ismKegl = sigdirilganKegl(
+    (kegl) => bold.widthOfTextAtSize(toWinAnsi(data.fullName), kegl),
+    width - 192,
+  );
+  const ismW = center(data.fullName, ismO, ismKegl, bold, siyoh);
   // Ism ostidagi chiziq matndan biroz keng — ism hujjatning markazi.
   const yarim = Math.min(width / 2 - 90, ismW / 2 + 34);
   chiziq(width / 2 - yarim, ismO - 12, width / 2 + yarim, ismO - 12, oltin, 1);
@@ -268,7 +340,13 @@ export async function buildCertificatePdf(data: CertificateData): Promise<Blob> 
     for (const matn of satrlar) {
       // Har bir qator oldidagi kichik romb — ro'yxatni tartibga soladi.
       romb(x0 - 14, y + 4, 2.6);
-      page.drawText(toWinAnsi(matn), { x: x0, y, size: 11.5, font: regular, color: siyoh });
+      page.drawText(toWinAnsi(matn), {
+        x: x0,
+        y,
+        size: 11.5,
+        font: regular,
+        color: siyoh,
+      });
       y -= 19;
     }
     oxirgiSatr = y + 19;
@@ -279,7 +357,13 @@ export async function buildCertificatePdf(data: CertificateData): Promise<Blob> 
   // Matn bloki bilan pastki qator orasidagi bo'shliqni to'ldiradi.
   // Bo'sh maydon hujjatni «tugallanmagan» ko'rsatadi; to'lqin esa uni
   // ikki qismga ajratib, ko'zni pastki ma'lumotlarga olib tushadi.
-  const tolqin = (y: number, x1: number, x2: number, amp: number, davr: number) => {
+  const tolqin = (
+    y: number,
+    x1: number,
+    x2: number,
+    amp: number,
+    davr: number,
+  ) => {
     const qadam = 4;
     let oldingi = { x: x1, y: y + Math.sin(0) * amp };
     for (let x = x1 + qadam; x <= x2; x += qadam) {
@@ -300,8 +384,20 @@ export async function buildCertificatePdf(data: CertificateData): Promise<Blob> 
   // seriyasi va yili turadi.
   const mx = width / 2;
   const my = 132;
-  page.drawCircle({ x: mx, y: my, size: 38, borderColor: oltin, borderWidth: 1.2 });
-  page.drawCircle({ x: mx, y: my, size: 32, borderColor: asosiy, borderWidth: 0.6 });
+  page.drawCircle({
+    x: mx,
+    y: my,
+    size: 38,
+    borderColor: oltin,
+    borderWidth: 1.2,
+  });
+  page.drawCircle({
+    x: mx,
+    y: my,
+    size: 32,
+    borderColor: asosiy,
+    borderWidth: 0.6,
+  });
   for (let i = 0; i < 16; i += 1) {
     const a = (i / 16) * Math.PI * 2;
     romb(mx + Math.cos(a) * 44, my + Math.sin(a) * 44, 2.2);
@@ -316,16 +412,30 @@ export async function buildCertificatePdf(data: CertificateData): Promise<Blob> 
   });
   const yil = String(data.issuedAt.getFullYear());
   const yilW = regular.widthOfTextAtSize(yil, 8);
-  page.drawText(yil, { x: mx - yilW / 2, y: my - 11, size: 8, font: regular, color: kulrang });
+  page.drawText(yil, {
+    x: mx - yilW / 2,
+    y: my - 11,
+    size: 8,
+    font: regular,
+    color: kulrang,
+  });
 
   /* ── Imzo va sana ── */
 
   chiziq(70, 132, 250, 132, kulrang, 0.7);
   page.drawText(toWinAnsi("O'qituvchi imzosi"), {
-    x: 70, y: 118, size: 9, font: regular, color: kulrang,
+    x: 70,
+    y: 118,
+    size: 9,
+    font: regular,
+    color: kulrang,
   });
-  page.drawText(toWinAnsi(`Berilgan sana: ${data.issuedAt.toLocaleDateString("uz-UZ")}`), {
-    x: 70, y: 98, size: 9, font: regular, color: kulrang,
+  page.drawText(toWinAnsi(`Berilgan sana: ${formatDateLong(data.issuedAt)}`), {
+    x: 70,
+    y: 98,
+    size: 9,
+    font: regular,
+    color: kulrang,
   });
 
   /* ── QR ── */
@@ -346,8 +456,12 @@ export async function buildCertificatePdf(data: CertificateData): Promise<Blob> 
   const qx = width - 162;
   const qy = 98;
   page.drawRectangle({
-    x: qx - 6, y: qy - 6, width: 92, height: 92,
-    borderColor: oltin, borderWidth: 0.7,
+    x: qx - 6,
+    y: qy - 6,
+    width: 92,
+    height: 92,
+    borderColor: oltin,
+    borderWidth: 0.7,
   });
   page.drawImage(qrImage, { x: qx, y: qy, width: 80, height: 80 });
   const izoh = toWinAnsi("QR-kod sertifikat ma'lumotini o'zida saqlaydi");

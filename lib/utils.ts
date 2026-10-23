@@ -23,13 +23,43 @@ export function toPercent(value: number, total: number) {
   return Math.max(0, Math.min(100, Math.round((value / total) * 100)));
 }
 
-/** O'zbekcha sana: 12.09.2025 */
+/** O'zbek tilidagi oy nomlari — rasmiy sana yozuvi uchun. */
+export const OYLAR = [
+  "yanvar",
+  "fevral",
+  "mart",
+  "aprel",
+  "may",
+  "iyun",
+  "iyul",
+  "avgust",
+  "sentabr",
+  "oktabr",
+  "noyabr",
+  "dekabr",
+] as const;
+
+/**
+ * Sana — `23.10.2026` ko'rinishida.
+ *
+ * Nega `Intl` emas: `uz-UZ` uchun natija brauzerning ICU ma'lumotiga
+ * bog'liq. O'lchandi — Node `23/10/2026`, Chromium esa `2026-10-23`
+ * qaytaradi. Ya'ni bir xil ma'lumot foydalanuvchiga brauzeriga qarab
+ * boshqacha ko'rinadi, sertifikat PDF ida esa rasmiy hujjat sanasi
+ * ISO ko'rinishida chiqib qolardi. Format o'zimizda bo'lsa — hamma
+ * joyda bir xil.
+ */
 export function formatDate(value: Date | string) {
   const d = typeof value === "string" ? new Date(value) : value;
   if (Number.isNaN(d.getTime())) return "—";
-  return new Intl.DateTimeFormat("uz-UZ", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  }).format(d);
+  const kun = String(d.getDate()).padStart(2, "0");
+  const oy = String(d.getMonth() + 1).padStart(2, "0");
+  return `${kun}.${oy}.${d.getFullYear()}`;
+}
+
+/** Rasmiy hujjat sanasi — `2026-yil 23-oktabr`. */
+export function formatDateLong(value: Date | string) {
+  const d = typeof value === "string" ? new Date(value) : value;
+  if (Number.isNaN(d.getTime())) return "—";
+  return `${d.getFullYear()}-yil ${d.getDate()}-${OYLAR[d.getMonth()]}`;
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildCertificatePdf } from "@/lib/export/certificate";
+import { buildCertificatePdf, sigdirilganKegl } from "@/lib/export/certificate";
 import {
   finalStatus,
   moduleStatuses,
@@ -44,7 +44,9 @@ describe("moduleStatuses", () => {
 
   it("o'rtacha o'tish balidan past bo'lsa — tayyor emas", () => {
     const modul = MODULLAR[0];
-    const past: SubmissionRow[] = [{ score: OTISH_BALI - 20, area: modul.areas[0] }];
+    const past: SubmissionRow[] = [
+      { score: OTISH_BALI - 20, area: modul.areas[0] },
+    ];
     const holat = moduleStatuses(darslarYakunlandi([modul.id]), past);
     expect(holat[0].tayyor).toBe(false);
     expect(holat[0].sabab).toMatch(new RegExp(`${OTISH_BALI}`));
@@ -85,9 +87,7 @@ describe("finalStatus", () => {
 
   it("jami kredit modullar yig'indisiga teng", () => {
     const yakun = finalStatus(moduleStatuses([], []));
-    expect(yakun.jamiKredit).toBe(
-      MODULLAR.reduce((s, m) => s + m.credits, 0),
-    );
+    expect(yakun.jamiKredit).toBe(MODULLAR.reduce((s, m) => s + m.credits, 0));
   });
 
   it("o'rtacha faqat baholangan modullar bo'yicha hisoblanadi", () => {
@@ -151,7 +151,10 @@ describe("sertifikat PDF", () => {
       serial: "MP-TEST02",
     });
 
-    for (const [nom, blob] of [["oraliq", oraliq], ["yakuniy", yakuniy]] as const) {
+    for (const [nom, blob] of [
+      ["oraliq", oraliq],
+      ["yakuniy", yakuniy],
+    ] as const) {
       const bosh = new TextDecoder().decode(
         (await blob.arrayBuffer()).slice(0, 5) as ArrayBuffer,
       );
@@ -180,4 +183,29 @@ describe("sertifikat PDF", () => {
     });
     expect(blob.size).toBeGreaterThan(1000);
   }, 30_000);
+});
+
+/**
+ * Ism kegli qat'iy 30 edi — uzun ism ramkadan chiqib ketardi.
+ * Qoida sof funksiyada, shuning uchun PDF yasamasdan sinaladi.
+ */
+describe("sigdirilganKegl", () => {
+  // Soddalashtirilgan o'lchov: har belgi keglning 0,55 qismini egallaydi.
+  const olcha = (matn: string) => (kegl: number) => matn.length * kegl * 0.55;
+
+  it("qisqa ism boshlang'ich keglda qoladi", () => {
+    expect(sigdirilganKegl(olcha("Bobur Akbarov"), 650)).toBe(30);
+  });
+
+  it("uzun ism sig'guncha kichrayadi", () => {
+    const matn = "Abdurahmonov Muhammadaminjon Abdurashidovich";
+    const kegl = sigdirilganKegl(olcha(matn), 650);
+    expect(kegl).toBeLessThan(30);
+    expect(olcha(matn)(kegl)).toBeLessThanOrEqual(650);
+  });
+
+  it("haddan tashqari uzun ismda ham eng kichik kegldan tushmaydi", () => {
+    const matn = "A".repeat(400);
+    expect(sigdirilganKegl(olcha(matn), 650)).toBe(15);
+  });
 });

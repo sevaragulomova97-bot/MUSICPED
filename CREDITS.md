@@ -20,30 +20,47 @@ Shriftlar `next/font` orqali build paytida yuklab olinadi va sayt bilan birga jo
 
 ## Audio namunalari
 
-Virtual cholg'ular ovozi **haqiqiy yozib olingan namunalar**dan chiqadi.
+Virtual cholg'ularning ovozi ikki manbadan keladi va **har birining
+kelib chiqishi ochiq ko'rsatiladi**: haqiqiy akustik yozuvlar va shu
+loyihada hosil qilingan fizik modellar. Hech qayerda sintetik tovush
+haqiqiy yozuv deb ko'rsatilmaydi.
 
-| Material | Manba | Litsenziya |
+Barcha namunalar loyihaning o'ziga joylashtirilgan va sayt bilan birga
+yetkaziladi — ishlash vaqtida tashqi serverga murojaat qilinmaydi va
+oflayn ishlaydi. Jami hajm — 9,4 MB (10 ta bank, 307 ta MP3 fayl).
+
+### Pianino, gitara va nay — to'g'ridan-to'g'ri mos yozuvlar
+
+| Cholg'u | Papka | Manba | Litsenziya |
+|---|---|---|---|
+| Pianino | `piano` | FluidR3_GM — `acoustic_grand_piano` | MIT |
+| Gitara (nayloniy) | `nylon` | FluidR3_GM — `acoustic_guitar_nylon` | MIT |
+| Gitara (metall tor) | `steel` | FluidR3_GM — `acoustic_guitar_steel` | MIT |
+| Nay | `flute` | FluidR3_GM — `flute` | MIT |
+
+FluidR3_GM [`soundfont-for-samplers`](https://www.npmjs.com/package/soundfont-for-samplers)
+npm paketi orqali olingan. Bu to'rt bankda har 3 yarim tonda bitta
+namuna bor (har biri 17 fayl); oraliq notalarni `Tone.Sampler` tovush
+balandligini o'zgartirib hosil qiladi. Bu yerda cholg'u namunaning
+o'zinikiga mos, shuning uchun cho'zish sezilmaydi.
+
+### Dutor, rubob va doira — ikkita aniq variant
+
+Erkin litsenziyali **aynan o'zbek cholg'ulari yozuvlari topilmadi**
+(batafsili quyida). Shuning uchun bu uch cholg'uning har birida ikkita
+tembr bor va qaysi biri ishlatilishi cholg'u sahifasidagi «Tovush turi»
+ro'yxatidan tanlanadi (tanlov brauzerda eslab qolinadi):
+
+| Cholg'u | Standart tembr | Ikkinchi tembr |
 |---|---|---|
-| Cholg'u namunalari (`public/audio/`) | FluidR3_GM SoundFont, [`soundfont-for-samplers`](https://www.npmjs.com/package/soundfont-for-samplers) npm paketi orqali | MIT |
+| Dutor | `dutor-yozuv` — **qarindosh cholg'u yozuvi** (nayloniy torli gitara) | `dutor-model` — **fizik model** (raqamli to'lqin yo'li) |
+| Rubob | `rubob-yozuv` — **qarindosh cholg'u yozuvi** (sitar) | `rubob-model` — **fizik model**, 3 ta simpatik tor bilan |
+| Doira | `doira-yozuv` — **qarindosh cholg'u yozuvi** (ramkali baraban, dafcha) | `doira-model` — **fizik model** (membrananing modal sintezi) |
 
-Namunalar loyihaning o'ziga joylashtirilgan va sayt bilan birga yetkaziladi — ishlash vaqtida tashqi serverga murojaat qilinmaydi va oflayn ishlaydi. Hajmni kamaytirish uchun har 3 yarim tonda bitta namuna olingan (cholg'u uchun 17 ta fayl); oraliq notalarni `Tone.Sampler` tovush balandligini o'zgartirib hosil qiladi. Jami hajm — 1,6 MB.
-
-### Qaysi namuna qaysi cholg'u uchun
-
-| Platformadagi cholg'u | Ishlatilgan namuna | Izoh |
-|---|---|---|
-| Pianino | `acoustic_grand_piano` | To'g'ridan-to'g'ri mos |
-| Gitara | `acoustic_guitar_nylon` | To'g'ridan-to'g'ri mos |
-| Nay | `flute` | Yaqin mos (nay — puflama cholg'u) |
-| **Dutor** | **O'z fizik modelimiz** (namuna banki) | To'lqin yo'li modeli — gitara yozuvi emas |
-| **Rubob** | **O'z fizik modelimiz** (namuna banki) | To'lqin yo'li modeli, 3 ta simpatik tor bilan |
-| **Doira** | **O'z fizik modelimiz** (namuna banki) | Membrana modal sintezi (Bessel rejimlari) |
-
-> **Halol ogohlantirish:** erkin litsenziyali **haqiqiy dutor va rubob yozuvlari topilmadi**. Shuning uchun ular eng yaqin qarindoshlari — nayloniy va metall torli gitara namunalari asosida, tembr filtrlari (past/yuqori chastota kesish, yorqinlik va reverb) bilan moslashtirilgan. Bu sintez ovozidan ancha haqiqiyroq, lekin **haqiqiy dutor/rubob tembri emas**.
->
-> Shu sababli dutor, rubob, gitara va doira uchun **bir nechta tembr varianti** berilgan va qaysi biri ishlatilishini foydalanuvchi o'zi tanlaydi (cholg'u sahifasidagi «Tovush turi» ro'yxati). Tanlov brauzerda eslab qolinadi.
->
-> Agar sizda erkin foydalanish mumkin bo'lgan dutor yoki rubob yozuvlari bo'lsa, ularni `public/audio/` ga yangi papka sifatida qo'yib, `lib/audio/timbres.ts` ga bitta yozuv qo'shish kifoya — qolgan kod o'zgarmaydi.
+Interfeys har bir variant ustida uning turini yozadi — «Qarindosh
+cholg'u yozuvi» yoki «Fizik model» — va manbasini ko'rsatadi. Birlik
+testi qarindosh yozuvni «haqiqiy yozuv» deb belgilashni ham, modelni
+yozuv deb belgilashni ham bevosita taqiqlaydi.
 
 ### Fizik modellar va namuna banklari
 

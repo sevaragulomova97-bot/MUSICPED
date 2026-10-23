@@ -2049,3 +2049,41 @@ edi).
 **Narxi.** To'plam ~2,6 daqiqa uzaydi. Amaliyotga mo'ljallangan
 platformada bo'sh sahifa — eng qimmat nosozlik, shuning uchun bu vaqt
 o'rinli.
+
+### Q126. Sana formati brauzerga bog'liq emas
+
+**Qaror.** `formatDate` endi `Intl` ga emas, o'z formatiga tayanadi:
+`23.10.2026`. Rasmiy hujjat uchun `formatDateLong` qo'shildi:
+`2026-yil 23-oktabr`.
+
+**Sabab.** O'lchandi: `Intl.DateTimeFormat("uz-UZ")` Node da
+`23/10/2026`, Chromium da esa `2026-10-23` qaytaradi — natija
+brauzerning ICU ma'lumotiga bog'liq. Ya'ni bir xil ma'lumot
+foydalanuvchiga brauzeriga qarab boshqacha ko'rinardi, sertifikat
+PDF ida esa hujjat sanasi ISO ko'rinishida chiqib qolardi
+(«Berilgan sana: 2026-10-23»). Endi hamma joyda bir xil.
+
+### Q127. Uzun ism sertifikat ramkasidan chiqmaydi
+
+**Qaror.** Ism kegli matn sig'guncha kichrayadi
+(`sigdirilganKegl`, 30 dan 15 gacha).
+
+**Sabab.** Kegl qat'iy 30 edi. 45 belgilik ism — «Abdurahmonov
+Muhammadaminjon Abdurashidovich» — ramkaning ichki chekkasiga tegib
+ketardi (PDF da o'lchandi: matn 39–803 pt, ramka 37–805 pt), undan
+uzunrog'i esa ramkadan chiqib ketardi. O'zbek ism-sharifi uchun bu
+kamdan-kam hol emas. Qoida sof funksiyada, PDF yasamasdan sinaladi.
+
+### Q128. CREDITS.md audio bo'limi joriy holatga keltirildi
+
+**Qaror.** «Audio namunalari» bo'limi qayta yozildi: qaysi bank qaysi
+manbadan, qaysi biri haqiqiy yozuv, qaysi biri qarindosh cholg'u
+yozuvi, qaysi biri fizik model.
+
+**Sabab.** Bo'lim namuna banklaridan oldin yozilgani uchun o'zi bilan
+qarama-qarshi bo'lib qolgan edi: yuqorisida «cholg'u uchun 17 ta fayl,
+jami 1,6 MB» va «ovoz haqiqiy yozib olingan namunalardan chiqadi»
+deyilsa, pastida 307 ta fayl, 9,4 MB va uch xil bank turi
+tasvirlanardi. Mualliflik va litsenziya hujjati o'zi bilan ziddiyatda
+bo'lmasligi kerak — ayniqsa shu loyihada, bu yerda sintetik tovushni
+haqiqiy yozuv deb ko'rsatmaslik asosiy shart.
