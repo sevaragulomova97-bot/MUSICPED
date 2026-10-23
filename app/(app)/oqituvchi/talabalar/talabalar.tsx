@@ -45,40 +45,70 @@ export function Talabalar() {
   const ownerId = profile?.id;
   const [tanlangan, setTanlangan] = React.useState<string | null>(null);
   const [saralash, setSaralash] = React.useState<Saralash>("ism");
-  const [guruh, setGuruh] = React.useState<ExperimentGroup | "barcha">("barcha");
+  const [guruh, setGuruh] = React.useState<ExperimentGroup | "barcha">(
+    "barcha",
+  );
 
   const datasets = useLiveQuery(
     async () => (ownerId ? listDatasets(ownerId) : []),
     [ownerId],
   );
 
+  /*
+    Sarlavha ro'yxat bo'sh bo'lganda ham chiqadi. Avval bo'sh holatda
+    sahifada bitta ham `h1` qolmasdi: ekran o'quvchi sahifaning nomini
+    aytolmaydi, ko'z bilan o'qiyotgan ham qaysi bo'limda turganini
+    yo'qotadi — yon paneldan boshqa tabda ochilgan bo'lsa ayniqsa.
+  */
+  const sarlavha = (izoh: string) => (
+    <div>
+      <h1 className="font-display text-xl font-bold text-ink lg:text-2xl">
+        Talabalar
+      </h1>
+      <p className="mt-1.5 text-sm text-ink-muted">{izoh}</p>
+    </div>
+  );
+
   if (datasets === undefined) {
-    return <p className="text-sm text-ink-muted">Yuklanmoqda…</p>;
+    return (
+      <div className="mx-auto flex max-w-5xl flex-col gap-6">
+        {sarlavha("Yuklanmoqda…")}
+      </div>
+    );
   }
 
   if (datasets.length === 0) {
     return (
-      <Card className="mx-auto max-w-2xl">
-        <CardContent className="flex flex-col items-center gap-4 p-10 text-center">
-          <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary-ink">
-            <Users className="size-6" aria-hidden="true" />
-          </span>
-          <div>
-            <p className="font-medium text-ink">Hali talaba ma&apos;lumoti yo&apos;q</p>
-            <p className="mt-1.5 max-w-sm text-sm text-ink-muted">
-              Talabalardan <code className="rounded bg-surface-muted px-1 py-0.5 text-xs">natijalar-….json</code>{" "}
-              faylini oling va kabinet bosh sahifasida yuklang. Sinab ko&apos;rish
-              uchun namunaviy ma&apos;lumotni ham qo&apos;shish mumkin.
-            </p>
-          </div>
-          <Link
-            href="/oqituvchi"
-            className="inline-flex h-10 items-center rounded-xl bg-primary-solid px-5 text-sm font-medium text-white transition-colors hover:opacity-90"
-          >
-            Ma&apos;lumot yuklash
-          </Link>
-        </CardContent>
-      </Card>
+      <div className="mx-auto flex max-w-5xl flex-col gap-6">
+        {sarlavha("Hali bitta ham talaba ma'lumoti yuklanmagan")}
+        <Card className="mx-auto max-w-2xl">
+          <CardContent className="flex flex-col items-center gap-4 p-10 text-center">
+            <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary-ink">
+              <Users className="size-6" aria-hidden="true" />
+            </span>
+            <div>
+              <p className="font-medium text-ink">
+                Hali talaba ma&apos;lumoti yo&apos;q
+              </p>
+              <p className="mt-1.5 max-w-sm text-sm text-ink-muted">
+                Talabalardan{" "}
+                <code className="rounded bg-surface-muted px-1 py-0.5 text-xs">
+                  natijalar-….json
+                </code>{" "}
+                faylini oling va kabinet bosh sahifasida yuklang. Sinab
+                ko&apos;rish uchun namunaviy ma&apos;lumotni ham qo&apos;shish
+                mumkin.
+              </p>
+            </div>
+            <Link
+              href="/oqituvchi"
+              className="inline-flex h-10 items-center rounded-xl bg-primary-solid px-5 text-sm font-medium text-white transition-colors hover:opacity-90"
+            >
+              Ma&apos;lumot yuklash
+            </Link>
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 
@@ -142,7 +172,9 @@ export function Talabalar() {
             <span className="text-ink-muted">Guruh</span>
             <select
               value={guruh}
-              onChange={(e) => setGuruh(e.target.value as ExperimentGroup | "barcha")}
+              onChange={(e) =>
+                setGuruh(e.target.value as ExperimentGroup | "barcha")
+              }
               className="h-9 rounded-lg border border-border-subtle bg-surface px-3 text-sm text-ink"
             >
               <option value="barcha">Barchasi</option>
@@ -174,17 +206,47 @@ export function Talabalar() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <caption className="sr-only">
-                Talabalar ro&apos;yxati: guruh, diagnostika natijasi, yakunlangan
-                darslar va baho kutayotgan ishlar
+                Talabalar ro&apos;yxati: guruh, diagnostika natijasi,
+                yakunlangan darslar va baho kutayotgan ishlar
               </caption>
               <thead>
                 <tr className="border-b border-border-subtle text-left">
-                  <th scope="col" className="px-4 py-3 font-medium text-ink-muted">Talaba</th>
-                  <th scope="col" className="px-4 py-3 font-medium text-ink-muted">Guruh</th>
-                  <th scope="col" className="px-4 py-3 font-medium text-ink-muted">Boshi → oxiri</th>
-                  <th scope="col" className="px-4 py-3 font-medium text-ink-muted">Darslar</th>
-                  <th scope="col" className="px-4 py-3 font-medium text-ink-muted">O&apos;rtacha</th>
-                  <th scope="col" className="px-4 py-3 font-medium text-ink-muted">Kutmoqda</th>
+                  <th
+                    scope="col"
+                    className="px-4 py-3 font-medium text-ink-muted"
+                  >
+                    Talaba
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-4 py-3 font-medium text-ink-muted"
+                  >
+                    Guruh
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-4 py-3 font-medium text-ink-muted"
+                  >
+                    Boshi → oxiri
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-4 py-3 font-medium text-ink-muted"
+                  >
+                    Darslar
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-4 py-3 font-medium text-ink-muted"
+                  >
+                    O&apos;rtacha
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-4 py-3 font-medium text-ink-muted"
+                  >
+                    Kutmoqda
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -197,20 +259,30 @@ export function Talabalar() {
                       <button
                         type="button"
                         onClick={() =>
-                          setTanlangan((v) => (v === o.studentId ? null : o.studentId))
+                          setTanlangan((v) =>
+                            v === o.studentId ? null : o.studentId,
+                          )
                         }
                         className="text-left font-medium text-ink hover:text-primary hover:underline"
                         aria-expanded={tanlangan === o.studentId}
                       >
                         {o.fullName}
                       </button>
-                      {o.demo && <Badge variant="warning" className="ml-2">namuna</Badge>}
+                      {o.demo && (
+                        <Badge variant="warning" className="ml-2">
+                          namuna
+                        </Badge>
+                      )}
                     </td>
                     <td className="px-4 py-3 text-ink-muted">
                       {o.group ?? "—"}
                       {o.experimentGroup && (
                         <Badge
-                          variant={o.experimentGroup === "tajriba" ? "primary" : "neutral"}
+                          variant={
+                            o.experimentGroup === "tajriba"
+                              ? "primary"
+                              : "neutral"
+                          }
                           className="ml-2"
                         >
                           {o.experimentGroup === "tajriba" ? "T" : "N"}
@@ -219,22 +291,23 @@ export function Talabalar() {
                     </td>
                     <td className="px-4 py-3 tabular-nums text-ink">
                       {o.baselineOverall ?? "—"}
-                      {o.baselineOverall !== null && o.latestOverall !== null && (
-                        <>
-                          {" → "}
-                          {o.latestOverall}
-                          <span
-                            className={
-                              o.latestOverall >= o.baselineOverall
-                                ? "ml-1.5 text-xs text-success-ink"
-                                : "ml-1.5 text-xs text-danger-ink"
-                            }
-                          >
-                            {o.latestOverall >= o.baselineOverall ? "+" : ""}
-                            {o.latestOverall - o.baselineOverall}
-                          </span>
-                        </>
-                      )}
+                      {o.baselineOverall !== null &&
+                        o.latestOverall !== null && (
+                          <>
+                            {" → "}
+                            {o.latestOverall}
+                            <span
+                              className={
+                                o.latestOverall >= o.baselineOverall
+                                  ? "ml-1.5 text-xs text-success-ink"
+                                  : "ml-1.5 text-xs text-danger-ink"
+                              }
+                            >
+                              {o.latestOverall >= o.baselineOverall ? "+" : ""}
+                              {o.latestOverall - o.baselineOverall}
+                            </span>
+                          </>
+                        )}
                     </td>
                     <td className="px-4 py-3 tabular-nums text-ink-muted">
                       {o.completedLessons}/{o.totalLessons}
@@ -276,16 +349,18 @@ function TalabaKarta({
   const diagnostikalar = [...b.diagnostics].sort((x, y) =>
     x.completedAt.localeCompare(y.completedAt),
   );
-  const boshlangich = diagnostikalar.find((d) => d.kind === "boshlangich") ?? diagnostikalar[0];
+  const boshlangich =
+    diagnostikalar.find((d) => d.kind === "boshlangich") ?? diagnostikalar[0];
   const oxirgi = diagnostikalar[diagnostikalar.length - 1];
 
-  const radar = boshlangich && oxirgi
-    ? DIAGNOSTIKA_YONALISHLARI.map((area) => ({
-        yonalish: YONALISH_NOMI[area],
-        Boshlangich: boshlangich.scores[area],
-        Oxirgi: oxirgi.scores[area],
-      }))
-    : [];
+  const radar =
+    boshlangich && oxirgi
+      ? DIAGNOSTIKA_YONALISHLARI.map((area) => ({
+          yonalish: YONALISH_NOMI[area],
+          Boshlangich: boshlangich.scores[area],
+          Oxirgi: oxirgi.scores[area],
+        }))
+      : [];
 
   const ishlar = [...b.submissions].sort((x, y) =>
     y.submittedAt.localeCompare(x.submittedAt),
@@ -298,12 +373,17 @@ function TalabaKarta({
           <CardTitle>{o.fullName}</CardTitle>
           <p className="mt-1 text-sm text-ink-muted">
             {o.group ?? "guruh ko'rsatilmagan"}
-            {o.experimentGroup && ` · ${EKSPERIMENT_GURUH_NOMI[o.experimentGroup]}`}
+            {o.experimentGroup &&
+              ` · ${EKSPERIMENT_GURUH_NOMI[o.experimentGroup]}`}
             {` · ${formatDate(o.importedAt)} da qabul qilingan`}
           </p>
         </div>
         {radar.length > 0 && (
-          <Button variant="ghost" size="sm" onClick={() => setJadval((v) => !v)}>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setJadval((v) => !v)}
+          >
             <Table2 aria-hidden="true" />
             {jadval ? "Grafik" : "Jadval"}
           </Button>
@@ -313,28 +393,55 @@ function TalabaKarta({
       <CardContent className="flex flex-col gap-6">
         <div>
           <p className="mb-2 flex items-baseline justify-between text-sm">
-            <span className="text-ink-muted">Dastur bo&apos;yicha progress</span>
+            <span className="text-ink-muted">
+              Dastur bo&apos;yicha progress
+            </span>
             <span className="tabular-nums text-ink">
               {o.completedLessons}/{o.totalLessons} dars
             </span>
           </p>
-          <Progress value={Math.round((o.completedLessons / o.totalLessons) * 100)} />
+          <Progress
+            value={Math.round((o.completedLessons / o.totalLessons) * 100)}
+          />
         </div>
 
-        {radar.length > 0 && (
-          jadval ? (
+        {radar.length > 0 &&
+          (jadval ? (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <caption className="sr-only">
-                  Yo&apos;nalishlar bo&apos;yicha boshlang&apos;ich va oxirgi diagnostika
+                  Yo&apos;nalishlar bo&apos;yicha boshlang&apos;ich va oxirgi
+                  diagnostika
                 </caption>
                 <thead>
                   <tr className="border-b border-border-subtle text-left">
-                    <th scope="col" className="py-2 pr-4 font-medium text-ink-muted">Yo&apos;nalish</th>
-                    <th scope="col" className="py-2 pr-4 font-medium text-ink-muted">Boshi</th>
-                    <th scope="col" className="py-2 pr-4 font-medium text-ink-muted">Oxiri</th>
-                    <th scope="col" className="py-2 pr-4 font-medium text-ink-muted">O&apos;sish</th>
-                    <th scope="col" className="py-2 font-medium text-ink-muted">Zona</th>
+                    <th
+                      scope="col"
+                      className="py-2 pr-4 font-medium text-ink-muted"
+                    >
+                      Yo&apos;nalish
+                    </th>
+                    <th
+                      scope="col"
+                      className="py-2 pr-4 font-medium text-ink-muted"
+                    >
+                      Boshi
+                    </th>
+                    <th
+                      scope="col"
+                      className="py-2 pr-4 font-medium text-ink-muted"
+                    >
+                      Oxiri
+                    </th>
+                    <th
+                      scope="col"
+                      className="py-2 pr-4 font-medium text-ink-muted"
+                    >
+                      O&apos;sish
+                    </th>
+                    <th scope="col" className="py-2 font-medium text-ink-muted">
+                      Zona
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -343,9 +450,15 @@ function TalabaKarta({
                     const oxiri = oxirgi.scores[area];
                     return (
                       <tr key={area} className="border-b border-border-subtle">
-                        <td className="py-2 pr-4 text-ink">{YONALISH_NOMI[area]}</td>
-                        <td className="py-2 pr-4 tabular-nums text-ink-muted">{boshi}</td>
-                        <td className="py-2 pr-4 tabular-nums text-ink">{oxiri}</td>
+                        <td className="py-2 pr-4 text-ink">
+                          {YONALISH_NOMI[area]}
+                        </td>
+                        <td className="py-2 pr-4 tabular-nums text-ink-muted">
+                          {boshi}
+                        </td>
+                        <td className="py-2 pr-4 tabular-nums text-ink">
+                          {oxiri}
+                        </td>
                         <td className="py-2 pr-4 tabular-nums text-ink-muted">
                           {oxiri - boshi >= 0 ? "+" : ""}
                           {oxiri - boshi}
@@ -368,7 +481,10 @@ function TalabaKarta({
                     dataKey="yonalish"
                     tick={{ fill: "var(--mp-text-muted)", fontSize: 11 }}
                   />
-                  <PolarRadiusAxis domain={[0, 100]} tick={{ fill: "var(--mp-text-muted)", fontSize: 10 }} />
+                  <PolarRadiusAxis
+                    domain={[0, 100]}
+                    tick={{ fill: "var(--mp-text-muted)", fontSize: 10 }}
+                  />
                   <Tooltip
                     contentStyle={{
                       background: "var(--mp-surface)",
@@ -396,8 +512,7 @@ function TalabaKarta({
                 </RadarChart>
               </ResponsiveContainer>
             </div>
-          )
-        )}
+          ))}
 
         {ishlar.length > 0 && (
           <div>
@@ -406,7 +521,10 @@ function TalabaKarta({
             </h3>
             <ul className="flex flex-col divide-y divide-border-subtle">
               {ishlar.map((s) => (
-                <li key={s.id} className="flex items-center justify-between gap-3 py-2 text-sm">
+                <li
+                  key={s.id}
+                  className="flex items-center justify-between gap-3 py-2 text-sm"
+                >
                   <span className="min-w-0">
                     <span className="block truncate text-ink">
                       {TOPSHIRIQ_BY_ID.get(s.taskId)?.title ?? s.taskId}
@@ -436,7 +554,10 @@ function TalabaKarta({
             </h3>
             <ul className="flex flex-col gap-2">
               {b.reflections.slice(0, 6).map((r, i) => (
-                <li key={`${r.contextId}-${i}`} className="rounded-xl bg-surface-muted p-3 text-sm">
+                <li
+                  key={`${r.contextId}-${i}`}
+                  className="rounded-xl bg-surface-muted p-3 text-sm"
+                >
                   <p className="text-xs text-ink-muted">{r.question}</p>
                   <p className="mt-1 leading-relaxed text-ink">{r.answer}</p>
                 </li>
@@ -450,14 +571,30 @@ function TalabaKarta({
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={diagnostikalar.map((d) => ({
-                  nom: d.kind === "boshlangich" ? "Boshi" : d.kind === "oraliq" ? "Oraliq" : "Yakuniy",
+                  nom:
+                    d.kind === "boshlangich"
+                      ? "Boshi"
+                      : d.kind === "oraliq"
+                        ? "Oraliq"
+                        : "Yakuniy",
                   Ball: d.overall,
                 }))}
                 margin={{ top: 8, right: 16, bottom: 4, left: -16 }}
               >
                 <CartesianGrid stroke="var(--mp-border)" vertical={false} />
-                <XAxis dataKey="nom" stroke="var(--mp-text-muted)" fontSize={12} tickLine={false} />
-                <YAxis domain={[0, 100]} stroke="var(--mp-text-muted)" fontSize={12} tickLine={false} axisLine={false} />
+                <XAxis
+                  dataKey="nom"
+                  stroke="var(--mp-text-muted)"
+                  fontSize={12}
+                  tickLine={false}
+                />
+                <YAxis
+                  domain={[0, 100]}
+                  stroke="var(--mp-text-muted)"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                />
                 <Tooltip
                   contentStyle={{
                     background: "var(--mp-surface)",
@@ -467,7 +604,11 @@ function TalabaKarta({
                     fontSize: 13,
                   }}
                 />
-                <Bar dataKey="Ball" fill="var(--mp-primary)" radius={[4, 4, 0, 0]} />
+                <Bar
+                  dataKey="Ball"
+                  fill="var(--mp-primary)"
+                  radius={[4, 4, 0, 0]}
+                />
               </BarChart>
             </ResponsiveContainer>
           </div>

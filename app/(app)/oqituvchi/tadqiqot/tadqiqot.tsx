@@ -3,7 +3,13 @@
 import * as React from "react";
 import Link from "next/link";
 import { useLiveQuery } from "dexie-react-hooks";
-import { AlertTriangle, BarChart3, Download, FileText, Table2 } from "lucide-react";
+import {
+  AlertTriangle,
+  BarChart3,
+  Download,
+  FileText,
+  Table2,
+} from "lucide-react";
 import {
   Bar,
   BarChart,
@@ -33,59 +39,93 @@ import {
   growthRows,
   type ResearchAnalysis,
 } from "@/lib/research";
-import { formatNumber, formatP, interpretTTest, significance } from "@/lib/stats";
+import {
+  formatNumber,
+  formatP,
+  interpretTTest,
+  significance,
+} from "@/lib/stats";
 import { datasetsToSubjects } from "@/lib/teacher";
 
 export function Tadqiqot() {
   const { profile } = useSession();
   const ownerId = profile?.id;
   const [jadval, setJadval] = React.useState(false);
-  const [pdfHolati, setPdfHolati] = React.useState<"tayyor" | "yasalmoqda">("tayyor");
+  const [pdfHolati, setPdfHolati] = React.useState<"tayyor" | "yasalmoqda">(
+    "tayyor",
+  );
 
   const datasets = useLiveQuery(
     async () => (ownerId ? listDatasets(ownerId) : []),
     [ownerId],
   );
 
+  /*
+    Sarlavha ma'lumot yetarli bo'lmaganda ham chiqadi — bo'sh holatda
+    sahifada bitta ham `h1` qolmasligi kerak (qarang: Talabalar).
+  */
+  const sarlavha = (izoh: string) => (
+    <div>
+      <h1 className="font-display text-xl font-bold text-ink lg:text-2xl">
+        Tajriba-sinov tahlili
+      </h1>
+      <p className="mt-1.5 text-sm text-ink-muted">{izoh}</p>
+    </div>
+  );
+
   if (datasets === undefined) {
-    return <p className="text-sm text-ink-muted">Yuklanmoqda…</p>;
+    return (
+      <div className="mx-auto flex max-w-5xl flex-col gap-6">
+        {sarlavha("Yuklanmoqda…")}
+      </div>
+    );
   }
 
   const { subjects, skipped } = datasetsToSubjects(datasets);
 
   if (subjects.length === 0) {
     return (
-      <Card className="mx-auto max-w-2xl">
-        <CardContent className="flex flex-col items-center gap-4 p-10 text-center">
-          <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary-ink">
-            <BarChart3 className="size-6" aria-hidden="true" />
-          </span>
-          <div>
-            <p className="font-medium text-ink">Tahlil uchun ma&apos;lumot yetarli emas</p>
-            <p className="mt-1.5 max-w-md text-sm text-ink-muted">
-              Tahlilga faqat <strong className="font-medium text-ink">boshlang&apos;ich va
-              yakuniy diagnostikasi ham bor</strong> va tajriba/nazorat guruhi
-              ko&apos;rsatilgan talabalar kiradi — aks holda «o&apos;sish» degan son
-              ma&apos;nosiz bo&apos;ladi.
-            </p>
-          </div>
-          {skipped.length > 0 && (
-            <ul className="w-full max-w-md text-left text-xs text-ink-muted">
-              {skipped.slice(0, 6).map((s) => (
-                <li key={s.fullName} className="border-t border-border-subtle py-1.5">
-                  {s.fullName} — {s.reason}
-                </li>
-              ))}
-            </ul>
-          )}
-          <Link
-            href="/oqituvchi"
-            className="inline-flex h-10 items-center rounded-xl bg-primary-solid px-5 text-sm font-medium text-white transition-colors hover:opacity-90"
-          >
-            Ma&apos;lumot yuklash
-          </Link>
-        </CardContent>
-      </Card>
+      <div className="mx-auto flex max-w-5xl flex-col gap-6">
+        {sarlavha("Tahlilga kiradigan talaba topilmadi")}
+        <Card className="mx-auto max-w-2xl">
+          <CardContent className="flex flex-col items-center gap-4 p-10 text-center">
+            <span className="grid size-12 place-items-center rounded-xl bg-primary-soft text-primary-ink">
+              <BarChart3 className="size-6" aria-hidden="true" />
+            </span>
+            <div>
+              <p className="font-medium text-ink">
+                Tahlil uchun ma&apos;lumot yetarli emas
+              </p>
+              <p className="mt-1.5 max-w-md text-sm text-ink-muted">
+                Tahlilga faqat{" "}
+                <strong className="font-medium text-ink">
+                  boshlang&apos;ich va yakuniy diagnostikasi ham bor
+                </strong>{" "}
+                va tajriba/nazorat guruhi ko&apos;rsatilgan talabalar kiradi —
+                aks holda «o&apos;sish» degan son ma&apos;nosiz bo&apos;ladi.
+              </p>
+            </div>
+            {skipped.length > 0 && (
+              <ul className="w-full max-w-md text-left text-xs text-ink-muted">
+                {skipped.slice(0, 6).map((s) => (
+                  <li
+                    key={s.fullName}
+                    className="border-t border-border-subtle py-1.5"
+                  >
+                    {s.fullName} — {s.reason}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <Link
+              href="/oqituvchi"
+              className="inline-flex h-10 items-center rounded-xl bg-primary-solid px-5 text-sm font-medium text-white transition-colors hover:opacity-90"
+            >
+              Ma&apos;lumot yuklash
+            </Link>
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 
@@ -96,10 +136,26 @@ export function Tadqiqot() {
   function eksportCsv() {
     const rows: Array<Array<string | number>> = [
       ["MusicPed — tajriba-sinov tahlili"],
-      ["Tajriba guruhi", tahlil.counts.tajriba, "Nazorat guruhi", tahlil.counts.nazorat],
+      [
+        "Tajriba guruhi",
+        tahlil.counts.tajriba,
+        "Nazorat guruhi",
+        tahlil.counts.nazorat,
+      ],
       [],
-      ["Yo'nalish", "Tajriba boshi", "Tajriba oxiri", "Tajriba o'sish",
-        "Nazorat boshi", "Nazorat oxiri", "Nazorat o'sish", "t", "df", "p", "Koen d"],
+      [
+        "Yo'nalish",
+        "Tajriba boshi",
+        "Tajriba oxiri",
+        "Tajriba o'sish",
+        "Nazorat boshi",
+        "Nazorat oxiri",
+        "Nazorat o'sish",
+        "t",
+        "df",
+        "p",
+        "Koen d",
+      ],
     ];
 
     for (const c of [tahlil.overall, ...tahlil.areas]) {
@@ -118,7 +174,11 @@ export function Tadqiqot() {
       ]);
     }
 
-    rows.push([], ["Daraja taqsimoti (yakuniy)"], ["Guruh", ...DARAJALAR.map((l) => DARAJA_NOMI[l])]);
+    rows.push(
+      [],
+      ["Daraja taqsimoti (yakuniy)"],
+      ["Guruh", ...DARAJALAR.map((l) => DARAJA_NOMI[l])],
+    );
     rows.push(["Tajriba", ...tahlil.levels.final.observed[0]]);
     rows.push(["Nazorat", ...tahlil.levels.final.observed[1]]);
     rows.push([
@@ -138,7 +198,8 @@ export function Tadqiqot() {
   async function eksportPdf() {
     setPdfHolati("yasalmoqda");
     try {
-      const { buildResearchReportPdf } = await import("@/lib/export/research-report");
+      const { buildResearchReportPdf } =
+        await import("@/lib/export/research-report");
       const blob = await buildResearchReportPdf(tahlil, {
         teacherName: profile?.fullName ?? "",
       });
@@ -181,8 +242,14 @@ export function Tadqiqot() {
         <Card>
           <CardContent className="flex flex-col gap-2 p-4">
             {tahlil.warnings.map((w) => (
-              <p key={w} className="flex items-start gap-2 text-sm text-warning-ink">
-                <AlertTriangle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+              <p
+                key={w}
+                className="flex items-start gap-2 text-sm text-warning-ink"
+              >
+                <AlertTriangle
+                  className="mt-0.5 size-4 shrink-0"
+                  aria-hidden="true"
+                />
                 <span className="leading-relaxed">{w}</span>
               </p>
             ))}
@@ -193,7 +260,10 @@ export function Tadqiqot() {
       {skipped.length > 0 && (
         <p className="text-xs leading-relaxed text-ink-muted">
           {skipped.length} talaba tahlilga kirmadi:{" "}
-          {skipped.slice(0, 4).map((s) => `${s.fullName} (${s.reason})`).join("; ")}
+          {skipped
+            .slice(0, 4)
+            .map((s) => `${s.fullName} (${s.reason})`)
+            .join("; ")}
           {skipped.length > 4 && " …"}
         </p>
       )}
@@ -209,8 +279,12 @@ export function Tadqiqot() {
             oxirgi farqni metodikaga bog&apos;lab bo&apos;lmaydi.
           </p>
           <div className="flex flex-wrap items-center gap-2">
-            <Badge variant={tahlil.homogeneity.homogeneous ? "success" : "danger"}>
-              {tahlil.homogeneity.homogeneous ? "Guruhlar bir xil" : "Guruhlar farq qiladi"}
+            <Badge
+              variant={tahlil.homogeneity.homogeneous ? "success" : "danger"}
+            >
+              {tahlil.homogeneity.homogeneous
+                ? "Guruhlar bir xil"
+                : "Guruhlar farq qiladi"}
             </Badge>
             <span className="tabular-nums text-ink-muted">
               t = {formatNumber(tahlil.homogeneity.ttest.t)} · df ={" "}
@@ -230,7 +304,11 @@ export function Tadqiqot() {
       <Card>
         <CardHeader className="flex-row items-center justify-between">
           <CardTitle>2. O&apos;sish dinamikasi</CardTitle>
-          <Button variant="ghost" size="sm" onClick={() => setJadval((v) => !v)}>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setJadval((v) => !v)}
+          >
             <Table2 aria-hidden="true" />
             {jadval ? "Grafik" : "Jadval"}
           </Button>
@@ -240,21 +318,38 @@ export function Tadqiqot() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <caption className="sr-only">
-                  Boshlang&apos;ich va yakuniy o&apos;rtacha ball, guruhlar bo&apos;yicha
+                  Boshlang&apos;ich va yakuniy o&apos;rtacha ball, guruhlar
+                  bo&apos;yicha
                 </caption>
                 <thead>
                   <tr className="border-b border-border-subtle text-left">
-                    <th scope="col" className="py-2 pr-4 font-medium text-ink-muted">O&apos;lchov</th>
-                    <th scope="col" className="py-2 pr-4 font-medium text-ink-muted">Tajriba</th>
-                    <th scope="col" className="py-2 font-medium text-ink-muted">Nazorat</th>
+                    <th
+                      scope="col"
+                      className="py-2 pr-4 font-medium text-ink-muted"
+                    >
+                      O&apos;lchov
+                    </th>
+                    <th
+                      scope="col"
+                      className="py-2 pr-4 font-medium text-ink-muted"
+                    >
+                      Tajriba
+                    </th>
+                    <th scope="col" className="py-2 font-medium text-ink-muted">
+                      Nazorat
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {dinamika.map((r) => (
                     <tr key={r.label} className="border-b border-border-subtle">
                       <td className="py-2 pr-4 text-ink">{r.label}</td>
-                      <td className="py-2 pr-4 tabular-nums text-ink">{r.tajriba}</td>
-                      <td className="py-2 tabular-nums text-ink">{r.nazorat}</td>
+                      <td className="py-2 pr-4 tabular-nums text-ink">
+                        {r.tajriba}
+                      </td>
+                      <td className="py-2 tabular-nums text-ink">
+                        {r.nazorat}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -263,10 +358,24 @@ export function Tadqiqot() {
           ) : (
             <div className="h-64 w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={dinamika} margin={{ top: 8, right: 16, bottom: 4, left: -16 }}>
+                <LineChart
+                  data={dinamika}
+                  margin={{ top: 8, right: 16, bottom: 4, left: -16 }}
+                >
                   <CartesianGrid stroke="var(--mp-border)" vertical={false} />
-                  <XAxis dataKey="label" stroke="var(--mp-text-muted)" fontSize={12} tickLine={false} />
-                  <YAxis domain={[0, 100]} stroke="var(--mp-text-muted)" fontSize={12} tickLine={false} axisLine={false} />
+                  <XAxis
+                    dataKey="label"
+                    stroke="var(--mp-text-muted)"
+                    fontSize={12}
+                    tickLine={false}
+                  />
+                  <YAxis
+                    domain={[0, 100]}
+                    stroke="var(--mp-text-muted)"
+                    fontSize={12}
+                    tickLine={false}
+                    axisLine={false}
+                  />
                   <Tooltip
                     contentStyle={{
                       background: "var(--mp-surface)",
@@ -304,7 +413,7 @@ export function Tadqiqot() {
           </p>
           <p className="mt-1.5 text-xs text-ink-muted">
             Parametrik bo&apos;lmagan tekshiruv (Mann–Uitni):{" "}
-            {formatP(tahlil.overall.mann.p)} — {" "}
+            {formatP(tahlil.overall.mann.p)} —{" "}
             {tahlil.overall.mann.p < 0.05 === tahlil.overall.ttest.p < 0.05
               ? "ikki mezon bir xil xulosaga olib keladi"
               : "ikki mezon farq qiladi, natijani ehtiyotkorlik bilan o'qish kerak"}
@@ -320,7 +429,10 @@ export function Tadqiqot() {
         <CardContent>
           <div className="h-72 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={osish} margin={{ top: 8, right: 16, bottom: 48, left: -16 }}>
+              <BarChart
+                data={osish}
+                margin={{ top: 8, right: 16, bottom: 48, left: -16 }}
+              >
                 <CartesianGrid stroke="var(--mp-border)" vertical={false} />
                 <XAxis
                   dataKey="label"
@@ -331,7 +443,12 @@ export function Tadqiqot() {
                   textAnchor="end"
                   interval={0}
                 />
-                <YAxis stroke="var(--mp-text-muted)" fontSize={12} tickLine={false} axisLine={false} />
+                <YAxis
+                  stroke="var(--mp-text-muted)"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                />
                 <Tooltip
                   contentStyle={{
                     background: "var(--mp-surface)",
@@ -342,8 +459,18 @@ export function Tadqiqot() {
                   }}
                 />
                 <Legend wrapperStyle={{ fontSize: 13 }} verticalAlign="top" />
-                <Bar dataKey="tajriba" name="Tajriba" fill="var(--mp-primary)" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="nazorat" name="Nazorat" fill="var(--mp-text-muted)" radius={[4, 4, 0, 0]} />
+                <Bar
+                  dataKey="tajriba"
+                  name="Tajriba"
+                  fill="var(--mp-primary)"
+                  radius={[4, 4, 0, 0]}
+                />
+                <Bar
+                  dataKey="nazorat"
+                  name="Nazorat"
+                  fill="var(--mp-text-muted)"
+                  radius={[4, 4, 0, 0]}
+                />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -351,16 +478,44 @@ export function Tadqiqot() {
           <div className="mt-4 overflow-x-auto">
             <table className="w-full text-sm">
               <caption className="sr-only">
-                Yo&apos;nalishlar bo&apos;yicha yakuniy natija, t-mezon va effekt kattaligi
+                Yo&apos;nalishlar bo&apos;yicha yakuniy natija, t-mezon va
+                effekt kattaligi
               </caption>
               <thead>
                 <tr className="border-b border-border-subtle text-left">
-                  <th scope="col" className="py-2 pr-3 font-medium text-ink-muted">Yo&apos;nalish</th>
-                  <th scope="col" className="py-2 pr-3 font-medium text-ink-muted">Tajriba</th>
-                  <th scope="col" className="py-2 pr-3 font-medium text-ink-muted">Nazorat</th>
-                  <th scope="col" className="py-2 pr-3 font-medium text-ink-muted">t</th>
-                  <th scope="col" className="py-2 pr-3 font-medium text-ink-muted">p</th>
-                  <th scope="col" className="py-2 font-medium text-ink-muted">d</th>
+                  <th
+                    scope="col"
+                    className="py-2 pr-3 font-medium text-ink-muted"
+                  >
+                    Yo&apos;nalish
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-2 pr-3 font-medium text-ink-muted"
+                  >
+                    Tajriba
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-2 pr-3 font-medium text-ink-muted"
+                  >
+                    Nazorat
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-2 pr-3 font-medium text-ink-muted"
+                  >
+                    t
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-2 pr-3 font-medium text-ink-muted"
+                  >
+                    p
+                  </th>
+                  <th scope="col" className="py-2 font-medium text-ink-muted">
+                    d
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -415,14 +570,19 @@ export function Tadqiqot() {
       {/* 3-qadam: guruh ichidagi o'sish */}
       <Card>
         <CardHeader>
-          <CardTitle>3. Guruh ichidagi o&apos;sish (juftlashgan t-mezon)</CardTitle>
+          <CardTitle>
+            3. Guruh ichidagi o&apos;sish (juftlashgan t-mezon)
+          </CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4 sm:grid-cols-2">
           {(["tajriba", "nazorat"] as const).map((g) => (
             <div key={g} className="rounded-xl bg-surface-muted p-4">
-              <p className="text-sm font-medium text-ink">{EKSPERIMENT_GURUH_NOMI[g]}</p>
+              <p className="text-sm font-medium text-ink">
+                {EKSPERIMENT_GURUH_NOMI[g]}
+              </p>
               <p className="mt-1.5 text-sm tabular-nums text-ink-muted">
-                O&apos;sish: {formatNumber(tahlil.within[g].ttest.meanDifference, 1)} ball
+                O&apos;sish:{" "}
+                {formatNumber(tahlil.within[g].ttest.meanDifference, 1)} ball
               </p>
               <p className="mt-0.5 text-sm tabular-nums text-ink-muted">
                 t = {formatNumber(tahlil.within[g].ttest.t)} · df ={" "}
@@ -460,9 +620,18 @@ export function Tadqiqot() {
                     </caption>
                     <thead>
                       <tr className="border-b border-border-subtle text-left">
-                        <th scope="col" className="py-2 pr-4 font-medium text-ink-muted">Guruh</th>
+                        <th
+                          scope="col"
+                          className="py-2 pr-4 font-medium text-ink-muted"
+                        >
+                          Guruh
+                        </th>
                         {DARAJALAR.map((lvl) => (
-                          <th key={lvl} scope="col" className="py-2 pr-4 font-medium text-ink-muted">
+                          <th
+                            key={lvl}
+                            scope="col"
+                            className="py-2 pr-4 font-medium text-ink-muted"
+                          >
                             {DARAJA_NOMI[lvl]}
                           </th>
                         ))}
@@ -471,9 +640,14 @@ export function Tadqiqot() {
                     <tbody>
                       {(["tajriba", "nazorat"] as const).map((g, i) => (
                         <tr key={g} className="border-b border-border-subtle">
-                          <td className="py-2 pr-4 text-ink">{EKSPERIMENT_GURUH_NOMI[g]}</td>
+                          <td className="py-2 pr-4 text-ink">
+                            {EKSPERIMENT_GURUH_NOMI[g]}
+                          </td>
                           {l.observed[i].map((v, j) => (
-                            <td key={j} className="py-2 pr-4 tabular-nums text-ink">
+                            <td
+                              key={j}
+                              className="py-2 pr-4 tabular-nums text-ink"
+                            >
                               {v}
                             </td>
                           ))}
@@ -484,10 +658,12 @@ export function Tadqiqot() {
                 </div>
                 <p className="mt-1.5 text-sm tabular-nums text-ink-muted">
                   χ² = {formatNumber(l.chi2.chi2)} · df = {l.chi2.df} ·{" "}
-                  {formatP(l.chi2.p)} · Kramer V = {formatNumber(l.chi2.cramersV)}
+                  {formatP(l.chi2.p)} · Kramer V ={" "}
+                  {formatNumber(l.chi2.cramersV)}
                   {l.chi2.lowExpectedCells > 0 && (
                     <span className="ml-2 text-warning-ink">
-                      ({l.chi2.lowExpectedCells} katakchada kutilgan chastota &lt; 5)
+                      ({l.chi2.lowExpectedCells} katakchada kutilgan chastota
+                      &lt; 5)
                     </span>
                   )}
                 </p>
@@ -504,9 +680,9 @@ export function Tadqiqot() {
 
       <p className="text-xs leading-relaxed text-ink-muted">
         Statistik mezonlar platforma ichida hisoblanadi va mustaqil paket
-        (SciPy) bilan solishtirib tekshirilgan. Shunga qaramay statistika
-        isbot bermaydi — u faqat «tasodif bilan tushuntirish qanchalik
-        qiyin» degan savolga javob beradi.
+        (SciPy) bilan solishtirib tekshirilgan. Shunga qaramay statistika isbot
+        bermaydi — u faqat «tasodif bilan tushuntirish qanchalik qiyin» degan
+        savolga javob beradi.
       </p>
     </div>
   );

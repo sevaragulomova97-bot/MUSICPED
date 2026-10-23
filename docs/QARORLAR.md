@@ -2023,3 +2023,29 @@ ko'rinadi, yo'qotish faqat ma'lumot yig'ilgandan keyin bilinardi.
 nishon sinfi vaqtincha yo'qoladi. Qat'iy vaqt kutish bilan yozilgan
 test ketma-ketlikni yarim yo'lda to'xtatardi; endi test nishonning
 paydo bo'lishini kutadi.
+
+### Q125. Har bir sahifa brauzerda ochilishi tekshiriladi
+
+**Qaror.** `tests/e2e/15-sahifalar.spec.ts` uchala rol uchun yon
+paneldagi havolalardan boshlab barcha sahifalarni (talabada 127 ta)
+brauzerda ochadi va talab qiladi: konsolda xato yo'q, bitta `h1` bor,
+`main` bo'sh emas, «Yuklanmoqda…» da osilib qolmagan.
+
+**Sabab.** Ilgari havolalar faqat HTTP holati bilan tekshirilardi.
+Statik eksportda fayl bor ekan javob 200 bo'ladi — lekin sahifaning
+mazmuni mijoz tomonida yasaladi (Dexie, `useSession`, kontent
+qidiruvi). Shu joyda xato chiqsa, fayl baribir 200 qaytaradi, sahifa
+esa bo'sh qoladi. Serversiz platformada bu jim kechadi: log yo'q.
+
+**Topildi.** Ma'lumot yuklanmagan o'qituvchida
+`/oqituvchi/talabalar/` va `/oqituvchi/tadqiqot/` sahifalarida bitta
+ham `h1` yo'q edi — bo'sh holat kartasi sarlavhasiz chiqardi. Ekran
+o'quvchi sahifa nomini aytolmaydi, ko'z bilan o'qiyotgan ham qaysi
+bo'limda turganini yo'qotadi. Ikkalasiga ham sarlavha qo'shildi, va
+`12-qulaylik` dagi yaxlitlik testi endi faqat talaba emas, uchala
+rolning sahifalarini tekshiradi (shu sababli kamchilik o'tib ketgan
+edi).
+
+**Narxi.** To'plam ~2,6 daqiqa uzaydi. Amaliyotga mo'ljallangan
+platformada bo'sh sahifa — eng qimmat nosozlik, shuning uchun bu vaqt
+o'rinli.

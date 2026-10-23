@@ -46,6 +46,13 @@ const OQITUVCHI_SAHIFALARI = [
   "/oqituvchi/mentorlik/",
 ];
 
+const ADMIN_SAHIFALARI = [
+  "/admin/",
+  "/admin/kontent/",
+  "/admin/foydalanuvchilar/",
+  "/admin/jurnal/",
+];
+
 async function buzilishlar(page: Page, yollar: string[]) {
   const natija: string[] = [];
   for (const yol of yollar) {
@@ -55,7 +62,9 @@ async function buzilishlar(page: Page, yollar: string[]) {
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
       .analyze();
     for (const v of r.violations) {
-      natija.push(`${yol} [${v.impact}] ${v.id} (${v.nodes.length} ta): ${v.nodes[0]?.html.slice(0, 120)}`);
+      natija.push(
+        `${yol} [${v.impact}] ${v.id} (${v.nodes.length} ta): ${v.nodes[0]?.html.slice(0, 120)}`,
+      );
     }
   }
   return natija;
@@ -69,12 +78,14 @@ test.describe("Qulaylik", () => {
     expect(xato.join("\n")).toBe("");
   });
 
-  test("o'qituvchi va admin sahifalarida WCAG AA buzilishi yo'q", async ({ page }) => {
+  test("o'qituvchi va admin sahifalarida WCAG AA buzilishi yo'q", async ({
+    page,
+  }) => {
     test.slow();
     await sessiyaBer(page, OQITUVCHI);
     const xato = await buzilishlar(page, OQITUVCHI_SAHIFALARI);
     await sessiyaBer(page, ADMIN);
-    xato.push(...(await buzilishlar(page, ["/admin/", "/admin/kontent/"])));
+    xato.push(...(await buzilishlar(page, ADMIN_SAHIFALARI)));
     expect(xato.join("\n")).toBe("");
   });
 
@@ -100,21 +111,43 @@ test.describe("Sahifalarning yaxlitligi", () => {
     test.slow();
     const xato: string[] = [];
     // Konsol xatosi — ko'rinmaydigan nosozlikning eng ishonchli belgisi.
-    page.on("pageerror", (e) => xato.push(`${page.url()}: ${e.message.slice(0, 120)}`));
+    page.on("pageerror", (e) =>
+      xato.push(`${page.url()}: ${e.message.slice(0, 120)}`),
+    );
     page.on("console", (m) => {
-      if (m.type() === "error") xato.push(`${page.url()}: ${m.text().slice(0, 120)}`);
+      if (m.type() === "error")
+        xato.push(`${page.url()}: ${m.text().slice(0, 120)}`);
     });
 
-    await sessiyaBer(page, TALABA);
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const yol of TALABA_SAHIFALARI) {
-      await page.goto(yol, { waitUntil: "networkidle" });
-      const surish = await page.evaluate(
-        () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
-      );
-      if (surish > 1) xato.push(`${yol}: gorizontal surish +${surish}px`);
-      const h1 = await page.locator("h1").count();
-      if (h1 !== 1) xato.push(`${yol}: h1 soni ${h1}`);
+
+    /*
+      O'qituvchi va admin sahifalari ham tekshiriladi. Avval faqat
+      talaba sahifalari tekshirilardi va shu sababli ikkita kamchilik
+      o'tib ketgan edi: ma'lumot yuklanmagan o'qituvchida
+      `/oqituvchi/talabalar/` va `/oqituvchi/tadqiqot/` sahifalarida
+      bitta ham `h1` bo'lmasdi — bo'sh holat kartasi sarlavhasiz
+      chiqardi.
+    */
+    const rollar = [
+      { profil: TALABA, yollar: TALABA_SAHIFALARI },
+      { profil: OQITUVCHI, yollar: OQITUVCHI_SAHIFALARI },
+      { profil: ADMIN, yollar: ADMIN_SAHIFALARI },
+    ];
+
+    for (const rol of rollar) {
+      await sessiyaBer(page, rol.profil);
+      for (const yol of rol.yollar) {
+        await page.goto(yol, { waitUntil: "networkidle" });
+        const surish = await page.evaluate(
+          () =>
+            document.documentElement.scrollWidth -
+            document.documentElement.clientWidth,
+        );
+        if (surish > 1) xato.push(`${yol}: gorizontal surish +${surish}px`);
+        const h1 = await page.locator("h1").count();
+        if (h1 !== 1) xato.push(`${yol}: h1 soni ${h1}`);
+      }
     }
     expect([...new Set(xato)].join("\n")).toBe("");
   });
@@ -128,12 +161,18 @@ test.describe("Qo'llanma", () => {
     await expect(page).toHaveURL(/\/qollanma\/?$/);
 
     // Hujjatning mazmuni haqiqatan chizilgan bo'lsin.
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Qo'llanma");
-    await expect(page.getByText(/Platformada \*?\*?server yo'q/i).first()).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+      "Qo'llanma",
+    );
+    await expect(
+      page.getByText(/Platformada \*?\*?server yo'q/i).first(),
+    ).toBeVisible();
     await expect(page.locator("table").first()).toBeVisible();
 
     // O'qituvchi qo'llanmasiga o'tish.
-    await page.getByRole("button", { name: /O'qituvchi va tadqiqotchi/ }).click();
+    await page
+      .getByRole("button", { name: /O'qituvchi va tadqiqotchi/ })
+      .click();
     await expect(page.getByText(/o'qituvchi/i).first()).toBeVisible();
   });
 
@@ -157,9 +196,12 @@ test.describe("Qo'llanma", () => {
     // Qo'llanma matni sahifaning ichida — tarmoqsiz ham ko'rinishi kerak.
     await context.setOffline(true);
     await page.reload();
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Qo'llanma", {
-      timeout: 15_000,
-    });
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+      "Qo'llanma",
+      {
+        timeout: 15_000,
+      },
+    );
     await context.setOffline(false);
   });
 });
