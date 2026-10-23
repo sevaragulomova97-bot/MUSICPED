@@ -1989,3 +1989,37 @@ havolasini ushlab turadi.
 **Qoida sof funksiyada.** `chiqariladiganlar()` brauzersiz
 tekshiriladi (6 ta birlik testi); e2e esa ikkala tomonni qo'riqlaydi —
 kesh ishlashi ham, chegaralanishi ham.
+
+### Q123. Diagnostika o'tilmaganda yo'nalish darajasi nol emas — sabab aytiladi
+
+**Qaror.** `/natijalar/` sahifasidagi «Yo'nalishlar bo'yicha» kartasi
+diagnostika natijasi bo'lmasa, to'rtta nol foizli chiziq o'rniga
+tushuntirish va «Diagnostikadan o'tish» havolasini ko'rsatadi.
+
+**Sabab.** Yo'nalish darajasi **diagnostikadan** hisoblanadi, topshiriq
+ballaridan emas. Mashqni bajarib natijasini saqlagan, lekin
+diagnostikadan o'tmagan talabada sahifa bir vaqtning o'zida «O'rtacha
+natija 100%» va to'rtta «0%» chizig'ini ko'rsatardi. Bu ishim hisobga
+olinmadi degan xulosaga olib keladi — aslida ikki ko'rsatkich ikki xil
+manbadan.
+
+**Tekshirildi.** `tests/e2e/14-ijro-oqimi.spec.ts` ketma-ket mashqni
+oxirigacha bajaradi, natijani saqlaydi va `/natijalar/` da ham
+o'rtachani, ham tushuntirishni, ham `aria-valuenow="0"` li chiziq
+qolmaganini talab qiladi. Mutatsiya bilan sinaldi: nol chiziqlar
+qaytarilganda test yiqildi.
+
+### Q124. Virtual cholg'uning ikki oqimi e2e bilan qoplandi
+
+**Qaror.** Yozib olish (nota → qayta eshitish → portfolio) va mashq
+(ketma-ketlik → natija → baholash) oqimlari uchun e2e testlar yozildi.
+
+**Sabab.** Ikkalasi ham dissertatsiya ma'lumotining manbayi, lekin
+qoplanmagan edi: oqim uzilsa sahifa baribir ishlab turgandek
+ko'rinadi, yo'qotish faqat ma'lumot yig'ilgandan keyin bilinardi.
+
+**Nishon klavishni bosish nozikligi.** To'g'ri javobdan keyingi
+~320 ms ichida yangi nishon klavish «to'g'ri» rangida turadi, ya'ni
+nishon sinfi vaqtincha yo'qoladi. Qat'iy vaqt kutish bilan yozilgan
+test ketma-ketlikni yarim yo'lda to'xtatardi; endi test nishonning
+paydo bo'lishini kutadi.

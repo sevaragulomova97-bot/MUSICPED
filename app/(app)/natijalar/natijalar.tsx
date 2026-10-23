@@ -421,23 +421,40 @@ export function Natijalar() {
               <CardTitle>Yo&apos;nalishlar bo&apos;yicha</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col gap-3.5">
-              {taqqoslash.length > 0
-                ? taqqoslash.map((t) => (
-                    <Progress
-                      key={t.yonalish}
-                      value={t.joriy}
-                      label={ASOSIY_YONALISH_NOMI[t.yonalish]}
-                      color={ASOSIY_YONALISH_RANGI[t.yonalish]}
-                    />
-                  ))
-                : ASOSIY_YONALISHLAR.map((d) => (
-                    <Progress
-                      key={d}
-                      value={0}
-                      label={ASOSIY_YONALISH_NOMI[d]}
-                      color={ASOSIY_YONALISH_RANGI[d]}
-                    />
-                  ))}
+              {/*
+                Yo'nalish darajasi **diagnostikadan** hisoblanadi, topshiriq
+                ballaridan emas. Diagnostika o'tilmagan bo'lsa, ilgari bu
+                yerda to'rtta nol foiz chizig'i chiqardi: yuqorida
+                «O'rtacha natija 100%» turgan holda bu qarama-qarshilikdek
+                ko'rinardi va talaba ishim hisobga olinmadi deb o'ylardi.
+                Endi sabab aytiladi.
+              */}
+              {taqqoslash.length > 0 ? (
+                taqqoslash.map((t) => (
+                  <Progress
+                    key={t.yonalish}
+                    value={t.joriy}
+                    label={ASOSIY_YONALISH_NOMI[t.yonalish]}
+                    color={ASOSIY_YONALISH_RANGI[t.yonalish]}
+                  />
+                ))
+              ) : (
+                <div className="flex flex-col items-start gap-2.5">
+                  <p className="text-sm leading-relaxed text-ink-muted">
+                    Yo&apos;nalishlar bo&apos;yicha daraja{" "}
+                    <strong>diagnostika</strong> natijasidan hisoblanadi —
+                    topshiriq ballaridan emas. Siz hali diagnostikadan
+                    o&apos;tmagansiz, shuning uchun bu yerda ko&apos;rsatadigan
+                    narsa yo&apos;q.
+                  </p>
+                  <Link
+                    href="/diagnostika"
+                    className="rounded-xl bg-primary-solid px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+                  >
+                    Diagnostikadan o&apos;tish
+                  </Link>
+                </div>
+              )}
             </CardContent>
           </Card>
         </>
