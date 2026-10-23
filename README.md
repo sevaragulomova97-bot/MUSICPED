@@ -150,6 +150,7 @@ lib/
   task-draft.ts         Topshiriq qoralamasi
   db/mavjudlik.ts       Brauzer saqlashga ruxsat beradimi
   audio/sampler.ts      Namunalarni chaluvchi dvigatel (Web Audio)
+  audio/lru.ts          Audio keshining chegarasi
   db/schema.ts          Dexie sxemasi
   db/repo.ts            Ma'lumotga kirishning yagona yo'li
   navigation.ts         Rol bo'yicha menyu

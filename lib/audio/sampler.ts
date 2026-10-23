@@ -9,6 +9,7 @@ import {
   type SampleBank,
   type Tanlov,
 } from "@/lib/audio/bank";
+import { chiqariladiganlar } from "@/lib/audio/lru";
 import type { Shaping } from "@/lib/audio/timbres";
 import { asset } from "@/lib/utils";
 
@@ -56,9 +57,44 @@ type Ovoz = {
  * Shu sababli cholg'u sahifasiga qaytib kelinganda yoki tembr
  * almashtirilganda fayllar qaytadan yuklanmaydi — brauzer keshi
  * ishlatilsa ham, qayta dekodlash sezilarli pauza berardi.
+ *
+ * **Kesh chegaralangan.** Dekodlangan audio xotirada siqilmagan holda
+ * yotadi: bitta rubob banki (81 namuna) ≈ 41 MB. Chegarasiz keshda
+ * uchta cholg'uni aylanib chiqqan talabada 87 MB to'planishi
+ * o'lchandi — kuchsiz telefonda bu yorliqning yopilishiga olib
+ * keladi. Shuning uchun eng uzoq ishlatilmagan namunalar
+ * chiqarib tashlanadi; chalinayotgan ovozlar o'z havolasini ushlab
+ * turgani uchun ular to'xtamaydi.
  */
-const bufferKesh = new Map<string, Promise<AudioBuffer>>();
+const MAX_BUFFER_BAYT = 48 * 1024 * 1024;
+
+type KeshYozuvi = {
+  buf: Promise<AudioBuffer>;
+  /** Dekodlangandan keyin ma'lum bo'ladi */
+  bayt: number;
+  /** Oxirgi murojaat tartibi — eng kichigi birinchi chiqariladi */
+  navbat: number;
+};
+
+const bufferKesh = new Map<string, KeshYozuvi>();
 const bankKesh = new Map<string, Promise<SampleBank>>();
+let keshNavbati = 0;
+
+/** Keshdagi dekodlangan audio hajmi (bayt) — o'lchov va test uchun. */
+export function keshHajmi() {
+  let bayt = 0;
+  for (const y of bufferKesh.values()) bayt += y.bayt;
+  return { namunalar: bufferKesh.size, bayt };
+}
+
+/** Chegaradan oshgan bo'lsa, eng uzoq ishlatilmaganlarini chiqaradi. */
+function keshniChegarala() {
+  const chiqadi = chiqariladiganlar(
+    [...bufferKesh].map(([kalit, y]) => ({ kalit, bayt: y.bayt, navbat: y.navbat })),
+    MAX_BUFFER_BAYT,
+  );
+  for (const kalit of chiqadi) bufferKesh.delete(kalit);
+}
 
 export function bankYoli(papka: string) {
   return asset(`/audio/${papka}/bank.json`);
@@ -89,21 +125,34 @@ async function bufferYukla(
   ctx: BaseAudioContext,
   yol: string,
 ): Promise<AudioBuffer> {
-  let bor = bufferKesh.get(yol);
-  if (!bor) {
-    bor = fetch(yol)
+  const bor = bufferKesh.get(yol);
+  if (bor) {
+    bor.navbat = ++keshNavbati;
+    return bor.buf;
+  }
+
+  const yozuv: KeshYozuvi = {
+    bayt: 0,
+    navbat: ++keshNavbati,
+    buf: fetch(yol)
       .then((r) => {
         if (!r.ok) throw new Error(`namuna yuklanmadi (${r.status}): ${yol}`);
         return r.arrayBuffer();
       })
       .then((b) => ctx.decodeAudioData(b))
+      .then((buf) => {
+        // Dekodlangan hajm — Float32, kanallar soni bo'yicha.
+        yozuv.bayt = buf.length * buf.numberOfChannels * 4;
+        keshniChegarala();
+        return buf;
+      })
       .catch((cause) => {
         bufferKesh.delete(yol);
         throw cause;
-      });
-    bufferKesh.set(yol, bor);
-  }
-  return bor;
+      }),
+  };
+  bufferKesh.set(yol, yozuv);
+  return yozuv.buf;
 }
 
 /* ───────────────────── Effektlar zanjiri ───────────────────── */

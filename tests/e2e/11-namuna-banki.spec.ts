@@ -318,3 +318,80 @@ test.describe("Dvigatel chidamliligi", () => {
     expect(engKop, "ijro to'xtab qolmasligi kerak").toBeGreaterThan(1);
   });
 });
+
+/**
+ * Audio keshining chegarasi.
+ *
+ * Dekodlangan audio siqilmagan holda yotadi: bitta rubob banki
+ * ≈ 41 MB. Chegarasiz keshda uchta cholg'uni aylangan talabada 87 MB
+ * to'planishi o'lchangan — kuchsiz telefonda yorliq yopiladi.
+ *
+ * Test ikkala tomonni ham qo'riqlaydi: kesh **ishlashi** kerak (bitta
+ * sahifada qayta dekodlash bo'lmasin) va **chegaralangan** bo'lishi
+ * kerak (bir necha cholg'udan keyin eskisi chiqarilsin).
+ */
+test.describe("Audio keshi", () => {
+  test("bir sahifada qayta dekodlanmaydi, cholg'ular almashsa chegaralanadi", async ({
+    page,
+  }) => {
+    test.slow();
+    await page.addInitScript(() => {
+      const w = window as unknown as { __d: number };
+      w.__d = 0;
+      const proto = BaseAudioContext.prototype;
+      const orig = proto.decodeAudioData;
+      proto.decodeAudioData = function (ab: ArrayBuffer, ...rest: unknown[]) {
+        const out = orig.call(this, ab, ...(rest as [never, never])) as Promise<AudioBuffer>;
+        void out.then(() => {
+          w.__d += 1;
+        }).catch(() => {});
+        return out;
+      };
+    });
+    const soni = () => page.evaluate(() => (window as unknown as { __d: number }).__d);
+
+    await sessiyaBer(page, TALABA);
+    await page.goto("/asboblar/");
+
+    /** Klient tomonda o'tish — to'liq qayta yuklashda modul holati yo'qoladi. */
+    const och = async (cholgu: string, sel: string) => {
+      await page
+        .locator(`a[href$="/asboblar/${cholgu}"], a[href$="/asboblar/${cholgu}/"]`)
+        .first()
+        .click();
+      await page.waitForURL(new RegExp(`/asboblar/${cholgu}/?$`));
+      await page.locator(sel).first().click();
+      await page.waitForTimeout(7000);
+    };
+    const orqaga = async () => {
+      await page.getByRole("link", { name: "Musiqa asboblari" }).first().click();
+      await page.waitForURL(/\/asboblar\/?$/);
+    };
+
+    const GRIF = '[aria-label="Grif — pardalar"] button';
+    await och("rubob", GRIF);
+    const birinchi = await soni();
+    expect(birinchi, "bank yuklanishi kerak").toBeGreaterThan(20);
+
+    // Bir xil sahifada yana bosish — qayta dekodlash bo'lmasligi kerak.
+    for (let i = 0; i < 5; i += 1) {
+      await page.locator(GRIF).nth(i).click();
+      await page.waitForTimeout(150);
+    }
+    expect(await soni(), "kesh ishlashi kerak").toBe(birinchi);
+
+    await orqaga();
+    await och("dutor", GRIF);
+    await orqaga();
+    await och("doira", '[aria-label="Doira zarblari"] button');
+    await orqaga();
+
+    const uchtadan = await soni();
+    await och("rubob", GRIF);
+    const qaytib = (await soni()) - uchtadan;
+    // Uchta bankdan keyin rubobniki chiqarilgan bo'lishi kerak —
+    // ya'ni qaytganda qaytadan dekodlanadi. Nol bo'lsa, kesh
+    // chegarasiz o'sayotgan bo'ladi.
+    expect(qaytib, "kesh chegarasi ishlamayapti").toBeGreaterThan(0);
+  });
+});

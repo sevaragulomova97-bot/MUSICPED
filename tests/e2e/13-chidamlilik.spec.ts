@@ -1,5 +1,6 @@
+import { readFileSync } from "node:fs";
 import { expect, test, type Page } from "@playwright/test";
-import { ADMIN, OQITUVCHI, sessiyaBer, TALABA } from "./yordamchi";
+import { ADMIN, bazaniTozala, OQITUVCHI, sessiyaBer, TALABA } from "./yordamchi";
 
 /**
  * Nosoz muhit va nosoz ma'lumotda ilovaning xatti-harakati.
@@ -227,5 +228,93 @@ test.describe("Havolalar", () => {
       if (r.status() >= 400) yoq.push(`${h} -> ${r.status()}`);
     }
     expect(yoq.join("\n")).toBe("");
+  });
+});
+
+/**
+ * Dasturni to'liq tamomlagan talabaning ma'lumoti.
+ *
+ * Platforma serversiz: barcha hisoblar brauzerda, har bir sahifa
+ * ochilganda qaytadan bajariladi. Ma'lumot o'sganda sahifa sekinlashsa
+ * yoki eksport bir qismini tushirib qoldirsa, buni faqat shunday
+ * o'lchov ko'rsatadi — bo'sh bazada hamma narsa tez va to'g'ri.
+ */
+async function toliqMalumot(page: Page, userId: string) {
+  return page.evaluate(async (uid) => {
+    const db = await new Promise<IDBDatabase>((res, rej) => {
+      const r = indexedDB.open("musicped");
+      r.onsuccess = () => res(r.result);
+      r.onerror = () => rej(r.error);
+    });
+    const yoz = (nom: string, rows: unknown[]) =>
+      new Promise<void>((res) => {
+        const tx = db.transaction(nom, "readwrite");
+        const st = tx.objectStore(nom);
+        for (const r of rows) st.put(r);
+        tx.oncomplete = () => res();
+        tx.onerror = () => res();
+      });
+    const now = new Date().toISOString();
+    await yoz(
+      "progress",
+      Array.from({ length: 52 }, (_, i) => ({
+        id: `${uid}:dars-${i}`, userId: uid, lessonId: `dars-${i}`,
+        courseSlug: "musiqa-nazariyasi", percent: 100,
+        completedAt: now, updatedAt: now,
+      })),
+    );
+    await yoz(
+      "submissions",
+      Array.from({ length: 52 }, (_, i) => ({
+        id: `sub-${i}`, userId: uid, taskId: `task-${i}`, taskType: "test",
+        area: "nazariya", bloom: "bilish", score: 70 + (i % 30),
+        submittedAt: now, gradedAt: now, answers: { matn: "x".repeat(400) },
+      })),
+    );
+    await yoz(
+      "reflections",
+      Array.from({ length: 100 }, (_, i) => ({
+        id: `${uid}:ctx-${i}:0`, userId: uid, contextId: `ctx-${i}`,
+        question: "Nimani o'rgandingiz?", answer: "y".repeat(300), createdAt: now,
+      })),
+    );
+    db.close();
+  }, userId);
+}
+
+test.describe("To'liq ma'lumot", () => {
+  test("sahifalar sekinlashmaydi va eksport hech narsani tushirib qoldirmaydi", async ({
+    page,
+  }) => {
+    test.slow();
+    await sessiyaBer(page, TALABA);
+    await bazaniTozala(page);
+    await page.goto("/bosh-sahifa/");
+    await page.waitForLoadState("networkidle");
+    await toliqMalumot(page, TALABA.id);
+
+    for (const yol of ["/bosh-sahifa/", "/natijalar/", "/topshiriqlar/", "/yolnalish/"]) {
+      const t0 = Date.now();
+      await page.goto(yol, { waitUntil: "networkidle" });
+      await page
+        .waitForFunction(() => !document.body.innerText.includes("Yuklanmoqda…"), undefined, {
+          timeout: 20_000,
+        })
+        .catch(() => {});
+      const ms = Date.now() - t0;
+      // Chegara keng: maqsad — sekinlashuvni emas, **qotib qolishni**
+      // ushlash (masalan har bir yozuv uchun alohida so'rov).
+      expect(ms, `${yol}: ${ms} ms`).toBeLessThan(8000);
+    }
+
+    await page.goto("/sozlamalar/");
+    const [fayl] = await Promise.all([
+      page.waitForEvent("download"),
+      page.getByRole("button", { name: /eksport qilish/i }).click(),
+    ]);
+    const paket = JSON.parse(readFileSync(await fayl.path(), "utf8"));
+    expect(paket.progress).toHaveLength(52);
+    expect(paket.submissions).toHaveLength(52);
+    expect(paket.reflections).toHaveLength(100);
   });
 });

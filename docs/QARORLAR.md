@@ -1963,3 +1963,29 @@ qilinadi (`SOAT_FARQI`).
 oldinda bo'lsa (maktab kompyuterlarida odatiy hol), foydalanuvchining
 ishi sababsiz yo'qolardi. Kamchilik testlar kun almashganda yiqilgani
 uchun ko'rindi — test sanani qotirib yozgandi.
+
+### Q122. Audio keshi chegaralandi
+
+**Qaror.** Dekodlangan namunalar keshi 48 MB bilan chegaralandi; oshgan
+joyda eng uzoq ishlatilmaganlari chiqariladi (`lib/audio/lru.ts`).
+
+**Sabab.** Kesh modul darajasida edi va **hech qachon tozalanmasdi**.
+Brauzerda o'lchangan: rubob banki 41 MB, dutor 26 MB, doira 4 MB —
+uchta cholg'uni aylanib chiqqan talabada **87 MB** dekodlangan audio
+to'planadi. Siqilgan MP3 9,4 MB bo'lsa ham, xotirada u Float32 bo'lib
+yotadi. Kuchsiz telefonda bu yorliqning yopilishiga olib keladi, va
+platforma aynan talabalarning shaxsiy qurilmalari uchun.
+
+**Qiymat tanlovi.** 48 MB — bitta to'liq bankni (rubob: 81 namuna,
+41 MB) ushlab turishga yetadi, ya'ni bitta cholg'u bilan ishlayotganda
+qayta dekodlash bo'lmaydi. Boshqa cholg'uga o'tilganda eskisi
+chiqariladi va qaytganda qaytadan dekodlanadi (fayl brauzer keshida
+qolgani uchun tarmoq kerak emas).
+
+**Chalinayotgan ovozlar to'xtamaydi.** Chiqarish faqat `Map` dan
+o'chiradi; jaranglab turgan ovoz `AudioBufferSourceNode` orqali o'z
+havolasini ushlab turadi.
+
+**Qoida sof funksiyada.** `chiqariladiganlar()` brauzersiz
+tekshiriladi (6 ta birlik testi); e2e esa ikkala tomonni qo'riqlaydi —
+kesh ishlashi ham, chegaralanishi ham.
