@@ -15,7 +15,15 @@ import {
  * yoziladi, shuning uchun uni yo'qotish eng og'ir kamchilik bo'lardi.
  */
 
-const HOZIR = new Date("2026-10-22T12:00:00Z");
+/**
+ * Sinov vaqti **doim hozirgi payt** bo'ladi.
+ *
+ * Ilgari bu yerda qat'iy sana turardi va saqlash `new Date()` ni
+ * ishlatardi: kun almashgani bilanoq qoralama «kelajakdan» kelgan
+ * bo'lib ko'rinib, testlar yiqildi. Qat'iy sana faqat eskirishni
+ * tekshiradigan joylarda, undan hisoblab olinadi.
+ */
+const HOZIR = new Date();
 
 function xotiraSaqlash() {
   const map = new Map<string, string>();

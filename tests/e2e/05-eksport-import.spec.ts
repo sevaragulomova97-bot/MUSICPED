@@ -92,3 +92,79 @@ test("natijalar o'qituvchiga boradi, baho talabaga qaytadi", async ({ page }) =>
   await expect(page.getByText(/o'qituvchi izohlari/i)).toBeVisible({ timeout: 10_000 });
   await expect(page.getByText(/shakl to'g'ri aniqlangan/i)).toBeVisible();
 });
+
+/**
+ * Import takroriy bajarilganda dublikat yaratmasligi kerak.
+ *
+ * Sozlamalar sahifasi buni ochiq va'da qiladi («bir xil faylni ikki
+ * marta yuklash dublikat yaratmaydi»), va bu real holat: talaba
+ * zaxira nusxani qayta yuklaydi yoki ikki marta bosib yuboradi.
+ * Dublikat paydo bo'lsa, natijalar sahifasidagi barcha hisoblar
+ * buziladi va buni payqash qiyin.
+ */
+test("bir xil faylni ikki marta import qilish dublikat yaratmaydi", async ({
+  page,
+}) => {
+  test.slow();
+  await sessiyaBer(page, TALABA);
+  await bazaniTozala(page);
+
+  // Bir nechta yozuv hosil qilamiz: topshiriq va dars progressi.
+  await page.goto("/topshiriqlar/musiqa-asarlari-tahlili/");
+  await page
+    .getByRole("textbox")
+    .first()
+    .fill(
+      "Asar uch qismli shaklda; o'rta qism parallel tonallikda, " +
+        "repriza asosiy mavzuni qaytaradi.",
+    );
+  await page.getByRole("button", { name: /^topshirish$/i }).click();
+  await expect(page.getByText(/baholashini kutmoqda/i)).toBeVisible({ timeout: 10_000 });
+
+  await page.goto("/sozlamalar/");
+  const [fayl] = await Promise.all([
+    page.waitForEvent("download"),
+    page.getByRole("button", { name: /eksport qilish/i }).click(),
+  ]);
+  const yol = await fayl.path();
+
+  /** Bazadagi yozuvlar soni. */
+  const sanoq = () =>
+    page.evaluate(async () => {
+      const ochil = () =>
+        new Promise<IDBDatabase>((res, rej) => {
+          const r = indexedDB.open("musicped");
+          r.onsuccess = () => res(r.result);
+          r.onerror = () => rej(r.error);
+        });
+      const db = await ochil();
+      const sana = (nom: string) =>
+        new Promise<number>((res) => {
+          const r = db.transaction(nom).objectStore(nom).count();
+          r.onsuccess = () => res(r.result);
+          r.onerror = () => res(-1);
+        });
+      const natija = {
+        submissions: await sana("submissions"),
+        progress: await sana("progress"),
+        diagnostics: await sana("diagnostics"),
+      };
+      db.close();
+      return natija;
+    });
+
+  const oldin = await sanoq();
+  expect(oldin.submissions).toBeGreaterThan(0);
+
+  // Ikki marta ketma-ket import qilamiz.
+  for (let i = 0; i < 2; i += 1) {
+    await page.setInputFiles("#import-fayl", yol);
+    await expect(page.getByText(/import qilindi|qo'shildi|yangilandi/i).first()).toBeVisible({
+      timeout: 15_000,
+    });
+    await page.waitForTimeout(500);
+  }
+
+  const keyin = await sanoq();
+  expect(keyin, JSON.stringify({ oldin, keyin })).toEqual(oldin);
+});

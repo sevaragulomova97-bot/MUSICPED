@@ -16,6 +16,17 @@
 /** Qoralama shuncha soatdan keyin eskirgan hisoblanadi. */
 export const ESKIRISH_SOATI = 24;
 
+/**
+ * Soat farqiga chidamlilik.
+ *
+ * Qurilmaning soati biroz oldinda bo'lsa, qoralama «kelajakdan» kelgan
+ * bo'lib ko'rinadi. Buni qat'iy rad etish foydalanuvchining ishini
+ * sababsiz yo'qotardi — maktab kompyuterlarida soat tez-tez xato
+ * bo'ladi. Shuning uchun bir soatgacha oldinga ketgan vaqt qabul
+ * qilinadi.
+ */
+export const SOAT_FARQI = 1;
+
 export type Qoralama<T> = {
   qiymat: T;
   /** ISO vaqt */
@@ -65,7 +76,9 @@ export function qoralamaniOqi<T>(
     const parsed = JSON.parse(raw) as Partial<Qoralama<unknown>>;
     if (!parsed || typeof parsed.updatedAt !== "string") return null;
     const soat = (now.getTime() - new Date(parsed.updatedAt).getTime()) / 3_600_000;
-    if (!Number.isFinite(soat) || soat < 0 || soat > ESKIRISH_SOATI) return null;
+    if (!Number.isFinite(soat) || soat < -SOAT_FARQI || soat > ESKIRISH_SOATI) {
+      return null;
+    }
     return tekshir(parsed.qiymat) ? parsed.qiymat : null;
   } catch {
     return null;

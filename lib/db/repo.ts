@@ -605,6 +605,14 @@ export type ImportReport = {
  * Yozuvlar identifikatori fayl identifikatoridan qayta quriladi, shuning
  * uchun bir xil faylni ikki marta import qilish dublikat hosil qilmaydi
  * (idempotent).
+ *
+ * **O'z faylini qaytarish ham dublikat bermaydi.** Ilgari import
+ * identifikatorni doim `${userId}:${id}` shaklida qurardi, mahalliy
+ * yozuv esa `newId()` bilan yaratilardi — natijada talaba o'z zaxira
+ * nusxasini o'sha profilga yuklasa, har bir ish **ikki nusxada**
+ * qolardi va natijalar sahifasidagi hisoblar buzilardi. Endi avval
+ * fayldagi identifikator bo'yicha mavjud yozuv qidiriladi va topilsa
+ * o'sha yangilanadi.
  */
 export async function importUserData(
   userId: string,
@@ -613,15 +621,32 @@ export async function importUserData(
   const database = db();
   const timestamp = now();
 
-  const diagnostics: StoredDiagnostic[] = bundle.diagnostics.map((d) => ({
-    id: `${userId}:${d.id}`,
+  /**
+   * Yozuv qaysi identifikator ostida saqlanishini aniqlaydi.
+   *
+   * Fayldagi identifikator shu foydalanuvchining mavjud yozuviga
+   * tegishli bo'lsa — o'sha yozuv yangilanadi; aks holda yangi,
+   * nomlar to'qnashmaydigan identifikator quriladi.
+   */
+  async function nishonId<T extends { userId: string }>(
+    jadval: { get: (id: string) => Promise<T | undefined> },
+    xomId: string,
+  ) {
+    const mavjud = await jadval.get(xomId);
+    return mavjud?.userId === userId ? xomId : `${userId}:${xomId}`;
+  }
+
+  const diagnostics: StoredDiagnostic[] = await Promise.all(
+    bundle.diagnostics.map(async (d) => ({
+    id: await nishonId(database.diagnostics, d.id),
     userId,
     kind: d.kind,
     scores: d.scores,
     profileType: detectProfileType(d.scores),
     overall: d.overall || overallScore(d.scores),
     completedAt: d.completedAt,
-  }));
+    })),
+  );
 
   const progress: StoredProgress[] = bundle.progress.map((p) => ({
     id: `${userId}:${p.lessonId}`,
@@ -633,8 +658,9 @@ export async function importUserData(
     updatedAt: timestamp,
   }));
 
-  const submissions: StoredSubmission[] = bundle.submissions.map((s) => ({
-    id: `${userId}:${s.id}`,
+  const submissions: StoredSubmission[] = await Promise.all(
+    bundle.submissions.map(async (s) => ({
+    id: await nishonId(database.submissions, s.id),
     userId,
     taskId: s.taskId,
     taskType: s.taskType as StoredSubmission["taskType"],
@@ -644,7 +670,8 @@ export async function importUserData(
     teacherComment: s.teacherComment,
     submittedAt: s.submittedAt,
     gradedAt: s.gradedAt,
-  }));
+    })),
+  );
 
   const reflections: StoredReflection[] = bundle.reflections.map((r, i) => ({
     id: `${userId}:${r.contextId}:${i}`,
@@ -656,8 +683,9 @@ export async function importUserData(
   }));
 
   // Portfolio yozuvlari fayl mazmunisiz keladi — ro'yxat tiklanadi, fayllar yo'q.
-  const portfolio: StoredPortfolioItem[] = bundle.portfolio.map((p) => ({
-    id: `${userId}:${p.id}`,
+  const portfolio: StoredPortfolioItem[] = await Promise.all(
+    bundle.portfolio.map(async (p) => ({
+    id: await nishonId(database.portfolio, p.id),
     userId,
     category: p.category as StoredPortfolioItem["category"],
     title: p.title,
@@ -665,7 +693,8 @@ export async function importUserData(
     fileName: p.fileName,
     sizeBytes: p.sizeBytes,
     createdAt: p.createdAt,
-  }));
+    })),
+  );
 
   await database.transaction(
     "rw",

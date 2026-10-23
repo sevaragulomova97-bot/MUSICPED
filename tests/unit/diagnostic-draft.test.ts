@@ -17,7 +17,15 @@ import {
  * ham shu yerda tekshiriladi.
  */
 
-const HOZIR = new Date("2026-10-22T12:00:00Z");
+/**
+ * Sinov vaqti **doim hozirgi payt** bo'ladi.
+ *
+ * Ilgari bu yerda qat'iy sana turardi va saqlash `new Date()` ni
+ * ishlatardi: kun almashgani bilanoq qoralama «kelajakdan» kelgan
+ * bo'lib ko'rinib, testlar yiqildi. Qat'iy sana faqat eskirishni
+ * tekshiradigan joylarda, undan hisoblab olinadi.
+ */
+const HOZIR = new Date();
 
 function soatOldin(n: number) {
   return new Date(HOZIR.getTime() - n * 3_600_000).toISOString();
@@ -70,6 +78,26 @@ describe("eskirish", () => {
       JSON.stringify({ qiymat: { answers: { "q-1": "a" }, step: 0 }, updatedAt: soatOldin(ESKIRISH_SOATI - 1) }),
     );
     expect(qoralamaniOqi("u1", "boshlangich", HOZIR)).not.toBeNull();
+  });
+
+  it("qurilma soati biroz oldinda bo'lsa ham tiklanadi", () => {
+    // Maktab kompyuterlarida soat tez-tez xato bo'ladi; yarim soatlik
+    // farq uchun foydalanuvchining ishini yo'qotish asossiz.
+    const kelajak = new Date(HOZIR.getTime() + 30 * 60_000).toISOString();
+    localStorage.setItem(
+      kalit("u1", "boshlangich"),
+      JSON.stringify({ qiymat: { answers: { "q-1": "a" }, step: 0 }, updatedAt: kelajak }),
+    );
+    expect(qoralamaniOqi("u1", "boshlangich", HOZIR)).not.toBeNull();
+  });
+
+  it("juda uzoq kelajakdagi vaqt rad etiladi", () => {
+    const uzoq = new Date(HOZIR.getTime() + 5 * 3_600_000).toISOString();
+    localStorage.setItem(
+      kalit("u1", "boshlangich"),
+      JSON.stringify({ qiymat: { answers: { "q-1": "a" }, step: 0 }, updatedAt: uzoq }),
+    );
+    expect(qoralamaniOqi("u1", "boshlangich", HOZIR)).toBeNull();
   });
 
   it("eskirgani tiklanmaydi", () => {

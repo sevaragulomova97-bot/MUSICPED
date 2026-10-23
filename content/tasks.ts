@@ -1296,15 +1296,20 @@ export const TOPSHIRIQLAR: Task[] = [
         area: "metodika",
         bloom: "bilish",
         kind: "multiple",
-        prompt: "Musiqa darsidagi faoliyat turlarini tanlang.",
+        prompt:
+          "Musiqa darsining o'quv faoliyat turlarini tanlang (ro'yxatda ortiqchasi ham bor).",
         options: [
           { id: "a", text: "Tinglash va musiqa haqida gapirish" },
           { id: "b", text: "Kuylash" },
           { id: "c", text: "Ritmik va harakatli mashqlar" },
           { id: "d", text: "Cholg'uda chalish" },
           { id: "e", text: "Ijodiy faoliyat" },
+          { id: "f", text: "Davomatni belgilash" },
+          { id: "g", text: "Sinfni tozalash" },
         ],
         correctIds: ["a", "b", "c", "d", "e"],
+        explanation:
+          "Davomat va tozalik — tashkiliy ishlar; ular musiqiy o'quv faoliyati emas.",
       },
       {
         id: "dt6",

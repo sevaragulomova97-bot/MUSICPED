@@ -416,14 +416,19 @@ export const METODIKA: Course = {
                   area: "metodika",
                   bloom: "bilish",
                   kind: "multiple",
-                  prompt: "Musiqa darsidagi faoliyat turlarini tanlang.",
+                  prompt:
+                    "Musiqa darsining o'quv faoliyat turlarini tanlang (hammasi emas).",
                   options: [
                     { id: "a", text: "Tinglash" },
                     { id: "b", text: "Kuylash" },
                     { id: "c", text: "Ritmik mashqlar" },
                     { id: "d", text: "Ijodiy faoliyat" },
+                    { id: "e", text: "Sinf jurnalini to'ldirish" },
+                    { id: "f", text: "Ota-onalar yig'ilishini o'tkazish" },
                   ],
                   correctIds: ["a", "b", "c", "d"],
+                  explanation:
+                    "Jurnal to'ldirish va ota-onalar yig'ilishi — o'qituvchining tashkiliy ishi, dars faoliyati emas.",
                 },
               ],
             },
@@ -1499,14 +1504,19 @@ export const METODIKA: Course = {
                   area: "metodika",
                   bloom: "tahlil",
                   kind: "multiple",
-                  prompt: "Farqlashtirishning to'rt yo'li qaysilar?",
+                  prompt:
+                    "K. Tomlinson bo'yicha farqlashtirishning to'rt yo'li qaysilar? (ro'yxatda ortiqchasi ham bor)",
                   options: [
                     { id: "a", text: "Mazmun" },
                     { id: "b", text: "Jarayon" },
                     { id: "c", text: "Mahsulot" },
                     { id: "d", text: "Muhit" },
+                    { id: "e", text: "Dars davomiyligi" },
+                    { id: "f", text: "Sinf hajmi" },
                   ],
                   correctIds: ["a", "b", "c", "d"],
+                  explanation:
+                    "Dars davomiyligi va sinf hajmi — tashkiliy shart-sharoit; farqlashtirish ular orqali emas, mazmun, jarayon, mahsulot va muhit orqali amalga oshiriladi.",
                 },
                 {
                   id: "met9-t6",

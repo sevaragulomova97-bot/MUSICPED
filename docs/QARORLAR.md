@@ -1903,3 +1903,63 @@ yo'qolardi.
 o'qiladi (`useState` ning dangasa boshlang'ich qiymati), diagnostikada
 esa turni aniqlaydigan joyda: ikkalasida ham effekt ichida holat
 o'rnatilmaydi, chunki bu kaskadli render berardi.
+
+### Q118. Kontentning ichki yaxlitligi tekshiriladi
+
+**Qaror.** `tests/unit/content-yaxlitlik.test.ts` kontentning o'zini
+tekshiradi: takrorlangan identifikatorlar, bo'sh bo'limlar, javobi
+yo'q savollar, nosoz nota yozuvi, rubrikasiz topshiriqlar.
+
+**Nima topildi.** Uchta savolda **barcha variantlar to'g'ri** edi
+(`met2-t4`, `met9-t5`, `dt5`). Bunday savol hech narsani o'lchamaydi:
+har bir talaba 100% oladi va bilim farqi ko'rinmaydi. Uchalasiga ham
+chalg'ituvchi variantlar qo'shildi (tashkiliy ishlar, shart-sharoit)
+va izoh yozildi.
+
+Bunday xato jim kechadi — sahifa ochiladi, test ham «ishlaydi»,
+faqat natija ma'nosiz bo'ladi. 52 dars va 52 topshiriqni qo'lda
+tekshirib bo'lmaydi.
+
+### Q119. Import o'z faylini qaytarganda dublikat yaratardi
+
+**Qaror.** `importUserData` endi avval fayldagi identifikator bo'yicha
+mavjud yozuvni qidiradi va topilsa o'shani yangilaydi.
+
+**Sabab.** Import identifikatorni doim `${userId}:${id}` shaklida
+qurardi, mahalliy yozuv esa `newId()` bilan yaratilardi. Natijada
+talaba **o'z zaxira nusxasini o'sha profilga** yuklasa, har bir ish
+ikki nusxada qolardi: natijalar sahifasidagi o'rtacha ball va
+diagrammalar buzilardi, o'qituvchi ham dublikat ko'rardi.
+
+Sozlamalar sahifasi «bir xil faylni ikki marta yuklash dublikat
+yaratmaydi» deb va'da berardi — va'da yarim to'g'ri edi: ikki import
+orasida dublikat yo'q edi, lekin import mahalliy yozuvni takrorlardi.
+
+E2e test endi bazadagi yozuvlar sonini **import oldidan va keyin**
+sanab solishtiradi.
+
+### Q120. Next.js xavfsizlik yangilanishi (16.4.0 → 16.4.3)
+
+**Qaror.** Next.js patch darajasida yangilandi.
+
+**Sabab.** `npm audit` 16.4.0 da **kritik** darajadagi ogohlantirish
+ko'rsatdi (Image Optimization API da autentifikatsiyasiz masofaviy kod
+ijrosi; Server Actions da xizmatdan voz kechish).
+
+**Haqiqiy xavf darajasi.** Ikkala zaiflik ham **serverli** imkoniyatga
+tegishli: bu loyiha `output: "export"` bilan to'liq statik qilib
+chiqariladi, Image Optimization API ham, Server Actions ham
+ishlatilmaydi (`images: { unoptimized: true }`). Ya'ni joylangan
+saytda bu kodlar umuman yo'q. Shunga qaramay yangilandi: kritik
+ogohlantirishni ochiq qoldirish — amaliyotga mo'ljallangan loyihada
+noto'g'ri, patch esa xavfsiz va butun test to'plami bilan tekshirildi.
+
+### Q121. Qoralama qurilma soatining farqiga chidaydi
+
+**Qaror.** Qoralama bir soatgacha «kelajakdan» kelgan bo'lsa ham qabul
+qilinadi (`SOAT_FARQI`).
+
+**Sabab.** Avval `soat < 0` qat'iy rad etilardi. Qurilma soati biroz
+oldinda bo'lsa (maktab kompyuterlarida odatiy hol), foydalanuvchining
+ishi sababsiz yo'qolardi. Kamchilik testlar kun almashganda yiqilgani
+uchun ko'rindi — test sanani qotirib yozgandi.
