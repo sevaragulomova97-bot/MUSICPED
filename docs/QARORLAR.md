@@ -2087,3 +2087,69 @@ deyilsa, pastida 307 ta fayl, 9,4 MB va uch xil bank turi
 tasvirlanardi. Mualliflik va litsenziya hujjati o'zi bilan ziddiyatda
 bo'lmasligi kerak — ayniqsa shu loyihada, bu yerda sintetik tovushni
 haqiqiy yozuv deb ko'rsatmaslik asosiy shart.
+
+### Q129. Saqlash yiqilganda sabab ko'rsatiladi
+
+**Qaror.** Dars refleksiyasi, mentorlik kuzatuv varaqasi va profil
+formasi saqlash xatosini tutadi va foydalanuvchiga ko'rsatadi
+(`role="alert"`), tugma esa yana bosiladigan holatga qaytadi.
+
+**Sabab.** Uchala joyda xato **jim** kechardi:
+
+* dars refleksiyasi xatoni faqat `console.error` ga yozardi — talaba
+  «Saqlandi» ni kutardi, dars esa yakunlanmagan bo'lib qolardi;
+* mentorlik varaqasida `try` umuman yo'q edi — `void saqla()` rad
+  etilgan promise'ni yutib yuborardi, o'qituvchi qo'lda to'ldirgan
+  kuzatuv varaqasi esa hech qayerga yozilmasdi;
+* profil formasida tugma «Saqlanmoqda…» da muzlab qolardi — bu
+  foydalanuvchi uchun ilova osilib qolgani bilan bir xil.
+
+Serversiz platformada yozuv yiqilishi kamdan-kam, lekin haqiqiy hol:
+joy tugashi, shaxsiy rejim, korporativ siyosat. Boshqa saqlash
+joylarida (diagnostika, topshiriq, portfolio, cholg'u, eksport) bu
+allaqachon to'g'ri ishlangan edi — bu uchtasi chetda qolgan.
+
+**Tekshirildi.** `tests/e2e/16-saqlash-xatosi.spec.ts` IndexedDB ning
+`put` chaqiruvini kerakli jadvallarda ataylab xatoga uchratadi va har
+uchala joyda sabab ko'rinishini talab qiladi; dars holatida yozilgan
+matn yo'qolmasligi va dars yakunlanmagan bo'lib qolishi ham
+tekshiriladi. Mutatsiya bilan sinaldi: xato xabari olib tashlanganda
+test yiqildi.
+
+### Q130. Joylash to'xtab qolgan edi: `LayoutProps` build tipiga tayangan
+
+**Qaror.** `app/layout.tsx` da Next.js o'zi hosil qiladigan global
+`LayoutProps<"/">` o'rniga oddiy prop tipi yoziladi. Qoida birlik
+testi bilan qo'riqlanadi (`tests/unit/tiplar.test.ts`).
+
+**Sabab.** Bu **jim kechgan eng qimmat kamchilik** bo'ldi: GitHub
+Actions dagi «Qurish» ishi ketma-ket beshta pushda yiqilgan
+(`app/layout.tsx(41,50): error TS2304: Cannot find name
+'LayoutProps'`), ya'ni **sayt yangilanmagan**. Ish tartibi shunday:
+tiplarni tekshirish → lint → testlar → build. Birinchi qadam
+yiqilgach qolgani o'tkazib yuborilgan va «Joylash» umuman
+bajarilmagan.
+
+Nega mahalliy tekshiruvda ko'rinmadi: `LayoutProps` `.next/types/`
+ga **build paytida** yoziladi va `tsconfig.json` shu papkani
+`include` ga qo'shadi. Mahalliy mashinada `.next` oldingi build'dan
+turgani uchun `tsc --noEmit` muammosiz o'tardi; toza checkout da esa
+bu fayllar yo'q. Tekshirildi: `.next` vaqtincha olib qo'yilganda xato
+aynan CI dagidek takrorlandi, tuzatishdan keyin esa `.next` siz ham
+o'tadi.
+
+**Xulosa.** Ilova kodi faqat o'zi yozgan yoki paketdan kelgan tiplarga
+tayanishi kerak — build natijasidan kelgan tipga emas. Test
+`LayoutProps`, `PageProps` va `RouteContext` ning tip o'rnida
+ishlatilishini taqiqlaydi.
+
+### Q131. Playwright artefaktlari lintdan chiqarildi
+
+**Qaror.** `test-results/**` va `playwright-report/**` eslint
+e'tiborsizlari ro'yxatiga qo'shildi.
+
+**Sabab.** Yiqilgan e2e testdan keyin `test-results/` ichida iz
+(trace) qoladi va unda saytning o'z JS to'plami yotadi. Shundan keyin
+`npm run lint` minglab ogohlantirish berib, haqiqiy xabarlarni ko'mib
+yuborardi. CI da bu ko'rinmaydi, chunki u lintni e2e dan oldin
+yuritadi.

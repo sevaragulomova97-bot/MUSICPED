@@ -74,6 +74,10 @@ function DarsKontent({
   const [reflectionText, setReflectionText] = React.useState<string[]>([]);
   const [saving, setSaving] = React.useState(false);
   const [saved, setSaved] = React.useState(false);
+  // Saqlash muvaffaqiyatsiz tugaganda xato **ko'rinishi** kerak. Avval u
+  // faqat konsolga yozilardi: talaba «Saqlandi» ni kutib turardi, dars
+  // esa yakunlanmagan bo'lib qolardi va buni hech narsa aytmasdi.
+  const [saveError, setSaveError] = React.useState<string | null>(null);
 
   const piano = useInstrument("pianino");
   const [activeNote, setActiveNote] = React.useState<number | null>(null);
@@ -121,6 +125,7 @@ function DarsKontent({
   async function submitReflection() {
     if (!userId) return;
     setSaving(true);
+    setSaveError(null);
     try {
       await saveReflections(
         userId,
@@ -131,6 +136,9 @@ function DarsKontent({
       setSaved(true);
     } catch (cause) {
       console.error(cause);
+      setSaveError(
+        "Saqlab bo'lmadi — brauzer xotirasi ishlamayapti. Yozganingiz shu sahifada turibdi; boshqa brauzerda yoki oddiy rejimda qayta urinib ko'ring.",
+      );
     } finally {
       setSaving(false);
     }
@@ -437,6 +445,11 @@ function DarsKontent({
                     <Badge variant="success">Dars yakunlandi</Badge>
                   )}
                 </div>
+                {saveError && (
+                  <p role="alert" className="text-sm text-danger-ink">
+                    {saveError}
+                  </p>
+                )}
               </CardContent>
             </Card>
           )}

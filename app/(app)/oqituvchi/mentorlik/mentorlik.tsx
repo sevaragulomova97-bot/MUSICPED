@@ -286,22 +286,36 @@ function VaraqaForm({
   );
   const [izoh, setIzoh] = React.useState(mavjud?.comment ?? "");
   const [saqlandi, setSaqlandi] = React.useState(false);
+  const [band, setBand] = React.useState(false);
+  // Kuzatuv varaqasi — qo'lda to'ldirilgan ish. Saqlash yiqilsa, buni aytish
+  // shart: aks holda o'qituvchi varaqa yozilgan deb o'ylab sahifani yopadi va
+  // kuzatuv yo'qoladi. Ilgari bu yerda `try` umuman yo'q edi.
+  const [xato, setXato] = React.useState<string | null>(null);
 
   const jami = Object.values(ballar).reduce((a, b) => a + b, 0);
   const max = stageMax(stage);
   const foiz = Math.round((jami / max) * 100);
 
   async function saqla() {
-    await saveMentorship({
-      ownerId,
-      studentId,
-      studentName,
-      stageId: stage.id,
-      scores: ballar,
-      comment: izoh.trim() || undefined,
-    });
-    setSaqlandi(true);
-    window.setTimeout(() => setSaqlandi(false), 2500);
+    setBand(true);
+    setXato(null);
+    try {
+      await saveMentorship({
+        ownerId,
+        studentId,
+        studentName,
+        stageId: stage.id,
+        scores: ballar,
+        comment: izoh.trim() || undefined,
+      });
+      setSaqlandi(true);
+      window.setTimeout(() => setSaqlandi(false), 2500);
+    } catch (sabab) {
+      console.error(sabab);
+      setXato("Saqlab bo'lmadi — brauzer xotirasi ishlamayapti. Varaqa shu sahifada turibdi; qayta urinib ko'ring.");
+    } finally {
+      setBand(false);
+    }
   }
 
   return (
@@ -368,12 +382,21 @@ function VaraqaForm({
         />
       </label>
 
-      <div className="flex items-center gap-3">
-        <Button onClick={() => void saqla()}>Varaqani saqlash</Button>
-        {saqlandi && (
-          <span className="text-sm text-success-ink" role="status">
-            Saqlandi
-          </span>
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-3">
+          <Button onClick={() => void saqla()} disabled={band}>
+            {band ? "Saqlanmoqda…" : "Varaqani saqlash"}
+          </Button>
+          {saqlandi && (
+            <span className="text-sm text-success-ink" role="status">
+              Saqlandi
+            </span>
+          )}
+        </div>
+        {xato && (
+          <p role="alert" className="text-sm text-danger-ink">
+            {xato}
+          </p>
         )}
       </div>
     </div>

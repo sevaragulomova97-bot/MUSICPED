@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Playwright'ning yiqilgan testdan qoldiradigan artefaktlari:
+    // iz (trace) ichida saytning o'z JS'i yotadi va uni tekshirish
+    // minglab ogohlantirish beradi. Bu kod emas — hisobot.
+    "test-results/**",
+    "playwright-report/**",
   ]),
 ]);
 

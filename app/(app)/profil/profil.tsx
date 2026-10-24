@@ -244,23 +244,33 @@ function ProfilForm({
 }) {
   const [qiymat, setQiymat] = React.useState<FormProfile>(current);
   const [holat, setHolat] = React.useState<"tayyor" | "saqlanmoqda" | "saqlandi">("tayyor");
+  // Saqlash yiqilsa tugma «Saqlanmoqda…» da muzlab qolardi va sabab
+  // aytilmasdi — foydalanuvchi uchun bu ilova osilib qolgani bilan bir xil.
+  const [xato, setXato] = React.useState<string | null>(null);
 
   async function saqla(event: React.FormEvent) {
     event.preventDefault();
     if (!qiymat.fullName.trim()) return;
     setHolat("saqlanmoqda");
-    await upsertProfile({
-      id: qiymat.id,
-      fullName: qiymat.fullName.trim(),
-      role: qiymat.role,
-      group: qiymat.group?.trim() || undefined,
-      direction: qiymat.direction?.trim() || undefined,
-      startedAt: qiymat.startedAt,
-      experimentGroup: qiymat.experimentGroup,
-    });
-    onSaved(qiymat);
-    setHolat("saqlandi");
-    window.setTimeout(() => setHolat("tayyor"), 2500);
+    setXato(null);
+    try {
+      await upsertProfile({
+        id: qiymat.id,
+        fullName: qiymat.fullName.trim(),
+        role: qiymat.role,
+        group: qiymat.group?.trim() || undefined,
+        direction: qiymat.direction?.trim() || undefined,
+        startedAt: qiymat.startedAt,
+        experimentGroup: qiymat.experimentGroup,
+      });
+      onSaved(qiymat);
+      setHolat("saqlandi");
+      window.setTimeout(() => setHolat("tayyor"), 2500);
+    } catch (sabab) {
+      console.error(sabab);
+      setHolat("tayyor");
+      setXato("Saqlab bo'lmadi — brauzer xotirasi ishlamayapti.");
+    }
   }
 
   return (
@@ -339,6 +349,11 @@ function ProfilForm({
               </span>
             )}
           </div>
+          {xato && (
+            <p role="alert" className="text-sm text-danger-ink">
+              {xato}
+            </p>
+          )}
         </form>
       </CardContent>
     </Card>

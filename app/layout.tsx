@@ -38,7 +38,19 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+/*
+  Prop tipi qo'lda yoziladi. Avval Next.js o'zi hosil qiladigan global
+  `LayoutProps<"/">` ishlatilardi — u `.next/types/` ga build paytida
+  yoziladi. Mahalliy mashinada `.next` papkasi turgani uchun
+  `tsc --noEmit` o'tib ketardi, toza checkout da esa yiqilardi va
+  **joylash to'xtab qolardi** (CI da tiplarni tekshirish build dan
+  oldin yuriladi). Oddiy tip hech narsa yo'qotmaydi.
+*/
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="uz"
