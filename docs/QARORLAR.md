@@ -2153,3 +2153,18 @@ e'tiborsizlari ro'yxatiga qo'shildi.
 `npm run lint` minglab ogohlantirish berib, haqiqiy xabarlarni ko'mib
 yuborardi. CI da bu ko'rinmaydi, chunki u lintni e2e dan oldin
 yuritadi.
+
+### Q132. Talaba qo'llanmasi joriy holatga keltirildi
+
+**Qaror.** Qo'llanmaga uchta narsa qo'shildi: kurs sahifasi, yarim
+qolgan ishning avtomatik saqlanishi va bildirishnomalar. Tembr
+tanlovi tavsifi ham joriy holatga keltirildi.
+
+**Sabab.** Qo'llanma ilovaning ichida (`/qollanma/`) va foydalanuvchi
+uchun yagona yo'riqnoma. Keyin qo'shilgan imkoniyatlar unda
+yo'q edi: talaba qo'ng'iroq nimaligi, yarim qolgan javoblari
+saqlanishini va kurs sahifasi borligini bilmasdi. Tembr haqida esa
+«bir nechta variantdan quloqqa eng yaqinini tanlang» deb turardi —
+endi variantlar ikkita va har birining kelib chiqishi (haqiqiy yozuv /
+qarindosh cholg'u yozuvi / fizik model) ochiq yoziladi; qo'llanma ham
+shuni aytadi.
