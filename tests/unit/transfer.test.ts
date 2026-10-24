@@ -21,7 +21,7 @@ const TOLIQ: TransferBundle = {
   exportedAt: "2026-05-20T10:00:00.000Z",
   profile: {
     id: "talaba-01",
-    fullName: "Sevaraxon Egamnazarova",
+    fullName: "Shahnoza Rahimova",
     role: "TALABA",
     group: "MT-24",
     experimentGroup: "tajriba",
@@ -59,7 +59,7 @@ describe("eksport faylini o'qish", () => {
     if (!r.ok) return;
     expect(r.value.kind).toBe("natijalar");
     if (r.value.kind !== "natijalar") return;
-    expect(r.value.profile.fullName).toBe("Sevaraxon Egamnazarova");
+    expect(r.value.profile.fullName).toBe("Shahnoza Rahimova");
     expect(r.value.diagnostics).toHaveLength(2);
     expect(r.value.submissions).toHaveLength(2);
   });
@@ -170,7 +170,7 @@ describe("baholar faylini o'qish", () => {
     issuedAt: "2026-05-21T10:00:00.000Z",
     teacherName: "D. Yo'ldosheva",
     studentId: "talaba-01",
-    studentName: "Sevaraxon Egamnazarova",
+    studentName: "Shahnoza Rahimova",
     grades: [
       { submissionId: "s2", taskId: "dars-ishlanmasi", score: 82, comment: "Yaxshi tuzilgan", gradedAt: "2026-05-21T10:00:00.000Z" },
     ],
@@ -212,14 +212,14 @@ describe("baholar faylini o'qish", () => {
 describe("fayl haqida qisqa ma'lumot", () => {
   it("natijalar faylini sanab beradi", () => {
     const s = summarizeBundle(TOLIQ);
-    expect(s.title).toBe("Sevaraxon Egamnazarova");
+    expect(s.title).toBe("Shahnoza Rahimova");
     expect(s.lines.join(" ")).toContain("2 ta diagnostika");
     expect(s.lines.join(" ")).toContain("1 ta yakunlangan dars");
   });
 
   it("fayl nomi lotin harf, raqam va chiziqchadan iborat", () => {
     const nom = bundleFileName(TOLIQ);
-    expect(nom).toBe("natijalar-sevaraxon-egamnazarova-2026-05-20.json");
+    expect(nom).toBe("natijalar-shahnoza-rahimova-2026-05-20.json");
     expect(nom).toMatch(/^[a-z0-9.-]+$/);
   });
 

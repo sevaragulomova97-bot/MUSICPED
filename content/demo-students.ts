@@ -29,7 +29,7 @@ function mulberry32(seed: number) {
 }
 
 const ISMLAR = [
-  "Sevaraxon Egamnazarova",
+  "Shahnoza Rahimova",
   "Aziza Karimova",
   "Bobomurod Sattorov",
   "Dilnoza Yo'ldosheva",

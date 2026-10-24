@@ -2168,3 +2168,15 @@ saqlanishini va kurs sahifasi borligini bilmasdi. Tembr haqida esa
 endi variantlar ikkita va har birining kelib chiqishi (haqiqiy yozuv /
 qarindosh cholg'u yozuvi / fizik model) ochiq yoziladi; qo'llanma ham
 shuni aytadi.
+
+### Q133. Namunaviy ro'yxatdagi haqiqiy ism almashtirildi
+
+**Qaror.** Demo talabalar ro'yxatidagi «Sevaraxon Egamnazarova» o'rniga
+o'ylab topilgan ism yozildi.
+
+**Sabab.** Fayl boshidagi izohda «ismlar haqiqiy shaxslarga tegishli
+emas» deb yozilgan, lekin ro'yxatdagi birinchi ism loyiha egasining
+o'z ismi edi — ya'ni izoh bilan mazmun bir-biriga mos emasdi. Namunaviy
+ma'lumot platformaning hamma joyida (tadqiqot tahlili, mentorlik
+varaqalari, CSV eksport) ko'rinadi, shuning uchun unda haqiqiy
+shaxsning ismi turmasligi kerak.
