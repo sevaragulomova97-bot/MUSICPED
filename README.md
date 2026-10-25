@@ -6,6 +6,8 @@ Pedagogika fanlari bo'yicha dissertatsiya (13.00.02 — Ta'lim va tarbiya nazari
 
 **Dissertatsiya muallifi:** Bobur Akbarov.
 
+**Jonli sayt:** <https://sevaragulomova97-bot.github.io/MUSICPED/>
+
 ---
 
 ## Eng muhimi: bu platforma serversiz ishlaydi
