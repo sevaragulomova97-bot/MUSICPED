@@ -70,7 +70,7 @@ Sahifaning pastida **Baholarni talabalarga qaytarish** bo'limi bor:
 
 1. Har bir talaba uchun **Yuklab olish** (yoki hammasini birdan).
 2. `baholar-….json` faylini talabaga bering.
-3. Talaba uni Sozlamalar → Import qilish orqali yuklaydi.
+3. Talaba uni Sozlamalar → «Fayldan yuklash» orqali yuklaydi.
 
 ---
 

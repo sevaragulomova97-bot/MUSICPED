@@ -208,8 +208,22 @@ function MalumotKarta({ userId }: { userId: string }) {
       }
       const bundle = await exportUserData(userId);
       const xulosa = summarizeBundle(bundle);
-      downloadJson(bundle, bundleFileName(bundle));
-      setXabar({ ok: true, matn: `Fayl yuklandi: ${xulosa.lines.join(", ")}` });
+      const nom = bundleFileName(bundle);
+      downloadJson(bundle, nom);
+      /*
+        Xabar faylning **nomini** va **nima qilish kerakligini** aytadi.
+        Avval shunchaki «Fayl yuklandi: 12 ta dars, 8 ta ish» deyilardi:
+        talaba faylni qayerdan topishni ham, u bilan nima qilishni ham
+        bilmasdi. Fayl turi (JSON) esa unga umuman kerak emas.
+      */
+      setXabar({
+        ok: true,
+        matn:
+          `Fayl kompyuteringizga tushdi: ${nom} ` +
+          `(${xulosa.lines.join(", ")}). Odatda u «Yuklanishlar» ` +
+          `(Downloads) papkasida bo'ladi — shu faylni o'qituvchingizga ` +
+          `yuboring yoki boshqa qurilmaga ko'chiring.`,
+      });
     } catch (error) {
       setXabar({
         ok: false,
@@ -266,29 +280,53 @@ function MalumotKarta({ userId }: { userId: string }) {
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         <p className="text-sm leading-relaxed text-ink-muted">
-          Ma&apos;lumot shu brauzerda turgani uchun uni{" "}
+          Ishlaringiz shu brauzerda saqlanadi, shuning uchun ularni{" "}
           <strong className="font-medium text-ink">fayl orqali</strong>{" "}
-          ko&apos;chiriladi. Eksport fayli ikki ish uchun kerak: boshqa
-          kompyuterga o&apos;tish va natijalarni o&apos;qituvchiga topshirish.
+          ko&apos;chiriladi. Fayl ikki ish uchun kerak: natijalarni
+          o&apos;qituvchiga topshirish va boshqa kompyuterga o&apos;tish.
         </p>
+
+        {/*
+          Bosqichlar oddiy tilda. Fayl turi (JSON) ataylab aytilmaydi —
+          talaba uchun bu ortiqcha ma'lumot: u faqat tugmani bosadi va
+          tushgan faylni yuboradi.
+        */}
+        <ol className="flex flex-col gap-1.5 text-sm leading-relaxed text-ink-muted">
+          <li>
+            <strong className="font-medium text-ink">1.</strong>{" "}
+            &laquo;Natijalarimni saqlash&raquo; tugmasini bosing — fayl
+            kompyuteringizga tushadi.
+          </li>
+          <li>
+            <strong className="font-medium text-ink">2.</strong> O&apos;sha
+            faylni o&apos;qituvchingizga yuboring (Telegram, pochta yoki
+            flesh orqali — farqi yo&apos;q).
+          </li>
+          <li>
+            <strong className="font-medium text-ink">3.</strong> O&apos;qituvchi
+            baho qo&apos;ygach sizga javob fayl yuboradi. Uni{" "}
+            &laquo;Fayldan yuklash&raquo; orqali oching — baholar
+            o&apos;rningizga tushadi.
+          </li>
+        </ol>
 
         <div className="flex flex-wrap gap-2">
           <Button onClick={() => void eksport()} disabled={band}>
             <Download aria-hidden="true" />
-            Eksport qilish
+            Natijalarimni saqlash
           </Button>
           <input
             ref={inputRef}
             id="import-fayl"
             type="file"
-            aria-label="Import uchun JSON fayl tanlash"
+            aria-label="Yuklash uchun fayl tanlash"
             accept="application/json,.json"
             className="sr-only"
             onChange={(e) => void importQil(e.target.files?.[0])}
           />
           <Button variant="outline" onClick={() => inputRef.current?.click()} disabled={band}>
             <Upload aria-hidden="true" />
-            Import qilish
+            Fayldan yuklash
           </Button>
         </div>
 

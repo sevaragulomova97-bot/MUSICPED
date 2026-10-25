@@ -2293,3 +2293,22 @@ Shuning uchun taqiqlash emas, almashtirish tanlandi.
 **Tekshirildi.** E2e test tugmani uch marta bosadi va bazadagi
 sertifikat yozuvlarini sanaydi. Mutatsiya bilan sinaldi: o'chirish
 olib tashlanganda son 3 ga chiqdi.
+
+### Q140. Eksport/import oddiy tilda yoziladi
+
+**Qaror.** Sozlamalardagi tugmalar «Eksport qilish» / «Import qilish»
+o'rniga **«Natijalarimni saqlash»** va **«Fayldan yuklash»** deb
+nomlandi. Yoniga uch qadamli tushuntirish qo'yildi, saqlangandan
+keyingi xabar esa faylning nomini, qayerda ekanini va kimga yuborish
+kerakligini aytadi.
+
+**Sabab.** Talaba «eksport», «import» va «JSON» so'zlarini bilmasligi
+mumkin — va bilishi shart ham emas. Uning ishi bitta tugmani bosish
+va tushgan faylni o'qituvchiga yuborish. Avvalgi xabar «Fayl yuklandi:
+12 ta dars, 8 ta ish» deyardi: talaba faylni qayerdan topishni ham,
+u bilan nima qilishni ham bilmasdi. Serversiz platformada bu bosqich
+uzilsa, o'qituvchiga hech narsa yetib bormaydi — ya'ni butun
+tajriba-sinov shu bitta tugmaga bog'liq.
+
+**Fayl turi o'zgarmadi** — baribir JSON, chunki uni o'qituvchi
+kabineti o'qiydi. Faqat endi bu talabaga aytilmaydi.

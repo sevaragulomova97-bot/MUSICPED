@@ -310,7 +310,7 @@ test.describe("To'liq ma'lumot", () => {
     await page.goto("/sozlamalar/");
     const [fayl] = await Promise.all([
       page.waitForEvent("download"),
-      page.getByRole("button", { name: /eksport qilish/i }).click(),
+      page.getByRole("button", { name: /natijalarimni saqlash/i }).click(),
     ]);
     const paket = JSON.parse(readFileSync(await fayl.path(), "utf8"));
     expect(paket.progress).toHaveLength(52);

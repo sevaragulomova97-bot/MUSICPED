@@ -30,10 +30,19 @@ test("natijalar o'qituvchiga boradi, baho talabaga qaytadi", async ({ page }) =>
   await page.goto("/sozlamalar/");
   const [natijalarFayli] = await Promise.all([
     page.waitForEvent("download"),
-    page.getByRole("button", { name: /eksport qilish/i }).click(),
+    page.getByRole("button", { name: /natijalarimni saqlash/i }).click(),
   ]);
   const natijalarYoli = await natijalarFayli.path();
   expect(natijalarFayli.suggestedFilename()).toMatch(/^natijalar-.*\.json$/);
+
+  /*
+    Xabar faylning nomini va keyingi qadamni aytishi kerak. Talaba
+    fayl turini (JSON) bilmaydi va bilishi ham shart emas — u faqat
+    faylni qayerdan topishni va kimga yuborishni bilishi kerak.
+  */
+  const xabar = page.locator("main").getByRole("status");
+  await expect(xabar).toContainText(natijalarFayli.suggestedFilename());
+  await expect(xabar).toContainText(/o'qituvchingizga/i);
 
   const paket = JSON.parse(readFileSync(natijalarYoli, "utf8"));
   expect(paket.app).toBe("musicped");
@@ -124,7 +133,7 @@ test("bir xil faylni ikki marta import qilish dublikat yaratmaydi", async ({
   await page.goto("/sozlamalar/");
   const [fayl] = await Promise.all([
     page.waitForEvent("download"),
-    page.getByRole("button", { name: /eksport qilish/i }).click(),
+    page.getByRole("button", { name: /natijalarimni saqlash/i }).click(),
   ]);
   const yol = await fayl.path();
 

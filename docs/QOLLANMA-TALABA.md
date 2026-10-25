@@ -159,7 +159,7 @@ Bu eng muhim bosqich — server yo'qligi uchun natija o'z-o'zidan bormaydi.
 
 ### Fayl tayyorlash
 
-1. **Sozlamalar** → **Ma'lumotni ko'chirish** → **Eksport qilish**.
+1. **Sozlamalar** → **Ma'lumotni ko'chirish** → **«Natijalarimni saqlash»**.
 2. `natijalar-ism-familiya-sana.json` fayli kompyuteringizga tushadi.
 3. Shu faylni o'qituvchingizga bering (elektron pochta, Telegram, flesh —
    farqi yo'q).
@@ -167,7 +167,7 @@ Bu eng muhim bosqich — server yo'qligi uchun natija o'z-o'zidan bormaydi.
 ### Bahoni qabul qilish
 
 1. O'qituvchi sizga `baholar-….json` faylini qaytaradi.
-2. **Sozlamalar** → **Import qilish** → o'sha faylni tanlang.
+2. **Sozlamalar** → **«Fayldan yuklash»** → o'sha faylni tanlang.
 3. Baho va o'qituvchi izohi **Baholash** bo'limida paydo bo'ladi.
 
 > Eksport fayli portfolio **fayllarining mazmunini** o'z ichiga olmaydi (ular
@@ -178,9 +178,9 @@ Bu eng muhim bosqich — server yo'qligi uchun natija o'z-o'zidan bormaydi.
 
 ## 9. Boshqa kompyuterga ko'chish
 
-1. Eski kompyuterda: Sozlamalar → **Eksport qilish**.
+1. Eski kompyuterda: Sozlamalar → **«Natijalarimni saqlash»**.
 2. Yangi kompyuterda: saytni oching, profilni tanlang.
-3. Sozlamalar → **Import qilish** → faylni tanlang.
+3. Sozlamalar → **«Fayldan yuklash»** → faylni tanlang.
 
 Bir xil faylni ikki marta import qilsangiz nusxa paydo bo'lmaydi.
 
