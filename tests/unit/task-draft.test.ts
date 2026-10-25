@@ -96,3 +96,33 @@ describe("bo'sh qoralama", () => {
     expect(taskQoralamaBormi({ answers: { a: "x" }, text: "" })).toBe(true);
   });
 });
+
+/**
+ * Vaqt chegarasi bor topshiriqda taymer boshlangan vaqt ham qoralama
+ * bilan birga saqlanadi — aks holda sahifani yangilash vaqtni qaytadan
+ * berardi va vaqtli test o'lchov sifatida ma'nosiz bo'lib qolardi.
+ */
+describe("taymer boshlangan vaqti", () => {
+  it("saqlanadi va qaytib o'qiladi", () => {
+    taskQoralamaniSaqla("u1", "task-vaqt", {}, "", 1_700_000_000_000);
+    expect(taskQoralamaniOqi("u1", "task-vaqt")?.startedAt).toBe(
+      1_700_000_000_000,
+    );
+  });
+
+  it("berilmasa `undefined` bo'ladi — vaqtsiz topshiriqlar uchun", () => {
+    taskQoralamaniSaqla("u1", "task-oddiy", {}, "matn");
+    const q = taskQoralamaniOqi("u1", "task-oddiy");
+    expect(q?.text).toBe("matn");
+    expect(q?.startedAt).toBeUndefined();
+  });
+
+  it("buzuq qiymatli qoralama qabul qilinmaydi", () => {
+    taskQoralamaniSaqla("u1", "task-buzuq", {}, "matn", 1_700_000_000_000);
+    const kalitNomi = kalit("u1", "task-buzuq");
+    const xom = JSON.parse(globalThis.localStorage.getItem(kalitNomi)!);
+    xom.qiymat.startedAt = "kecha";
+    globalThis.localStorage.setItem(kalitNomi, JSON.stringify(xom));
+    expect(taskQoralamaniOqi("u1", "task-buzuq")).toBeNull();
+  });
+});

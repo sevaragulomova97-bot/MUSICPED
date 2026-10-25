@@ -2211,3 +2211,26 @@ Maktab va universitet kompyuterlarida havola almashish odatiy hol.
 platforma serversiz, kirish parolsiz, har bir profilning ma'lumoti
 faqat o'z brauzerida. Komponent izohida ham shu yozilgan, aks holda
 keyinchalik kimdir uni himoya deb o'ylab, unga tayanib qolishi mumkin.
+
+### Q136. Vaqtli testda sahifani yangilash taymerni qaytadan boshlamaydi
+
+**Qaror.** Taymer boshlangan vaqt (`startedAt`) qoralama bilan birga
+saqlanadi va sahifa qayta ochilganda tiklanadi. Vaqt chegarasi bor
+topshiriqda qoralama bo'sh bo'lsa ham yoziladi — birinchi javobgacha
+yangilangan sahifa ham vaqtni qaytadan boshlamasligi kerak. «Tozalab,
+boshidan boshlash» esa vaqtni ham qaytadan beradi.
+
+**Sabab.** Boshlangan vaqt komponent holatida edi: har sahifa
+yangilanishida noldan boshlanardi. Javoblar esa qoralamadan
+tiklanardi — ya'ni **vaqtli testda cheksiz vaqt olish uchun sahifani
+yangilash yetardi**. Bu shunchaki qulaylik emas: nota savodi testi
+(15 daqiqa) va boshqa uchta vaqtli topshiriqning bali tadqiqot
+tahliliga, demak dissertatsiya natijasiga tushadi — vaqt chegarasi
+ishlamasa, o'lchovning o'zi ma'nosiz.
+
+**Tekshirildi.** `tests/e2e/19-taymer.spec.ts` taymerni o'qiydi, 4
+soniya kutadi, sahifani yangilaydi va vaqt kamida 4 soniyaga
+kamayganini talab qiladi. Faqat «kamaygan» deb tekshirish yetmaydi:
+taymer qaytadan boshlansa ham sahifa yuklanishi bir soniya oladi.
+Mutatsiya bilan sinaldi — eski kodda 899 -> 899, tuzatilgan kodda
+899 -> 894.

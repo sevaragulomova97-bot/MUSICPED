@@ -40,11 +40,14 @@ function TopshiriqKontent({ task }: { task: Task }) {
      yorliqni xotiradan chiqarsa, yozilgan matn yo'qolmasligi kerak.
      Qoralama birinchi renderdayoq o'qiladi (`useState` ning dangasa
      boshlang'ich qiymati) — effektda o'qish kaskadli render berardi. */
-  const boshlangich = React.useMemo(() => {
-    if (!userId) return null;
-    const q = taskQoralamaniOqi(userId, task.id);
-    return q && taskQoralamaBormi(q) ? q : null;
-  }, [userId, task.id]);
+  const xomQoralama = React.useMemo(
+    () => (userId ? taskQoralamaniOqi(userId, task.id) : null),
+    [userId, task.id],
+  );
+  // Tiklash xabari faqat haqiqiy ish bo'lganda chiqadi; boshlangan vaqt
+  // esa bo'sh qoralamadan ham olinadi (quyida, taymer izohiga qarang).
+  const boshlangich =
+    xomQoralama && taskQoralamaBormi(xomQoralama) ? xomQoralama : null;
 
   const [answers, setAnswers] = React.useState<AnswerMap>(
     () => (boshlangich?.answers as AnswerMap) ?? {},
@@ -55,7 +58,18 @@ function TopshiriqKontent({ task }: { task: Task }) {
   const [saving, setSaving] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const [result, setResult] = React.useState<number | null>(null);
-  const [startedAt] = React.useState(() => Date.now());
+  /*
+    Taymer boshlangan vaqt qoralama bilan birga saqlanadi.
+
+    Avval u shunchaki `Date.now()` edi, ya'ni har sahifa yangilanishida
+    noldan boshlanardi. Javoblar esa qoralamadan tiklanardi — demak
+    vaqtli testda cheksiz vaqt olish uchun sahifani yangilash kifoya
+    edi. Topshiriq bali tadqiqot tahliliga tushgani uchun bu o'lchovning
+    o'zini buzadi.
+  */
+  const [startedAt, setStartedAt] = React.useState(
+    () => xomQoralama?.startedAt ?? Date.now(),
+  );
   const [now, setNow] = React.useState(() => Date.now());
 
   const submissions = useLiveQuery(async () => {
@@ -66,15 +80,20 @@ function TopshiriqKontent({ task }: { task: Task }) {
   // Har bir o'zgarishdan keyin yoziladi: `localStorage` ga yozish arzon.
   React.useEffect(() => {
     if (!userId) return;
-    if (!text.trim() && !Object.keys(answers).length) return;
-    taskQoralamaniSaqla(userId, task.id, answers, text);
-  }, [userId, task.id, answers, text]);
+    // Vaqt chegarasi bor topshiriqda qoralama bo'sh bo'lsa ham yoziladi:
+    // aks holda birinchi javobgacha yangilangan sahifa taymerni
+    // qaytadan boshlardi.
+    if (!task.timerMin && !text.trim() && !Object.keys(answers).length) return;
+    taskQoralamaniSaqla(userId, task.id, answers, text, startedAt);
+  }, [userId, task.id, answers, text, startedAt, task.timerMin]);
 
   function qoralamaniTashla() {
     if (userId) taskQoralamaniTozala(userId, task.id);
     setAnswers({});
     setText("");
     setTiklandi(false);
+    // Ish boshidan boshlanayotgani uchun vaqt ham qaytadan beriladi.
+    setStartedAt(Date.now());
   }
 
   // Taymer — faqat vaqt chegarasi bor topshiriqlarda

@@ -22,6 +22,16 @@ export type TaskQoralama = {
   answers: Record<string, unknown>;
   /** Matnli javob */
   text: string;
+  /**
+   * Topshiriq boshlangan vaqt (epoch ms) — faqat vaqt chegarasi bor
+   * topshiriqlarda ma'noli.
+   *
+   * Busiz taymer har sahifa yangilanishida noldan boshlanardi: javoblar
+   * qoralamadan tiklanar, vaqt esa qaytadan berilardi. Ya'ni vaqtli
+   * testda cheksiz vaqt olish uchun sahifani yangilash yetardi — va bu
+   * ball tadqiqot tahliliga tushadi.
+   */
+  startedAt?: number;
 };
 
 export function kalit(userId: string, taskId: string) {
@@ -31,6 +41,7 @@ export function kalit(userId: string, taskId: string) {
 function qoralamami(v: unknown): v is TaskQoralama {
   if (!v || typeof v !== "object") return false;
   const q = v as Partial<TaskQoralama>;
+  if (q.startedAt !== undefined && !Number.isFinite(q.startedAt)) return false;
   return (
     typeof q.text === "string" && !!q.answers && typeof q.answers === "object"
   );
@@ -41,8 +52,9 @@ export function taskQoralamaniSaqla(
   taskId: string,
   answers: Record<string, unknown>,
   text: string,
+  startedAt?: number,
 ) {
-  saqlaUmumiy<TaskQoralama>(kalit(userId, taskId), { answers, text });
+  saqlaUmumiy<TaskQoralama>(kalit(userId, taskId), { answers, text, startedAt });
 }
 
 export function taskQoralamaniOqi(
