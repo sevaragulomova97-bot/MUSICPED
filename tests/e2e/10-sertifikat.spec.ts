@@ -114,4 +114,55 @@ test.describe("Sertifikatlar", () => {
     const bosh = readFileSync(yol).subarray(0, 5).toString("latin1");
     expect(bosh).toBe("%PDF-");
   });
+
+  /*
+    Sertifikat portfolioda bitta bo'lib qolishi kerak.
+
+    Avval har bosilishda yangi nusxa qo'shilardi: tugmani uch marta
+    bosgan talabada uchta bir xil PDF yotardi. Qayta yaratish o'zi
+    ma'noli (kursni yaxshiroq natija bilan qayta yakunlash mumkin),
+    shuning uchun eskisi o'chiriladi, o'rniga yangisi qo'yiladi.
+  */
+  test("uch marta olingan sertifikat portfolioda bitta bo'lib qoladi", async ({
+    page,
+  }) => {
+    test.slow();
+    await sessiyaBer(page, TALABA);
+    await bazaniTozala(page);
+    await page.goto("/portfolio/");
+    await page.waitForTimeout(500);
+    await darslarniYakunla(page, TALABA.id, KURS_MAʼLUMOTI);
+
+    await page.goto("/portfolio/");
+    await page.getByText("Sertifikatlar", { exact: false }).first().click();
+
+    for (let i = 0; i < 3; i += 1) {
+      const yuklanma = page.waitForEvent("download");
+      await page
+        .getByRole("button", { name: /yakuniy sertifikatni olish/i })
+        .click();
+      await yuklanma;
+      await page.waitForTimeout(800);
+    }
+
+    const soni = await page.evaluate(async (uid) => {
+      const db = await new Promise<IDBDatabase>((resolve, reject) => {
+        const req = indexedDB.open("musicped");
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+      const hammasi = await new Promise<unknown[]>((resolve) => {
+        const tx = db.transaction("portfolio", "readonly");
+        const req = tx.objectStore("portfolio").getAll();
+        req.onsuccess = () => resolve(req.result as unknown[]);
+        req.onerror = () => resolve([]);
+      });
+      db.close();
+      return (hammasi as Array<{ userId: string; category: string }>).filter(
+        (p) => p.userId === uid && p.category === "sertifikat",
+      ).length;
+    }, TALABA.id);
+
+    expect(soni).toBe(1);
+  });
 });

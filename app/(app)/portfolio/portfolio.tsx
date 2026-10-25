@@ -90,6 +90,28 @@ export function Portfolio() {
     }
   }
 
+  /*
+    Sertifikat portfolioda **bitta** bo'lib qoladi.
+
+    Avval har bosilishda yangi nusxa qo'shilardi: tugmani uch marta
+    bosgan talabada uchta bir xil PDF yotardi va ro'yxat tushunarsiz
+    bo'lib ketardi. Qayta yaratishning o'zi esa ma'noli — kursni
+    yaxshiroq natija bilan qayta yakunlagan talabaga yangi sana va
+    yangi ball bilan hujjat kerak. Shuning uchun eskisi o'chiriladi,
+    o'rniga yangisi qo'yiladi.
+  */
+  async function sertifikatniAlmashtir(
+    sarlavha: string,
+    fayl: File,
+    izoh: string,
+  ) {
+    const eskilar = (data?.items ?? []).filter(
+      (i) => i.category === "sertifikat" && i.title === sarlavha,
+    );
+    for (const eski of eskilar) await deletePortfolioItem(userId!, eski.id);
+    await addPortfolioFile(userId!, "sertifikat", sarlavha, fayl, izoh);
+  }
+
   async function certificate(modulIndex: number) {
     if (!profile) return;
     const { modul, ortacha } = modulHolati[modulIndex];
@@ -108,9 +130,7 @@ export function Portfolio() {
       });
       downloadBlob(blob, `oraliq-sertifikat-${modul.slug}.pdf`);
       // Sertifikat portfolioda ham qoladi
-      await addPortfolioFile(
-        userId!,
-        "sertifikat",
+      await sertifikatniAlmashtir(
         `Oraliq sertifikat — ${modul.title}`,
         new File([blob], `oraliq-sertifikat-${modul.slug}.pdf`, { type: "application/pdf" }),
         `${modul.credits} ECTS · ${ortacha}%`,
@@ -148,9 +168,7 @@ export function Portfolio() {
         serial: certificateSerial(profile.fullName, "yakuniy", issuedAt),
       });
       downloadBlob(blob, "yakuniy-sertifikat.pdf");
-      await addPortfolioFile(
-        userId!,
-        "sertifikat",
+      await sertifikatniAlmashtir(
         "Yakuniy sertifikat — barcha kurslar",
         new File([blob], "yakuniy-sertifikat.pdf", { type: "application/pdf" }),
         `${yakuniyHolat.jamiKredit} ECTS · ${yakuniyHolat.ortacha}%`,

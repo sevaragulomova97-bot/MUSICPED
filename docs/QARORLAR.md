@@ -2276,3 +2276,20 @@ maqomida ham xuddi shu talab amal qiladi.
 qaytarib, izohni **hujjatning ichidan** qidiradi — kodda konstanta
 borligining o'zi yetarli emas, matn chizishdan tushib qolsa PDF
 baribir chiroyli chiqaveradi. Mutatsiya bilan sinaldi.
+
+### Q139. Sertifikat portfolioda bitta bo'lib qoladi
+
+**Qaror.** Sertifikat qayta yaratilganda eski nusxa o'chiriladi va
+o'rniga yangisi qo'yiladi — har bir kurs uchun portfolioda bitta
+hujjat qoladi.
+
+**Sabab.** Har bosilishda yangi fayl qo'shilardi. Tugmani uch marta
+bosgan talabada uchta bir xil PDF yotardi, ro'yxat esa tushunarsiz
+bo'lib ketardi — qaysi biri haqiqiysi degan savol tug'ilardi. Qayta
+yaratishning o'zi ma'noli: kursni yaxshiroq natija bilan qayta
+yakunlagan talabaga yangi sana va yangi ball bilan hujjat kerak.
+Shuning uchun taqiqlash emas, almashtirish tanlandi.
+
+**Tekshirildi.** E2e test tugmani uch marta bosadi va bazadagi
+sertifikat yozuvlarini sanaydi. Mutatsiya bilan sinaldi: o'chirish
+olib tashlanganda son 3 ga chiqdi.
