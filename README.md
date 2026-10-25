@@ -46,6 +46,7 @@ npm run lint       :: ESLint tekshiruvi
 npm run typecheck  :: TypeScript tekshiruvi
 npm test           :: Unit testlar (Vitest)
 npm run test:e2e   :: Uchdan-uchiga testlar (Playwright, qurilgan sayt ustida)
+npm run test:e2e:basepath  :: Saytni Pages'dagidek `/MUSICPED/` ostida sinaydi
 ```
 
 `test:e2e` saytni avtomatik qurmaydi — avval `npm run build` ni bajaring.

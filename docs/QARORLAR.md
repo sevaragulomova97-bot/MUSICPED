@@ -2234,3 +2234,25 @@ kamayganini talab qiladi. Faqat «kamaygan» deb tekshirish yetmaydi:
 taymer qaytadan boshlansa ham sahifa yuklanishi bir soniya oladi.
 Mutatsiya bilan sinaldi — eski kodda 899 -> 899, tuzatilgan kodda
 899 -> 894.
+
+### Q137. Pages'dagi shakl (`basePath`) alohida sinaladi
+
+**Qaror.** `npm run test:e2e:basepath` saytni `NEXT_PUBLIC_BASE_PATH`
+bilan quradi, uni `/MUSICPED/` papkasi ostiga qo'yib xizmat qiladi va
+shu holatda sinaydi: ochilish, kirish, bosh sahifaga o'tish, cholg'u
+sahifasi va audio, `sw.js` hamda `manifest.webmanifest`. Test 4xx
+javob va konsol xatosi bo'lmasligini talab qiladi. CI ga alohida
+qadam qo'shildi.
+
+**Sabab.** Oddiy e2e to'plami saytni **ildizdan** (`/`) xizmat
+qiladigan build ustida ishlaydi, GitHub Pages esa uni
+`/<ombor>/` ostidan beradi. Ya'ni **amalda joylanadigan variant hech
+qachon sinalmagan**. Yo'l prefiksi bilan bog'liq xato — havola, audio
+fayl, xizmat ishchisi yoki manifest manzili — faqat jonli saytda
+bilinardi, test to'plami esa yashil turaverardi. Bu loyihada bunday
+«faqat jonli saytda ko'rinadigan» kamchilik allaqachon bir marta
+qimmatga tushgan (Q130: joylash to'rt kun to'xtab qolgan).
+
+**Natija.** Birinchi o'tkazishda muammo topilmadi: barcha yo'llar
+`asset()` orqali yoziladi va prefiks to'g'ri qo'shiladi. Endi bu
+holat tasodifga emas, testga tayanadi.

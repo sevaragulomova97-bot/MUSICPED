@@ -107,6 +107,13 @@ jobs:
       - name: e2e testlar
         run: npm run test:e2e
 
+      # Pages saytni `/<ombor>/` ostidan beradi, yuqoridagi testlar esa
+      # ildizdan xizmat qilinadigan build ustida ishlaydi. Yo'l prefiksi
+      # bilan bog'liq xato (havolalar, audio, xizmat ishchisi, manifest)
+      # shuning uchun alohida tekshiriladi.
+      - name: basePath bilan qurilgan sayt
+        run: npm run test:e2e:basepath
+
       - name: Hisobotni saqlash
         if: always()
         uses: actions/upload-artifact@v4
