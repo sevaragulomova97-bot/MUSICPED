@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { buildCertificatePdf, sigdirilganKegl } from "@/lib/export/certificate";
+import {
+  buildCertificatePdf,
+  MAQOM_IZOHI,
+  sigdirilganKegl,
+} from "@/lib/export/certificate";
 import {
   finalStatus,
   moduleStatuses,
@@ -207,5 +211,71 @@ describe("sigdirilganKegl", () => {
   it("haddan tashqari uzun ismda ham eng kichik kegldan tushmaydi", () => {
     const matn = "A".repeat(400);
     expect(sigdirilganKegl(olcha(matn), 650)).toBe(15);
+  });
+});
+
+/**
+ * Hujjat maqomi haqidagi ogohlantirish PDF ning **ichida** bo'lishi
+ * kerak, shunchaki kodda konstanta sifatida emas.
+ *
+ * Sertifikatni talaba boshqalarga ko'rsatadi, unda esa «32 ECTS
+ * kredit» yozuvi bor — buni rasmiy diplom deb tushunish mumkin.
+ * Matn chizishdan tushib qolsa, buni hech narsa bilintirmaydi:
+ * PDF baribir chiroyli chiqaveradi. Shuning uchun test PDF ning
+ * siqilgan oqimlarini ochib, matnni qidiradi.
+ */
+describe("sertifikatdagi maqom izohi", () => {
+  /** PDF ichidagi siqilgan oqimlarni ochib, bitta matnga qo'shadi. */
+  async function pdfMatni(blob: Blob) {
+    const { inflateSync } = await import("node:zlib");
+    const xom = Buffer.from(await blob.arrayBuffer()).toString("latin1");
+    let natija = xom;
+    const re = /stream\r?\n([\s\S]*?)\r?\nendstream/g;
+    for (let m = re.exec(xom); m; m = re.exec(xom)) {
+      try {
+        const oqim = inflateSync(Buffer.from(m[1], "latin1")).toString("latin1");
+        // pdf-lib matnni `<48656C6C6F> Tj` ko'rinishida yozadi, shuning
+        // uchun o'n oltilik satrlar matnga qaytariladi.
+        natija += oqim.replace(/<([0-9A-Fa-f]+)>/g, (_, h: string) =>
+          Buffer.from(h, "hex").toString("latin1"),
+        );
+      } catch {
+        // Siqilmagan yoki boshqa usuldagi oqim — e'tiborsiz qoldiriladi.
+      }
+    }
+    return natija;
+  }
+
+  it("yakuniy sertifikatda bor", async () => {
+    const blob = await buildCertificatePdf({
+      kind: "yakuniy",
+      fullName: "Sinov Talabasi",
+      modules: [{ title: "Musiqa nazariyasi", credits: 5 }],
+      totalCredits: 5,
+      score: 90,
+      issuedAt: new Date(2026, 9, 25),
+      serial: "MP-TEST01",
+    });
+    const matn = await pdfMatni(blob);
+    expect(matn).toContain("davlat namunasidagi hujjat emas");
+  });
+
+  it("oraliq sertifikatda ham bor", async () => {
+    const blob = await buildCertificatePdf({
+      kind: "oraliq",
+      fullName: "Sinov Talabasi",
+      moduleTitle: "Musiqa nazariyasi",
+      credits: 5,
+      score: 90,
+      issuedAt: new Date(2026, 9, 25),
+      serial: "MP-TEST02",
+    });
+    const matn = await pdfMatni(blob);
+    expect(matn).toContain("davlat namunasidagi hujjat emas");
+  });
+
+  it("konstanta matni mazmunini yo'qotmagan", () => {
+    expect(MAQOM_IZOHI).toMatch(/davlat namunasidagi hujjat emas/);
+    expect(MAQOM_IZOHI).toMatch(/Kredit soni/);
   });
 });

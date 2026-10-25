@@ -2256,3 +2256,23 @@ qimmatga tushgan (Q130: joylash to'rt kun to'xtab qolgan).
 **Natija.** Birinchi o'tkazishda muammo topilmadi: barcha yo'llar
 `asset()` orqali yoziladi va prefiks to'g'ri qo'shiladi. Endi bu
 holat tasodifga emas, testga tayanadi.
+
+### Q138. Sertifikat o'z maqomini ochiq aytadi
+
+**Qaror.** Sertifikatning pastida kichik shriftda yoziladi:
+«MusicPed platformasining o'quv dasturi bo'yicha berildi. Kredit soni
+dastur hajmini bildiradi; bu davlat namunasidagi hujjat emas.»
+
+**Sabab.** Hujjatda «5 ta kurs · 32 ECTS kredit» yozuvi bor va uni
+talaba boshqalarga ko'rsatadi. Platforma esa akkreditatsiyadan o'tgan
+muassasa emas — sertifikatni o'zi beradi, kreditlar esa o'quv
+dasturining hajmini bildiradi, berilgan kredit emas. Buni aytmaslik
+loyihaning o'z qoidasiga ziddir: shu yerda sintetik tovushni haqiqiy
+yozuv deb ko'rsatmaslik uchun butun bir tizim qurilgan — hujjat
+maqomida ham xuddi shu talab amal qiladi.
+
+**Tekshirildi.** Birlik testi PDF ning siqilgan oqimlarini ochadi va
+`<48656C6C6F> Tj` ko'rinishidagi o'n oltilik satrlarni matnga
+qaytarib, izohni **hujjatning ichidan** qidiradi — kodda konstanta
+borligining o'zi yetarli emas, matn chizishdan tushib qolsa PDF
+baribir chiroyli chiqaveradi. Mutatsiya bilan sinaldi.

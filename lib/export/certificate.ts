@@ -79,6 +79,16 @@ export function sigdirilganKegl(
   return Math.max(engKichik, kegl);
 }
 
+/**
+ * Hujjat maqomi haqidagi ogohlantirish — sertifikatning pastida.
+ *
+ * Alohida konstanta, chunki uni birlik testi qo'riqlaydi: matn
+ * sertifikatdan jim yo'qolib qolmasligi kerak.
+ */
+export const MAQOM_IZOHI =
+  "MusicPed platformasining o'quv dasturi bo'yicha berildi. " +
+  "Kredit soni dastur hajmini bildiradi; bu davlat namunasidagi hujjat emas.";
+
 /** Sertifikat raqami — ism va modul asosida barqaror hosil qilinadi. */
 export function certificateSerial(
   fullName: string,
@@ -434,6 +444,27 @@ export async function buildCertificatePdf(
     x: 70,
     y: 98,
     size: 9,
+    font: regular,
+    color: kulrang,
+  });
+
+  /*
+    Hujjatning maqomi haqida ogohlantirish.
+
+    Sertifikatni talaba boshqalarga ko'rsatadi, unda esa «32 ECTS
+    kredit» yozuvi bor — buni rasmiy diplom yoki kredit berilgani deb
+    tushunish mumkin. Platforma esa akkreditatsiyadan o'tgan muassasa
+    emas: hujjatni o'zi beradi va kreditlar faqat o'quv dasturining
+    hajmini bildiradi. Shuning uchun maqom kichik shriftda bo'lsa ham
+    ochiq yoziladi — loyihaning qolgan joyidagi qoida bilan bir xil:
+    hech narsa o'zidan kattaroq qilib ko'rsatilmaydi.
+  */
+  const izohMatni = toWinAnsi(MAQOM_IZOHI);
+  const izohW = regular.widthOfTextAtSize(izohMatni, 7);
+  page.drawText(izohMatni, {
+    x: (width - izohW) / 2,
+    y: 58,
+    size: 7,
     font: regular,
     color: kulrang,
   });
