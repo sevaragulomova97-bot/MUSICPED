@@ -47,6 +47,7 @@ npm run typecheck  :: TypeScript tekshiruvi
 npm test           :: Unit testlar (Vitest)
 npm run test:e2e   :: Uchdan-uchiga testlar (Playwright, qurilgan sayt ustida)
 npm run test:e2e:basepath  :: Saytni Pages'dagidek `/MUSICPED/` ostida sinaydi
+npm run test:e2e:yiguvchi  :: Yig'uvchi server oqimi (soxta server bilan)
 ```
 
 `test:e2e` saytni avtomatik qurmaydi — avval `npm run build` ni bajaring.
@@ -298,5 +299,6 @@ solishtirib tekshirilgan — natijalar 12 xonadan ortiq aniqlikda mos keldi
 
 - [`docs/QOLLANMA-TALABA.md`](docs/QOLLANMA-TALABA.md) — talaba uchun qo'llanma
 - [`docs/QOLLANMA-OQITUVCHI.md`](docs/QOLLANMA-OQITUVCHI.md) — o'qituvchi va tadqiqotchi uchun qo'llanma
-- [`docs/QARORLAR.md`](docs/QARORLAR.md) — qabul qilingan 56 ta texnik qaror va ularning sabablari
+- [`docs/SERVER.md`](docs/SERVER.md) — natijalarni fayl almashtirmasdan yig'ish (ixtiyoriy)
+- [`docs/QARORLAR.md`](docs/QARORLAR.md) — qabul qilingan texnik qarorlar va ularning sabablari
 - [`CREDITS.md`](CREDITS.md) — ishlatilgan erkin litsenziyali materiallar

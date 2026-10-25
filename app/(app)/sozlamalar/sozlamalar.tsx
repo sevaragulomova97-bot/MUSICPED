@@ -17,6 +17,7 @@ import {
   Upload,
 } from "lucide-react";
 import { useSession } from "@/components/session-provider";
+import { YuborishKarta } from "@/components/yuborish-karta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -49,6 +50,7 @@ export function Sozlamalar() {
 
       <KorinishKarta />
       <EffektKarta />
+      {profile && <YuborishKarta userId={profile.id} />}
       {profile && <MalumotKarta userId={profile.id} />}
       <SaqlashKarta />
       {profile && (

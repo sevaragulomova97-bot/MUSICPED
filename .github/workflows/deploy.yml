@@ -64,6 +64,11 @@ jobs:
         # Shu sababli ombor nomi o'zgarsa ham hech narsani qo'lda tuzatish shart emas.
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          # Yig'uvchi server (ixtiyoriy). Omborda o'zgaruvchi qo'yilmagan
+          # bo'lsa bo'sh keladi va yuborish tugmalari ko'rinmaydi —
+          # platforma fayl orqali ishlayveradi. Sozlash: docs/SERVER.md
+          NEXT_PUBLIC_YIGUVCHI_URL: ${{ vars.NEXT_PUBLIC_YIGUVCHI_URL }}
+          NEXT_PUBLIC_YIGUVCHI_KALIT: ${{ vars.NEXT_PUBLIC_YIGUVCHI_KALIT }}
         run: npm run build
 
       - name: Natijani artefakt sifatida yuklash
@@ -113,6 +118,11 @@ jobs:
       # shuning uchun alohida tekshiriladi.
       - name: basePath bilan qurilgan sayt
         run: npm run test:e2e:basepath
+
+      # Yig'uvchi server oqimi: talaba yuboradi -> o'qituvchi yuklaydi.
+      # Tashqi xizmat kerak emas, soxta server bilan sinaladi.
+      - name: Yig'uvchi server oqimi
+        run: npm run test:e2e:yiguvchi
 
       - name: Hisobotni saqlash
         if: always()

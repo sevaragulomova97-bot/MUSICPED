@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useSession } from "@/components/session-provider";
 import { ImportPanel } from "@/components/teacher/import-panel";
+import { ServerPanel } from "@/components/teacher/server-panel";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -111,6 +112,7 @@ export function OqituvchiBosh() {
         </Card>
       </div>
 
+      <ServerPanel ownerId={ownerId} />
       <ImportPanel ownerId={ownerId} />
 
       {royxat.length > 0 && (

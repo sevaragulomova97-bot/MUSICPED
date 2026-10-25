@@ -2312,3 +2312,43 @@ tajriba-sinov shu bitta tugmaga bog'liq.
 
 **Fayl turi o'zgarmadi** — baribir JSON, chunki uni o'qituvchi
 kabineti o'qiydi. Faqat endi bu talabaga aytilmaydi.
+
+### Q141. Yig'uvchi server — ixtiyoriy va platformani serversiz qoldiradi
+
+**Qaror.** Natijalarni fayl almashtirmasdan yuborish qo'shildi:
+talabada «O'qituvchiga yuborish», o'qituvchida «Serverdan yuklash».
+Server sozlanmagan bo'lsa **ikkala tugma ham ko'rinmaydi** va
+platforma hozirgidek ishlaydi.
+
+**Sabab.** Fayl orqali topshirish eng zaif bo'g'in edi: talaba faylni
+yubormasa, o'qituvchida hech narsa yo'q — tajriba-sinov esa aynan shu
+ma'lumotga tayanadi.
+
+**Nega to'liq server emas.** Oflayn ishlash va «hech kimning
+serveriga ma'lumot yuborilmaydi» qoidasi platformaning asosi. Shuning
+uchun server bu yerda **pochta qutisi**, ma'lumot bazasi emas: barcha
+dars, hisob va saqlash brauzerda qoladi, serverga faqat tayyor paket
+yuboriladi. Ishlatmaslik ham mumkin.
+
+**Ish yo'qolmaydi.** Internet bo'lmasa paket navbatda qoladi
+(`localStorage`) va keyingi ochilishda o'zi jo'naydi; besh urinishdan
+keyin avtomatik urinish to'xtaydi va talaba o'zi bosadi. Maktab
+kompyuterlarida internet doim ham bo'lmaydi.
+
+**Kalitlar.** Yozish kaliti brauzerga tushadi — shuning uchun u faqat
+yozishga ruxsat beradi (Supabase RLS). O'qish kaliti kodga hech
+qachon yozilmaydi: o'qituvchi uni o'z brauzeriga kiritadi va u faqat
+o'sha yerda qoladi.
+
+**Shaxsiy ma'lumot.** `docs/SERVER.md` da ochiq yozildi: O'zbekiston
+fuqarolarining shaxsiy ma'lumotlari mamlakat ichidagi serverlarda
+qayta ishlanishi talab qilinadi, Supabase/Firebase esa chet elda.
+Tavsiya — ism o'rniga kod (`MT-24-01`), shunda serverda shaxsiy
+ma'lumot bo'lmaydi.
+
+**Tekshirildi.** Tashqi xizmatsiz: `tools/soxta-yiguvchi.mjs`
+Supabase ning shu qismini takrorlaydi va `npm run test:e2e:yiguvchi`
+to'liq oqimni haqiqiy tarmoq orqali sinaydi — talaba yuboradi,
+o'qituvchi yuklaydi, talaba kabinetda ko'rinadi; noto'g'ri kalit va
+internet uzilishi ham tekshiriladi. Navbat qoidalari 15 ta birlik
+testi bilan qoplangan.
