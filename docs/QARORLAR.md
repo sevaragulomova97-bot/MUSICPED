@@ -2180,3 +2180,34 @@ o'z ismi edi — ya'ni izoh bilan mazmun bir-biriga mos emasdi. Namunaviy
 ma'lumot platformaning hamma joyida (tadqiqot tahlili, mentorlik
 varaqalari, CSV eksport) ko'rinadi, shuning uchun unda haqiqiy
 shaxsning ismi turmasligi kerak.
+
+### Q134. Eski bazadagi ma'lumot yangi sxemada yo'qolmasligi tekshirildi
+
+**Qaror.** `tests/e2e/17-migratsiya.spec.ts` brauzerda **v1 sxemasi
+bilan** baza yaratadi (profil, diagnostika, topshiriq, dars progressi),
+so'ng ilovani ochadi va ma'lumot o'z joyida ekanini, yangi jadvallar
+(`datasets`, `mentorship`) qo'shilganini talab qiladi.
+
+**Sabab.** Baza sxemasi uch marta o'zgargan (v1 → v2 → v3). Dexie
+migratsiyani o'zi bajaradi, lekin bu **hech qachon tekshirilmagandi**.
+Tajriba-sinovda talaba ma'lumoti bir necha oy to'planadi — platformaning
+yangi versiyasi ochilganda eski yozuvlar yo'qolsa, butun o'lchov yo'qqa
+chiqadi va buni hech narsa ogohlantirmaydi. Mutatsiya bilan sinaldi:
+eski baza boshqa nom bilan yozilganda test yiqildi.
+
+### Q135. Boshqa rolning bo'limi bo'sh kabinet emas, sabab ko'rsatadi
+
+**Qaror.** `/oqituvchi/` va `/admin/` bo'limlariga mos bo'lmagan
+profil kirsa, tushuntirish chiqadi: bu bo'lim qaysi rol uchun, siz
+kim bo'lib kirgansiz va qayerga borish kerak.
+
+**Sabab.** Ilgari talaba havola orqali `/oqituvchi/` ga tushsa,
+o'qituvchi kabineti **nol raqamlar bilan** ochilardi: «Talabalar 0,
+Baho kutayotgan ishlar 0». Bu «ma'lumotim yo'qolibdi» degan xulosaga
+olib kelishi mumkin — aslida u shunchaki boshqa rolning bo'limi.
+Maktab va universitet kompyuterlarida havola almashish odatiy hol.
+
+**Bu xavfsizlik chorasi emas** va shunday bo'lishi ham mumkin emas:
+platforma serversiz, kirish parolsiz, har bir profilning ma'lumoti
+faqat o'z brauzerida. Komponent izohida ham shu yozilgan, aks holda
+keyinchalik kimdir uni himoya deb o'ylab, unga tayanib qolishi mumkin.
