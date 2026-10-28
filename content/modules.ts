@@ -82,7 +82,15 @@ export const MODULLAR: Module[] = [
       "O'qitish tizimlari, dars tuzilmasi va maqsadi, qo'shiq o'rgatish va tinglash metodikasi, sinfni boshqarish, farqlashtirilgan ta'lim, baholash va mikro-o'qitish.",
     credits: 6,
     direction: "metodika",
-    areas: ["metodika", "motivatsiya"],
+    /*
+      Yo'nalishlar ro'yxati fan dasturi bilan kengaydi: dastur musiqa
+      savodini o'qitish (M12) va musiqiy-ritmik harakatlar hamda
+      bolalar cholg'ulari (M13, M14) mavzularini ham o'z ichiga oladi.
+      Ya'ni modul endi nazariya va ritm yo'nalishlarini ham
+      rivojlantiradi — buni e'lon qilmasa, diagnostika bilan bog'lanish
+      noto'g'ri bo'lardi.
+    */
+    areas: ["metodika", "motivatsiya", "nazariya", "ritm"],
     outcomes: [
       { id: "on-met-1", text: "Musiqa darsining tuzilmasi va bosqichlarini biladi", bloom: "bilish" },
       { id: "on-met-2", text: "O'quv maqsadlarini Blum taksonomiyasi bo'yicha shakllantira oladi", bloom: "sintez" },
@@ -105,6 +113,10 @@ export const MODULLAR: Module[] = [
       { id: "on-met-12", text: "Musiqa o'qitish metodikasining predmeti, maqsadi va vazifalarini tushuntira oladi hamda uning pedagogika, psixologiya va musiqashunoslik bilan aloqasini asoslay oladi", bloom: "tushunish" },
       { id: "on-met-13", text: "Davlat ta'lim standarti talabini kuzatiladigan dars maqsadiga aylantira oladi va hujjatlar zanjirida o'z o'rnini topa oladi", bloom: "qollash" },
       { id: "on-met-14", text: "Musiqa asarining tarbiyaviy imkoniyatini aniqlab, uni dars maqsadi va savoliga bog'lay oladi", bloom: "tahlil" },
+      { id: "on-met-15", text: "Ijodiy musiqiy mahorat komponentlarini ajrata oladi va ularni rivojlantiruvchi topshiriq tuza oladi", bloom: "sintez" },
+      { id: "on-met-16", text: "Interfaol metod va zamonaviy ta'lim texnologiyasini dars maqsadiga qarab tanlab, qo'llanishini asoslay oladi", bloom: "baholash" },
+      { id: "on-met-17", text: "Musiqa savodi elementlarini eshitishdan yozuvga boradigan ketma-ketlikda o'rgata oladi", bloom: "qollash" },
+      { id: "on-met-18", text: "Musiqiy-ritmik harakatlar va bolalar cholg'ularidan dars faoliyatida maqsadga muvofiq foydalana oladi", bloom: "qollash" },
     ],
   },
   {

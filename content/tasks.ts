@@ -2616,6 +2616,72 @@ export const TOPSHIRIQLAR: Task[] = [
     rubric: RUBRIKA_DASTUR_TAHLIL,
   },
 
+
+  {
+    id: "task-m6-ijodiy-zinapoya",
+    slug: "ijodiy-topshiriqlar-zinapoyasi",
+    title: "Ijodiy topshiriqlar zinapoyasi",
+    description:
+      "Bitta sinf va bitta musiqiy material tanlang. Shu material asosida uchta topshiriq tuzing — taqlid, o'zgartirish va mustaqil yaratish bosqichlari uchun. Har bir topshiriqda chegarani aniq ko'rsating (nechta tovush, nechta takt, qaysi ritm) va bola qiynalsa qanday yordam berishingizni yozing. Oxirida tushuntiring: nega chegarasiz topshiriq ijodni osonlashtirmaydi, balki qiyinlashtiradi.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-15",
+    area: "metodika",
+    bloom: "sintez",
+    duration: "1 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_DASTUR_TAHLIL,
+  },
+
+  {
+    id: "task-m7-texnologiya-tanlovi",
+    slug: "texnologiya-tanlovi-asoslash",
+    title: "Texnologiya tanlovi va uni asoslash",
+    description:
+      "Bitta dars maqsadini yozing. Unga ikkita zamonaviy texnologiya yoki interfaol metodni nomzod qilib tanlang va har birining shu maqsadga qanday xizmat qilishini yozing. So'ng bittasini tanlang, ikkinchisidan voz kechish sababini asoslang va tanlagan metodingizni darsga qanday joylashtirishingizni qadamma-qadam ko'rsating. Alohida band: qurilmasi yoki internetga ulanishi yo'q o'quvchi uchun zaxira yo'l.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-16",
+    area: "metodika",
+    bloom: "baholash",
+    duration: "1 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_DASTUR_TAHLIL,
+  },
+
+
+  {
+    id: "task-m12-savod-ketma-ketligi",
+    slug: "musiqa-savodi-ketma-ketligi",
+    title: "Musiqa savodi elementini eshitishdan yozuvga olib borish",
+    description:
+      "Bitta musiqa savodi elementini tanlang (ritmik naqsh, lad farqi, o'lchov yoki interval). Uni to'rt bosqichda o'rgatish rejasini tuzing: eshitish → harakat yoki ovoz bilan sezdirish → belgi bilan tanishtirish → o'qish va yozish. Har bosqichga vaqt ajrating va qanday ko'rsatma berishingizni aniq yozing. Birinchi bosqichda atama ishlatilmasin — bola avval sezsin, keyin nomlasin.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-17",
+    area: "nazariya",
+    bloom: "qollash",
+    duration: "1 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_DASTUR_TAHLIL,
+  },
+
+  {
+    id: "task-m14-cholgu-jorligi",
+    slug: "cholgu-jorligi-loyihasi",
+    title: "Cholg'u jo'rligi va ritmik harakat loyihasi",
+    description:
+      "Bitta qo'shiq va bitta sinf tanlang. Unga uch partiyali cholg'u jo'rligini tuzing: ostinato, kuchli hissa va qismlar chegarasi. So'ng shu qo'shiqqa ikkita ritmik harakat topshirig'ini qo'shing — biri o'tirgan, biri turgan holda. Har bir partiya va harakatni kimga berishingizni hamda sababini yozing. Alohida band: cholg'u yetishmaganda nima qilasiz.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-18",
+    area: "ritm",
+    bloom: "sintez",
+    duration: "1 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_DASTUR_TAHLIL,
+  },
+
 ];
 
 export const TOPSHIRIQ_BY_SLUG = new Map(TOPSHIRIQLAR.map((t) => [t.slug, t]));
