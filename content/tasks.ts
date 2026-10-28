@@ -90,6 +90,54 @@ const RUBRIKA_DASTUR_TAHLIL: Rubric = {
   ],
 };
 
+/**
+ * Amaliy mashg'ulot (A1-A30) natijasini baholaydigan rubrika.
+ *
+ * Dasturdagi amaliy mashg'ulot ikki ishni birga talab qiladi: asarni
+ * tahlil qilish va uni Flipped Classroom metodi asosida o'rgatish
+ * rejasini tuzish. Shuning uchun rubrika ikkisini ham o'lchaydi — faqat
+ * tahlil yoki faqat reja topshirilsa, ball yarmidan oshmaydi.
+ */
+const RUBRIKA_AMALIY_FC: Rubric = {
+  criteria: [
+    {
+      id: "tahlil",
+      title: "Asar tahlili",
+      description:
+        "Olti band (matn, ohang, ritm, shakl, xarakter, ijro rejasi) to'liq qamralgan; diapazon va qiyin joy aniq ko'rsatilgan",
+      maxPoints: 30,
+    },
+    {
+      id: "uyquyi",
+      title: "Darsgacha bosqich",
+      description:
+        "O'quvchi uyda nima qilishi aniq yozilgan: topshiriq bajarilgan-bajarilmaganini dars boshida qanday tekshirish ham ko'rsatilgan",
+      maxPoints: 20,
+    },
+    {
+      id: "sinfda",
+      title: "Sinfdagi bosqichlar",
+      description:
+        "Qizdirish — namuna — bo'laklab o'rgatish — birlashtirish — ifoda tartibi saqlangan va har biriga vaqt ajratilgan",
+      maxPoints: 25,
+    },
+    {
+      id: "moslik",
+      title: "Yoshga moslik",
+      description:
+        "Tonallik, temp, matn hajmi va mashq davomiyligi sinf yoshiga asoslab moslashtirilgan",
+      maxPoints: 15,
+    },
+    {
+      id: "bajarib",
+      title: "Amalda bajariladiganligi",
+      description:
+        "Reja 45 daqiqalik darsga sig'adi; kerakli jo'rlik va vositalar maktab sharoitida mavjud",
+      maxPoints: 10,
+    },
+  ],
+};
+
 const RUBRIKA_DARS: Rubric = {
   criteria: [
     {
@@ -2729,6 +2777,39 @@ export const TOPSHIRIQLAR: Task[] = [
     duration: "2 hafta",
     submission: "matn",
     rubric: RUBRIKA_DASTUR_TAHLIL,
+  },
+
+  {
+    id: "task-amaliy-asar-ijrosi",
+    slug: "maktab-asarini-ifodali-ijro-etish",
+    title: "Maktab repertuaridagi asarni ifodali ijro etish",
+    description:
+      "Amaliy mashg'ulotlardan (A1-A30) bitta asarni tanlang va uni ifodali kuylab ijro etib, yozib yuboring. Ijrodan oldin ijro rejasini qisqa yozib qo'ying: temp, nafas joylari, dinamika va cho'qqi qaysi joyda. Yozuvda butun asar yoki kamida bitta band va naqorat bo'lsin. Jo'rlik ixtiyoriy — jo'rliksiz ijro intonatsiya aniqligini ko'rsatadi. Yozuvni audio yoki video fayl ko'rinishida yuklaysiz (25 MB gacha; telefonning oddiy yozuvi yetarli). Asarning notasi va matni maktab darsligidan olinadi: platformada ular saqlanmaydi.",
+    type: "ijro",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-22",
+    area: "sahna",
+    bloom: "qollash",
+    duration: "1 hafta",
+    submission: "fayl",
+    accept: ".mp3,.m4a,.wav,.ogg,.mp4,.mov",
+    rubric: RUBRIKA_IJRO,
+  },
+
+  {
+    id: "task-amaliy-fc-ishlanma",
+    slug: "flipped-classroom-qoshiq-ishlanmasi",
+    title: "Flipped Classroom metodida qo'shiq o'rgatish ishlanmasi",
+    description:
+      "Amaliy mashg'ulotlardan (A1-A30) bitta asarni tanlab, unga to'liq ishlanma yozing. Ishlanmada bo'lishi kerak: (1) asarning olti bandli tahlili — matn, ohang va diapazon, ritm va o'lchov, shakl, xarakter, ijro rejasi; (2) darsgacha bosqich — o'quvchi uyda nima qiladi va buni dars boshida qanday tekshirasiz; (3) sinfdagi bosqichlar — qizdirish, namuna, bo'laklab o'rgatish, birlashtirish, ifoda ustida ishlash, har biriga vaqt bilan; (4) yoshga moslashtirish — tonallik, temp, matn hajmi, mashq davomiyligi va buning asosi; (5) kutilayotgan ikki qiyinchilik va ularning yechimi. Reja 45 daqiqalik darsga sig'ishi kerak.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-22",
+    area: "metodika",
+    bloom: "sintez",
+    duration: "2 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_AMALIY_FC,
   },
 
 ];

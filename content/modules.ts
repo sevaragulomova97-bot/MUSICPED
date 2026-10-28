@@ -90,7 +90,7 @@ export const MODULLAR: Module[] = [
       rivojlantiradi — buni e'lon qilmasa, diagnostika bilan bog'lanish
       noto'g'ri bo'lardi.
     */
-    areas: ["metodika", "motivatsiya", "nazariya", "ritm"],
+    areas: ["metodika", "motivatsiya", "nazariya", "ritm", "sahna"],
     outcomes: [
       { id: "on-met-1", text: "Musiqa darsining tuzilmasi va bosqichlarini biladi", bloom: "bilish" },
       { id: "on-met-2", text: "O'quv maqsadlarini Blum taksonomiyasi bo'yicha shakllantira oladi", bloom: "sintez" },
@@ -120,6 +120,7 @@ export const MODULLAR: Module[] = [
       { id: "on-met-19", text: "Maktab repertuarini pedagogik va badiiy mezonlar bo'yicha tanlay oladi hamda metodik tahlil qila oladi", bloom: "baholash" },
       { id: "on-met-20", text: "Muayyan sinf uchun repertuar tanlab, tanlovini yosh va musiqiy tavsifnoma bilan asoslay oladi", bloom: "baholash" },
       { id: "on-met-21", text: "Sinfdan tashqari musiqiy faoliyat va to'garak ishini rejalashtira oladi", bloom: "sintez" },
+      { id: "on-met-22", text: "Maktab repertuaridagi asarni ifodali kuylab ijro eta oladi, uni olti band bo'yicha tahlil qila oladi va Flipped Classroom metodi asosida sinfda o'rgatish rejasini tuza oladi", bloom: "sintez" },
     ],
   },
   {

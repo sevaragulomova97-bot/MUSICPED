@@ -1,3 +1,4 @@
+import { DASTUR_AMALIYLARI } from "@/content/courses/metodika-amaliy";
 import { DASTUR_MARUZALARI } from "@/content/courses/metodika-dastur";
 import type { Course } from "@/content/lesson-types";
 
@@ -27,6 +28,12 @@ export const METODIKA: Course = {
       kengroq va dasturning keyingi ma'ruzalari bilan birlashtiriladi.
     */
     ...DASTUR_MARUZALARI,
+
+    /*
+      Ma'ruzadan keyin amaliy mashg'ulotlar: dasturda har bir asar
+      alohida mashg'ulot (A1-A30, 60 soat). Tartib dasturdagidek.
+    */
+    ...DASTUR_AMALIYLARI,
 
     {
       id: "met-1",

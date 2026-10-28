@@ -6,9 +6,9 @@ import {
   KURS_ISHLARI,
   MARUZALAR,
   MUSTAQIL_TOPSHIRIQLAR,
-  soatJami,
   TALIM_NATIJALARI,
 } from "@/content/fan-dasturi";
+import { turQoplovi } from "@/content/dastur-qoplovi";
 import {
   BAHO_JADVALI,
   JAMI_MAX,
@@ -85,7 +85,13 @@ export function FanDasturi() {
               <tbody>
                 {soat.map((s, i) => {
                   const turlar = ["maruza", "amaliy", "kurs-ishi", "mustaqil"] as const;
-                  const bor = soatJami(turlar[i]);
+                  /*
+                    Ustun platformada yozilgan darslardan hisoblanadi —
+                    dasturning o'z hujjatidan emas. Aks holda ikki ustun
+                    har doim teng chiqib, tekshiruv ma'nosini yo'qotardi.
+                  */
+                  const q = turQoplovi(turlar[i]);
+                  const toliq = q.platformada >= s.qiymat;
                   return (
                     <tr key={s.nom} className="border-b border-border-subtle/60">
                       <td className="py-2 text-ink">{s.nom}</td>
@@ -93,11 +99,14 @@ export function FanDasturi() {
                         {s.qiymat} soat
                       </td>
                       <td className="py-2 text-right tabular-nums">
-                        {bor === s.qiymat ? (
-                          <span className="text-success-ink">{bor} soat</span>
-                        ) : (
-                          <span className="text-danger-ink">{bor} soat</span>
-                        )}
+                        <span
+                          className={toliq ? "text-success-ink" : "text-danger-ink"}
+                        >
+                          {q.platformada} soat
+                        </span>
+                        <span className="block text-xs text-ink-muted">
+                          {q.yozilgan}/{q.mavzular} mavzu
+                        </span>
                       </td>
                     </tr>
                   );
@@ -105,6 +114,12 @@ export function FanDasturi() {
               </tbody>
             </table>
           </div>
+
+          <p className="text-xs leading-relaxed text-ink-muted">
+            «Platformada» ustuni dasturdagi mashg&apos;ulot uchun haqiqatan
+            dars yozilganini ko&apos;rsatadi: soat platformadagi darslardan
+            hisoblanadi. Qizil raqam — kontent hali to&apos;liq emas.
+          </p>
 
           <p className="text-sm leading-relaxed text-ink-muted">{FAN.maqsad}</p>
         </CardContent>
