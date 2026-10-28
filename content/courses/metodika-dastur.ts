@@ -2823,4 +2823,2700 @@ export const DASTUR_MARUZALARI: Lesson[] = [
       "Darsda reja buzilsa, qaysi bandni birinchi qurbon qilasiz va nega?",
     ],
   },
+  /* ──────────────────────────── M16 ──────────────────────────── */
+  {
+    id: "met-m16",
+    slug: "m16-repertuar-kompetensiyasi",
+    title: "M16: Repertuar bilan ishlash kompetensiyasi va pedagogik mahorat",
+    summary:
+      "O'qituvchining kasbiy kompetensiyalari, pedagogik odob va asarni metodik tahlil qilish tamoyillari.",
+    durationMin: 80,
+    bloom: "baholash",
+    outcomeId: "on-met-19",
+    area: "metodika",
+    dasturKodi: "M16",
+    dasturTuri: "maruza",
+    dasturSoati: 2,
+    tn: ["TN4", "TN6"],
+    sections: [
+      {
+        id: "kirish",
+        title: "Kirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Repertuar bilan ishlash — o'qituvchining kundalik ishi, lekin u ko'pincha e'tibordan chetda qoladi: «darslikda nima bo'lsa, shuni o'tamiz». Aslida darslik tanlov beradi, tanlovni esa o'qituvchi qiladi.",
+          },
+          {
+            kind: "matn",
+            text: "Bu dars shu tanlovni ongli qilishga qaratilgan: asarni qaysi mezon bo'yicha ko'rib chiqish va qanday tahlil qilish kerak.",
+          },
+        ],
+      },
+      {
+        id: "tushunchalar",
+        title: "Asosiy tushunchalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Predmetli kompetensiya — asarni o'zi ijro eta olish va tahlil qila olish",
+              "Metodik kompetensiya — uni sinfga yetkazish yo'lini tuza olish",
+              "Psixologik-pedagogik — yosh va individual farqni hisobga olish",
+              "Kommunikativ — sinf bilan muloqot, ko'rsatma berish, teskari aloqa",
+              "Refleksiv — o'z darsini tahlil qila olish va o'zgartirish",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Asarni metodik tahlil qilish bosqichlari: badiiy mazmun → musiqiy vositalar → ijro qiyinchiliklari → yoshga moslik → dars maqsadiga bog'lash.",
+          },
+          {
+            kind: "eslatma",
+            text: "«Ijro qiyinchiliklari» bandi ko'pincha tushib qoladi. Aslida u eng amaliy band: qaysi joyda sinf adashadi, qaysi sakrash qiyin, qaysi so'z talaffuzda chalkashadi. Buni oldindan aniqlash darsning yarmini tejaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Pedagogik odob — o'qituvchining bolaga munosabatidagi me'yor. Musiqa darsida u ayniqsa sezilarli: toza kuylay olmagan bolani kulgi obyektiga aylantirish bir lahzada bo'ladi, oqibati esa yillar davom etadi.",
+          },
+        ],
+      },
+      {
+        id: "mashq",
+        title: "Amaliy mashq",
+        blocks: [
+          {
+            kind: "mashq",
+            text: "Bitta asarni beshta bosqich bo'yicha tahlil qiling: mazmun, vositalar, ijro qiyinchiliklari, yoshga moslik, dars maqsadi. «Ijro qiyinchiliklari» bandida kamida uchta aniq joy ko'rsating.",
+          },
+          {
+            kind: "mashq",
+            text: "Toza kuylay olmaydigan bolaga dars davomida bera oladigan uchta vazifani yozing — shunday vazifalarki, u jarayondan chiqib qolmasin va kamsitilmasin.",
+          },
+        ],
+      },
+      {
+        id: "test",
+        title: "Test",
+        blocks: [
+          {
+            kind: "test",
+            questions: [
+              {
+                id: "m16-t1",
+                area: "metodika",
+                bloom: "bilish",
+                kind: "single",
+                prompt:
+                  "Metodik tahlilda «ijro qiyinchiliklari» bandining amaliy foydasi nima?",
+                options: [
+                  { id: "a", text: "Hujjatni to'ldiradi" },
+                  { id: "b", text: "Sinf adashadigan joylarni oldindan aniqlab, dars vaqtini tejaydi" },
+                  { id: "c", text: "Asar tarixini ko'rsatadi" },
+                  { id: "d", text: "Baholashni osonlashtiradi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m16-t2",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "single",
+                prompt: "Metodik tahlil bosqichlarining to'g'ri tartibi qaysi?",
+                options: [
+                  { id: "a", text: "Dars maqsadi → mazmun → vositalar → qiyinchilik" },
+                  { id: "b", text: "Mazmun → vositalar → ijro qiyinchiliklari → yoshga moslik → dars maqsadi" },
+                  { id: "c", text: "Qiyinchilik → mazmun → yosh → vositalar" },
+                  { id: "d", text: "Yosh → maqsad → mazmun → vositalar" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m16-t3",
+                area: "metodika",
+                bloom: "baholash",
+                kind: "single",
+                prompt:
+                  "«Darslikda nima bo'lsa shuni o'tamiz» yondashuvi nega yetarli emas?",
+                options: [
+                  { id: "a", text: "Darslik eskirgan" },
+                  { id: "b", text: "Darslik tanlov beradi; tanlovni sinfga qarab o'qituvchi qiladi" },
+                  { id: "c", text: "Darslikda asar kam" },
+                  { id: "d", text: "Dastur boshqacha talab qiladi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m16-t4",
+                area: "metodika",
+                bloom: "qollash",
+                kind: "multiple",
+                prompt:
+                  "O'qituvchining kasbiy kompetensiyalari qaysilar?",
+                options: [
+                  { id: "a", text: "Predmetli va metodik" },
+                  { id: "b", text: "Psixologik-pedagogik" },
+                  { id: "c", text: "Kommunikativ va refleksiv" },
+                  { id: "d", text: "Buxgalteriya hisobi" },
+                ],
+                correctIds: ["a", "b", "c"],
+              },
+              {
+                id: "m16-t5",
+                area: "metodika",
+                bloom: "baholash",
+                kind: "single",
+                prompt:
+                  "Toza kuylay olmagan bolaga nisbatan eng to'g'ri pedagogik harakat qaysi?",
+                options: [
+                  { id: "a", text: "Jim o'tirishini so'rash" },
+                  { id: "b", text: "Jarayonda qoladigan boshqa vazifa berish — ritm, cholg'u, boshqaruv" },
+                  { id: "c", text: "Sinf oldida qayta kuylatish" },
+                  { id: "d", text: "Baho pasaytirish" },
+                ],
+                correctId: "b",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "xulosa",
+        title: "Xulosa",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Kompetensiyalar: predmetli, metodik, psixologik-pedagogik, kommunikativ, refleksiv",
+              "Tahlil bosqichlari: mazmun → vositalar → qiyinchiliklar → yosh → maqsad",
+              "«Ijro qiyinchiliklari» — eng amaliy band, tushirib qoldirilmaydi",
+              "Pedagogik odob musiqa darsida ayniqsa sezilarli",
+            ],
+          },
+        ],
+      },
+    ],
+    reflection: [
+      "O'z kompetensiyalaringiz ichida qaysi biri eng kuchli va qaysi biri rivojlanishga muhtoj?",
+      "Asarni tahlil qilishda qaysi bosqichni o'tkazib yuborishingiz mumkin? Nega?",
+    ],
+  },
+
+  /* ──────────────────────────── M17 ──────────────────────────── */
+  {
+    id: "met-m17",
+    slug: "m17-musiqiy-qobiliyatlar",
+    title: "M17: O'quvchilarning musiqiy qobiliyatlari va ularni rivojlantirish",
+    summary:
+      "Musiqiy eshituv, ritm sezgisi va musiqiy xotira; individual yondashuv va ijodkorlikni rivojlantirish.",
+    durationMin: 80,
+    bloom: "tahlil",
+    outcomeId: "on-met-9",
+    area: "metodika",
+    dasturKodi: "M17",
+    dasturTuri: "maruza",
+    dasturSoati: 2,
+    tn: ["TN5"],
+    sections: [
+      {
+        id: "kirish",
+        title: "Kirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "«Bu bolada qobiliyat yo'q» — musiqa darsida tez-tez eshitiladigan hukm. U xavfli, chunki ko'pincha qobiliyat emas, **tajriba** yetishmaydi: uyda musiqa eshitilmagan, hech kim u bilan kuylamagan.",
+          },
+          {
+            kind: "matn",
+            text: "Musiqiy qobiliyatlar rivojlanadi. Savol — qaysi qobiliyat, qanday mashq bilan va qancha vaqtda.",
+          },
+        ],
+      },
+      {
+        id: "tushunchalar",
+        title: "Asosiy tushunchalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Ladli eshituv — ohangni lad ichida his qilish, tonikaga intilishni sezish",
+              "Musiqiy-ritmik sezgi — metr va ritmni aniq idrok etish va takrorlash",
+              "Musiqiy xotira — eshitganini saqlash va qayta tiklash",
+              "Intonatsion eshituv — tovush balandligini aniq farqlash va toza kuylash",
+              "Tembr va dinamik eshituv — ovoz bo'yog'i va kuchini farqlash",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Tashxis oddiy mashqlar bilan qilinadi: qisqa ohangni takrorlash (intonatsion eshituv), qarsak naqshini qaytarish (ritmik sezgi), ikki tovushdan qaysi biri baland ekanini aytish (balandlik farqi).",
+          },
+          {
+            kind: "eslatma",
+            text: "Toza kuylay olmaslik ikki xil sababdan bo'ladi: eshitmaydi yoki eshitadi-yu, ovozi bilan topa olmaydi. Ikkinchisi ancha ko'p uchraydi va ancha tez tuzaladi — bola o'z ovozini boshqarishni o'rganishi kerak, xolos.",
+          },
+          {
+            kind: "matn",
+            text: "Individual yondashuv sinfda alohida dars o'tkazish degani emas. U bir xil material ichida turli vazifa berishdir: kuchli bola ikkinchi ovozni oladi, qiynalayotgan bola asosiy ohangni, uchinchisi ritmik jo'rlikni.",
+          },
+        ],
+      },
+      {
+        id: "mashq",
+        title: "Amaliy mashq",
+        blocks: [
+          {
+            kind: "mashq",
+            text: "Uchta qisqa tashxis mashqini tayyorlang: intonatsion eshituv, ritmik sezgi va musiqiy xotira uchun. Har birida natijani qanday qayd etishingizni yozing.",
+            instrument: "pianino",
+          },
+          {
+            kind: "mashq",
+            text: "Bitta qo'shiq va uchta turli darajadagi bola uchun uch xil vazifa yozing — hammasi bitta asar ustida ishlasin, lekin har biri o'z darajasida.",
+          },
+        ],
+      },
+      {
+        id: "test",
+        title: "Test",
+        blocks: [
+          {
+            kind: "test",
+            questions: [
+              {
+                id: "m17-t1",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "single",
+                prompt:
+                  "«Bu bolada qobiliyat yo'q» degan hukmning asosiy xatosi nimada?",
+                options: [
+                  { id: "a", text: "U juda qattiq aytilgan" },
+                  { id: "b", text: "Ko'pincha qobiliyat emas, musiqiy tajriba yetishmaydi" },
+                  { id: "c", text: "Qobiliyat o'lchab bo'lmaydi" },
+                  { id: "d", text: "Ota-onaga aytish mumkin emas" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m17-t2",
+                area: "metodika",
+                bloom: "qollash",
+                kind: "single",
+                prompt:
+                  "Qarsak naqshini qaytarish mashqi qaysi qobiliyatni tekshiradi?",
+                options: [
+                  { id: "a", text: "Ladli eshituv" },
+                  { id: "b", text: "Musiqiy-ritmik sezgi" },
+                  { id: "c", text: "Tembr eshituvi" },
+                  { id: "d", text: "Musiqiy xotira" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m17-t3",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "single",
+                prompt:
+                  "Toza kuylay olmaslikning ko'proq uchraydigan sababi qaysi?",
+                options: [
+                  { id: "a", text: "Eshitmaydi" },
+                  { id: "b", text: "Eshitadi, lekin ovozi bilan topa olmaydi" },
+                  { id: "c", text: "Qiziqmaydi" },
+                  { id: "d", text: "Matnni bilmaydi" },
+                ],
+                correctId: "b",
+                explanation:
+                  "Bu ovozni boshqarish masalasi va u nisbatan tez tuzaladi.",
+              },
+              {
+                id: "m17-t4",
+                area: "metodika",
+                bloom: "baholash",
+                kind: "single",
+                prompt: "Sinfda individual yondashuv qanday amalga oshadi?",
+                options: [
+                  { id: "a", text: "Har bolaga alohida dars o'tkazib" },
+                  { id: "b", text: "Bir material ichida turli vazifa berib" },
+                  { id: "c", text: "Kuchlilarni alohida guruhga ajratib" },
+                  { id: "d", text: "Faqat kuchlilar bilan ishlab" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m17-t5",
+                area: "metodika",
+                bloom: "bilish",
+                kind: "multiple",
+                prompt: "Musiqiy qobiliyatlarga nimalar kiradi?",
+                options: [
+                  { id: "a", text: "Ladli eshituv" },
+                  { id: "b", text: "Musiqiy-ritmik sezgi" },
+                  { id: "c", text: "Musiqiy xotira" },
+                  { id: "d", text: "Qo'l yozuvi go'zalligi" },
+                ],
+                correctIds: ["a", "b", "c"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "xulosa",
+        title: "Xulosa",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Qobiliyat rivojlanadi; ko'pincha yetishmaydigan narsa — tajriba",
+              "Asosiy qobiliyatlar: ladli eshituv, ritmik sezgi, musiqiy xotira, intonatsion eshituv",
+              "Tashxis qisqa mashqlar bilan qilinadi va qayd etiladi",
+              "Individual yondashuv — bir material, turli vazifa",
+            ],
+          },
+        ],
+      },
+    ],
+    reflection: [
+      "O'z sinfingizda qobiliyat farqini qanday aniqlaysiz — qaysi uchta mashq bilan?",
+      "Kuchli bolaga qanday vazifa berasiz, toki u zerikmasin va boshqalardan ajralib ketmasin?",
+    ],
+  },
+  /* ──────────────────────────── M18 ──────────────────────────── */
+  {
+    id: "met-m18",
+    slug: "m18-repertuar-mezonlari",
+    title: "M18: Maktab repertuarini tanlashning pedagogik va badiiy mezonlari",
+    summary:
+      "Repertuar tanlashda nimaga qaraladi: badiiy qiymat, yosh, diapazon, matn va milliy-jahon muvozanati.",
+    durationMin: 80,
+    bloom: "baholash",
+    outcomeId: "on-met-19",
+    area: "metodika",
+    dasturKodi: "M18",
+    dasturTuri: "maruza",
+    dasturSoati: 2,
+    tn: ["TN4", "TN7"],
+    sections: [
+      {
+        id: "kirish",
+        title: "Kirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Repertuar — o'quv dasturining eng ko'rinadigan qismi. Bola yillar o'tib dars mavzusini unutadi, lekin kuylagan qo'shig'ini eslab qoladi. Shuning uchun tanlov tasodifiy bo'lmasligi kerak.",
+          },
+          {
+            kind: "matn",
+            text: "Tanlovda ikki guruh mezon ishlaydi: badiiy (asarning o'zi qanday) va pedagogik (u shu sinfga mosmi).",
+          },
+        ],
+      },
+      {
+        id: "tushunchalar",
+        title: "Asosiy tushunchalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Badiiy qiymat — ohangning ifodaliligi, shaklning aniqligi, matn sifati",
+              "Yoshga moslik — mazmun bola tajribasiga yaqin bo'lishi",
+              "Diapazon — ovoz imkoniyatiga sig'ishi",
+              "Matn — talaffuzi qulay, ma'nosi tushunarli, so'z boyligi mos",
+              "Davomiylik — bir darsda ishlab bo'ladigan hajm",
+              "Tarbiyaviy imkoniyat — dars maqsadiga bog'lanishi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Diapazon amalda eng ko'p e'tibordan chetda qoladigan mezon. Boshlang'ich sinfda ovoz imkoniyati tor bo'ladi va kengayib boradi; asar shu oraliqdan chiqsa, bola baqirishga yoki jim turishga majbur bo'ladi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Asarni tonallikni o'zgartirib moslashtirish mumkin — bu oddiy va samarali yechim. Lekin tonallik o'zgarsa, jo'rlik ham o'zgaradi: buni oldindan tayyorlab qo'yish kerak, darsda emas.",
+          },
+          {
+            kind: "matn",
+            text: "Milliy va jahon merosining muvozanati alohida mezon. Faqat milliy material dunyoqarashni toraytiradi, faqat jahon materiali esa o'z merosidan uzadi. Dastur ikkalasini ham talab qiladi.",
+          },
+        ],
+      },
+      {
+        id: "mashq",
+        title: "Amaliy mashq",
+        blocks: [
+          {
+            kind: "mashq",
+            text: "Bitta sinf uchun uchta asar tanlang va har birini oltita mezon bo'yicha baholang. Qaysi mezon bo'yicha eng ko'p muammo chiqdi?",
+          },
+          {
+            kind: "mashq",
+            text: "Diapazoni sinfga sig'maydigan asarni oling. Uni moslashtirishning ikki yo'lini yozing va har birining narxini ko'rsating: nimadan voz kechasiz?",
+          },
+        ],
+      },
+      {
+        id: "test",
+        title: "Test",
+        blocks: [
+          {
+            kind: "test",
+            questions: [
+              {
+                id: "m18-t1",
+                area: "metodika",
+                bloom: "bilish",
+                kind: "single",
+                prompt:
+                  "Boshlang'ich sinfda eng ko'p e'tibordan chetda qoladigan mezon qaysi?",
+                options: [
+                  { id: "a", text: "Matn ma'nosi" },
+                  { id: "b", text: "Ovoz diapazoni" },
+                  { id: "c", text: "Asar nomi" },
+                  { id: "d", text: "Bastakor shuhrati" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m18-t2",
+                area: "metodika",
+                bloom: "qollash",
+                kind: "single",
+                prompt:
+                  "Asar diapazoni sinfga to'g'ri kelmasa, birinchi yechim qaysi?",
+                options: [
+                  { id: "a", text: "Asardan voz kechish" },
+                  { id: "b", text: "Tonallikni o'zgartirish, jo'rlikni oldindan tayyorlab" },
+                  { id: "c", text: "Faqat kuchli bolalarga kuylatish" },
+                  { id: "d", text: "Tezroq kuylash" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m18-t3",
+                area: "metodika",
+                bloom: "baholash",
+                kind: "single",
+                prompt:
+                  "Faqat milliy materialdan iborat repertuarning kamchiligi nimada?",
+                options: [
+                  { id: "a", text: "Bolalarga qiziq emas" },
+                  { id: "b", text: "Dunyoqarashni toraytiradi; dastur muvozanatni talab qiladi" },
+                  { id: "c", text: "Qiyin bo'ladi" },
+                  { id: "d", text: "Kamchiligi yo'q" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m18-t4",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "multiple",
+                prompt: "Badiiy mezonlarga nimalar kiradi?",
+                options: [
+                  { id: "a", text: "Ohangning ifodaliligi" },
+                  { id: "b", text: "Shaklning aniqligi" },
+                  { id: "c", text: "Matn sifati" },
+                  { id: "d", text: "Asarning mashhurligi" },
+                ],
+                correctIds: ["a", "b", "c"],
+                explanation:
+                  "Mashhurlik tanlovga yordam berishi mumkin, lekin badiiy qiymat mezoni emas.",
+              },
+              {
+                id: "m18-t5",
+                area: "metodika",
+                bloom: "baholash",
+                kind: "single",
+                prompt:
+                  "Tonallikni o'zgartirishning «narxi» nimada?",
+                options: [
+                  { id: "a", text: "Asar buziladi" },
+                  { id: "b", text: "Jo'rlik qayta tayyorlanishi kerak" },
+                  { id: "c", text: "Matn o'zgaradi" },
+                  { id: "d", text: "Hech qanday narxi yo'q" },
+                ],
+                correctId: "b",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "xulosa",
+        title: "Xulosa",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Ikki guruh mezon: badiiy (asarning o'zi) va pedagogik (sinfga mosligi)",
+              "Diapazon — eng ko'p unutiladigan, lekin eng aniq chegara",
+              "Tonallikni o'zgartirish ishlaydi, lekin jo'rlik qayta tayyorlanadi",
+              "Milliy va jahon merosi muvozanatda bo'ladi",
+            ],
+          },
+        ],
+      },
+    ],
+    reflection: [
+      "O'zingiz maktabda kuylagan qaysi qo'shiq esingizda qolgan va nega aynan u?",
+      "Badiiy qiymat va «bolalarga qiziq» mezonlari to'qnashsa, qaysi birini tanlaysiz?",
+    ],
+  },
+
+  /* ──────────────────────────── M19 ──────────────────────────── */
+  {
+    id: "met-m19",
+    slug: "m19-repertuar-metodik-tahlili",
+    title: "M19: Boshlang'ich va o'rta sinf repertuarining metodik tahlili",
+    summary:
+      "Repertuarni metodik tahlil qilish bosqichlari va qo'shiqni o'rgatish metodikasi.",
+    durationMin: 80,
+    bloom: "tahlil",
+    outcomeId: "on-met-19",
+    area: "metodika",
+    dasturKodi: "M19",
+    dasturTuri: "maruza",
+    dasturSoati: 2,
+    tn: ["TN4", "TN7"],
+    sections: [
+      {
+        id: "kirish",
+        title: "Kirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Metodik tahlil — asarni «o'qituvchi ko'zi bilan» ko'rish. Tinglovchi asarni yaxlit qabul qiladi, o'qituvchi esa uni bosqichlarga ajratadi: qayerdan boshlanadi, qayerda qiyinlashadi, qayerda nafas olinadi.",
+          },
+          {
+            kind: "matn",
+            text: "Shunday tahlilsiz qo'shiq o'rgatish «ko'p marta takrorlash» ga aylanadi — vaqt ketadi, natija esa tasodifiy bo'ladi.",
+          },
+        ],
+      },
+      {
+        id: "tushunchalar",
+        title: "Asosiy tushunchalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Umumiy tavsif — janr, kayfiyat, mavzu, muallif",
+              "Matn tahlili — ma'no, so'z boyligi, talaffuzi qiyin joylar",
+              "Ohang tahlili — diapazon, sakrashlar, takrorlanuvchi naqshlar",
+              "Ritm va o'lchov — qiyin ritmik figuralar, urg'u",
+              "Shakl — qismlar, naqorat, takrorlanish",
+              "Ijro rejasi — temp, dinamika, nafas joylari, cho'qqi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Qo'shiq o'rgatishning odatiy ketma-ketligi: namoyish (o'qituvchi to'liq ijro etadi) → matn bilan tanishish → frazalab o'rganish (aks-sado usuli) → qismlarni birlashtirish → ifoda ustida ishlash → mustahkamlash.",
+          },
+          {
+            kind: "eslatma",
+            text: "Birinchi namoyish sifati butun ishni belgilaydi. Bola asarni birinchi marta qanday eshitsa, shu tasavvur qoladi. Shuning uchun namoyishga tayyorgarlik — o'qituvchining uy ishi, darsdagi emas.",
+          },
+          {
+            kind: "matn",
+            text: "Qiyin joyni alohida ajratib ishlash — tejamkor usul. Butun qo'shiqni o'ntadan takrorlashdan ko'ra, qiyin ikki taktni beshta turli yo'l bilan mashq qilish samaraliroq: sekin, bo'g'in bilan, faqat ritm, qarama-qarshi yo'nalishda, so'ng kontekstda.",
+          },
+        ],
+      },
+      {
+        id: "mashq",
+        title: "Amaliy mashq",
+        blocks: [
+          {
+            kind: "mashq",
+            text: "Bitta qo'shiqni olti band bo'yicha tahlil qiling. «Ijro rejasi» bandida nafas joylarini va cho'qqini aniq belgilang.",
+          },
+          {
+            kind: "mashq",
+            text: "Shu qo'shiqdagi eng qiyin ikki taktni tanlang va uni o'rgatishning uch xil yo'lini yozing. Har biri qancha vaqt oladi?",
+          },
+        ],
+      },
+      {
+        id: "test",
+        title: "Test",
+        blocks: [
+          {
+            kind: "test",
+            questions: [
+              {
+                id: "m19-t1",
+                area: "metodika",
+                bloom: "bilish",
+                kind: "single",
+                prompt: "Qo'shiq o'rgatish qaysi bosqichdan boshlanadi?",
+                options: [
+                  { id: "a", text: "Matnni yozdirish" },
+                  { id: "b", text: "O'qituvchining to'liq namoyishi" },
+                  { id: "c", text: "Frazalab o'rganish" },
+                  { id: "d", text: "Nota tahlili" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m19-t2",
+                area: "metodika",
+                bloom: "tushunish",
+                kind: "single",
+                prompt: "Nega birinchi namoyish sifati muhim?",
+                options: [
+                  { id: "a", text: "Baho qo'yiladi" },
+                  { id: "b", text: "Bola asarni birinchi eshitganicha eslab qoladi" },
+                  { id: "c", text: "Vaqt tejaladi" },
+                  { id: "d", text: "Dastur talabi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m19-t3",
+                area: "metodika",
+                bloom: "qollash",
+                kind: "single",
+                prompt:
+                  "Qiyin ikki taktni o'rgatishda eng samarali yo'l qaysi?",
+                options: [
+                  { id: "a", text: "Butun qo'shiqni ko'p marta takrorlash" },
+                  { id: "b", text: "Shu ikki taktni turli usullarda mashq qilib, so'ng kontekstga qaytarish" },
+                  { id: "c", text: "O'sha joyni tushirib qoldirish" },
+                  { id: "d", text: "Tezroq kuylash" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m19-t4",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "multiple",
+                prompt: "Metodik tahlilning «ijro rejasi» bandiga nimalar kiradi?",
+                options: [
+                  { id: "a", text: "Temp va dinamika" },
+                  { id: "b", text: "Nafas joylari" },
+                  { id: "c", text: "Cho'qqi nuqtasi" },
+                  { id: "d", text: "Bastakorning tug'ilgan yili" },
+                ],
+                correctIds: ["a", "b", "c"],
+              },
+              {
+                id: "m19-t5",
+                area: "metodika",
+                bloom: "baholash",
+                kind: "single",
+                prompt:
+                  "Metodik tahlilsiz qo'shiq o'rgatish nimaga aylanadi?",
+                options: [
+                  { id: "a", text: "Tez va samarali ishga" },
+                  { id: "b", text: "Ko'p marta takrorlashga: vaqt ketadi, natija tasodifiy" },
+                  { id: "c", text: "Ijodiy jarayonga" },
+                  { id: "d", text: "Mustaqil ishga" },
+                ],
+                correctId: "b",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "xulosa",
+        title: "Xulosa",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Tahlil bandlari: umumiy tavsif, matn, ohang, ritm, shakl, ijro rejasi",
+              "O'rgatish: namoyish → matn → frazalab → birlashtirish → ifoda → mustahkamlash",
+              "Birinchi namoyish — o'qituvchining uy ishi",
+              "Qiyin joy alohida va turli usullarda ishlanadi",
+            ],
+          },
+        ],
+      },
+    ],
+    reflection: [
+      "Namoyishga tayyorlanishga qancha vaqt ajratasiz? Bu yetarlimi?",
+      "Qaysi tahlil bandi sizga eng ko'p yangilik beradi deb o'ylaysiz?",
+    ],
+  },
+  /* ──────────────────────────── M20 ──────────────────────────── */
+  {
+    id: "met-m20",
+    slug: "m20-1-sinf-repertuari",
+    title: "M20: 1-sinf uchun repertuar tanlash va tahlil qilish",
+    summary:
+      "1-sinf o'quvchisining musiqiy tavsifnomasi, ovoz imkoniyati va unga mos repertuar.",
+    durationMin: 80,
+    bloom: "baholash",
+    outcomeId: "on-met-20",
+    area: "metodika",
+    dasturKodi: "M20",
+    dasturTuri: "maruza",
+    dasturSoati: 2,
+    tn: ["TN3", "TN7"],
+    sections: [
+      {
+        id: "kirish",
+        title: "Kirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Repertuar tanlash har bir sinf uchun qaytadan hal qilinadi. 1-sinf (6–7 yosh) o'z tavsifnomasiga ega va undan oldingi yoki keyingi sinf uchun mos asar bu yerda ishlamasligi mumkin.",
+          },
+          {
+            kind: "matn",
+            text: "Bu darsda uch narsa ko'rib chiqiladi: shu yoshning musiqiy tavsifnomasi, ovoz imkoniyati va shunga mos repertuar belgilari.",
+          },
+        ],
+      },
+      {
+        id: "tushunchalar",
+        title: "Asosiy tushunchalar",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yosh xususiyatlari: Diqqat 10–15 daqiqa; o'yin va harakat asosiy vosita; o'qish ko'nikmasi endi shakllanmoqda, shuning uchun matn og'zaki beriladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Yosh: 6–7 yosh",
+              "Ovoz diapazoni: taxminan do1 – la1 (tor oraliq)",
+              "Repertuar belgilari: Qisqa, bir qismli qo'shiqlar; takrorlanuvchi naqsh; o'yin qo'shiqlari va allalar.",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Diapazon raqamlari taxminiy va yo'naltiruvchi: aniq chegara sinfning o'ziga, darslik va DTS talablariga qarab belgilanadi. Amalda eng ishonchli tekshiruv — sinfni kuylatib ko'rish.",
+          },
+          {
+            kind: "matn",
+            text: "Amaliy maslahat: Qo'shiq 8–16 taktdan oshmasin; har darsda harakat bo'lsin; matn rasm yoki imo-ishora bilan mustahkamlansin.",
+          },
+          {
+            kind: "matn",
+            text: "Ijodiy topshiriqlar shu yoshda musiqiy taassurotni mustahkamlaydi: asar kayfiyatini chizish, matnga davom topish, ritmik jo'rlik o'ylab topish. Ular baholanadi, lekin «to'g'ri javob» mezoni bilan emas — ishtirok va asoslash bilan.",
+          },
+        ],
+      },
+      {
+        id: "mashq",
+        title: "Amaliy mashq",
+        blocks: [
+          {
+            kind: "mashq",
+            text: "1-sinf uchun darslikdan ikkita asar tanlang. Har birini diapazon, matn va davomiylik bo'yicha tekshiring. Qaysi biri moslashtirishni talab qiladi va qanday?",
+          },
+          {
+            kind: "mashq",
+            text: "Shu sinf uchun bitta ijodiy topshiriq tuzing va uni qanday baholashingizni yozing — ball emas, mezon bilan.",
+          },
+        ],
+      },
+      {
+        id: "test",
+        title: "Test",
+        blocks: [
+          {
+            kind: "test",
+            questions: [
+              {
+                id: "m20-t1",
+                area: "metodika",
+                bloom: "bilish",
+                kind: "single",
+                prompt: "1-sinf o'quvchisining yoshi qaysi?",
+                options: [
+                  { id: "a", text: "6–7 yosh" },
+                  { id: "b", text: "14–15 yosh" },
+                  { id: "c", text: "4–5 yosh" },
+                  { id: "d", text: "16–17 yosh" },
+                ],
+                correctId: "a",
+              },
+              {
+                id: "m20-t2",
+                area: "metodika",
+                bloom: "tushunish",
+                kind: "single",
+                prompt:
+                  "Nega diapazon raqamlari taxminiy deb beriladi?",
+                options: [
+                  { id: "a", text: "Hali o'rganilmagan" },
+                  { id: "b", text: "Aniq chegara sinfga, darslik va DTS talabiga qarab belgilanadi" },
+                  { id: "c", text: "Ular ahamiyatsiz" },
+                  { id: "d", text: "Darslikda yo'q" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m20-t3",
+                area: "metodika",
+                bloom: "qollash",
+                kind: "single",
+                prompt:
+                  "1-sinfda repertuar tanlashda qaysi maslahat o'rinli?",
+                options: [
+                  { id: "a", text: "Qo'shiq 8–16 taktdan oshmasin; har darsda harakat bo'lsin; matn rasm yoki imo-ishora bilan mustahkamlansin." },
+                  { id: "b", text: "Imkon qadar murakkab asar tanlash" },
+                  { id: "c", text: "Faqat kattalar repertuaridan olish" },
+                  { id: "d", text: "Diapazonga e'tibor bermaslik" },
+                ],
+                correctId: "a",
+              },
+              {
+                id: "m20-t4",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "single",
+                prompt:
+                  "Repertuar tanlashda eng ishonchli amaliy tekshiruv qaysi?",
+                options: [
+                  { id: "a", text: "Asar mashhurligi" },
+                  { id: "b", text: "Sinfni kuylatib ko'rish" },
+                  { id: "c", text: "Nota murakkabligi" },
+                  { id: "d", text: "Bastakor nomi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m20-t5",
+                area: "metodika",
+                bloom: "baholash",
+                kind: "single",
+                prompt:
+                  "Ijodiy topshiriq qanday baholanadi?",
+                options: [
+                  { id: "a", text: "Faqat «to'g'ri javob» mezoni bilan" },
+                  { id: "b", text: "Ishtirok va o'z tanlovini asoslash bo'yicha" },
+                  { id: "c", text: "Baholanmaydi" },
+                  { id: "d", text: "Faqat ijro tozaligi bilan" },
+                ],
+                correctId: "b",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "xulosa",
+        title: "Xulosa",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "1-sinf: 6–7 yosh, diapazon — taxminan do1 – la1 (tor oraliq)",
+              "Repertuar belgilari: Qisqa, bir qismli qo'shiqlar; takrorlanuvchi naqsh; o'yin qo'shiqlari va allalar.",
+              "Diapazon raqamlari yo'naltiruvchi; aniqligi sinfda tekshiriladi",
+              "Ijodiy topshiriq ishtirok va asoslash bo'yicha baholanadi",
+            ],
+          },
+        ],
+      },
+    ],
+    reflection: [
+      "1-sinf uchun repertuar tanlashda sizga eng ko'p nima qiyinchilik tug'diradi?",
+      "Shu yoshdagi bolaning qiziqishini qanday bilib olasiz?",
+    ],
+  },
+
+  /* ──────────────────────────── M21 ──────────────────────────── */
+  {
+    id: "met-m21",
+    slug: "m21-2-sinf-repertuari",
+    title: "M21: 2-sinf uchun repertuar tanlash va tahlil qilish",
+    summary:
+      "2-sinf o'quvchisining musiqiy tavsifnomasi, ovoz imkoniyati va unga mos repertuar.",
+    durationMin: 80,
+    bloom: "baholash",
+    outcomeId: "on-met-20",
+    area: "metodika",
+    dasturKodi: "M21",
+    dasturTuri: "maruza",
+    dasturSoati: 2,
+    tn: ["TN3", "TN7"],
+    sections: [
+      {
+        id: "kirish",
+        title: "Kirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Repertuar tanlash har bir sinf uchun qaytadan hal qilinadi. 2-sinf (7–8 yosh) o'z tavsifnomasiga ega va undan oldingi yoki keyingi sinf uchun mos asar bu yerda ishlamasligi mumkin.",
+          },
+          {
+            kind: "matn",
+            text: "Bu darsda uch narsa ko'rib chiqiladi: shu yoshning musiqiy tavsifnomasi, ovoz imkoniyati va shunga mos repertuar belgilari.",
+          },
+        ],
+      },
+      {
+        id: "tushunchalar",
+        title: "Asosiy tushunchalar",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yosh xususiyatlari: Diqqat uzayadi; o'qish ko'nikmasi mustahkamlanadi; jamoaviy ish qiziqarli bo'ladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Yosh: 7–8 yosh",
+              "Ovoz diapazoni: taxminan si (kichik oktava) – si1",
+              "Repertuar belgilari: Ikki qismli shakl, naqoratli qo'shiqlar; marsh va raqs xarakteridagi kuylar.",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Diapazon raqamlari taxminiy va yo'naltiruvchi: aniq chegara sinfning o'ziga, darslik va DTS talablariga qarab belgilanadi. Amalda eng ishonchli tekshiruv — sinfni kuylatib ko'rish.",
+          },
+          {
+            kind: "matn",
+            text: "Amaliy maslahat: Naqorat avval o'rganiladi — u takrorlanadi va sinfni birlashtiradi; kuplet keyin.",
+          },
+          {
+            kind: "matn",
+            text: "Ijodiy topshiriqlar shu yoshda musiqiy taassurotni mustahkamlaydi: asar kayfiyatini chizish, matnga davom topish, ritmik jo'rlik o'ylab topish. Ular baholanadi, lekin «to'g'ri javob» mezoni bilan emas — ishtirok va asoslash bilan.",
+          },
+        ],
+      },
+      {
+        id: "mashq",
+        title: "Amaliy mashq",
+        blocks: [
+          {
+            kind: "mashq",
+            text: "2-sinf uchun darslikdan ikkita asar tanlang. Har birini diapazon, matn va davomiylik bo'yicha tekshiring. Qaysi biri moslashtirishni talab qiladi va qanday?",
+          },
+          {
+            kind: "mashq",
+            text: "Shu sinf uchun bitta ijodiy topshiriq tuzing va uni qanday baholashingizni yozing — ball emas, mezon bilan.",
+          },
+        ],
+      },
+      {
+        id: "test",
+        title: "Test",
+        blocks: [
+          {
+            kind: "test",
+            questions: [
+              {
+                id: "m21-t1",
+                area: "metodika",
+                bloom: "bilish",
+                kind: "single",
+                prompt: "2-sinf o'quvchisining yoshi qaysi?",
+                options: [
+                  { id: "a", text: "7–8 yosh" },
+                  { id: "b", text: "14–15 yosh" },
+                  { id: "c", text: "4–5 yosh" },
+                  { id: "d", text: "16–17 yosh" },
+                ],
+                correctId: "a",
+              },
+              {
+                id: "m21-t2",
+                area: "metodika",
+                bloom: "tushunish",
+                kind: "single",
+                prompt:
+                  "Nega diapazon raqamlari taxminiy deb beriladi?",
+                options: [
+                  { id: "a", text: "Hali o'rganilmagan" },
+                  { id: "b", text: "Aniq chegara sinfga, darslik va DTS talabiga qarab belgilanadi" },
+                  { id: "c", text: "Ular ahamiyatsiz" },
+                  { id: "d", text: "Darslikda yo'q" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m21-t3",
+                area: "metodika",
+                bloom: "qollash",
+                kind: "single",
+                prompt:
+                  "2-sinfda repertuar tanlashda qaysi maslahat o'rinli?",
+                options: [
+                  { id: "a", text: "Naqorat avval o'rganiladi — u takrorlanadi va sinfni birlashtiradi; kuplet keyin." },
+                  { id: "b", text: "Imkon qadar murakkab asar tanlash" },
+                  { id: "c", text: "Faqat kattalar repertuaridan olish" },
+                  { id: "d", text: "Diapazonga e'tibor bermaslik" },
+                ],
+                correctId: "a",
+              },
+              {
+                id: "m21-t4",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "single",
+                prompt:
+                  "Repertuar tanlashda eng ishonchli amaliy tekshiruv qaysi?",
+                options: [
+                  { id: "a", text: "Asar mashhurligi" },
+                  { id: "b", text: "Sinfni kuylatib ko'rish" },
+                  { id: "c", text: "Nota murakkabligi" },
+                  { id: "d", text: "Bastakor nomi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m21-t5",
+                area: "metodika",
+                bloom: "baholash",
+                kind: "single",
+                prompt:
+                  "Ijodiy topshiriq qanday baholanadi?",
+                options: [
+                  { id: "a", text: "Faqat «to'g'ri javob» mezoni bilan" },
+                  { id: "b", text: "Ishtirok va o'z tanlovini asoslash bo'yicha" },
+                  { id: "c", text: "Baholanmaydi" },
+                  { id: "d", text: "Faqat ijro tozaligi bilan" },
+                ],
+                correctId: "b",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "xulosa",
+        title: "Xulosa",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "2-sinf: 7–8 yosh, diapazon — taxminan si (kichik oktava) – si1",
+              "Repertuar belgilari: Ikki qismli shakl, naqoratli qo'shiqlar; marsh va raqs xarakteridagi kuylar.",
+              "Diapazon raqamlari yo'naltiruvchi; aniqligi sinfda tekshiriladi",
+              "Ijodiy topshiriq ishtirok va asoslash bo'yicha baholanadi",
+            ],
+          },
+        ],
+      },
+    ],
+    reflection: [
+      "2-sinf uchun repertuar tanlashda sizga eng ko'p nima qiyinchilik tug'diradi?",
+      "Shu yoshdagi bolaning qiziqishini qanday bilib olasiz?",
+    ],
+  },
+
+  /* ──────────────────────────── M22 ──────────────────────────── */
+  {
+    id: "met-m22",
+    slug: "m22-3-sinf-repertuari",
+    title: "M22: 3-sinf uchun repertuar tanlash va tahlil qilish",
+    summary:
+      "3-sinf o'quvchisining musiqiy tavsifnomasi, ovoz imkoniyati va unga mos repertuar.",
+    durationMin: 80,
+    bloom: "baholash",
+    outcomeId: "on-met-20",
+    area: "metodika",
+    dasturKodi: "M22",
+    dasturTuri: "maruza",
+    dasturSoati: 2,
+    tn: ["TN3", "TN7"],
+    sections: [
+      {
+        id: "kirish",
+        title: "Kirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Repertuar tanlash har bir sinf uchun qaytadan hal qilinadi. 3-sinf (8–9 yosh) o'z tavsifnomasiga ega va undan oldingi yoki keyingi sinf uchun mos asar bu yerda ishlamasligi mumkin.",
+          },
+          {
+            kind: "matn",
+            text: "Bu darsda uch narsa ko'rib chiqiladi: shu yoshning musiqiy tavsifnomasi, ovoz imkoniyati va shunga mos repertuar belgilari.",
+          },
+        ],
+      },
+      {
+        id: "tushunchalar",
+        title: "Asosiy tushunchalar",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yosh xususiyatlari: Ritmik sezgi barqarorlashadi; bola o'z ijrosini baholay boshlaydi; musobaqa qiziqtiradi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Yosh: 8–9 yosh",
+              "Ovoz diapazoni: taxminan si – do2",
+              "Repertuar belgilari: Xalq qo'shiqlari va bayram kuylari; aniq ritmli, o'rtacha tempdagi asarlar.",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Diapazon raqamlari taxminiy va yo'naltiruvchi: aniq chegara sinfning o'ziga, darslik va DTS talablariga qarab belgilanadi. Amalda eng ishonchli tekshiruv — sinfni kuylatib ko'rish.",
+          },
+          {
+            kind: "matn",
+            text: "Amaliy maslahat: Ritmik jo'rlik qo'shish mumkin; qo'shiqni guruhlarga bo'lib ijro etish yaxshi ishlaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ijodiy topshiriqlar shu yoshda musiqiy taassurotni mustahkamlaydi: asar kayfiyatini chizish, matnga davom topish, ritmik jo'rlik o'ylab topish. Ular baholanadi, lekin «to'g'ri javob» mezoni bilan emas — ishtirok va asoslash bilan.",
+          },
+        ],
+      },
+      {
+        id: "mashq",
+        title: "Amaliy mashq",
+        blocks: [
+          {
+            kind: "mashq",
+            text: "3-sinf uchun darslikdan ikkita asar tanlang. Har birini diapazon, matn va davomiylik bo'yicha tekshiring. Qaysi biri moslashtirishni talab qiladi va qanday?",
+          },
+          {
+            kind: "mashq",
+            text: "Shu sinf uchun bitta ijodiy topshiriq tuzing va uni qanday baholashingizni yozing — ball emas, mezon bilan.",
+          },
+        ],
+      },
+      {
+        id: "test",
+        title: "Test",
+        blocks: [
+          {
+            kind: "test",
+            questions: [
+              {
+                id: "m22-t1",
+                area: "metodika",
+                bloom: "bilish",
+                kind: "single",
+                prompt: "3-sinf o'quvchisining yoshi qaysi?",
+                options: [
+                  { id: "a", text: "8–9 yosh" },
+                  { id: "b", text: "14–15 yosh" },
+                  { id: "c", text: "4–5 yosh" },
+                  { id: "d", text: "16–17 yosh" },
+                ],
+                correctId: "a",
+              },
+              {
+                id: "m22-t2",
+                area: "metodika",
+                bloom: "tushunish",
+                kind: "single",
+                prompt:
+                  "Nega diapazon raqamlari taxminiy deb beriladi?",
+                options: [
+                  { id: "a", text: "Hali o'rganilmagan" },
+                  { id: "b", text: "Aniq chegara sinfga, darslik va DTS talabiga qarab belgilanadi" },
+                  { id: "c", text: "Ular ahamiyatsiz" },
+                  { id: "d", text: "Darslikda yo'q" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m22-t3",
+                area: "metodika",
+                bloom: "qollash",
+                kind: "single",
+                prompt:
+                  "3-sinfda repertuar tanlashda qaysi maslahat o'rinli?",
+                options: [
+                  { id: "a", text: "Ritmik jo'rlik qo'shish mumkin; qo'shiqni guruhlarga bo'lib ijro etish yaxshi ishlaydi." },
+                  { id: "b", text: "Imkon qadar murakkab asar tanlash" },
+                  { id: "c", text: "Faqat kattalar repertuaridan olish" },
+                  { id: "d", text: "Diapazonga e'tibor bermaslik" },
+                ],
+                correctId: "a",
+              },
+              {
+                id: "m22-t4",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "single",
+                prompt:
+                  "Repertuar tanlashda eng ishonchli amaliy tekshiruv qaysi?",
+                options: [
+                  { id: "a", text: "Asar mashhurligi" },
+                  { id: "b", text: "Sinfni kuylatib ko'rish" },
+                  { id: "c", text: "Nota murakkabligi" },
+                  { id: "d", text: "Bastakor nomi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m22-t5",
+                area: "metodika",
+                bloom: "baholash",
+                kind: "single",
+                prompt:
+                  "Ijodiy topshiriq qanday baholanadi?",
+                options: [
+                  { id: "a", text: "Faqat «to'g'ri javob» mezoni bilan" },
+                  { id: "b", text: "Ishtirok va o'z tanlovini asoslash bo'yicha" },
+                  { id: "c", text: "Baholanmaydi" },
+                  { id: "d", text: "Faqat ijro tozaligi bilan" },
+                ],
+                correctId: "b",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "xulosa",
+        title: "Xulosa",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "3-sinf: 8–9 yosh, diapazon — taxminan si – do2",
+              "Repertuar belgilari: Xalq qo'shiqlari va bayram kuylari; aniq ritmli, o'rtacha tempdagi asarlar.",
+              "Diapazon raqamlari yo'naltiruvchi; aniqligi sinfda tekshiriladi",
+              "Ijodiy topshiriq ishtirok va asoslash bo'yicha baholanadi",
+            ],
+          },
+        ],
+      },
+    ],
+    reflection: [
+      "3-sinf uchun repertuar tanlashda sizga eng ko'p nima qiyinchilik tug'diradi?",
+      "Shu yoshdagi bolaning qiziqishini qanday bilib olasiz?",
+    ],
+  },
+
+  /* ──────────────────────────── M23 ──────────────────────────── */
+  {
+    id: "met-m23",
+    slug: "m23-4-sinf-repertuari",
+    title: "M23: 4-sinf uchun repertuar tanlash va tahlil qilish",
+    summary:
+      "4-sinf o'quvchisining musiqiy tavsifnomasi, ovoz imkoniyati va unga mos repertuar.",
+    durationMin: 80,
+    bloom: "baholash",
+    outcomeId: "on-met-20",
+    area: "metodika",
+    dasturKodi: "M23",
+    dasturTuri: "maruza",
+    dasturSoati: 2,
+    tn: ["TN3", "TN7"],
+    sections: [
+      {
+        id: "kirish",
+        title: "Kirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Repertuar tanlash har bir sinf uchun qaytadan hal qilinadi. 4-sinf (9–10 yosh) o'z tavsifnomasiga ega va undan oldingi yoki keyingi sinf uchun mos asar bu yerda ishlamasligi mumkin.",
+          },
+          {
+            kind: "matn",
+            text: "Bu darsda uch narsa ko'rib chiqiladi: shu yoshning musiqiy tavsifnomasi, ovoz imkoniyati va shunga mos repertuar belgilari.",
+          },
+        ],
+      },
+      {
+        id: "tushunchalar",
+        title: "Asosiy tushunchalar",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yosh xususiyatlari: Ovoz kuchayadi, nafas uzayadi; mavhum tushunchalarni qabul qila boshlaydi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Yosh: 9–10 yosh",
+              "Ovoz diapazoni: taxminan si – re2",
+              "Repertuar belgilari: Kengroq diapazonli, ifodali asarlar; ikki ovozlilik elementlari (kanon, ostinato).",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Diapazon raqamlari taxminiy va yo'naltiruvchi: aniq chegara sinfning o'ziga, darslik va DTS talablariga qarab belgilanadi. Amalda eng ishonchli tekshiruv — sinfni kuylatib ko'rish.",
+          },
+          {
+            kind: "matn",
+            text: "Amaliy maslahat: Ikki ovozlilikni kanondan boshlang — u bitta ohang bo'lgani uchun xavfsiz.",
+          },
+          {
+            kind: "matn",
+            text: "Ijodiy topshiriqlar shu yoshda musiqiy taassurotni mustahkamlaydi: asar kayfiyatini chizish, matnga davom topish, ritmik jo'rlik o'ylab topish. Ular baholanadi, lekin «to'g'ri javob» mezoni bilan emas — ishtirok va asoslash bilan.",
+          },
+        ],
+      },
+      {
+        id: "mashq",
+        title: "Amaliy mashq",
+        blocks: [
+          {
+            kind: "mashq",
+            text: "4-sinf uchun darslikdan ikkita asar tanlang. Har birini diapazon, matn va davomiylik bo'yicha tekshiring. Qaysi biri moslashtirishni talab qiladi va qanday?",
+          },
+          {
+            kind: "mashq",
+            text: "Shu sinf uchun bitta ijodiy topshiriq tuzing va uni qanday baholashingizni yozing — ball emas, mezon bilan.",
+          },
+        ],
+      },
+      {
+        id: "test",
+        title: "Test",
+        blocks: [
+          {
+            kind: "test",
+            questions: [
+              {
+                id: "m23-t1",
+                area: "metodika",
+                bloom: "bilish",
+                kind: "single",
+                prompt: "4-sinf o'quvchisining yoshi qaysi?",
+                options: [
+                  { id: "a", text: "9–10 yosh" },
+                  { id: "b", text: "14–15 yosh" },
+                  { id: "c", text: "4–5 yosh" },
+                  { id: "d", text: "16–17 yosh" },
+                ],
+                correctId: "a",
+              },
+              {
+                id: "m23-t2",
+                area: "metodika",
+                bloom: "tushunish",
+                kind: "single",
+                prompt:
+                  "Nega diapazon raqamlari taxminiy deb beriladi?",
+                options: [
+                  { id: "a", text: "Hali o'rganilmagan" },
+                  { id: "b", text: "Aniq chegara sinfga, darslik va DTS talabiga qarab belgilanadi" },
+                  { id: "c", text: "Ular ahamiyatsiz" },
+                  { id: "d", text: "Darslikda yo'q" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m23-t3",
+                area: "metodika",
+                bloom: "qollash",
+                kind: "single",
+                prompt:
+                  "4-sinfda repertuar tanlashda qaysi maslahat o'rinli?",
+                options: [
+                  { id: "a", text: "Ikki ovozlilikni kanondan boshlang — u bitta ohang bo'lgani uchun xavfsiz." },
+                  { id: "b", text: "Imkon qadar murakkab asar tanlash" },
+                  { id: "c", text: "Faqat kattalar repertuaridan olish" },
+                  { id: "d", text: "Diapazonga e'tibor bermaslik" },
+                ],
+                correctId: "a",
+              },
+              {
+                id: "m23-t4",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "single",
+                prompt:
+                  "Repertuar tanlashda eng ishonchli amaliy tekshiruv qaysi?",
+                options: [
+                  { id: "a", text: "Asar mashhurligi" },
+                  { id: "b", text: "Sinfni kuylatib ko'rish" },
+                  { id: "c", text: "Nota murakkabligi" },
+                  { id: "d", text: "Bastakor nomi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m23-t5",
+                area: "metodika",
+                bloom: "baholash",
+                kind: "single",
+                prompt:
+                  "Ijodiy topshiriq qanday baholanadi?",
+                options: [
+                  { id: "a", text: "Faqat «to'g'ri javob» mezoni bilan" },
+                  { id: "b", text: "Ishtirok va o'z tanlovini asoslash bo'yicha" },
+                  { id: "c", text: "Baholanmaydi" },
+                  { id: "d", text: "Faqat ijro tozaligi bilan" },
+                ],
+                correctId: "b",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "xulosa",
+        title: "Xulosa",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "4-sinf: 9–10 yosh, diapazon — taxminan si – re2",
+              "Repertuar belgilari: Kengroq diapazonli, ifodali asarlar; ikki ovozlilik elementlari (kanon, ostinato).",
+              "Diapazon raqamlari yo'naltiruvchi; aniqligi sinfda tekshiriladi",
+              "Ijodiy topshiriq ishtirok va asoslash bo'yicha baholanadi",
+            ],
+          },
+        ],
+      },
+    ],
+    reflection: [
+      "4-sinf uchun repertuar tanlashda sizga eng ko'p nima qiyinchilik tug'diradi?",
+      "Shu yoshdagi bolaning qiziqishini qanday bilib olasiz?",
+    ],
+  },
+
+  /* ──────────────────────────── M24 ──────────────────────────── */
+  {
+    id: "met-m24",
+    slug: "m24-5-sinf-repertuari",
+    title: "M24: 5-sinf uchun repertuar tanlash va tahlil qilish",
+    summary:
+      "5-sinf o'quvchisining musiqiy tavsifnomasi, ovoz imkoniyati va unga mos repertuar.",
+    durationMin: 80,
+    bloom: "baholash",
+    outcomeId: "on-met-20",
+    area: "metodika",
+    dasturKodi: "M24",
+    dasturTuri: "maruza",
+    dasturSoati: 2,
+    tn: ["TN3", "TN7"],
+    sections: [
+      {
+        id: "kirish",
+        title: "Kirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Repertuar tanlash har bir sinf uchun qaytadan hal qilinadi. 5-sinf (10–11 yosh) o'z tavsifnomasiga ega va undan oldingi yoki keyingi sinf uchun mos asar bu yerda ishlamasligi mumkin.",
+          },
+          {
+            kind: "matn",
+            text: "Bu darsda uch narsa ko'rib chiqiladi: shu yoshning musiqiy tavsifnomasi, ovoz imkoniyati va shunga mos repertuar belgilari.",
+          },
+        ],
+      },
+      {
+        id: "tushunchalar",
+        title: "Asosiy tushunchalar",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yosh xususiyatlari: O'smirlik ostonasi; jamoa fikri muhim bo'lib qoladi; ayrim o'g'il bolalarda ovoz o'zgarishi belgilari paydo bo'lishi mumkin.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Yosh: 10–11 yosh",
+              "Ovoz diapazoni: taxminan lya (kichik oktava) – re2",
+              "Repertuar belgilari: Jiddiyroq mavzular, milliy kuylar (lazgi, yallama yorim kabi) va zamonaviy bolalar qo'shiqlari.",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Diapazon raqamlari taxminiy va yo'naltiruvchi: aniq chegara sinfning o'ziga, darslik va DTS talablariga qarab belgilanadi. Amalda eng ishonchli tekshiruv — sinfni kuylatib ko'rish.",
+          },
+          {
+            kind: "matn",
+            text: "Amaliy maslahat: Ovozi o'zgarayotgan bolaga past partiya yoki ritmik vazifa bering — jarayondan chiqarmang.",
+          },
+          {
+            kind: "matn",
+            text: "Ijodiy topshiriqlar shu yoshda musiqiy taassurotni mustahkamlaydi: asar kayfiyatini chizish, matnga davom topish, ritmik jo'rlik o'ylab topish. Ular baholanadi, lekin «to'g'ri javob» mezoni bilan emas — ishtirok va asoslash bilan.",
+          },
+        ],
+      },
+      {
+        id: "mashq",
+        title: "Amaliy mashq",
+        blocks: [
+          {
+            kind: "mashq",
+            text: "5-sinf uchun darslikdan ikkita asar tanlang. Har birini diapazon, matn va davomiylik bo'yicha tekshiring. Qaysi biri moslashtirishni talab qiladi va qanday?",
+          },
+          {
+            kind: "mashq",
+            text: "Shu sinf uchun bitta ijodiy topshiriq tuzing va uni qanday baholashingizni yozing — ball emas, mezon bilan.",
+          },
+        ],
+      },
+      {
+        id: "test",
+        title: "Test",
+        blocks: [
+          {
+            kind: "test",
+            questions: [
+              {
+                id: "m24-t1",
+                area: "metodika",
+                bloom: "bilish",
+                kind: "single",
+                prompt: "5-sinf o'quvchisining yoshi qaysi?",
+                options: [
+                  { id: "a", text: "10–11 yosh" },
+                  { id: "b", text: "14–15 yosh" },
+                  { id: "c", text: "4–5 yosh" },
+                  { id: "d", text: "16–17 yosh" },
+                ],
+                correctId: "a",
+              },
+              {
+                id: "m24-t2",
+                area: "metodika",
+                bloom: "tushunish",
+                kind: "single",
+                prompt:
+                  "Nega diapazon raqamlari taxminiy deb beriladi?",
+                options: [
+                  { id: "a", text: "Hali o'rganilmagan" },
+                  { id: "b", text: "Aniq chegara sinfga, darslik va DTS talabiga qarab belgilanadi" },
+                  { id: "c", text: "Ular ahamiyatsiz" },
+                  { id: "d", text: "Darslikda yo'q" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m24-t3",
+                area: "metodika",
+                bloom: "qollash",
+                kind: "single",
+                prompt:
+                  "5-sinfda repertuar tanlashda qaysi maslahat o'rinli?",
+                options: [
+                  { id: "a", text: "Ovozi o'zgarayotgan bolaga past partiya yoki ritmik vazifa bering — jarayondan chiqarmang." },
+                  { id: "b", text: "Imkon qadar murakkab asar tanlash" },
+                  { id: "c", text: "Faqat kattalar repertuaridan olish" },
+                  { id: "d", text: "Diapazonga e'tibor bermaslik" },
+                ],
+                correctId: "a",
+              },
+              {
+                id: "m24-t4",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "single",
+                prompt:
+                  "Repertuar tanlashda eng ishonchli amaliy tekshiruv qaysi?",
+                options: [
+                  { id: "a", text: "Asar mashhurligi" },
+                  { id: "b", text: "Sinfni kuylatib ko'rish" },
+                  { id: "c", text: "Nota murakkabligi" },
+                  { id: "d", text: "Bastakor nomi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m24-t5",
+                area: "metodika",
+                bloom: "baholash",
+                kind: "single",
+                prompt:
+                  "Ijodiy topshiriq qanday baholanadi?",
+                options: [
+                  { id: "a", text: "Faqat «to'g'ri javob» mezoni bilan" },
+                  { id: "b", text: "Ishtirok va o'z tanlovini asoslash bo'yicha" },
+                  { id: "c", text: "Baholanmaydi" },
+                  { id: "d", text: "Faqat ijro tozaligi bilan" },
+                ],
+                correctId: "b",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "xulosa",
+        title: "Xulosa",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "5-sinf: 10–11 yosh, diapazon — taxminan lya (kichik oktava) – re2",
+              "Repertuar belgilari: Jiddiyroq mavzular, milliy kuylar (lazgi, yallama yorim kabi) va zamonaviy bolalar qo'shiqlari.",
+              "Diapazon raqamlari yo'naltiruvchi; aniqligi sinfda tekshiriladi",
+              "Ijodiy topshiriq ishtirok va asoslash bo'yicha baholanadi",
+            ],
+          },
+        ],
+      },
+    ],
+    reflection: [
+      "5-sinf uchun repertuar tanlashda sizga eng ko'p nima qiyinchilik tug'diradi?",
+      "Shu yoshdagi bolaning qiziqishini qanday bilib olasiz?",
+    ],
+  },
+
+  /* ──────────────────────────── M25 ──────────────────────────── */
+  {
+    id: "met-m25",
+    slug: "m25-6-sinf-repertuari",
+    title: "M25: 6-sinf uchun repertuar tanlash va tahlil qilish",
+    summary:
+      "6-sinf o'quvchisining musiqiy tavsifnomasi, ovoz imkoniyati va unga mos repertuar.",
+    durationMin: 80,
+    bloom: "baholash",
+    outcomeId: "on-met-20",
+    area: "metodika",
+    dasturKodi: "M25",
+    dasturTuri: "maruza",
+    dasturSoati: 2,
+    tn: ["TN3", "TN7"],
+    sections: [
+      {
+        id: "kirish",
+        title: "Kirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Repertuar tanlash har bir sinf uchun qaytadan hal qilinadi. 6-sinf (11–12 yosh) o'z tavsifnomasiga ega va undan oldingi yoki keyingi sinf uchun mos asar bu yerda ishlamasligi mumkin.",
+          },
+          {
+            kind: "matn",
+            text: "Bu darsda uch narsa ko'rib chiqiladi: shu yoshning musiqiy tavsifnomasi, ovoz imkoniyati va shunga mos repertuar belgilari.",
+          },
+        ],
+      },
+      {
+        id: "tushunchalar",
+        title: "Asosiy tushunchalar",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yosh xususiyatlari: Ovoz mutatsiyasi davri boshlanadi: tembr o'zgaradi, diapazon vaqtincha torayadi, charchash tez keladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Yosh: 11–12 yosh",
+              "Ovoz diapazoni: ovoz mutatsiyasi tufayli individual; umumiy oraliq toraytiriladi",
+              "Repertuar belgilari: O'rtacha diapazonli, uzoq cho'zilmaydigan asarlar; tinglash va tahlil ulushi oshadi.",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Diapazon raqamlari taxminiy va yo'naltiruvchi: aniq chegara sinfning o'ziga, darslik va DTS talablariga qarab belgilanadi. Amalda eng ishonchli tekshiruv — sinfni kuylatib ko'rish.",
+          },
+          {
+            kind: "matn",
+            text: "Amaliy maslahat: Baland va uzun notalardan qoching; kuylash vaqtini qisqartirib, tahlil va ijodiy ishni ko'paytiring.",
+          },
+          {
+            kind: "matn",
+            text: "Ijodiy topshiriqlar shu yoshda musiqiy taassurotni mustahkamlaydi: asar kayfiyatini chizish, matnga davom topish, ritmik jo'rlik o'ylab topish. Ular baholanadi, lekin «to'g'ri javob» mezoni bilan emas — ishtirok va asoslash bilan.",
+          },
+        ],
+      },
+      {
+        id: "mashq",
+        title: "Amaliy mashq",
+        blocks: [
+          {
+            kind: "mashq",
+            text: "6-sinf uchun darslikdan ikkita asar tanlang. Har birini diapazon, matn va davomiylik bo'yicha tekshiring. Qaysi biri moslashtirishni talab qiladi va qanday?",
+          },
+          {
+            kind: "mashq",
+            text: "Shu sinf uchun bitta ijodiy topshiriq tuzing va uni qanday baholashingizni yozing — ball emas, mezon bilan.",
+          },
+        ],
+      },
+      {
+        id: "test",
+        title: "Test",
+        blocks: [
+          {
+            kind: "test",
+            questions: [
+              {
+                id: "m25-t1",
+                area: "metodika",
+                bloom: "bilish",
+                kind: "single",
+                prompt: "6-sinf o'quvchisining yoshi qaysi?",
+                options: [
+                  { id: "a", text: "11–12 yosh" },
+                  { id: "b", text: "14–15 yosh" },
+                  { id: "c", text: "4–5 yosh" },
+                  { id: "d", text: "16–17 yosh" },
+                ],
+                correctId: "a",
+              },
+              {
+                id: "m25-t2",
+                area: "metodika",
+                bloom: "tushunish",
+                kind: "single",
+                prompt:
+                  "Nega diapazon raqamlari taxminiy deb beriladi?",
+                options: [
+                  { id: "a", text: "Hali o'rganilmagan" },
+                  { id: "b", text: "Aniq chegara sinfga, darslik va DTS talabiga qarab belgilanadi" },
+                  { id: "c", text: "Ular ahamiyatsiz" },
+                  { id: "d", text: "Darslikda yo'q" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m25-t3",
+                area: "metodika",
+                bloom: "qollash",
+                kind: "single",
+                prompt:
+                  "6-sinfda repertuar tanlashda qaysi maslahat o'rinli?",
+                options: [
+                  { id: "a", text: "Baland va uzun notalardan qoching; kuylash vaqtini qisqartirib, tahlil va ijodiy ishni ko'paytiring." },
+                  { id: "b", text: "Imkon qadar murakkab asar tanlash" },
+                  { id: "c", text: "Faqat kattalar repertuaridan olish" },
+                  { id: "d", text: "Diapazonga e'tibor bermaslik" },
+                ],
+                correctId: "a",
+              },
+              {
+                id: "m25-t4",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "single",
+                prompt:
+                  "Repertuar tanlashda eng ishonchli amaliy tekshiruv qaysi?",
+                options: [
+                  { id: "a", text: "Asar mashhurligi" },
+                  { id: "b", text: "Sinfni kuylatib ko'rish" },
+                  { id: "c", text: "Nota murakkabligi" },
+                  { id: "d", text: "Bastakor nomi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m25-t5",
+                area: "metodika",
+                bloom: "baholash",
+                kind: "single",
+                prompt:
+                  "Ijodiy topshiriq qanday baholanadi?",
+                options: [
+                  { id: "a", text: "Faqat «to'g'ri javob» mezoni bilan" },
+                  { id: "b", text: "Ishtirok va o'z tanlovini asoslash bo'yicha" },
+                  { id: "c", text: "Baholanmaydi" },
+                  { id: "d", text: "Faqat ijro tozaligi bilan" },
+                ],
+                correctId: "b",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "xulosa",
+        title: "Xulosa",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "6-sinf: 11–12 yosh, diapazon — ovoz mutatsiyasi tufayli individual; umumiy oraliq toraytiriladi",
+              "Repertuar belgilari: O'rtacha diapazonli, uzoq cho'zilmaydigan asarlar; tinglash va tahlil ulushi oshadi.",
+              "Diapazon raqamlari yo'naltiruvchi; aniqligi sinfda tekshiriladi",
+              "Ijodiy topshiriq ishtirok va asoslash bo'yicha baholanadi",
+            ],
+          },
+        ],
+      },
+    ],
+    reflection: [
+      "6-sinf uchun repertuar tanlashda sizga eng ko'p nima qiyinchilik tug'diradi?",
+      "Shu yoshdagi bolaning qiziqishini qanday bilib olasiz?",
+    ],
+  },
+
+  /* ──────────────────────────── M26 ──────────────────────────── */
+  {
+    id: "met-m26",
+    slug: "m26-7-sinf-repertuari",
+    title: "M26: 7-sinf uchun repertuar tanlash va tahlil qilish",
+    summary:
+      "7-sinf o'quvchisining musiqiy tavsifnomasi, ovoz imkoniyati va unga mos repertuar.",
+    durationMin: 80,
+    bloom: "baholash",
+    outcomeId: "on-met-20",
+    area: "metodika",
+    dasturKodi: "M26",
+    dasturTuri: "maruza",
+    dasturSoati: 2,
+    tn: ["TN3", "TN7"],
+    sections: [
+      {
+        id: "kirish",
+        title: "Kirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Repertuar tanlash har bir sinf uchun qaytadan hal qilinadi. 7-sinf (12–13 yosh) o'z tavsifnomasiga ega va undan oldingi yoki keyingi sinf uchun mos asar bu yerda ishlamasligi mumkin.",
+          },
+          {
+            kind: "matn",
+            text: "Bu darsda uch narsa ko'rib chiqiladi: shu yoshning musiqiy tavsifnomasi, ovoz imkoniyati va shunga mos repertuar belgilari.",
+          },
+        ],
+      },
+      {
+        id: "tushunchalar",
+        title: "Asosiy tushunchalar",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yosh xususiyatlari: Tanqidiy fikr kuchayadi; «bolalarcha» material rad etiladi; musiqiy didi shakllanmoqda.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Yosh: 12–13 yosh",
+              "Ovoz diapazoni: mutatsiya davom etadi; har bolaga alohida qaraladi",
+              "Repertuar belgilari: Vatan, ona tili, do'stlik mavzularidagi jiddiy asarlar; jahon va milliy klassikadan tinglash.",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Diapazon raqamlari taxminiy va yo'naltiruvchi: aniq chegara sinfning o'ziga, darslik va DTS talablariga qarab belgilanadi. Amalda eng ishonchli tekshiruv — sinfni kuylatib ko'rish.",
+          },
+          {
+            kind: "matn",
+            text: "Amaliy maslahat: Repertuarni tanlashda bolalarning fikrini so'rang — bu yoshda ishtirok motivatsiyani belgilaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ijodiy topshiriqlar shu yoshda musiqiy taassurotni mustahkamlaydi: asar kayfiyatini chizish, matnga davom topish, ritmik jo'rlik o'ylab topish. Ular baholanadi, lekin «to'g'ri javob» mezoni bilan emas — ishtirok va asoslash bilan.",
+          },
+        ],
+      },
+      {
+        id: "mashq",
+        title: "Amaliy mashq",
+        blocks: [
+          {
+            kind: "mashq",
+            text: "7-sinf uchun darslikdan ikkita asar tanlang. Har birini diapazon, matn va davomiylik bo'yicha tekshiring. Qaysi biri moslashtirishni talab qiladi va qanday?",
+          },
+          {
+            kind: "mashq",
+            text: "Shu sinf uchun bitta ijodiy topshiriq tuzing va uni qanday baholashingizni yozing — ball emas, mezon bilan.",
+          },
+        ],
+      },
+      {
+        id: "test",
+        title: "Test",
+        blocks: [
+          {
+            kind: "test",
+            questions: [
+              {
+                id: "m26-t1",
+                area: "metodika",
+                bloom: "bilish",
+                kind: "single",
+                prompt: "7-sinf o'quvchisining yoshi qaysi?",
+                options: [
+                  { id: "a", text: "12–13 yosh" },
+                  { id: "b", text: "14–15 yosh" },
+                  { id: "c", text: "4–5 yosh" },
+                  { id: "d", text: "16–17 yosh" },
+                ],
+                correctId: "a",
+              },
+              {
+                id: "m26-t2",
+                area: "metodika",
+                bloom: "tushunish",
+                kind: "single",
+                prompt:
+                  "Nega diapazon raqamlari taxminiy deb beriladi?",
+                options: [
+                  { id: "a", text: "Hali o'rganilmagan" },
+                  { id: "b", text: "Aniq chegara sinfga, darslik va DTS talabiga qarab belgilanadi" },
+                  { id: "c", text: "Ular ahamiyatsiz" },
+                  { id: "d", text: "Darslikda yo'q" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m26-t3",
+                area: "metodika",
+                bloom: "qollash",
+                kind: "single",
+                prompt:
+                  "7-sinfda repertuar tanlashda qaysi maslahat o'rinli?",
+                options: [
+                  { id: "a", text: "Repertuarni tanlashda bolalarning fikrini so'rang — bu yoshda ishtirok motivatsiyani belgilaydi." },
+                  { id: "b", text: "Imkon qadar murakkab asar tanlash" },
+                  { id: "c", text: "Faqat kattalar repertuaridan olish" },
+                  { id: "d", text: "Diapazonga e'tibor bermaslik" },
+                ],
+                correctId: "a",
+              },
+              {
+                id: "m26-t4",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "single",
+                prompt:
+                  "Repertuar tanlashda eng ishonchli amaliy tekshiruv qaysi?",
+                options: [
+                  { id: "a", text: "Asar mashhurligi" },
+                  { id: "b", text: "Sinfni kuylatib ko'rish" },
+                  { id: "c", text: "Nota murakkabligi" },
+                  { id: "d", text: "Bastakor nomi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m26-t5",
+                area: "metodika",
+                bloom: "baholash",
+                kind: "single",
+                prompt:
+                  "Ijodiy topshiriq qanday baholanadi?",
+                options: [
+                  { id: "a", text: "Faqat «to'g'ri javob» mezoni bilan" },
+                  { id: "b", text: "Ishtirok va o'z tanlovini asoslash bo'yicha" },
+                  { id: "c", text: "Baholanmaydi" },
+                  { id: "d", text: "Faqat ijro tozaligi bilan" },
+                ],
+                correctId: "b",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "xulosa",
+        title: "Xulosa",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "7-sinf: 12–13 yosh, diapazon — mutatsiya davom etadi; har bolaga alohida qaraladi",
+              "Repertuar belgilari: Vatan, ona tili, do'stlik mavzularidagi jiddiy asarlar; jahon va milliy klassikadan tinglash.",
+              "Diapazon raqamlari yo'naltiruvchi; aniqligi sinfda tekshiriladi",
+              "Ijodiy topshiriq ishtirok va asoslash bo'yicha baholanadi",
+            ],
+          },
+        ],
+      },
+    ],
+    reflection: [
+      "7-sinf uchun repertuar tanlashda sizga eng ko'p nima qiyinchilik tug'diradi?",
+      "Shu yoshdagi bolaning qiziqishini qanday bilib olasiz?",
+    ],
+  },
+  /* ──────────────────────────── M27 ──────────────────────────── */
+  {
+    id: "met-m27",
+    slug: "m27-musiqiy-togaraklar",
+    title: "M27: Maktabda musiqiy to'garaklarni tashkil etish",
+    summary:
+      "To'garak turlari, rejalashtirish va ommaviy musiqiy tadbirlarni tashkil qilish.",
+    durationMin: 80,
+    bloom: "sintez",
+    outcomeId: "on-met-21",
+    area: "metodika",
+    dasturKodi: "M27",
+    dasturTuri: "maruza",
+    dasturSoati: 2,
+    tn: ["TN7"],
+    sections: [
+      {
+        id: "kirish",
+        title: "Kirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "To'garak — darsning davomi emas, boshqa narsa. Darsda hamma qatnashadi va dastur bajariladi; to'garakka esa xohlagan keladi va u yerda chuqurroq ishlanadi.",
+          },
+          {
+            kind: "matn",
+            text: "Shu farqni unutish eng keng tarqalgan xato: to'garak «qo'shimcha dars» ga aylansa, bolalar kelmay qo'yadi.",
+          },
+        ],
+      },
+      {
+        id: "tushunchalar",
+        title: "Asosiy tushunchalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Xor to'garagi — jamoaviy kuylash, ko'p ovozlilik",
+              "Vokal ansambl — kichik guruh, individual ish ko'proq",
+              "Cholg'u ansambli — milliy yoki bolalar cholg'ulari",
+              "Folklor to'garagi — xalq qo'shiq va raqslari",
+              "Musiqa tinglash klubi — tahlil va muhokama",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Rejalashtirish uch savoldan boshlanadi: yakuniy natija nima (konsert, tanlov, yozuv), unga qancha vaqt bor, haftasiga necha marta uchrashiladi. Natijasiz to'garak tez so'nadi — ishtirokchi nima uchun kelayotganini bilmaydi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Ommaviy tadbirda eng ko'p e'tibordan chetda qoladigan narsa — tayyorgarlikning oxirgi bosqichi: sahnada turish, mikrofon, kirish va chiqish tartibi. Yaxshi tayyorlangan jamoa shu bosqich tufayli yomon chiqish qilishi mumkin.",
+          },
+          {
+            kind: "matn",
+            text: "To'garak dasturi yil davomida bir necha cho'qqiga mo'ljallanadi: kuzgi tadbir, qishki bayram, bahorgi tanlov, yakuniy konsert. Har cho'qqi oralig'ida yangi material o'rganiladi.",
+          },
+        ],
+      },
+      {
+        id: "mashq",
+        title: "Amaliy mashq",
+        blocks: [
+          {
+            kind: "mashq",
+            text: "Bitta to'garak turini tanlang va bir chorakka reja tuzing: yakuniy natija, hafta bo'yicha material, mashg'ulot soni. Rejada kamida bitta ochiq chiqish bo'lsin.",
+          },
+          {
+            kind: "mashq",
+            text: "Ommaviy tadbir uchun sahna tartibini yozing: kim qachon chiqadi, qayerda turadi, jo'rlik qanday beriladi, nosozlikda zaxira yo'l qanday.",
+          },
+        ],
+      },
+      {
+        id: "test",
+        title: "Test",
+        blocks: [
+          {
+            kind: "test",
+            questions: [
+              {
+                id: "m27-t1",
+                area: "metodika",
+                bloom: "tushunish",
+                kind: "single",
+                prompt: "To'garakning darsdan asosiy farqi nimada?",
+                options: [
+                  { id: "a", text: "Uzunroq bo'ladi" },
+                  { id: "b", text: "Ixtiyoriy va chuqurroq ishlanadi; dastur bajarish majburiyati yo'q" },
+                  { id: "c", text: "Baho qo'yilmaydi" },
+                  { id: "d", text: "Maktabdan tashqarida bo'ladi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m27-t2",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "single",
+                prompt: "Natijasiz to'garak nega tez so'nadi?",
+                options: [
+                  { id: "a", text: "Mablag' yetmaydi" },
+                  { id: "b", text: "Ishtirokchi nima uchun kelayotganini bilmaydi" },
+                  { id: "c", text: "O'qituvchi charchaydi" },
+                  { id: "d", text: "Xona topilmaydi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m27-t3",
+                area: "metodika",
+                bloom: "qollash",
+                kind: "single",
+                prompt:
+                  "Ommaviy tadbirda ko'pincha qaysi bosqich e'tibordan chetda qoladi?",
+                options: [
+                  { id: "a", text: "Material o'rganish" },
+                  { id: "b", text: "Sahnada turish, kirish-chiqish va texnik tartib" },
+                  { id: "c", text: "Repertuar tanlash" },
+                  { id: "d", text: "Mashg'ulot jadvali" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m27-t4",
+                area: "metodika",
+                bloom: "bilish",
+                kind: "multiple",
+                prompt: "Maktab musiqiy to'garaklarining turlari qaysilar?",
+                options: [
+                  { id: "a", text: "Xor to'garagi" },
+                  { id: "b", text: "Vokal ansambl" },
+                  { id: "c", text: "Cholg'u ansambli va folklor to'garagi" },
+                  { id: "d", text: "Matematika klubi" },
+                ],
+                correctIds: ["a", "b", "c"],
+              },
+              {
+                id: "m27-t5",
+                area: "metodika",
+                bloom: "sintez",
+                kind: "single",
+                prompt:
+                  "Yillik to'garak dasturi qanday quriladi?",
+                options: [
+                  { id: "a", text: "Bir xil material yil davomida" },
+                  { id: "b", text: "Bir necha cho'qqi (tadbir) va ular oralig'ida yangi material" },
+                  { id: "c", text: "Faqat yakuniy konsertga tayyorgarlik" },
+                  { id: "d", text: "Rejasiz, ehtiyojga qarab" },
+                ],
+                correctId: "b",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "xulosa",
+        title: "Xulosa",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "To'garak ixtiyoriy va chuqurroq: «qo'shimcha dars» emas",
+              "Reja yakuniy natijadan boshlanadi",
+              "Sahna tartibi — tayyorgarlikning teng huquqli qismi",
+              "Yil bir necha cho'qqiga mo'ljallanadi",
+            ],
+          },
+        ],
+      },
+    ],
+    reflection: [
+      "Qaysi to'garak turini o'zingiz yuritgan bo'lardingiz va nega?",
+      "Bolalar to'garakka kelishdan to'xtasa, birinchi nimani tekshirasiz?",
+    ],
+  },
+
+  /* ──────────────────────────── M28 ──────────────────────────── */
+  {
+    id: "met-m28",
+    slug: "m28-ozbekiston-musiqa-talimi",
+    title: "M28: O'zbekiston musiqa ta'limi tizimi",
+    summary:
+      "Uzluksiz ta'lim bosqichlari: maktabgacha, umumta'lim, bolalar musiqa maktablari, o'rta maxsus va oliy ta'lim.",
+    durationMin: 80,
+    bloom: "tushunish",
+    outcomeId: "on-met-12",
+    area: "metodika",
+    dasturKodi: "M28",
+    dasturTuri: "maruza",
+    dasturSoati: 2,
+    tn: ["TN1"],
+    sections: [
+      {
+        id: "kirish",
+        title: "Kirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Maktab musiqa darsi — katta tizimning bitta bo'g'ini. Undan oldin maktabgacha ta'lim, yonida bolalar musiqa va san'at maktablari, keyin esa o'rta maxsus va oliy ta'lim turadi.",
+          },
+          {
+            kind: "matn",
+            text: "O'qituvchi shu tizimni bilsa, bolaga to'g'ri yo'l ko'rsata oladi: qobiliyatli o'quvchini qayerga yo'naltirish kerakligini biladi.",
+          },
+        ],
+      },
+      {
+        id: "tushunchalar",
+        title: "Asosiy tushunchalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Maktabgacha ta'lim — musiqiy tarbiyaning boshlanishi: o'yin, qo'shiq, harakat",
+              "Umumiy o'rta ta'lim — musiqa madaniyati fani, 1–7-sinflar",
+              "Bolalar musiqa va san'at maktablari — ixtisoslashgan qo'shimcha ta'lim",
+              "O'rta maxsus ta'lim — musiqa kollejlari",
+              "Oliy ta'lim — konservatoriya va pedagogika oliygohlari",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Umumta'lim maktabi va bolalar musiqa maktabi vazifalari har xil. Birinchisi — **umumiy musiqiy madaniyat**: hamma uchun. Ikkinchisi — **kasbiy poydevor**: tanlagan uchun. Shuning uchun ularni bir xil mezon bilan baholash noto'g'ri.",
+          },
+          {
+            kind: "eslatma",
+            text: "Maktab o'qituvchisi uchun bu farqning amaliy ma'nosi bor: sinfda musiqa maktabida o'qiyotgan bola bo'lishi mumkin. Unga alohida vazifa berilmasa zerikadi; lekin uni «namuna» qilib ko'rsatish boshqalarni cheklaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Milliy musiqa ta'limining rivojlanish yo'nalishlari: an'anaviy ijrochilik maktabini saqlash, raqamli resurslardan foydalanish va o'qituvchi tayyorlash sifatini oshirish.",
+          },
+        ],
+      },
+      {
+        id: "mashq",
+        title: "Amaliy mashq",
+        blocks: [
+          {
+            kind: "mashq",
+            text: "Tizim bosqichlarini chizmada ko'rsating va har biriga bitta vazifa yozing. Qaysi bosqichlar bir-biriga parallel ketadi?",
+          },
+          {
+            kind: "mashq",
+            text: "Sinfingizda musiqa maktabida o'qiyotgan bola bor deb faraz qiling. Unga darsda beradigan uchta vazifani yozing — shunday vazifalarki, boshqalarni cheklab qo'ymasin.",
+          },
+        ],
+      },
+      {
+        id: "test",
+        title: "Test",
+        blocks: [
+          {
+            kind: "test",
+            questions: [
+              {
+                id: "m28-t1",
+                area: "metodika",
+                bloom: "tushunish",
+                kind: "single",
+                prompt:
+                  "Umumta'lim maktabidagi musiqa darsining asosiy vazifasi nima?",
+                options: [
+                  { id: "a", text: "Professional musiqachi tayyorlash" },
+                  { id: "b", text: "Umumiy musiqiy madaniyatni shakllantirish" },
+                  { id: "c", text: "Konsertga tayyorlash" },
+                  { id: "d", text: "Nota savodini to'liq o'rgatish" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m28-t2",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "single",
+                prompt:
+                  "Nega maktab va bolalar musiqa maktabini bir xil mezon bilan baholash noto'g'ri?",
+                options: [
+                  { id: "a", text: "Ular turli vazirlikka bo'ysunadi" },
+                  { id: "b", text: "Birinchisi hamma uchun umumiy madaniyat, ikkinchisi tanlaganlar uchun kasbiy poydevor" },
+                  { id: "c", text: "Soatlari farq qiladi" },
+                  { id: "d", text: "O'qituvchilari boshqacha" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m28-t3",
+                area: "metodika",
+                bloom: "qollash",
+                kind: "single",
+                prompt:
+                  "Sinfda musiqa maktabida o'qiyotgan bola bor. Eng to'g'ri yondashuv qaysi?",
+                options: [
+                  { id: "a", text: "Uni doim namuna qilib ko'rsatish" },
+                  { id: "b", text: "Alohida, murakkabroq vazifa berish — lekin boshqalarni cheklab qo'ymaydigan" },
+                  { id: "c", text: "E'tibor bermaslik" },
+                  { id: "d", text: "Dars o'tishini topshirish" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m28-t4",
+                area: "metodika",
+                bloom: "bilish",
+                kind: "multiple",
+                prompt: "Musiqa ta'limi tizimining bo'g'inlari qaysilar?",
+                options: [
+                  { id: "a", text: "Maktabgacha ta'lim" },
+                  { id: "b", text: "Umumiy o'rta ta'lim" },
+                  { id: "c", text: "Bolalar musiqa va san'at maktablari" },
+                  { id: "d", text: "Sport maktablari" },
+                ],
+                correctIds: ["a", "b", "c"],
+              },
+              {
+                id: "m28-t5",
+                area: "metodika",
+                bloom: "baholash",
+                kind: "single",
+                prompt:
+                  "Tizimni bilish maktab o'qituvchisiga amalda nima beradi?",
+                options: [
+                  { id: "a", text: "Hujjat to'ldirishni osonlashtiradi" },
+                  { id: "b", text: "Qobiliyatli o'quvchini to'g'ri yo'naltirish imkonini beradi" },
+                  { id: "c", text: "Ish haqini oshiradi" },
+                  { id: "d", text: "Dars soatini kamaytiradi" },
+                ],
+                correctId: "b",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "xulosa",
+        title: "Xulosa",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Tizim: maktabgacha → umumta'lim → (parallel) musiqa maktabi → kollej → oliy ta'lim",
+              "Maktab — umumiy madaniyat, musiqa maktabi — kasbiy poydevor",
+              "Tizimni bilish qobiliyatli bolani yo'naltirish imkonini beradi",
+            ],
+          },
+        ],
+      },
+    ],
+    reflection: [
+      "O'zingiz shu tizimning qaysi bo'g'inlaridan o'tgansiz?",
+      "Sinfdagi qobiliyatli bolani qayerga yo'naltirishni qanday hal qilasiz?",
+    ],
+  },
+  /* ──────────────────────────── M29 ──────────────────────────── */
+  {
+    id: "met-m29",
+    slug: "m29-dunyo-musiqa-talimi",
+    title: "M29: Dunyo musiqa ta'limi tizimlari",
+    summary:
+      "Kabalevskiy, Kodai, Orf va Jak-Dalkroz tizimlari hamda ularni qiyosiy tahlil qilish.",
+    durationMin: 80,
+    bloom: "tahlil",
+    outcomeId: "on-met-6",
+    area: "metodika",
+    dasturKodi: "M29",
+    dasturTuri: "maruza",
+    dasturSoati: 2,
+    tn: ["TN1", "TN6"],
+    sections: [
+      {
+        id: "kirish",
+        title: "Kirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Har bir tizim bitta savolga javob beradi: «Musiqa ta'limi nimadan boshlanadi?» Javoblar har xil — ovozdan, harakatdan, ijoddan yoki idrokdan. Shuning uchun ularni «qaysi biri to'g'ri» deb emas, «qaysi biri qachon kerak» deb o'rganiladi.",
+          },
+        ],
+      },
+      {
+        id: "tushunchalar",
+        title: "Asosiy tushunchalar",
+        blocks: [
+          {
+            kind: "matn",
+            text: "D. Kabalevskiy (Rossiya) tizimi markazida — musiqani **idrok etish**. Uning «uch kit» g'oyasi mashhur: qo'shiq, raqs va marsh — bolaga tanish uchta asos, qolgan hamma narsa shulardan o'sib chiqadi.",
+          },
+          {
+            kind: "matn",
+            text: "Z. Kodai (Vengriya) — ovoz va xalq qo'shig'i; nisbiy solmizatsiya va qo'l belgilari. K. Orf (Germaniya) — so'z, ritm, harakat va improvizatsiya; bola ijodkor. E. Jak-Dalkroz (Shveytsariya) — ritmni tana bilan his qilish, harakat orqali musiqani anglash.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Kabalevskiy — idrok, «uch kit», asarni jonli eshitish",
+              "Kodai — ovoz, xalq qo'shig'i, nisbiy solmizatsiya",
+              "Orf — ijodkorlik, ostinato, zarbli cholg'ular",
+              "Jak-Dalkroz — ritmika, harakat, metrni tanada sezish",
+              "Yaponiya (Suzuki) — ona tili modeli: eshitish, takrorlash, oila ishtiroki",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Tizimlarni to'liq ko'chirib bo'lmaydi: ularning har biri o'z madaniy muhitida tug'ilgan. Kodai tizimi venger xalq qo'shig'iga tayanadi — o'zbek maktabida u o'zbek xalq qo'shig'i bilan ishlaydi, aks holda g'oya saqlanmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Qiyosiy tahlil mezoni: nimadan boshlanadi, qaysi faoliyat ustun, nota qachon kiritiladi, bolaning roli qanday (takrorlovchimi yoki yaratuvchimi).",
+          },
+        ],
+      },
+      {
+        id: "mashq",
+        title: "Amaliy mashq",
+        blocks: [
+          {
+            kind: "mashq",
+            text: "To'rt tizimni jadvalga soling: nimadan boshlanadi, ustun faoliyat, nota qachon, bolaning roli. Jadvaldan keyin bitta xulosa yozing.",
+          },
+          {
+            kind: "mashq",
+            text: "Bitta tizim g'oyasini o'zbek materiali bilan moslashtiring: masalan, Kodai yondashuvini o'zbek xalq qo'shig'i bilan. Nimani o'zgartirdingiz va nimani saqladingiz?",
+          },
+        ],
+      },
+      {
+        id: "test",
+        title: "Test",
+        blocks: [
+          {
+            kind: "test",
+            questions: [
+              {
+                id: "m29-t1",
+                area: "metodika",
+                bloom: "bilish",
+                kind: "single",
+                prompt: "Kabalevskiyning «uch kit» g'oyasi nimani bildiradi?",
+                options: [
+                  { id: "a", text: "Uchta cholg'u" },
+                  { id: "b", text: "Qo'shiq, raqs va marsh — bolaga tanish uchta asos" },
+                  { id: "c", text: "Uchta dars turi" },
+                  { id: "d", text: "Uchta baholash mezoni" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m29-t2",
+                area: "metodika",
+                bloom: "tushunish",
+                kind: "single",
+                prompt: "Orf tizimida bolaning roli qanday?",
+                options: [
+                  { id: "a", text: "Takrorlovchi" },
+                  { id: "b", text: "Yaratuvchi — improvizatsiya va o'z variantini topish" },
+                  { id: "c", text: "Tinglovchi" },
+                  { id: "d", text: "Nota o'quvchi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m29-t3",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "single",
+                prompt:
+                  "Nega chet el tizimini to'liq ko'chirib bo'lmaydi?",
+                options: [
+                  { id: "a", text: "Mualliflik huquqi tufayli" },
+                  { id: "b", text: "Har biri o'z madaniy muhitida tug'ilgan; material almashtirilsa, g'oya saqlanishi kerak" },
+                  { id: "c", text: "Tarjima qiyin" },
+                  { id: "d", text: "Dastur ruxsat bermaydi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m29-t4",
+                area: "metodika",
+                bloom: "qollash",
+                kind: "single",
+                prompt:
+                  "Sinf metrni his qilmayapti. Qaysi tizim usuli to'g'ri keladi?",
+                options: [
+                  { id: "a", text: "Kodai — qo'l belgilari" },
+                  { id: "b", text: "Jak-Dalkroz — metrni harakat bilan sezdirish" },
+                  { id: "c", text: "Kabalevskiy — idrok" },
+                  { id: "d", text: "Suzuki — takrorlash" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m29-t5",
+                area: "metodika",
+                bloom: "baholash",
+                kind: "multiple",
+                prompt: "Qiyosiy tahlil mezonlari qaysilar?",
+                options: [
+                  { id: "a", text: "Nimadan boshlanadi" },
+                  { id: "b", text: "Qaysi faoliyat ustun" },
+                  { id: "c", text: "Bolaning roli" },
+                  { id: "d", text: "Mualliflarning tug'ilgan yili" },
+                ],
+                correctIds: ["a", "b", "c"],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "xulosa",
+        title: "Xulosa",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Kabalevskiy — idrok va «uch kit»; Kodai — ovoz va xalq qo'shig'i",
+              "Orf — ijodkorlik va ostinato; Jak-Dalkroz — ritmni tanada sezish",
+              "Tizim ko'chirilmaydi, moslashtiriladi: material o'zgaradi, g'oya saqlanadi",
+              "Qiyos mezonlari: boshlanish nuqtasi, ustun faoliyat, nota vaqti, bolaning roli",
+            ],
+          },
+        ],
+      },
+    ],
+    reflection: [
+      "Qaysi tizim sizning tasavvuringizdagi darsga eng yaqin?",
+      "O'zbek musiqa an'anasi qaysi tizimga eng yaqin turadi deb o'ylaysiz? Nega?",
+    ],
+  },
+
+  /* ──────────────────────────── M30 ──────────────────────────── */
+  {
+    id: "met-m30",
+    slug: "m30-sinfdan-tashqari-tadbirlar",
+    title: "M30: Sinfdan va maktabdan tashqari musiqiy-ma'rifiy tadbirlar",
+    summary:
+      "Bayram, festival, tanlov va konsertlarni tashkil etish; musiqiy-ma'rifiy loyihalarni rejalashtirish.",
+    durationMin: 80,
+    bloom: "sintez",
+    outcomeId: "on-met-21",
+    area: "metodika",
+    dasturKodi: "M30",
+    dasturTuri: "maruza",
+    dasturSoati: 2,
+    tn: ["TN7", "TN8"],
+    sections: [
+      {
+        id: "kirish",
+        title: "Kirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Tadbir — maktabdagi musiqiy ishning ko'rinadigan qismi. Ota-ona darsga kirmaydi, lekin konsertga keladi; shuning uchun tadbir maktabdagi musiqa ta'limining yuzi bo'lib qoladi.",
+          },
+          {
+            kind: "matn",
+            text: "Shu bilan birga, tadbir ta'lim maqsadidan uzilib qolishi mumkin: ko'rsatuv chiroyli, lekin bola uchun yangi narsa yo'q. Yaxshi tadbir — o'rganilgan narsaning natijasi, undan ajralgan hodisa emas.",
+          },
+        ],
+      },
+      {
+        id: "tushunchalar",
+        title: "Asosiy tushunchalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Bayram ertaliklari — mavsumiy, butun maktab ishtirokida",
+              "Konsert — to'garak va ansambllarning hisobot chiqishi",
+              "Tanlov — musobaqa elementi, individual ijro",
+              "Festival — bir necha jamoa, ko'p janrli",
+              "Ijodiy uchrashuv — bastakor, ijrochi yoki ustoz bilan",
+              "Musiqiy-ma'rifiy loyiha — uzoq muddatli ish, natijasi ommaga ko'rsatiladi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Tadbirni rejalashtirish ketma-ketligi: maqsad → ishtirokchilar → repertuar → jadval → texnik tayyorgarlik → mashq → o'tkazish → tahlil. Oxirgi band ko'pincha tashlab yuboriladi, lekin aynan u keyingi tadbirni yaxshilaydi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Ishtirok tanlovida pedagogik qoida bor: tadbir faqat eng kuchlilar uchun bo'lsa, qolganlar uchun musiqa «meniki emas» bo'lib qoladi. Shuning uchun har bir tadbirda hamma uchun rol bo'lishi kerak — ijro, jo'rlik, boshqaruv, texnik yordam yoki bezash.",
+          },
+          {
+            kind: "matn",
+            text: "Musiqiy-ma'rifiy loyiha — tadbirdan kengroq: u bir necha hafta davom etadi va natijasi moddiy bo'ladi (to'plam, yozuv, ko'rgazma, maktab radiosi). Loyiha bolani tashkilotchi sifatida ham o'stiradi.",
+          },
+        ],
+      },
+      {
+        id: "mashq",
+        title: "Amaliy mashq",
+        blocks: [
+          {
+            kind: "mashq",
+            text: "Bitta tadbirni sakkiz bosqich bo'yicha rejalashtiring. «Tahlil» bandida qanday uchta savolga javob berishingizni yozing.",
+          },
+          {
+            kind: "mashq",
+            text: "Tadbirda ishtirok etmaydigan bolalar uchun uchta rol o'ylab toping — ijrodan tashqari, lekin haqiqiy mas'uliyat bilan.",
+          },
+        ],
+      },
+      {
+        id: "test",
+        title: "Test",
+        blocks: [
+          {
+            kind: "test",
+            questions: [
+              {
+                id: "m30-t1",
+                area: "metodika",
+                bloom: "tushunish",
+                kind: "single",
+                prompt: "Yaxshi tadbirning asosiy belgisi nima?",
+                options: [
+                  { id: "a", text: "Ko'rkam bezatilgani" },
+                  { id: "b", text: "O'rganilgan narsaning natijasi bo'lishi" },
+                  { id: "c", text: "Uzoq davom etishi" },
+                  { id: "d", text: "Ko'p mehmon kelishi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m30-t2",
+                area: "metodika",
+                bloom: "tahlil",
+                kind: "single",
+                prompt:
+                  "Tadbir faqat eng kuchli o'quvchilar uchun bo'lsa, qanday oqibat kelib chiqadi?",
+                options: [
+                  { id: "a", text: "Sifat oshadi" },
+                  { id: "b", text: "Qolganlar uchun musiqa «meniki emas» bo'lib qoladi" },
+                  { id: "c", text: "Vaqt tejaladi" },
+                  { id: "d", text: "Hech qanday oqibat yo'q" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m30-t3",
+                area: "metodika",
+                bloom: "qollash",
+                kind: "single",
+                prompt:
+                  "Tadbirni rejalashtirishda ko'pincha qaysi band tashlab yuboriladi?",
+                options: [
+                  { id: "a", text: "Repertuar tanlash" },
+                  { id: "b", text: "O'tkazilgandan keyingi tahlil" },
+                  { id: "c", text: "Mashq jadvali" },
+                  { id: "d", text: "Texnik tayyorgarlik" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m30-t4",
+                area: "metodika",
+                bloom: "bilish",
+                kind: "single",
+                prompt:
+                  "Musiqiy-ma'rifiy loyihaning tadbirdan farqi nimada?",
+                options: [
+                  { id: "a", text: "Qisqaroq bo'ladi" },
+                  { id: "b", text: "Bir necha hafta davom etadi va moddiy natijasi bo'ladi" },
+                  { id: "c", text: "Faqat o'qituvchi bajaradi" },
+                  { id: "d", text: "Baholanmaydi" },
+                ],
+                correctId: "b",
+              },
+              {
+                id: "m30-t5",
+                area: "metodika",
+                bloom: "sintez",
+                kind: "multiple",
+                prompt:
+                  "Ijro etmaydigan o'quvchiga tadbirda qanday rol berish mumkin?",
+                options: [
+                  { id: "a", text: "Jo'rlik yoki ritmik guruh" },
+                  { id: "b", text: "Boshlovchi yoki tashkilotchi" },
+                  { id: "c", text: "Texnik yordam va bezash" },
+                  { id: "d", text: "Tomoshabin sifatida o'tirish" },
+                ],
+                correctIds: ["a", "b", "c"],
+                explanation:
+                  "Tomoshabinlik rol emas — unda mas'uliyat va hissa yo'q.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "xulosa",
+        title: "Xulosa",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Tadbir — o'rganilgan narsaning natijasi, undan ajralgan hodisa emas",
+              "Ketma-ketlik: maqsad → ishtirokchi → repertuar → jadval → texnika → mashq → o'tkazish → tahlil",
+              "Har bir tadbirda hamma uchun rol bo'lishi kerak",
+              "Loyiha tadbirdan kengroq: uzoq muddatli va moddiy natijali",
+            ],
+          },
+        ],
+      },
+    ],
+    reflection: [
+      "O'zingiz qatnashgan maktab tadbiri esingizdami? Unda sizning rolingiz qanday edi?",
+      "Tadbirdan keyingi tahlilga qanday uchta savol qo'yasiz?",
+    ],
+  },
 ];

@@ -2682,6 +2682,55 @@ export const TOPSHIRIQLAR: Task[] = [
     rubric: RUBRIKA_DASTUR_TAHLIL,
   },
 
+
+  {
+    id: "task-m19-metodik-tahlil",
+    slug: "asarning-metodik-tahlili",
+    title: "Maktab repertuaridagi asarning metodik tahlili",
+    description:
+      "Maktab darsligidan bitta qo'shiq tanlang (sinfini ko'rsating) va uni olti band bo'yicha tahlil qiling: umumiy tavsif; matn (ma'no va talaffuzi qiyin joylar); ohang (diapazon, sakrashlar, takrorlanuvchi naqshlar); ritm va o'lchov; shakl; ijro rejasi (temp, dinamika, nafas joylari, cho'qqi). So'ng asarni tanlashingizni M18 dagi mezonlar bilan asoslang: nega aynan bu sinfga mos. Oxirida eng qiyin ikki taktni ajratib, ularni o'rgatishning uch xil yo'lini ko'rsating.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-19",
+    area: "metodika",
+    bloom: "baholash",
+    duration: "2 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_DASTUR_TAHLIL,
+  },
+
+  {
+    id: "task-m20-sinf-repertuari",
+    slug: "sinf-repertuari-tanlovi",
+    title: "Bir sinf uchun yillik repertuar tanlash va asoslash",
+    description:
+      "1-7 sinflardan bittasini tanlang va shu sinf uchun yil davomida o'rganiladigan beshta asar tanlang: ikkita qo'shiq kuylash uchun, bitta tinglash uchun, bitta musiqiy-ritmik harakat uchun, bitta bolalar cholg'usida ijro uchun. Har bir asar uchun yozing: nomi va muallifi (xalq qo'shig'i bo'lsa shunday ko'rsating), taxminiy diapazoni, nega aynan bu sinfga mos (ovoz imkoniyati, matn mazmuni, qiziqish doirasi), va darsda qaysi chorakda o'rganilishi. Oxirida tanlagan sinfning yosh va musiqiy tavsifnomasini qisqa bayon qilib, beshta asar shu tavsifnomaga qanday javob berishini ko'rsating. Diapazon raqamlarini darslik yoki DTS bo'yicha tekshirib yozing.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-20",
+    area: "metodika",
+    bloom: "baholash",
+    duration: "2 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_DASTUR_TAHLIL,
+  },
+
+  {
+    id: "task-m21-togarak-rejasi",
+    slug: "togarak-ish-rejasi",
+    title: "Musiqa to'garagining bir chorakka ish rejasi",
+    description:
+      "Maktabda tashkil qilmoqchi bo'lgan bitta to'garakni tanlang (xor, ansambl, cholg'u guruhi, folklor yoki musiqa tinglash klubi) va unga bir chorak uchun ish rejasi tuzing. Rejada bo'lishi kerak: to'garakning maqsadi va kutilayotgan natijasi; a'zolar soni, sinfi va qabul qilish tartibi; haftada necha marta, qancha vaqt mashg'ulot; o'rganiladigan repertuar (kamida uchta asar, murakkabligi oshib boradigan tartibda); har bir mashg'ulotning odatiy tuzilmasi (qizdirish, yangi material, takrorlash, yakun); chorak oxirida o'tkaziladigan bitta ochiq tadbir ssenariysi (vaqti, joyi, dasturi, mas'ullar). Oxirida ikki xavfni va ularni oldini olish yo'lini ko'rsating: a'zolar tark etishi va texnik sharoit yetishmasligi.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-21",
+    area: "metodika",
+    bloom: "sintez",
+    duration: "2 hafta",
+    submission: "matn",
+    rubric: RUBRIKA_DASTUR_TAHLIL,
+  },
+
 ];
 
 export const TOPSHIRIQ_BY_SLUG = new Map(TOPSHIRIQLAR.map((t) => [t.slug, t]));

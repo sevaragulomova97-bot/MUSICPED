@@ -117,6 +117,9 @@ export const MODULLAR: Module[] = [
       { id: "on-met-16", text: "Interfaol metod va zamonaviy ta'lim texnologiyasini dars maqsadiga qarab tanlab, qo'llanishini asoslay oladi", bloom: "baholash" },
       { id: "on-met-17", text: "Musiqa savodi elementlarini eshitishdan yozuvga boradigan ketma-ketlikda o'rgata oladi", bloom: "qollash" },
       { id: "on-met-18", text: "Musiqiy-ritmik harakatlar va bolalar cholg'ularidan dars faoliyatida maqsadga muvofiq foydalana oladi", bloom: "qollash" },
+      { id: "on-met-19", text: "Maktab repertuarini pedagogik va badiiy mezonlar bo'yicha tanlay oladi hamda metodik tahlil qila oladi", bloom: "baholash" },
+      { id: "on-met-20", text: "Muayyan sinf uchun repertuar tanlab, tanlovini yosh va musiqiy tavsifnoma bilan asoslay oladi", bloom: "baholash" },
+      { id: "on-met-21", text: "Sinfdan tashqari musiqiy faoliyat va to'garak ishini rejalashtira oladi", bloom: "sintez" },
     ],
   },
   {
