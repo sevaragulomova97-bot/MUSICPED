@@ -83,6 +83,112 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "nazariya",
+        title: "Nazariy bayon: metodika qanday fan",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Pedagogikada ikki qatlam bor. Umumiy didaktika barcha fanlar uchun bir xil savollarga javob beradi: dars qanday quriladi, bilim qanday mustahkamlanadi, baho nima uchun qo'yiladi. Xususiy metodika esa shu javoblarni bitta fanga moslaydi. Musiqa o'qitish metodikasi — xususiy metodika, ya'ni didaktikaning musiqa fanidagi ko'rinishi.",
+          },
+          {
+            kind: "matn",
+            text: "Shu sababli metodikaning har bir qoidasi ikki tomonlama asoslanadi: bir tomondan umumiy didaktik tamoyil (masalan, oddiydan murakkabga), ikkinchi tomondan musiqaning o'ziga xosligi (ohangni avval eshitish, keyin nomlash). Ikki asosdan biri tushib qolsa, qoida ishlamay qoladi.",
+          },
+          {
+            kind: "matn",
+            text: "Fanning obyekti va predmetini ajratish shu yerda muhim bo'ladi. Obyekt — maktabdagi musiqa ta'limi jarayonining o'zi: dars, o'quvchi, o'qituvchi, repertuar. Predmet esa shu jarayonning faqat bir qirrasi: uni samarali tashkil etish qonuniyatlari, metodlari va vositalari. Bitta obyektni bir necha fan o'rganishi mumkin — psixolog ham shu darsga qaraydi, lekin uning predmeti boshqa: bolaning idroki.",
+          },
+          {
+            kind: "matn",
+            text: "Metodika tuzilishi jihatidan ikkiga bo'linadi. Umumiy metodika barcha musiqa darslariga taalluqli masalalarni ko'radi: dars tuzilmasi, maqsad qo'yish, baholash. Xususiy metodika esa ayrim faoliyat turlari bo'yicha ishlaydi: qo'shiq o'rgatish metodikasi, musiqa tinglash metodikasi, musiqa savodi metodikasi, musiqiy-ritmik harakatlar metodikasi.",
+          },
+          {
+            kind: "matn",
+            text: "Metodika — tavsiyalar to'plami emas, tadqiqot usullariga ega fan. Uning asosiy usullari: pedagogik kuzatish (darsni maqsadli kuzatib, belgilangan ko'rsatkichni qayd etish), suhbat va so'rovnoma, o'quvchi ishlarini tahlil qilish, pedagogik tajriba-sinov (yangi usulni nazorat guruh bilan solishtirib tekshirish) va olingan natijani miqdoriy qayta ishlash.",
+          },
+          {
+            kind: "eslatma",
+            text: "Shu ro'yxat dissertatsiya ishi uchun ham asos bo'ladi: «yangi usul yaxshiroq» degan gap tajriba-sinov va o'lchov bilan tasdiqlanmasa, u hali ilmiy xulosa emas, taassurot.",
+          },
+        ],
+      },
+      {
+        id: "aloqa",
+        title: "Qo'shni fanlar bilan aloqa",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Metodika mustaqil ravishda ta'lim qonuniyatlarini kashf etmaydi — u ularni qo'shni fanlardan oladi va musiqa darsiga moslaydi. Har bir fan unga aniq narsa beradi:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Pedagogika — ta'lim tamoyillari, dars tuzilmasi, metodlar tasnifi, baholash nazariyasi",
+              "Yosh va pedagogik psixologiya — idrok, diqqat, xotira va tafakkurning yoshga bog'liq xususiyatlari; motivatsiya qonuniyatlari",
+              "Musiqa psixologiyasi — musiqiy qobiliyatlar tuzilishi: ladli his, ritm hissi, musiqiy eshituv va musiqiy xotira",
+              "Musiqashunoslik — asar tahlili, janr va shakl haqidagi bilim, musiqa tarixi",
+              "Fiziologiya va ovoz gigiyenasi — bolalar ovoz apparati, diapazon chegaralari, mutatsiya davri, yuklama me'yori",
+              "Estetika — badiiy did, go'zallikni idrok etish va baholash mezonlari",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Amalda bu aloqalar bitta qarorda birlashadi. O'qituvchi 2-sinf uchun qo'shiq tanlaganda bir vaqtning o'zida musiqashunoslik (asar qanday tuzilgan), fiziologiya (bu diapazon shu yoshga mos keladimi), psixologiya (matn bolaga qiziqmi) va pedagogika (bu qo'shiq qaysi o'quv maqsadiga xizmat qiladi) savollariga javob beradi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Shuning uchun metodikadagi ko'p xatolar «bilmaslik» emas, «bir tomonlama qarash» natijasi bo'ladi: asar go'zal, lekin yoshga og'ir; maqsad to'g'ri, lekin musiqa yo'qolgan.",
+          },
+        ],
+      },
+      {
+        id: "repertuar",
+        title: "Maktab repertuari nima uchun alohida tushuncha",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Boshqa fanlarda o'quv materiali matn yoki masala bo'ladi. Musiqada esa u badiiy asar — ya'ni o'z qiymatiga ega, o'quv maqsadidan mustaqil mavjud bo'lgan narsa. Shuning uchun maktab repertuari ikki talabni bir vaqtda qondirishi kerak: badiiy jihatdan qimmatli bo'lish va pedagogik jihatdan bajarib bo'ladigan bo'lish.",
+          },
+          {
+            kind: "matn",
+            text: "Repertuar tanlashda odatda quyidagi mezonlar qo'llaniladi:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Badiiy qimmat — asar did shakllantiradimi yoki shunchaki vaqt to'ldiradimi",
+              "Yoshga moslik — diapazon, matn hajmi, obrazning tushunarliligi",
+              "Tarbiyaviy yo'nalish — asar qanday qadriyatni olib keladi",
+              "Bajarib bo'ladiganlik — sinf imkoniyati, mashq uchun ajratilgan vaqt",
+              "Dastur talabiga muvofiqlik — DTS va darslik ro'yxati",
+              "Milliy va jahon merosining muvozanati",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Shu olti mezon bir-biriga qarshi chiqishi mumkin: badiiy kuchli asar yoshga og'ir bo'lishi, oson asar esa did shakllantirmasligi mumkin. Repertuar tanlash — ana shu ziddiyatni har safar qaytadan hal qilish. Aynan shuning uchun u alohida kasbiy ko'nikma deb qaraladi va dasturda unga 60 soat amaliy mashg'ulot ajratilgan.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Metodika — muayyan fanni o'qitish qonuniyatlari, metodlari va vositalari haqidagi pedagogik fan",
+              "Obyekt — fan o'rganadigan voqelik sohasi (bu yerda: maktabdagi musiqa ta'limi jarayoni)",
+              "Predmet — shu voqelikning aynan shu fan o'rganadigan qirrasi",
+              "Xususiy metodika — umumiy didaktikaning bitta o'quv fanidagi ko'rinishi",
+              "Maktab repertuari — dars jarayonida o'rganiladigan, yosh va maqsadga qarab tanlangan asarlar majmui",
+              "Pedagogik tajriba-sinov — yangi usul samarasini nazorat guruh bilan solishtirib tekshirish usuli",
+              "Musiqiy madaniyat — musiqani idrok etish, baholash va ijro eta olish qobiliyatlarining yaxlitligi",
+            ],
+          },
+        ],
+      },
+      {
         id: "mashq",
         title: "Amaliy mashq",
         blocks: [
@@ -291,6 +397,92 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "nazariya",
+        title: "Nazariy bayon: musiqaning estetik mohiyati",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Musiqa — ijtimoiy ongning badiiy shakllaridan biri. U voqelikni so'z yoki tasvir bilan emas, tovush va vaqt orqali aks ettiradi. Shu sababli uning ta'sir yo'li ham boshqacha: tushunchadan emas, kechinmadan boshlanadi.",
+          },
+          {
+            kind: "matn",
+            text: "Musiqaning ikki xususiyati uning tarbiyaviy kuchini belgilaydi. Birinchisi — intonatsion tabiat: musiqiy ohang inson nutqining ko'tarilish-tushishi, so'rash, iltijo, quvonch ohangiga yaqin, shuning uchun u izohsiz tushuniladi. Ikkinchisi — vaqtga bog'liqligi: asar bir zumda emas, davom etib idrok qilinadi, tinglovchi uning oqimiga qo'shilib boradi.",
+          },
+          {
+            kind: "matn",
+            text: "Shu ikki xususiyatdan uchinchisi kelib chiqadi: musiqa to'g'ridan-to'g'ri emotsional ta'sir qiladi. Rasmdan yuz o'girish mumkin, kitobni yopish mumkin, musiqa esa yangrab turgan vaqtda tinglovchini o'z holatiga tortadi. Tarbiyada bu ham imkoniyat, ham mas'uliyat: bolaga qanday musiqa berilayotgani befarq narsa emas.",
+          },
+          {
+            kind: "matn",
+            text: "Shuning uchun estetik tarbiya musiqa darsida alohida maqsad sifatida emas, har bir faoliyat ichida amalga oshadi: bola qo'shiqni ifodali kuylaganda, tinglagan asari haqida fikr aytganda, bir ijroni ikkinchisidan afzal ko'rib sabab ko'rsatganda — har safar did shakllanadi.",
+          },
+        ],
+      },
+      {
+        id: "vazifalar",
+        title: "Musiqaning tarbiyaviy vazifalari",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Musiqa darsining tarbiyaviy imkoniyatini tartibga solish uchun uning vazifalari ajratib ko'rsatiladi. Ular bir-birini inkor etmaydi, bitta darsda bir nechtasi birga ishlaydi:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Estetik — go'zallikni idrok etish, baholash va undan zavqlanish qobiliyatini shakllantirish",
+              "Axloqiy — asar obrazi orqali qadriyatni his qildirish: mehr, do'stlik, mehnat, halollik",
+              "Vatanparvarlik — milliy musiqa merosi va davlat ramzlari orqali yurtga daxldorlik tuyg'usi",
+              "Emotsional — his-tuyg'uni tanish, nomlash va boshqarish tajribasi",
+              "Kommunikativ — birgalikda kuylash va ijro orqali jamoada ishlash ko'nikmasi",
+              "Rivojlantiruvchi — diqqat, xotira, tasavvur va nutqning o'sishi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Bu ro'yxat dars maqsadini yozishda bevosita ishlatiladi. «Qo'shiqni o'rgatish» — faoliyat, maqsad emas. Maqsad esa shu faoliyat orqali qaysi vazifa bajarilishini ko'rsatadi: masalan, «asar matni va ohangi orqali o'quvchida ona yurtga mehr tuyg'usini mustahkamlash».",
+          },
+          {
+            kind: "eslatma",
+            text: "Tarbiyaviy imkoniyat asarning o'zida tayyor holda turmaydi: u o'qituvchining savoli, suhbati va ijro talabi orqali ochiladi. Shuning uchun bir xil qo'shiq ikki darsda butunlay boshqacha natija beradi.",
+          },
+        ],
+      },
+      {
+        id: "kamolot",
+        title: "Shaxs kamoloti va musiqiy faoliyat",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Shaxs kamoloti musiqa darsida uch yo'nalishda boradi. Birinchisi — emotsional soha: bola o'z kechinmasini tanishni va uni ifodalashni o'rganadi. Ikkinchisi — irodaviy soha: mashq qilish, takrorlash, natijaga yetguncha ishlash. Uchinchisi — ijtimoiy soha: xor yoki ansamblda o'z ovozini boshqalarnikiga moslash.",
+          },
+          {
+            kind: "matn",
+            text: "Uchinchi yo'nalish ko'pincha e'tibordan chetda qoladi, holbuki u eng kuchlisi. Birgalikda kuylashda bola o'z ovozini eshitishdan tashqari boshqalarni eshitishga majbur bo'ladi, umumiy natija uchun o'z xohishini cheklaydi va shu orqali amaliy tarzda jamoaviy mas'uliyatni o'rganadi.",
+          },
+          {
+            kind: "matn",
+            text: "Milliy musiqa merosi bu jarayonda alohida o'rin tutadi: alla, bolalar folklori, xalq qo'shiqlari va marosim kuylari bolaga o'z madaniyatining ohangini beradi. Jahon merosi esa qiyoslash imkonini beradi — did faqat taqqoslash orqali o'sadi.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Estetik tarbiya — go'zallikni idrok etish, baholash va yaratish qobiliyatini shakllantirish jarayoni",
+              "Badiiy did — san'at asarining qimmatini mustaqil baholay olish qobiliyati",
+              "Intonatsiya — musiqiy fikrning eng kichik ifodali birligi; nutq ohangiga yaqinligi bilan tushunarli",
+              "Musiqiy idrok — asarni eshitib, uning obrazini va tuzilishini anglash jarayoni",
+              "Emotsional javob — asar uyg'otgan his-tuyg'uli munosabat; musiqiy tarbiyaning boshlanish nuqtasi",
+              "Tarbiyaviy imkoniyat — asarning dars maqsadiga xizmat qila olish darajasi",
+            ],
+          },
+        ],
+      },
+      {
         id: "mashq",
         title: "Amaliy mashq",
         blocks: [
@@ -485,6 +677,116 @@ export const DASTUR_MARUZALARI: Lesson[] = [
           {
             kind: "matn",
             text: "Ta'lim mazmuni esa to'rt faoliyat turiga taqsimlanadi: musiqa tinglash, vokal-xor ijrochiligi, musiqa savodi va musiqiy-ritmik harakatlar. Yaxshi dars bitta faoliyatdan iborat bo'lmaydi — u bir necha turni almashtirib boradi, chunki bolaning diqqati bir xil ishda uzoq turmaydi.",
+          },
+        ],
+      },
+      {
+        id: "nazariya",
+        title: "Nazariy bayon: ta'lim tamoyillari",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Tamoyil — bu metod emas, balki metod tanlashni boshqaradigan qoida. Musiqa darsida umumdidaktik tamoyillar ham, fanga xos tamoyillar ham birga ishlaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Umumdidaktik tamoyillar barcha fanlar uchun bir xil, lekin musiqada o'ziga xos ko'rinish oladi:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Ilmiylik — atamalar to'g'ri ishlatiladi, soddalashtirish mazmunni buzmaydi",
+              "Tizimlilik va izchillik — har bir yangi material oldingisiga tayanadi: eshitish, keyin kuylash, keyin nomlash",
+              "Onglilik va faollik — bola nimani nega qilayotganini biladi va o'zi harakat qiladi, nusxa ko'chirmaydi",
+              "Ko'rgazmalilik — musiqada u birinchi navbatda eshitish ko'rgazmaliligi: tirik ijro namunasi",
+              "Mustahkamlik — material turli faoliyatda takrorlanadi, bir xil mashqda emas",
+              "Yoshga va individual xususiyatga moslik — diapazon, matn hajmi, mashq davomiyligi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Fanga xos tamoyillar esa musiqa darsining o'ziga tegishli: badiiylik (dars material emas, asar atrofida quriladi), emotsionallik (his-tuyg'usiz idrok yo'q), musiqiy faoliyat turlarining birligi (kuylash, tinglash, savod va harakat bir-birini to'ldiradi) va amaliy yo'nalganlik (bola musiqa haqida gapirmaydi, musiqa qiladi).",
+          },
+          {
+            kind: "eslatma",
+            text: "«Ko'rgazmalilik» musiqada plakat yoki slayd degani emas. Asosiy ko'rgazma — tovushning o'zi. Yozuv ham ishlaydi, lekin o'qituvchining tirik ijrosi kuchliroq ta'sir qiladi: bola uni takrorlash mumkinligini ko'radi.",
+          },
+        ],
+      },
+      {
+        id: "mazmun",
+        title: "Ta'lim mazmuni va faoliyat turlari",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Musiqa ta'limi mazmuni to'rt komponentdan iborat: bilim (nota savodi, janr, bastakor), ko'nikma (kuylash, eshitib aniqlash, ritmni bajarish), ijodiy faoliyat tajribasi (improvizatsiya, o'z variantini topish) va musiqaga emotsional-qadriyatli munosabat.",
+          },
+          {
+            kind: "matn",
+            text: "To'rtinchi komponent eng muhimi va eng qiyin baholanadigani. Birinchi uchtasi topshiriq bilan tekshiriladi, to'rtinchisi esa faqat bolaning tanlovi, savoli va ifodali ijrosi orqali ko'rinadi.",
+          },
+          {
+            kind: "matn",
+            text: "Mazmun darsda to'rt faoliyat turi orqali amalga oshadi:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Qo'shiq kuylash — eng faol va eng ko'p vaqt oladigan faoliyat",
+              "Musiqa tinglash — idrok va tahlil, yo'naltiruvchi savollar bilan",
+              "Musiqa savodi — eshitishdan yozuvga boradigan ketma-ketlikda",
+              "Musiqiy-ritmik harakat va bolalar cholg'ularida ijro — ritmni tana bilan his qilish",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "To'rtalasi bitta darsda bo'lishi shart emas, lekin bitta chorak ichida muvozanatda bo'lishi kerak. Faqat kuylash bilan cheklangan dars o'quvchining idrokini ham, ritm hissini ham rivojlantirmaydi.",
+          },
+        ],
+      },
+      {
+        id: "texnologiya",
+        title: "Zamonaviy texnologiyalar va kompetensiya",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Kompetensiya — bilim, ko'nikma va munosabatning amaliy vaziyatda birga ishlashi. «Nota nomlarini biladi» — bilim; «notanish sodda ohangni nota bo'yicha kuylay oladi» — kompetensiya. Dastur natijalari (TN1-TN8) aynan shu ikkinchi darajada yozilgan.",
+          },
+          {
+            kind: "matn",
+            text: "Kompetensiya tayyor holda uzatilmaydi — u faoliyat ichida shakllanadi. Shuning uchun zamonaviy texnologiyalarning umumiy jihati bitta: o'quvchini tinglovchidan ishtirokchiga aylantirish.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Interfaol metodlar — aqliy hujum, kichik guruhlarda ish, rolli o'yin, «aylanma stol»",
+              "Muammoli ta'lim — dars savol bilan boshlanadi, javob tayyor berilmaydi",
+              "Loyihaviy ta'lim — natija sifatida tayyor mahsulot: konsert, taqdimot, to'plam",
+              "Flipped Classroom — tanishish uyda, ishlov sinfda",
+              "Raqamli vositalar — audio yozuv, nota dasturi, platforma topshiriqlari",
+              "Differensial yondashuv — bir material, turli darajadagi topshiriq",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Texnologiya maqsadni almashtirmaydi. Agar dars maqsadi «qo'shiqni ifodali kuylash» bo'lsa, slayd va o'yin shu maqsadga xizmat qilgan taqdirdagina o'rinli. Aks holda ular darsni to'ldiradi, lekin natija bermaydi.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Didaktik tamoyil — ta'lim jarayonini qurishda metod tanlashni boshqaradigan umumiy qoida",
+              "Ta'lim mazmuni — o'zlashtirilishi kerak bo'lgan bilim, ko'nikma, ijodiy tajriba va munosabat majmui",
+              "Kompetensiya — bilim va ko'nikmani notanish amaliy vaziyatda qo'llay olish qobiliyati",
+              "Musiqiy faoliyat turlari — kuylash, tinglash, musiqa savodi, musiqiy-ritmik harakat va cholg'uda ijro",
+              "Interfaol metod — o'quvchilarning o'zaro ta'siriga asoslangan o'qitish usuli",
+              "Muammoli vaziyat — javobi oldindan berilmagan, izlanish talab qiladigan o'quv holati",
+            ],
           },
         ],
       },
@@ -702,6 +1004,100 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "nazariya",
+        title: "Nazariy bayon: hujjatlar zanjiri",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Maktabdagi har bir dars o'zidan yuqoridagi hujjatga tayanadi. Bu zanjir umumiydan xususiyga qarab torayib boradi va uning har bir bo'g'ini o'z savoliga javob beradi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Ta'lim to'g'risidagi qonunchilik — ta'lim tizimining umumiy huquqiy asosi",
+              "Davlat ta'lim standarti (DTS) — bitiruvchidan nima talab qilinadi",
+              "Namunaviy o'quv reja — qaysi fan, qaysi sinfda, haftasiga necha soat",
+              "Fan dasturi — shu fan bo'yicha mavzular, soat taqsimoti va ta'lim natijalari",
+              "Darslik va o'quv-metodik majmua — mazmunning o'quvchiga yetadigan ko'rinishi",
+              "Taqvim-mavzu reja — mavzularning o'quv yili bo'ylab taqsimoti",
+              "Dars ishlanmasi — bitta darsning maqsadi, bosqichlari va baholash usuli",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Zanjirning ma'nosi shunda: o'qituvchi dars maqsadini o'zidan to'qimaydi, uni standart talabidan chiqaradi. Teskarisi ham to'g'ri — standart talabi dars maqsadiga aylanmaguncha, u qog'ozda qoladi.",
+          },
+          {
+            kind: "matn",
+            text: "Shu sababli metodikada asosiy ko'nikmalardan biri — talabni maqsadga aylantirish. Standartdagi «o'quvchi musiqa asarini idrok eta oladi» degan umumiy talab bitta dars uchun kuzatiladigan maqsadga aylantiriladi: «o'quvchi tinglangan asarning tempi va kayfiyatini ikki so'z bilan ta'riflay oladi».",
+          },
+        ],
+      },
+      {
+        id: "dts",
+        title: "DTS va malaka talablari",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Davlat ta'lim standarti ta'lim natijasini belgilaydi: bitiruvchi nimani bilishi va qila olishi kerak. U dars qanday o'tilishini aytmaydi — usul tanlash o'qituvchi ixtiyorida qoladi. Standart javobgarlikni natijaga bog'laydi, jarayonga emas.",
+          },
+          {
+            kind: "matn",
+            text: "Standart talablari odatda uch darajada beriladi: bilish darajasi (atama, nom, qoida), qo'llash darajasi (tanish vaziyatda bajarish) va mustaqil faoliyat darajasi (notanish vaziyatda ishlatish). Dars maqsadi qaysi darajaga qaratilganini aniqlash baholash usulini ham belgilab beradi.",
+          },
+          {
+            kind: "matn",
+            text: "Malaka talablari esa o'qituvchining o'ziga qo'yiladi: qaysi kompetensiyalarga ega bo'lishi kerak. Fan dasturidagi TN1-TN8 natijalari aynan shu toifadagi hujjat: ular talabadan nima kutilishini aytadi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Me'yoriy hujjatlar yangilanib turadi: standart tahrirlanadi, o'quv reja o'zgaradi, darslik qayta nashr etiladi. Shuning uchun dars ishlanmasini yozishdan oldin hujjatning joriy tahririni tekshirish kerak — platformadagi tavsif tartibni tushuntiradi, hujjatning o'rnini bosmaydi.",
+          },
+        ],
+      },
+      {
+        id: "amalda",
+        title: "Talabni maqsadga aylantirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Amalda bu ish uch bosqichda bajariladi. Birinchi bosqichda standart talabi topiladi va u qaysi darajaga tegishli ekani aniqlanadi. Ikkinchi bosqichda talab kuzatiladigan fe'l bilan qayta yoziladi: «tushunadi» emas, «ajrata oladi», «ko'rsata oladi», «ifodali kuylaydi». Uchinchi bosqichda maqsad qanday tekshirilishi yoziladi.",
+          },
+          {
+            kind: "matn",
+            text: "Uchinchi bosqich eng ko'p tashlab ketiladi. Holbuki tekshirish usuli yozilmagan maqsad — maqsad emas, niyat. «O'quvchilarda vatanparvarlik tuyg'usini shakllantirish» darsning yakunida qanday ko'rinadi? Agar javob yo'q bo'lsa, maqsadni toraytirish kerak.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Talab: o'quvchi musiqa asarini idrok eta oladi",
+              "Daraja: qo'llash",
+              "Dars maqsadi: tinglangan asarning kayfiyati va tempini ikki so'z bilan ta'riflay oladi",
+              "Tekshirish: har bir o'quvchi daftarga ikki so'z yozadi, uchtasi ovoz chiqarib o'qiydi",
+              "Mezon: so'z asar xarakteriga mos va sabab bilan izohlangan",
+            ],
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Davlat ta'lim standarti — ta'lim natijasiga qo'yiladigan majburiy talablar hujjati",
+              "O'quv reja — fanlar va ularga ajratilgan soatlar taqsimoti",
+              "Fan dasturi — fan bo'yicha mavzular, soatlar va ta'lim natijalari hujjati",
+              "Taqvim-mavzu reja — mavzularning o'quv yili bo'ylab taqsimlangan jadvali",
+              "Dars ishlanmasi — bitta darsning maqsadi, bosqichlari, metodlari va baholash usuli yozilgan hujjat",
+              "Kuzatiladigan maqsad — bajarilgani dars oxirida aniq ko'rinadigan qilib yozilgan maqsad",
+              "Malaka talablari — o'qituvchidan talab qilinadigan kasbiy kompetensiyalar ro'yxati",
+            ],
+          },
+        ],
+      },
+      {
         id: "mashq",
         title: "Amaliy mashq",
         blocks: [
@@ -894,6 +1290,110 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "nazariya",
+        title: "Nazariy bayon: darsning tarkibiy qismlari",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Musiqa madaniyati darsi boshqa darslar kabi tashkiliy tuzilmaga ega, lekin uning ichki mantig'i boshqacha: dars material bo'yicha emas, badiiy obraz bo'yicha quriladi. Shuning uchun bosqichlar ketma-ketligi mazmunan emas, emotsional jihatdan ham o'ylab chiqiladi.",
+          },
+          {
+            kind: "matn",
+            text: "Darsning odatdagi tarkibiy qismlari:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Tashkiliy qism va musiqiy salomlashuv — sinfni ish holatiga keltirish",
+              "Ovoz va nafas mashqlari (qizdirish) — kuylashdan oldin majburiy",
+              "O'tilganni takrorlash — avvalgi qo'shiq yoki material",
+              "Yangi material ustida ish — yangi qo'shiq yoki tinglash uchun asar",
+              "Mustahkamlash — boshqa faoliyat turida takrorlash",
+              "Yakun va baholash — nima o'rganildi, nima qoldi",
+              "Uyga vazifa — ko'pincha tinglash yoki kuzatish topshirig'i",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Bu ro'yxat qat'iy tartib emas, balki tekshiruv ro'yxati: qaysi qism tushib qolsa, dars nimani yo'qotishini ko'rsatadi. Qizdirishsiz kuylash ovozga zarar beradi; yakunsiz dars esa o'quvchida nima o'rganganini qoldirmaydi.",
+          },
+        ],
+      },
+      {
+        id: "turlari",
+        title: "Dars turlari va shakllari",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Dars turi uning asosiy didaktik maqsadiga qarab belgilanadi:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Yangi bilim beruvchi dars — yangi qo'shiq, yangi tushuncha yoki yangi janr bilan tanishtirish",
+              "Mustahkamlovchi dars — o'rganilgan materialni turli faoliyatda qaytarish",
+              "Takrorlash va umumlashtiruvchi dars — chorak yoki bo'lim yakunida bog'lash",
+              "Nazorat darsi — natijani o'lchash",
+              "Aralash dars — bir nechta maqsad birga; maktabda eng ko'p uchraydigan turi",
+              "Integrallashgan dars — boshqa fan bilan birga: adabiyot, tarix, tasviriy san'at",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Shakl esa boshqa narsani bildiradi: ish qanday tashkil etilgani. Frontal (butun sinf birga), guruhli, juftlikda va individual shakllar bitta dars ichida almashib turadi. Faqat frontal shaklda o'tgan darsda sust o'quvchi butunlay ko'rinmay qoladi.",
+          },
+          {
+            kind: "matn",
+            text: "Integrallashgan dars alohida e'tibor talab qiladi. U ikki fanning mavzusini mexanik qo'shish emas: integratsiya faqat ikkala fan ham bitta savolga javob berganda ishlaydi. Masalan, «Vatan» mavzusi adabiyotda she'r, musiqada qo'shiq orqali ochilsa — bu integratsiya; shunchaki darsda she'r o'qish esa — bezak.",
+          },
+        ],
+      },
+      {
+        id: "farqi",
+        title: "Musiqa darsining boshqa fanlardan farqi",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Musiqa darsining o'ziga xosligi to'rt nuqtada ko'rinadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Badiiy yaxlitlik — dars bo'laklarga bo'lingan bo'lsa ham, bitta obraz atrofida birlashadi",
+              "Emotsional rivojlanish — darsda eng kuchli taassurot qoldiradigan nuqta bo'ladi va u odatda o'rtadan keyinroqqa rejalashtiriladi",
+              "Amaliy faollik — o'quvchi vaqtining katta qismida musiqa qiladi, musiqa haqida eshitmaydi",
+              "Baholashning o'ziga xosligi — ijro sifati rubrika bilan baholanadi, chunki unda bitta to'g'ri javob yo'q",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Ikkinchi nuqta ko'pincha «emotsional cho'qqi» deb ataladi. Atama shartli, lekin ortidagi talab aniq: dars bir tekis emas, ko'tarilish bilan qurilishi kerak. Agar eng kuchli asar dars boshida berilsa, qolgan qismi sustlashadi; oxiriga qoldirilsa, unga vaqt yetmay qoladi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Shuning uchun dars ishlanmasini yozganda faqat «nima qilinadi» emas, «qaysi daqiqada eng qiziq bo'ladi» degan savolga ham javob berish kerak.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Dars turi — darsning asosiy didaktik maqsadiga ko'ra belgilanadigan toifasi",
+              "Dars shakli — o'quv ishini tashkil etish usuli: frontal, guruhli, juftlikda, individual",
+              "Aralash dars — bir nechta didaktik maqsadni birlashtirgan, maktabda eng keng tarqalgan dars turi",
+              "Integrallashgan dars — ikki yoki undan ortiq fan mazmunini bitta savol atrofida birlashtirgan dars",
+              "Qizdirish — kuylashdan oldingi ovoz va nafas mashqlari majmui",
+              "Emotsional cho'qqi — darsning eng kuchli taassurot qoldiradigan nuqtasi",
+              "Badiiy yaxlitlik — dars bosqichlarining bitta obraz atrofida birlashishi",
+            ],
+          },
+        ],
+      },
+      {
         id: "mashq",
         title: "Amaliy mashq",
         blocks: [
@@ -1079,6 +1579,98 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "nazariya",
+        title: "Nazariy bayon: ijodiy mahorat tuzilishi",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Ijodiy musiqiy mahorat — tayyor namunani takrorlash emas, musiqiy materialdan o'z yechimini yarata olish qobiliyati. U bir butun ko'nikma emas, bir nechta komponentdan tashkil topadi va har biri alohida rivojlanadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Musiqiy idrok — asarni eshitib, uning obrazi va tuzilishini anglash",
+              "Ijrochilik — o'z ovozi yoki cholg'usi bilan badiiy natijaga erisha olish",
+              "Improvizatsiya — tayyorgarliksiz, shu zahoti musiqiy javob topish",
+              "Kompozitsion tafakkur — ohang yoki ritmni o'ylab topib, uni tugallangan shaklga keltirish",
+              "Refleksiya — o'z ijrosini tanqidiy eshitish va nima o'zgarishi kerakligini ayta olish",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Uch komponent — idrok, ijrochilik va improvizatsiya — o'zaro bog'liq va bir-birini oziqlantiradi. Ko'p eshitgan bola ko'proq ijro variantini biladi; ko'p ijro qilgan bola eshitganini chuqurroq tushunadi; improvizatsiya esa ikkisini birlashtiradi, chunki unda eshitgan narsa darhol ijroga aylanadi.",
+          },
+          {
+            kind: "matn",
+            text: "Rivojlanish bosqichlari odatda shunday ketadi: taqlid (namunani takrorlash) — o'zgartirish (namunaga o'z elementini qo'shish) — mustaqil yaratish (o'z materialini topish). Bosqichni o'tkazib yuborib bo'lmaydi: taqlid tajribasisiz improvizatsiya ko'pincha tasodifiy tovushlarga aylanadi.",
+          },
+        ],
+      },
+      {
+        id: "metodlar",
+        title: "Rivojlantirish metodlari",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Ijodkorlikni «rivojlantirish» uchun alohida dars kerak emas — u oddiy topshiriqning shaklini o'zgartirish orqali hosil bo'ladi. Yopiq topshiriqning bitta to'g'ri javobi bor, ochiq topshiriqda esa bir nechta to'g'ri yechim mumkin.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Savol-javob (aks-sado emas) — o'qituvchi ikki taktli savol kuylaydi, o'quvchi o'z javobini topadi",
+              "Ohangni tugatish — boshlangan ibora beriladi, oxiri o'quvchi tomonidan o'ylab topiladi",
+              "Ritmik improvizatsiya — berilgan she'riy satrga ritmik naqsh topish",
+              "Tembr tanlash — asar obraziga mos cholg'uni tanlab, tanlovni asoslash",
+              "Harakat bilan ifodalash — asar xarakterini plastik harakatda ko'rsatish",
+              "Variant yaratish — tanish qo'shiqni boshqa kayfiyatda ijro etish va farqni tushuntirish",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Har bir topshiriqda bitta cheklov bo'lishi kerak: cheklovsiz ijod chalkashlikka aylanadi. «Nima xohlasang, shuni qil» o'rniga «to'rt zarbli ritm o'ylab top, oxirgi zarb cho'ziq bo'lsin» deyilsa, natija ham ijodiy, ham baholanadigan bo'ladi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Ijodiy ish «to'g'ri javob» mezoni bilan baholanmaydi. Baholash mezonlari boshqacha bo'ladi: topshiriq shartiga mosligi, g'oyaning o'ziga xosligi, ijro aniqligi va o'z tanlovini asoslay olish.",
+          },
+        ],
+      },
+      {
+        id: "meros",
+        title: "Milliy va jahon merosi ijodiy faoliyatda",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Improvizatsiya o'zbek musiqa an'anasida begona tushuncha emas: maqom ijrochiligida ham, xalq cholg'u ijrochiligida ham ijrochi matnni aynan takrorlamaydi, uni o'z uslubida talqin qiladi. Ustoz-shogird an'anasining o'zagi ham shu — shogird avval taqlid qiladi, keyin o'z ovozini topadi.",
+          },
+          {
+            kind: "matn",
+            text: "Shu an'ana maktab darsida ham ishlaydi: bola xalq qo'shig'ini o'rganib, keyin unga o'z ritmik jo'rligini topsa, u ham milliy merosga, ham ijodiy faoliyatga bir vaqtda kiradi.",
+          },
+          {
+            kind: "matn",
+            text: "Jahon tajribasidan esa ijodkorlikni tizimli rivojlantirish usullari olinadi: Orf yondashuvida bola oddiy cholg'ular bilan birga musiqa yaratadi, Kodai tizimida ovoz va ichki eshituv birinchi o'ringa qo'yiladi, Dalkroz tizimida musiqa harakat orqali his qilinadi. Uchalasi ham bitta fikrga keladi: bola musiqani faqat eshitib emas, qilib o'rganadi.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Ijodiy musiqiy mahorat — musiqiy materialdan o'z badiiy yechimini yarata olish qobiliyati",
+              "Improvizatsiya — oldindan tayyorlanmagan, ijro paytida yaratiladigan musiqa",
+              "Ochiq topshiriq — bir nechta to'g'ri yechimga yo'l qo'yadigan o'quv topshirig'i",
+              "Taqlid bosqichi — namunani takrorlash orqali o'rganish; ijodiy rivojlanishning birinchi bosqichi",
+              "Refleksiya — o'z faoliyatini tahlil qilib, nimani o'zgartirish kerakligini anglash",
+              "Ustoz-shogird an'anasi — bilimni bevosita namuna va birgalikda ijro orqali uzatish an'anasi",
+            ],
+          },
+        ],
+      },
+      {
         id: "mashq",
         title: "Amaliy mashq",
         blocks: [
@@ -1258,6 +1850,88 @@ export const DASTUR_MARUZALARI: Lesson[] = [
           {
             kind: "matn",
             text: "Tanlov mezoni oddiy: texnologiya dars maqsadiga xizmat qilsa qo'llanadi, qilmasa — yo'q. «Zamonaviy bo'lsin» degan sabab yetarli emas, chunki har bir yangi vosita vaqt oladi, vaqt esa darsda eng tanqis resurs.",
+          },
+        ],
+      },
+      {
+        id: "nazariya",
+        title: "Nazariy bayon: texnologiya va metod farqi",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Pedagogik texnologiya bilan metodni ajratish kerak. Metod — bitta o'qitish usuli (aks-sado, suhbat, namoyish). Texnologiya esa butun jarayonning tuzilmasi: kirish shartlari, bosqichlar ketma-ketligi, natijani o'lchash usuli. Texnologiyaning asosiy belgisi — takrorlanuvchanlik: uni boshqa o'qituvchi ham xuddi shunday bajarib, o'xshash natija ololadi.",
+          },
+          {
+            kind: "matn",
+            text: "Innovatsion texnologiyalarning umumiy o'zagi bitta: o'quvchini passiv tinglovchidan faol ishtirokchiga aylantirish. Ular bir-biridan shu faollikni qanday tashkil etishi bilan farq qiladi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Texnologiya tanlash dars maqsadidan keyin keladi, undan oldin emas. «Bugun gamifikatsiya qilamiz» degan qaror — maqsadni vositaga bo'ysundirish demak.",
+          },
+        ],
+      },
+      {
+        id: "texnologiyalar",
+        title: "Asosiy texnologiyalar va ularning musiqa darsidagi o'rni",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Quyidagi texnologiyalar dasturda alohida ko'rsatilgan. Har biri uchun musiqa darsidagi tipik qo'llanishi va cheklovi keltirilgan.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Muammoli ta'lim — dars javob bilan emas, savol bilan boshlanadi: «Nega bu ikki asar bir xil so'zda, lekin boshqacha kayfiyatda?». Cheklovi: har bir mavzu muammoga aylanavermaydi",
+              "Teskari sinf (Flipped Classroom) — asar bilan tanishish uyda, tahlil va ijro sinfda. Cheklovi: uyda tayyorgarlik bajarilmasa, dars bo'shab qoladi — shuning uchun tekshirish usuli oldindan o'ylanadi",
+              "Loyiha asosida ta'lim (Project-Based Learning) — natija sifatida tayyor mahsulot: sinf konserti, qo'shiqlar to'plami, bayram ssenariysi. Cheklovi: vaqt ko'p ketadi, bitta chorakda bitta loyiha yetarli",
+              "STEAM — musiqa fan va texnika bilan bog'lanadi: tovush to'lqini, cholg'u tuzilishi, akustika, tovush yozish. Cheklovi: musiqiy maqsad fan tajribasi ostida qolib ketmasligi kerak",
+              "Gamifikatsiya — o'yin mexanikasi: ball, daraja, musobaqa. Cheklovi: o'yin motivatsiyani ko'taradi, lekin musiqiy sifatni o'zi oshirmaydi",
+              "Aralash ta'lim (Blended Learning) — sinfdagi ish va raqamli platformadagi mustaqil ish birga. Cheklovi: platformadagi qism baholanmasa, u bajarilmaydi",
+              "Sun'iy intellekt vositalari — jo'rlik yaratish, nota tanish, ijroni tahlil qilish uchun yordamchi. Cheklovi: natija tekshirilishi shart, chunki vosita xato qilishi mumkin",
+            ],
+          },
+        ],
+      },
+      {
+        id: "tanlov",
+        title: "Texnologiyani maqsadga qarab tanlash",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Texnologiya tanlashda uch savolga javob beriladi: dars maqsadi qaysi darajada (bilish, qo'llash, ijod), sinfda qanday sharoit bor (vaqt, texnika, o'quvchilar soni) va natija qanday tekshiriladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Maqsad «tanishtirish» bo'lsa — namoyish va suhbat yetarli, murakkab texnologiya ortiqcha",
+              "Maqsad «ko'nikma shakllantirish» bo'lsa — mashq va aks-sado, keyin differensial topshiriq",
+              "Maqsad «qo'llash» bo'lsa — muammoli vaziyat yoki teskari sinf",
+              "Maqsad «yaratish» bo'lsa — loyiha yoki ochiq ijodiy topshiriq",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Shu jadval metodik tanlovni asoslashga yordam beradi. Imtihonda ham, dars tahlilida ham savol bir xil bo'ladi: «Nega aynan shu texnologiya?» Javob dars maqsadiga ishora qilishi kerak.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Pedagogik texnologiya — natijaga olib boradigan, takrorlanadigan va o'lchanadigan o'quv jarayoni tuzilmasi",
+              "Interfaol metod — o'quvchilarning o'zaro ta'siriga asoslangan o'qitish usuli",
+              "Muammoli ta'lim — javobi tayyor berilmagan vaziyat orqali o'qitish",
+              "Teskari sinf (Flipped Classroom) — tanishish uyda, ishlov sinfda bo'ladigan ta'lim modeli",
+              "Loyiha asosida ta'lim — yakuniy mahsulot yaratishga qaratilgan o'quv jarayoni",
+              "STEAM — fan, texnologiya, muhandislik, san'at va matematikani birlashtirgan yondashuv",
+              "Gamifikatsiya — o'quv jarayoniga o'yin mexanikasini kiritish",
+              "Aralash ta'lim — an'anaviy dars va raqamli mustaqil ishning birgalikdagi modeli",
+            ],
           },
         ],
       },
@@ -1446,6 +2120,108 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "nazariya",
+        title: "Nazariy bayon: kompetensiyaviy yondashuv",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Kompetensiyaviy yondashuv ta'lim natijasini boshqacha ta'riflaydi. Bilim yondashuvida savol «nimani biladi?» edi; kompetensiyaviy yondashuvda savol «nimani qila oladi?» ga aylanadi. Farq atamada emas, baholashda: bilimni so'rab tekshirish mumkin, kompetensiyani esa faqat vazifa berib.",
+          },
+          {
+            kind: "matn",
+            text: "Kompetensiya uch qismdan iborat: bilim (nimani biladi), ko'nikma (qanday bajaradi) va munosabat (nega buni qiladi, qanday mas'uliyat bilan). Uchinchi qism ko'pincha unutiladi, holbuki musiqa ta'limida u hal qiluvchi: did va munosabatsiz texnik ko'nikma quruq qoladi.",
+          },
+          {
+            kind: "matn",
+            text: "Kompetensiyalar ikki qatlamga bo'linadi. Tayanch kompetensiyalar barcha fanlar orqali shakllanadi: kommunikativ, axborot bilan ishlash, o'z-o'zini rivojlantirish, ijtimoiy faollik, milliy va umummadaniy kompetensiya. Fanga oid kompetensiyalar esa faqat shu fan beradi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Musiqiy idrok kompetensiyasi — asarni tinglab, uning xarakteri, janri va tuzilishini ajrata olish",
+              "Ijrochilik kompetensiyasi — qo'shiqni ifodali va toza kuylay olish, ansamblda ishlay olish",
+              "Musiqiy savod kompetensiyasi — nota yozuvini o'qiy olish va eshitganini yoza olish",
+              "Ijodiy kompetensiya — sodda ohang, ritm yoki jo'rlik yarata olish",
+              "Qadriyatli kompetensiya — milliy va jahon musiqa merosiga ongli munosabat",
+            ],
+          },
+        ],
+      },
+      {
+        id: "integratsiya",
+        title: "Integratsion ta'lim",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Integratsiya — ikki fanni bir darsga qo'shish emas, bitta savolni ikki fan vositasi bilan ochish. Mezon oddiy: agar bir fanni olib tashlaganda savol javobsiz qolsa — integratsiya bor; agar dars baribir to'liq bo'lsa — bu shunchaki bezak edi.",
+          },
+          {
+            kind: "matn",
+            text: "Musiqa darsi integratsiya uchun qulay, chunki uning obrazlari boshqa sohalarda ham mavjud:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Adabiyot — she'r va qo'shiq matni, obraz, kayfiyat; bir mavzu ikki san'atda",
+              "Tarix — asarning yaratilgan davri, marosim va bayram an'analari",
+              "Tasviriy san'at — rang va tovush, manzara obrazini ikki tilda ifodalash",
+              "Jismoniy tarbiya — ritm, harakat muvofiqligi, nafas",
+              "Matematika — ritmdagi ulush, o'lchov, takt tuzilmasi",
+              "Informatika va fizika — tovush yozish, akustika, raqamli vositalar",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Integratsiyaning uch darajasi bor: fanlararo bog'lanish (dars davomida boshqa fanga havola), integrallashgan dars (ikki fan bitta mavzuni birga ochadi) va integratsion loyiha (bir nechta fan uzoq muddatli umumiy natija ustida ishlaydi).",
+          },
+          {
+            kind: "eslatma",
+            text: "Integrallashgan darsda musiqa yordamchi vositaga aylanib qolish xavfi bor: she'r o'qildi, rasm chizildi, musiqa esa fon bo'lib qoldi. Darsni rejalashtirganda musiqiy natija alohida yozib qo'yilsa, bu xavf kamayadi.",
+          },
+        ],
+      },
+      {
+        id: "baholash",
+        title: "Kompetensiyani qanday baholash mumkin",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Kompetensiya bitta savol bilan tekshirilmaydi, chunki u vaziyatda namoyon bo'ladi. Shuning uchun baholash vositalari ham boshqacha bo'ladi:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Amaliy topshiriq — notanish sodda ohangni kuylash, tanish qo'shiqqa jo'rlik topish",
+              "Rubrika — natija bitta ball bilan emas, bir nechta mezon bo'yicha baholanadi",
+              "Portfolio — vaqt davomidagi ishlar to'plami, o'sish ko'rinadi",
+              "O'z-o'zini baholash — o'quvchi o'z ijrosini mezon bo'yicha tahlil qiladi",
+              "Kuzatuv varaqasi — ansambldagi xulq va ishtirok qayd etiladi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Shu vositalarning umumiy jihati: ular jarayonni ham, natijani ham ko'rsatadi. Faqat yakuniy ijro bahosi bolaning qancha yo'l bosganini yashiradi — bu esa musiqada ayniqsa adolatsiz, chunki boshlang'ich daraja juda har xil bo'ladi.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Kompetensiyaviy yondashuv — ta'lim natijasini amaliy faoliyat qobiliyati orqali ta'riflash",
+              "Tayanch kompetensiya — barcha fanlar orqali shakllanadigan umumiy qobiliyat",
+              "Fanga oid kompetensiya — faqat shu o'quv fani beradigan qobiliyat",
+              "Integratsiya — bitta o'quv savolini bir nechta fan vositasi bilan ochish",
+              "Fanlararo bog'lanish — dars davomida boshqa fan mazmuniga asoslangan havola",
+              "Rubrika — natijani bir nechta mezon bo'yicha baholash jadvali",
+            ],
+          },
+        ],
+      },
+      {
         id: "mashq",
         title: "Amaliy mashq",
         blocks: [
@@ -1621,6 +2397,100 @@ export const DASTUR_MARUZALARI: Lesson[] = [
           {
             kind: "matn",
             text: "Tinglash madaniyati — jim o'tirish emas. U uch ko'nikmadan iborat: oxirigacha eshita olish, taassurotni so'z bilan ifodalay olish va boshqaning fikrini tinglay olish. Uchalasi ham mashq qilinadi.",
+          },
+        ],
+      },
+      {
+        id: "nazariya",
+        title: "Nazariy bayon: tinglash — faoliyat turi",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Musiqa tinglash darsdagi dam olish qismi emas, mustaqil faoliyat turi. Uning farqi shunda: tashqi ko'rinishda bola harakatsiz o'tiradi, ichki ish esa eng zo'r — u obrazni tutishga, taqqoslashga va eslab qolishga urinadi. Shuning uchun tinglash topshiriqsiz berilsa, u tez eshitmaslikka aylanadi.",
+          },
+          {
+            kind: "matn",
+            text: "Tinglash faoliyatining maqsadi — musiqiy idrok madaniyatini shakllantirish: bola asarni oxirigacha eshita olishi, uning xarakterini aytib bera olishi va boshqa asar bilan taqqoslay olishi kerak.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Asarni oxirigacha diqqat bilan eshitish ko'nikmasi",
+              "Xarakter va kayfiyatni so'z bilan ifodalash",
+              "Janr va ijro tarkibini ajrata olish",
+              "O'z taassurotini sabab bilan asoslash",
+              "Musiqa haqida gapirishda to'g'ri atama ishlatish",
+            ],
+          },
+        ],
+      },
+      {
+        id: "bosqichlar",
+        title: "Tinglashning bosqichlari",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Tinglash uch bosqichda tashkil etiladi va har bosqichning o'z vazifasi bor.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Tinglashdan oldin — yo'naltiruvchi savol beriladi: nimaga e'tibor berish kerakligini bola oldindan biladi",
+              "Tinglash paytida — jimlik, uzilishsiz; o'qituvchi gapirmaydi va izoh bermaydi",
+              "Tinglashdan keyin — savolga javob, taqqoslash, atama kiritish, kerak bo'lsa qayta tinglash",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Eng ko'p xato birinchi bosqichda qilinadi: asar «shunchaki» qo'yiladi. Yo'naltiruvchi savol esa diqqatni ushlab turadigan yagona vosita. Savol aniq bo'lishi kerak — «asar sizga yoqdimi?» emas, «asar boshi va oxiri bir xil kayfiyatdami?».",
+          },
+          {
+            kind: "matn",
+            text: "Qayta tinglash odatda zarur: birinchi eshitishda umumiy taassurot, ikkinchisida tafsilot paydo bo'ladi. Lekin har safar yangi savol bilan — bir xil topshiriq bilan qayta tinglash zerikarli bo'ladi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Boshlang'ich sinflarda tinglash uchun asar davomiyligi qisqa bo'lishi kerak. Umumiy qoida: asar bolaning diqqatini ushlab tura oladigan vaqtdan uzun bo'lmasin; uzun asardan parcha olinadi va bu aytiladi.",
+          },
+        ],
+      },
+      {
+        id: "tanlash",
+        title: "Asar tanlash va tinglash madaniyati",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Tinglash uchun asar tanlash mezonlari kuylash repertuaridan biroz farq qiladi: diapazon muhim emas, lekin obrazning aniqligi va davomiylik hal qiluvchi bo'ladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Obraz aniq va tanib olinadigan bo'lsin — bolaga tasvirlash oson",
+              "Davomiylik yoshga mos bo'lsin; uzun asardan tugallangan parcha olinadi",
+              "Ijro sifati yuqori bo'lsin — sifatsiz yozuv idrokni buzadi",
+              "Milliy va jahon merosi muvozanatda bo'lsin",
+              "Asar dars mavzusiga xizmat qilsin, shunchaki to'ldirmasin",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Tinglash madaniyati esa qoidalar bilan emas, odat bilan shakllanadi: har safar bir xil tartib takrorlanadi — savol, jimlik, javob. Bir necha dars o'tgach bolalar o'zlari jim bo'ladi, chunki ular nima bo'lishini biladi.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Musiqa tinglash — asarni maqsadli idrok etishga qaratilgan mustaqil musiqiy faoliyat turi",
+              "Yo'naltiruvchi savol — tinglashdan oldin beriladigan, diqqatni aniq belgiga qaratadigan savol",
+              "Qayta tinglash — yangi topshiriq bilan takroran eshitish",
+              "Tinglash madaniyati — asarni uzilishsiz, diqqat bilan eshita olish odati",
+              "Musiqiy taassurot — asar uyg'otgan birinchi emotsional javob",
+            ],
           },
         ],
       },
@@ -1807,6 +2677,103 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "nazariya",
+        title: "Nazariy bayon: musiqiy idrok",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Musiqiy idrok — tovushni eshitish emas, uni obraz sifatida anglash. Eshitish fiziologik jarayon, idrok esa psixologik: unda xotira, tajriba va diqqat ishtirok etadi. Shuning uchun bir asarni ikki odam turlicha idrok qiladi, uchinchisi esa umuman «eshitmaydi».",
+          },
+          {
+            kind: "matn",
+            text: "Idrokning uch darajasi ajratiladi. Birinchi darajada bola faqat umumiy kayfiyatni tutadi: quvnoq yoki g'amgin. Ikkinchi darajada u vositalarni payqaydi: temp tez, ovoz past, cholg'u baland. Uchinchi darajada vosita bilan obrazni bog'laydi: «temp sekinlashgani uchun kayfiyat og'irlashdi».",
+          },
+          {
+            kind: "matn",
+            text: "Metodikaning vazifasi — bolani birinchi darajadan uchinchisiga olib chiqish. Bu o'z-o'zidan bo'lmaydi: u savol va atama orqali amalga oshadi. Bolada «sekin» so'zi paydo bo'lmaguncha, u tempni ajratmaydi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Shu sababli musiqa darsidagi atama lug'ati muhim: har bir yangi atama bola idrok qila oladigan yangi belgini ochadi.",
+          },
+        ],
+      },
+      {
+        id: "tafakkur",
+        title: "Musiqiy tafakkurni rivojlantirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Musiqiy tafakkur — tovush materiali bilan fikrlash: taqqoslash, umumlashtirish, bog'lash va xulosa chiqarish. U og'zaki tafakkurdan farq qiladi, chunki materiali so'z emas, intonatsiya.",
+          },
+          {
+            kind: "matn",
+            text: "Uni rivojlantiradigan asosiy metodlar — taqqoslashga asoslangan:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Taqqoslash metodi — ikki asar yoki bir asarning ikki ijrosi solishtiriladi",
+              "Umumlashtirish — bir nechta asardan umumiy belgini topish: janr, xarakter, uslub",
+              "Variantlash — bir ohangni turli temp va dinamikada eshitib, farqni tushuntirish",
+              "Musiqiy savol-javob — o'qituvchi ohang bilan savol beradi, bola ohang bilan javob qaytaradi",
+              "Obrazni so'zga ko'chirish — tasvir, harakat yoki qisqa hikoya orqali ifodalash",
+              "Tuzilmani kuzatish — qism qayerda tugadi, qayerda takrorlandi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Taqqoslash eng kuchli metod, chunki farq doim bitta belgidan ko'rinadi. Bitta asarni tahlil qilish qiyin, ikkitasini solishtirish esa boshlang'ich sinfda ham ishlaydi.",
+          },
+        ],
+      },
+      {
+        id: "tahlil",
+        title: "Tahlil elementlari va badiiy mazmun",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Maktabdagi musiqiy tahlil ilmiy tahlil emas: unda bola asarni bo'laklarga ajratmaydi, balki uning ta'sirini tushuntiradi. Shu sababli tahlil elementlari sodda va eshitiladigan bo'lishi kerak.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Xarakter va kayfiyat — asar nimani his qildiradi",
+              "Temp — tez, o'rtacha, sekin; o'zgaradimi",
+              "Dinamika — baland, past; kuchayish va pasayish bormi",
+              "Registr — yuqori, o'rta, past tovushlar",
+              "Tembr — qaysi ovoz yoki cholg'u",
+              "Shakl — takrorlanadigan qism bormi, nechta qism bor",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Badiiy mazmunni anglash shu belgilardan keyin keladi: bola avval nimani eshitganini aytadi, keyin nega shunday ta'sir qilganini tushuntiradi. Teskari tartibda — avval «asar vatan haqida» deb aytib, keyin eshittirish — idrokni emas, takrorlashni o'rgatadi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Tahlil javoblari «to'g'ri-noto'g'ri» emas, «asoslangan-asoslanmagan» mezoni bilan qabul qilinadi. Bola g'alati javob bersa, savol bitta: «buni qayerdan eshitding?»",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Musiqiy idrok — musiqani badiiy obraz sifatida anglash jarayoni",
+              "Musiqiy tafakkur — tovush materiali bilan taqqoslash, umumlashtirish va xulosa chiqarish",
+              "Taqqoslash metodi — ikki asar yoki ikki ijroni solishtirishga asoslangan o'qitish usuli",
+              "Musiqiy obraz — asarda ifodalangan badiiy mazmun",
+              "Ifoda vositalari — temp, dinamika, registr, tembr, ritm, lad",
+              "Registr — tovush balandligi bo'yicha diapazonning qismi: yuqori, o'rta, past",
+            ],
+          },
+        ],
+      },
+      {
         id: "mashq",
         title: "Amaliy mashq",
         blocks: [
@@ -1983,6 +2950,102 @@ export const DASTUR_MARUZALARI: Lesson[] = [
           {
             kind: "matn",
             text: "Ovoz sozlash mashqlari qisqa bo'ladi: 3–5 daqiqa. Ular oddiy va eslab qolinadigan bo'lishi kerak, chunki maqsad — ovozni ochish, yangi material o'rgatish emas.",
+          },
+        ],
+      },
+      {
+        id: "nazariya",
+        title: "Nazariy bayon: bolalar ovozi",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Vokal-xor ishining asosi — bolalar ovozi kattalar ovozining kichik nusxasi emasligini tushunish. Bolalar ovoz apparati shakllanish jarayonida bo'ladi: ovoz pardalari qisqa va nozik, nafas hajmi kichik, rezonatorlar to'liq ishlamaydi. Shuning uchun kattalar uchun oddiy bo'lgan talab bola uchun zararli bo'lishi mumkin.",
+          },
+          {
+            kind: "matn",
+            text: "Yosh bo'yicha o'zgarish taxminan shunday boradi: boshlang'ich sinflarda ovoz yengil va tiniq, diapazon tor; o'rta sinflarda ovoz kuchayadi, diapazon kengayadi; 12-14 yosh atrofida esa mutatsiya — ovoz sinishi davri boshlanadi va bu davrda yuklama keskin cheklanadi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Diapazon chegarasi har bir sinf uchun taxminiy beriladi va u bolaga emas, sinfga qaraladi. Aniq chegara darslik, DTS va eng ishonchlisi — sinfni kuylatib ko'rish orqali belgilanadi.",
+          },
+          {
+            kind: "matn",
+            text: "Shundan ikki amaliy qoida kelib chiqadi. Birinchisi: tonallik asarga emas, sinfga moslanadi — asarni bir-ikki parda pastga olish metodik yechim, yengillik emas. Ikkinchisi: baland ovozda uzoq kuylash taqiqlanadi, chunki u ovoz pardalarini charchatadi.",
+          },
+        ],
+      },
+      {
+        id: "nafas",
+        title: "Nafas va ovoz hosil qilish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Kuylashda nafas tabiiy nafasdan farq qiladi: olish tez va jim, chiqarish esa uzoq va boshqariladigan bo'ladi. Bolaga buni tushuntirishning eng ishonchli yo'li — his qildirish, ta'riflash emas.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Nafasni qo'l bilan his qilish — qorin ustiga qo'l qo'yib, nafas olganda qo'l oldinga siljiydi",
+              "Uzun chiqarish mashqi — sekin va bir tekis ovoz bilan nafas chiqarish, sanab turish",
+              "Iboraga nafas — nafas joyi matn ma'nosiga qarab belgilanadi, tasodifiy joyda emas",
+              "Jim nafas — yelka ko'tarilmaydi, shovqin eshitilmaydi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Ovoz hosil qilishda asosiy talablar: erkin tomoq, aniq boshlanish (hujum), tekis tovush va so'z oxirlarini yo'qotmaslik. Bolalar ovozida eng ko'p uchraydigan nuqson — qichqirib kuylash; u odatda jo'rlik baland bo'lganda yoki sinf katta bo'lganda paydo bo'ladi.",
+          },
+          {
+            kind: "matn",
+            text: "Qizdirish har bir kuylash darsida majburiy. U qisqa bo'lishi mumkin (3-5 daqiqa), lekin tushib qolmasligi kerak: sovuq ovoz bilan kuylash — ovozga zarar, ijroga esa xato.",
+          },
+        ],
+      },
+      {
+        id: "ansambl",
+        title: "Ansambl va xor malakalari",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Xor — ovozlar yig'indisi emas, ularning muvofiqligi. Shuning uchun xor malakalari alohida o'rgatiladi va ular individual kuylash ko'nikmasidan farq qiladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Unison — hammaning bir xil balandlikda, bir xil tembr yo'nalishida kuylashi",
+              "Ansambl — temp, dinamika va ritmning muvofiqligi; birga boshlash va birga tugatish",
+              "Stroy — intonatsiya tozaligi: gorizontal (ohang bo'ylab) va vertikal (ovozlar orasida)",
+              "Diksiya — so'zlarning hamma tomonidan bir xil va aniq talaffuzi",
+              "Dirijyor ishorasiga javob — kirish, to'xtash, dinamika o'zgarishi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Ikki ovozlilik odatda 5-6 sinfdan boshlanadi va eng xavfsiz yo'li — kanon: u bitta ohang bo'lgani uchun yod olish oson, lekin ovozlarni eshitib turishni talab qiladi. Keyingi bosqich — ostinato (doimiy takrorlanuvchi ikkinchi qatlam), undan keyin haqiqiy ikki ovozlilik.",
+          },
+          {
+            kind: "eslatma",
+            text: "Ansambl muammolarining ko'pchiligi ovoz emas, eshitish muammosi: bola o'zini eshitadi, qo'shnisini eshitmaydi. Shuning uchun mashq ovozni kuchaytirishga emas, pasaytirishga qaratiladi — past dinamikada eshitish osonlashadi.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Vokal-xor malakalari — kuylash va jamoada ijro etish bo'yicha ko'nikmalar majmui",
+              "Diapazon — ovoz chiqara oladigan eng past va eng baland tovush orasidagi masofa",
+              "Tessitura — asarning asosiy qismi joylashgan tovush balandligi sohasi",
+              "Mutatsiya — o'smirlik davrida ovozning sinishi va qayta shakllanishi",
+              "Unison — barcha ijrochilarning bir xil balandlikda kuylashi",
+              "Stroy — ijrodagi intonatsiya tozaligi",
+              "Ansambl — ijrochilar orasidagi temp, dinamika va ritm muvofiqligi",
+              "Kanon — bir ohangni ovozlar navbat bilan boshlaydigan ko'p ovozlilik shakli",
+            ],
           },
         ],
       },
