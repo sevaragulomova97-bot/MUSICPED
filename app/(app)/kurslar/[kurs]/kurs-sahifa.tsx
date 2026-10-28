@@ -38,6 +38,37 @@ export function KursSahifa({ courseSlug }: { courseSlug: string }) {
   const tugagan = kurs.lessons.filter((l) => (byLesson.get(l.id) ?? 0) >= 100).length;
   const foiz = Math.round((tugagan / kurs.lessons.length) * 100);
   const topshiriqlar = TOPSHIRIQLAR.filter((t) => t.moduleId === kurs.moduleId);
+
+  /*
+    Darslar bitta tekis ro'yxatda berilsa, metodika kursida 71 band
+    chiqadi va talaba qayerda turganini yo'qotadi. Shuning uchun
+    ro'yxat fan dasturidagi mashg'ulot turi bo'yicha bo'linadi.
+    Dasturga bog'lanmagan kurslarda (nazariya, ijro va boshqalar)
+    bo'lish ma'nosiz — ular bitta «Darslar» guruhida qoladi.
+  */
+  const maruzalar = kurs.lessons.filter((l) => l.dasturTuri === "maruza");
+  const amaliylar = kurs.lessons.filter((l) => l.dasturTuri === "amaliy");
+  const qoshimcha = kurs.lessons.filter((l) => !l.dasturKodi);
+  const guruhlar =
+    maruzalar.length + amaliylar.length === 0
+      ? [{ nom: "Darslar", izoh: null as string | null, darslar: kurs.lessons }]
+      : [
+          {
+            nom: "Ma'ruza mashg'ulotlari",
+            izoh: `Fan dasturidagi M1-M${maruzalar.length} — nazariy asos`,
+            darslar: maruzalar,
+          },
+          {
+            nom: "Amaliy mashg'ulotlar",
+            izoh: `Fan dasturidagi A1-A${amaliylar.length} — maktab repertuari`,
+            darslar: amaliylar,
+          },
+          {
+            nom: "Qo'shimcha mavzular",
+            izoh: "Dasturdan tashqari, platformada yozilgan darslar",
+            darslar: qoshimcha,
+          },
+        ].filter((g) => g.darslar.length > 0);
   const soat = Math.round(
     kurs.lessons.reduce((s, l) => s + l.durationMin, 0) / 60,
   );
@@ -103,61 +134,77 @@ export function KursSahifa({ courseSlug }: { courseSlug: string }) {
         </Card>
       )}
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Darslar</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="flex flex-col gap-2">
-            {kurs.lessons.map((dars, i) => {
-              const pct = byLesson.get(dars.id) ?? 0;
-              const done = pct >= 100;
-              return (
-                <li key={dars.id}>
-                  <Link
-                    href={`/kurslar/${kurs.slug}/${dars.slug}`}
-                    className="flex items-center gap-3 rounded-xl border border-border-subtle p-3.5 transition-colors hover:border-primary/40 hover:bg-primary-soft/40"
-                  >
-                    <span
-                      className={`grid size-9 shrink-0 place-items-center rounded-lg text-sm font-semibold ${
-                        done
-                          ? "bg-success-soft text-success-ink"
-                          : "bg-surface-muted text-ink-muted"
-                      }`}
+      {guruhlar.map((guruh) => (
+        <Card key={guruh.nom}>
+          <CardHeader>
+            <CardTitle>
+              {guruh.nom}{" "}
+              <span className="text-sm font-normal text-ink-muted">
+                ({guruh.darslar.length})
+              </span>
+            </CardTitle>
+            {guruh.izoh && (
+              <p className="text-sm text-ink-muted">{guruh.izoh}</p>
+            )}
+          </CardHeader>
+          <CardContent>
+            <ul className="flex flex-col gap-2">
+              {guruh.darslar.map((dars, i) => {
+                const pct = byLesson.get(dars.id) ?? 0;
+                const done = pct >= 100;
+                return (
+                  <li key={dars.id}>
+                    <Link
+                      href={`/kurslar/${kurs.slug}/${dars.slug}`}
+                      className="flex items-center gap-3 rounded-xl border border-border-subtle p-3.5 transition-colors hover:border-primary/40 hover:bg-primary-soft/40"
                     >
-                      {done ? (
-                        <CheckCircle2 className="size-4" aria-hidden="true" />
-                      ) : (
-                        i + 1
-                      )}
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block truncate text-sm font-medium text-ink">
-                        {dars.title}
+                      <span
+                        className={`grid size-9 shrink-0 place-items-center rounded-lg text-sm font-semibold ${
+                          done
+                            ? "bg-success-soft text-success-ink"
+                            : "bg-surface-muted text-ink-muted"
+                        }`}
+                      >
+                        {done ? (
+                          <CheckCircle2 className="size-4" aria-hidden="true" />
+                        ) : (
+                          i + 1
+                        )}
                       </span>
-                      <span className="block truncate text-xs text-ink-muted">
-                        {dars.summary}
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate text-sm font-medium text-ink">
+                          {dars.title}
+                        </span>
+                        <span className="block truncate text-xs text-ink-muted">
+                          {dars.summary}
+                        </span>
                       </span>
-                    </span>
-                    <span className="hidden shrink-0 items-center gap-1.5 text-xs text-ink-muted sm:flex">
-                      <Clock className="size-3.5" aria-hidden="true" />
-                      {dars.durationMin} daq
-                    </span>
-                    {!done && pct > 0 && (
-                      <Badge variant="warning">{pct}%</Badge>
-                    )}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </CardContent>
-      </Card>
+                      <span className="hidden shrink-0 items-center gap-1.5 text-xs text-ink-muted sm:flex">
+                        <Clock className="size-3.5" aria-hidden="true" />
+                        {dars.durationMin} daq
+                      </span>
+                      {!done && pct > 0 && <Badge variant="warning">{pct}%</Badge>}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </CardContent>
+        </Card>
+      ))}
 
       {topshiriqlar.length > 0 && (
         <Card>
           <CardHeader>
-            <CardTitle>Shu kursni baholaydigan topshiriqlar</CardTitle>
+            <CardTitle>
+              Topshiriqlar{" "}
+              <span className="text-sm font-normal text-ink-muted">
+                ({topshiriqlar.length})
+              </span>
+            </CardTitle>
+            <p className="text-sm text-ink-muted">
+              Shu kursning o&apos;quv natijalarini baholaydigan ishlar
+            </p>
           </CardHeader>
           <CardContent>
             <ul className="flex flex-col gap-2">

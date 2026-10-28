@@ -44,12 +44,39 @@ test.describe("Dastur mashg'ulotlari", () => {
     const asosiy = page.locator("main");
     // Ma'ruza va amaliy to'liq, kurs ishi hali yo'q.
     await expect(asosiy).toContainText(/30\/30 mavzu/);
-    await expect(asosiy).toContainText(/0\/15 mavzu/);
     /*
-      Mustaqil ta'lim alohida dars bilan berilmaydi — uning o'rnida
-      qizil nol emas, sabab turishi kerak.
+      Kurs ishi va mustaqil ta'lim platformada bajarilmaydi — ular
+      qatorida qizil nol emas, sabab turishi kerak.
     */
     await expect(asosiy).toContainText("topshiriq va asboblar orqali");
     await expect(asosiy).toContainText("alohida sahifa sifatida");
+    await expect(asosiy).toContainText("rahbar bilan, platformadan tashqari");
+    await expect(asosiy).toContainText("universitet tartibida himoya");
+    // Qoplov nol bo'lgan qator endi qolmadi.
+    await expect(asosiy).not.toContainText(/0\/1[25] mavzu/);
+  });
+
+  test("kurs sahifasi mashg'ulot turi bo'yicha guruhlangan", async ({ page }) => {
+    await sessiyaBer(page, TALABA);
+    await page.goto("/kurslar/musiqa-talimi-metodikasi/");
+    await page.waitForURL(/musiqa-talimi-metodikasi/);
+
+    const asosiy = page.locator("main");
+    await expect(asosiy).toContainText("Ma'ruza mashg'ulotlari");
+    await expect(asosiy).toContainText("Amaliy mashg'ulotlar");
+    await expect(asosiy).toContainText("Qo'shimcha mavzular");
+    await expect(asosiy).toContainText("Topshiriqlar");
+    // Guruhlar mavjudligi: har birida dars soni qavs ichida.
+    await expect(asosiy).toContainText("(30)");
+  });
+
+  test("dasturga bog'lanmagan kursda guruhlash yo'q", async ({ page }) => {
+    await sessiyaBer(page, TALABA);
+    await page.goto("/kurslar/musiqa-nazariyasi/");
+    await page.waitForURL(/musiqa-nazariyasi/);
+
+    const asosiy = page.locator("main");
+    await expect(asosiy).toContainText("Darslar");
+    await expect(asosiy).not.toContainText("Ma'ruza mashg'ulotlari");
   });
 });

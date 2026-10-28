@@ -31,16 +31,27 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
  */
 export function FanDasturi() {
   /*
-    `alohida` — mashg'ulot platformada o'z darsi bilan beriladimi.
-    Mustaqil ta'lim uchun yo'q: uning mavzulari boshqa kurslardagi
-    topshiriqlar va musiqa asboblaridagi mashqlar orqali mustahkamlanadi.
-    Shuning uchun u yerda nol raqam kamchilik emas — ustun qizarmaydi.
+    `qoplov` — mashg'ulot platformada o'z darsi bilan beriladimi.
+
+    Ikkisi uchun yo'q va bu kamchilik emas: mustaqil ta'lim mavzulari
+    boshqa kurslardagi topshiriqlar va asbob mashqlari orqali
+    mustahkamlanadi, kurs ishi esa rahbar bilan yozilib, universitet
+    tartibida himoya qilinadi — platformada bajarilmaydi. Shuning uchun
+    u qatorlarda nol raqam emas, sabab ko'rsatiladi.
   */
   const soat = [
-    { nom: "Ma'ruza", qiymat: FAN.soat.maruza, alohida: true },
-    { nom: "Amaliy mashg'ulot", qiymat: FAN.soat.amaliy, alohida: true },
-    { nom: "Kurs ishi", qiymat: FAN.soat.kursIshi, alohida: true },
-    { nom: "Mustaqil ta'lim", qiymat: FAN.soat.mustaqil, alohida: false },
+    { nom: "Ma'ruza", qiymat: FAN.soat.maruza, qoplov: null },
+    { nom: "Amaliy mashg'ulot", qiymat: FAN.soat.amaliy, qoplov: null },
+    {
+      nom: "Kurs ishi",
+      qiymat: FAN.soat.kursIshi,
+      qoplov: "rahbar bilan, platformadan tashqari",
+    },
+    {
+      nom: "Mustaqil ta'lim",
+      qiymat: FAN.soat.mustaqil,
+      qoplov: "topshiriq va asboblar orqali",
+    },
   ];
 
   return (
@@ -105,7 +116,7 @@ export function FanDasturi() {
                         {s.qiymat} soat
                       </td>
                       <td className="py-2 text-right text-sm">
-                        {s.alohida ? (
+                        {s.qoplov === null ? (
                           <>
                             <span
                               className={
@@ -122,7 +133,7 @@ export function FanDasturi() {
                           </>
                         ) : (
                           <span className="text-xs text-ink-muted">
-                            topshiriq va asboblar orqali
+                            {s.qoplov}
                           </span>
                         )}
                       </td>
@@ -276,6 +287,13 @@ export function FanDasturi() {
           </CardTitle>
         </CardHeader>
         <CardContent>
+          <p className="mb-3 rounded-lg bg-surface-muted p-3 text-sm leading-relaxed text-ink-muted">
+            Kurs ishi platformada bajarilmaydi: u rahbar bilan yozilib,
+            universitet tartibida himoya qilinadi. Quyidagi mavzular
+            ro&apos;yxati dastur hujjatidagi holicha, tanlash uchun
+            keltirilgan.
+          </p>
+
           <ol className="flex flex-col gap-2 text-sm">
             {KURS_ISHLARI.map((k) => (
               <li key={k.kod} className="flex gap-2.5">
