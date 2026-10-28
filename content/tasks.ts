@@ -49,6 +49,47 @@ export type Task = {
   accept?: string;
 };
 
+/**
+ * Fan dasturidagi mustaqil ta'lim topshirig'i rubrikasi.
+ *
+ * Dasturda joriy nazoratning uchdan biri — «Mustaqil ta'lim
+ * topshirig'i, 10 ball». U yerda to'rt daraja berilgan: mukammal
+ * bajaradi / deyarli bajaradi / e'tiborsiz bajaradi / bajarmaydi.
+ * Platformadagi rubrika shu darajalarni mezonlarga yoyadi, chunki
+ * «mukammal» degan so'zning o'zi bilan baholab bo'lmaydi.
+ */
+const RUBRIKA_DASTUR_TAHLIL: Rubric = {
+  criteria: [
+    {
+      id: "mazmun",
+      title: "Mazmunning to'liqligi",
+      description:
+        "Topshiriqdagi barcha bandlar qamrab olingan, hech biri tushirib qoldirilmagan",
+      maxPoints: 30,
+    },
+    {
+      id: "asos",
+      title: "Asoslanganlik",
+      description:
+        "Har bir fikr misol, hujjat talabi yoki manba bilan asoslangan; umumiy gaplar bilan cheklanmagan",
+      maxPoints: 30,
+    },
+    {
+      id: "metodik",
+      title: "Metodik aniqlik",
+      description:
+        "Atamalar to'g'ri ishlatilgan, yosh xususiyatlari hisobga olingan, taklif qilingan usul amalda bajarib bo'ladigan",
+      maxPoints: 25,
+    },
+    {
+      id: "yozuv",
+      title: "Yozma nutq va tartib",
+      description: "Matn tushunarli, tuzilmali, imlo va atama xatolari yo'q",
+      maxPoints: 15,
+    },
+  ],
+};
+
 const RUBRIKA_DARS: Rubric = {
   criteria: [
     {
@@ -2522,6 +2563,57 @@ export const TOPSHIRIQLAR: Task[] = [
     submission: "fayl",
     accept: ".pdf,.doc,.docx,.odt,.zip",
     rubric: RUBRIKA_PORTFOLIO,
+  },
+
+
+  /* ───────── Fan dasturi bo'yicha topshiriqlar (M1-M5) ───────── */
+
+  {
+    id: "task-m1-fan-predmeti",
+    slug: "metodika-predmeti-tahlili",
+    title: "Metodika predmeti: dars bo'lagini uch manbaga ajratish",
+    description:
+      "O'zingiz kuzatgan yoki eslab qolgan bitta musiqa darsining 10 daqiqalik bo'lagini tavsiflang. So'ng o'qituvchining uchta aniq harakatini ajratib oling va har birining yonida qaysi bilim ishlaganini ko'rsating: pedagogika, psixologiya yoki musiqashunoslik. Har bir bog'lanishni bir jumlada asoslang. Oxirida yozing: qaysi manbadan foydalanish sizga eng qiyin bo'ladi va nega.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-12",
+    area: "metodika",
+    bloom: "tahlil",
+    duration: "3 kun",
+    submission: "matn",
+    rubric: RUBRIKA_DASTUR_TAHLIL,
+  },
+
+  {
+    id: "task-m2-tarbiyaviy-imkoniyat",
+    slug: "asarning-tarbiyaviy-imkoniyati",
+    title: "Asarning tarbiyaviy imkoniyatini dars maqsadiga aylantirish",
+    description:
+      "Maktab darsligidan bitta qo'shiq tanlang (sinfini ko'rsating). Uch qismdan iborat ish tayyorlang: (1) asarning badiiy mazmuni — nima haqida va qanday vositalar bilan aytilgan; (2) undan kelib chiqadigan tarbiyaviy imkoniyat — estetik, axloqiy yoki vatanparvarlik; (3) shu imkoniyatni ochadigan ikkita savol — biri tinglashdan oldin, ikkinchisi keyin. Oxirida tushuntiring: nega bu savollarsiz imkoniyat ochilmay qoladi.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-14",
+    area: "metodika",
+    bloom: "tahlil",
+    duration: "5 kun",
+    submission: "matn",
+    rubric: RUBRIKA_DASTUR_TAHLIL,
+  },
+
+  {
+    id: "task-m4-dts-maqsad",
+    slug: "dts-talabidan-dars-maqsadiga",
+    title: "DTS talabidan dars maqsadiga",
+    description:
+      "Bitta sinf uchun Davlat ta'lim standartidagi bitta talabni oling va uni uch qadamda ishlang: talab matni → kuzatiladigan harakat (o'lchanadigan fe'l bilan) → shu harakatni tekshiradigan topshiriq. So'ng shu zanjirni taqvim-mavzu rejadagi bitta hafta bilan bog'lang: qaysi mavzuda, qaysi asar bilan. «Biladi», «tushunadi» kabi fe'llar ishlatilmasin — ular kuzatilmaydi.",
+    type: "loyiha",
+    moduleId: "mod-metodika",
+    outcomeId: "on-met-13",
+    area: "metodika",
+    bloom: "qollash",
+    duration: "5 kun",
+    submission: "matn",
+    rubric: RUBRIKA_DASTUR_TAHLIL,
   },
 
 ];

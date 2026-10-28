@@ -95,6 +95,16 @@ export const MODULLAR: Module[] = [
       { id: "on-met-9", text: "Sinfdagi daraja farqini hisobga olib, topshiriqni farqlashtira oladi va shaxsga yo'naltirilgan dars loyihalay oladi", bloom: "sintez" },
       { id: "on-met-10", text: "Shakllantiruvchi baholashni qo'llaydi va rivojlantiruvchi teskari aloqa bera oladi", bloom: "qollash" },
       { id: "on-met-11", text: "Musiqa sinfida tartib va motivatsiyani boshqarish yo'llarini tahlil qila oladi", bloom: "tahlil" },
+      /*
+        Quyidagi uchtasi rasmiy fan dasturidagi ma'ruzalar bilan birga
+        qo'shildi (`content/courses/metodika-dastur.ts`). Dasturning
+        barcha 30 ta ma'ruzasi yozilgach, modul natijalari TN1-TN8 ga
+        o'tkaziladi — hozir o'tkazilsa, qoplanmagan natija paydo
+        bo'lardi va kontent tekshiruvi buni haqli ravishda yiqitardi.
+      */
+      { id: "on-met-12", text: "Musiqa o'qitish metodikasining predmeti, maqsadi va vazifalarini tushuntira oladi hamda uning pedagogika, psixologiya va musiqashunoslik bilan aloqasini asoslay oladi", bloom: "tushunish" },
+      { id: "on-met-13", text: "Davlat ta'lim standarti talabini kuzatiladigan dars maqsadiga aylantira oladi va hujjatlar zanjirida o'z o'rnini topa oladi", bloom: "qollash" },
+      { id: "on-met-14", text: "Musiqa asarining tarbiyaviy imkoniyatini aniqlab, uni dars maqsadi va savoliga bog'lay oladi", bloom: "tahlil" },
     ],
   },
   {

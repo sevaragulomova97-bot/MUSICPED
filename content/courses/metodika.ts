@@ -1,3 +1,4 @@
+import { DASTUR_MARUZALARI } from "@/content/courses/metodika-dastur";
 import type { Course } from "@/content/lesson-types";
 
 /**
@@ -19,6 +20,14 @@ export const METODIKA: Course = {
   description:
     "O'qitish tizimlari, dars loyihalash, qo'shiq va tinglash metodikasi, sinfni boshqarish, farqlashtirilgan ta'lim va baholash.",
   lessons: [
+    /*
+      Rasmiy fan dasturidagi ma'ruzalar birinchi turadi: kurs endi
+      dastur tartibida o'qiladi. Pastdagi «Mavzu N» darslari dasturdan
+      oldin yozilgan va hozircha o'z o'rnida qoladi — ularning mazmuni
+      kengroq va dasturning keyingi ma'ruzalari bilan birlashtiriladi.
+    */
+    ...DASTUR_MARUZALARI,
+
     {
       id: "met-1",
       slug: "oqitish-tizimlari",

@@ -1,4 +1,5 @@
 import type { Question } from "@/content/diagnostic";
+import type { MashgulotTuri } from "@/content/fan-dasturi";
 import type { InstrumentKind } from "@/lib/domain/instruments";
 import type { BloomLevel, DiagnosticArea } from "@/lib/domain/types";
 
@@ -54,6 +55,25 @@ export type Lesson = {
   bloom: BloomLevel;
   /** `content/modules.ts` dagi o'quv natijasi */
   outcomeId: string;
+  /*
+    Quyidagi uch maydon darsni **rasmiy fan dasturiga** bog'laydi
+    (`content/fan-dasturi.ts`). Ular ixtiyoriy: platformada dasturdan
+    oldin yozilgan darslar ham bor va ular o'z o'rnida qoladi.
+
+    `tn` — dasturdagi ta'lim natijasi kodlari (TN1…TN8). Hozircha
+    `outcomeId` dan alohida turadi: modulning o'z natijalari darslar
+    va topshiriqlar bilan to'liq qoplangan, TN kodlariga esa hamma
+    30 ta ma'ruza yozilgandan keyin o'tiladi — aks holda qoplanmagan
+    natija paydo bo'lib, kontent tekshiruvi yiqilardi.
+  */
+  /** Fan dasturidagi mavzu kodi: "M1", "A7", "MT3" */
+  dasturKodi?: string;
+  /** Dasturdagi mashg'ulot turi */
+  dasturTuri?: MashgulotTuri;
+  /** Dasturda ajratilgan soat */
+  dasturSoati?: number;
+  /** Dasturdagi ta'lim natijalari: ["TN1", "TN3"] */
+  tn?: string[];
   area: DiagnosticArea;
   sections: Section[];
   /** D. Schön — dars oxiridagi refleksiya savollari */
