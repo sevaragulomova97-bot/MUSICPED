@@ -42,8 +42,14 @@ test.describe("Dastur mashg'ulotlari", () => {
     await page.waitForURL(/dastur/);
 
     const asosiy = page.locator("main");
-    // Ma'ruza va amaliy to'liq, kurs ishi va mustaqil ta'lim hali yo'q.
+    // Ma'ruza va amaliy to'liq, kurs ishi hali yo'q.
     await expect(asosiy).toContainText(/30\/30 mavzu/);
     await expect(asosiy).toContainText(/0\/15 mavzu/);
+    /*
+      Mustaqil ta'lim alohida dars bilan berilmaydi — uning o'rnida
+      qizil nol emas, sabab turishi kerak.
+    */
+    await expect(asosiy).toContainText("topshiriq va asboblar orqali");
+    await expect(asosiy).toContainText("alohida sahifa sifatida");
   });
 });

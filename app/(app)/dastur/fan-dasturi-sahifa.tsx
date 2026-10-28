@@ -30,11 +30,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
  * Server komponenti: sahifa butunlay statik, brauzerda hisob yo'q.
  */
 export function FanDasturi() {
+  /*
+    `alohida` — mashg'ulot platformada o'z darsi bilan beriladimi.
+    Mustaqil ta'lim uchun yo'q: uning mavzulari boshqa kurslardagi
+    topshiriqlar va musiqa asboblaridagi mashqlar orqali mustahkamlanadi.
+    Shuning uchun u yerda nol raqam kamchilik emas — ustun qizarmaydi.
+  */
   const soat = [
-    { nom: "Ma'ruza", qiymat: FAN.soat.maruza },
-    { nom: "Amaliy mashg'ulot", qiymat: FAN.soat.amaliy },
-    { nom: "Kurs ishi", qiymat: FAN.soat.kursIshi },
-    { nom: "Mustaqil ta'lim", qiymat: FAN.soat.mustaqil },
+    { nom: "Ma'ruza", qiymat: FAN.soat.maruza, alohida: true },
+    { nom: "Amaliy mashg'ulot", qiymat: FAN.soat.amaliy, alohida: true },
+    { nom: "Kurs ishi", qiymat: FAN.soat.kursIshi, alohida: true },
+    { nom: "Mustaqil ta'lim", qiymat: FAN.soat.mustaqil, alohida: false },
   ];
 
   return (
@@ -98,15 +104,27 @@ export function FanDasturi() {
                       <td className="py-2 text-right tabular-nums text-ink">
                         {s.qiymat} soat
                       </td>
-                      <td className="py-2 text-right tabular-nums">
-                        <span
-                          className={toliq ? "text-success-ink" : "text-danger-ink"}
-                        >
-                          {q.platformada} soat
-                        </span>
-                        <span className="block text-xs text-ink-muted">
-                          {q.yozilgan}/{q.mavzular} mavzu
-                        </span>
+                      <td className="py-2 text-right text-sm">
+                        {s.alohida ? (
+                          <>
+                            <span
+                              className={
+                                toliq
+                                  ? "tabular-nums text-success-ink"
+                                  : "tabular-nums text-danger-ink"
+                              }
+                            >
+                              {q.platformada} soat
+                            </span>
+                            <span className="block text-xs text-ink-muted tabular-nums">
+                              {q.yozilgan}/{q.mavzular} mavzu
+                            </span>
+                          </>
+                        ) : (
+                          <span className="text-xs text-ink-muted">
+                            topshiriq va asboblar orqali
+                          </span>
+                        )}
                       </td>
                     </tr>
                   );
@@ -229,6 +247,15 @@ export function FanDasturi() {
           </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
+          <p className="rounded-lg bg-surface-muted p-3 text-sm leading-relaxed text-ink-muted">
+            Mustaqil ta&apos;lim platformada alohida sahifa sifatida
+            berilmaydi. Uning mavzulari — asarni mustaqil tahlil qilish va
+            dars ishlanmasi tayyorlash — boshqa kurslardagi topshiriqlar va
+            musiqa asboblaridagi mashqlar orqali mustahkamlanadi. Quyidagi
+            ro&apos;yxat dastur hujjatidagi holicha, yo&apos;naltirish uchun
+            keltirilgan.
+          </p>
+
           {MUSTAQIL_TOPSHIRIQLAR.map((t) => (
             <div key={t.kod} className="flex flex-wrap items-baseline gap-2">
               <span className="font-display text-sm font-semibold text-primary-ink">
