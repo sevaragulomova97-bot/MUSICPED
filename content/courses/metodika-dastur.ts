@@ -5457,6 +5457,80 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "nazariya",
+        title: "Nazariy bayon: 1-sinf tavsifnomasi qanday o'qiladi",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yosh tavsifnomasi — ro'yxat emas, qaror qabul qilish vositasi. Uni to'rt o'q bo'yicha o'qish kerak va har bir o'q repertuar hamda dars tuzilmasida aniq natijaga olib keladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Ovoz imkoniyati — diapazon, nafas va yuklama chegarasi; repertuar tonalligini belgilaydi",
+              "Diqqat barqarorligi — bitta faoliyat necha daqiqa davom etishi mumkinligini belgilaydi",
+              "Idrok darajasi — matn mavhum bo'lishi mumkinmi yoki tasvirli bo'lishi kerakmi",
+              "Motivatsiya manbayi — bolani nima qiziqtiradi: o'yin, musobaqa, jamoa yoki o'z fikri",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "1-sinf uchun (6-7 yosh) birinchi o'q shunday ko'rinadi: Ovoz apparati juda nozik: diapazon tor, nafas qisqa, baland kuylash tez charchatadi.",
+          },
+          {
+            kind: "matn",
+            text: "Ikkinchi o'q — diqqat: bu yoshda bitta faoliyat taxminan 10-15 daqiqa davom etishi mumkin. Shu raqam darsni rejalashtirishda bevosita ishlatiladi: faoliyat shu muddatdan uzun bo'lsa, oxirgi daqiqalar behuda ketadi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Eng ko'p uchraydigan xato: Uzun qo'shiq va uzoq tushuntirish. Diqqat tugagandan keyin bolalar «eshitmaydi», o'qituvchi esa buni tartibsizlik deb tushunadi.",
+          },
+        ],
+      },
+      {
+        id: "faoliyat",
+        title: "Faoliyat turlarining taqsimoti",
+        blocks: [
+          {
+            kind: "matn",
+            text: "45 daqiqalik darsda to'rt faoliyat turi 1-sinf uchun taxminan quyidagicha taqsimlanadi. Raqamlar qat'iy emas, lekin nisbat muhim — u yoshning imkoniyatidan chiqadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Kuylash — 15-18 daqiqa, lekin uzluksiz emas: ikki-uch marta qisqa bo'lak",
+              "Musiqiy-ritmik harakat — 8-10 daqiqa; bu yoshda eng samarali faoliyat",
+              "Tinglash — 3-5 daqiqa, bitta qisqa asar, bitta savol",
+              "Musiqa savodi — alohida emas, qo'shiq ichida: zarb, baland-past",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Taqsimotni tekshirishning oddiy yo'li bor: dars rejasida o'quvchi necha daqiqa musiqa qilgani va necha daqiqa eshitib o'tirgani hisoblanadi. Ikkinchisi birinchisidan ko'p bo'lsa, reja qayta ko'riladi.",
+          },
+          {
+            kind: "matn",
+            text: "Baholash ham yoshga bog'lanadi. Baholash og'zaki va ijobiy: nima yaxshi chiqdi, nimaga e'tibor beramiz. Ball bu yoshda rag'batlantiruvchi vosita emas.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "O'yin qo'shig'i — harakat va o'yin qoidasi bilan birga ijro etiladigan qo'shiq",
+              "Aks-sado usuli — o'qituvchi kuylaydi, bolalar takrorlaydi",
+              "Og'zaki o'rgatish — matn yozma emas, eshitish orqali beriladi",
+              "Yosh tavsifnomasi — muayyan yoshning ovoz, diqqat, idrok va motivatsiya xususiyatlari majmui",
+              "Faoliyat taqsimoti — dars vaqtining musiqiy faoliyat turlari bo'yicha bo'linishi",
+            ],
+          },
+        ],
+      },
+      {
         id: "mashq",
         title: "Amaliy mashq",
         blocks: [
@@ -5634,6 +5708,80 @@ export const DASTUR_MARUZALARI: Lesson[] = [
           {
             kind: "matn",
             text: "Ijodiy topshiriqlar shu yoshda musiqiy taassurotni mustahkamlaydi: asar kayfiyatini chizish, matnga davom topish, ritmik jo'rlik o'ylab topish. Ular baholanadi, lekin «to'g'ri javob» mezoni bilan emas — ishtirok va asoslash bilan.",
+          },
+        ],
+      },
+      {
+        id: "nazariya",
+        title: "Nazariy bayon: 2-sinf tavsifnomasi qanday o'qiladi",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yosh tavsifnomasi — ro'yxat emas, qaror qabul qilish vositasi. Uni to'rt o'q bo'yicha o'qish kerak va har bir o'q repertuar hamda dars tuzilmasida aniq natijaga olib keladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Ovoz imkoniyati — diapazon, nafas va yuklama chegarasi; repertuar tonalligini belgilaydi",
+              "Diqqat barqarorligi — bitta faoliyat necha daqiqa davom etishi mumkinligini belgilaydi",
+              "Idrok darajasi — matn mavhum bo'lishi mumkinmi yoki tasvirli bo'lishi kerakmi",
+              "Motivatsiya manbayi — bolani nima qiziqtiradi: o'yin, musobaqa, jamoa yoki o'z fikri",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "2-sinf uchun (7-8 yosh) birinchi o'q shunday ko'rinadi: Ovoz ishonchliroq, nafas uzayadi; lekin diapazon hali tor va baland notalar zo'riqish beradi.",
+          },
+          {
+            kind: "matn",
+            text: "Ikkinchi o'q — diqqat: bu yoshda bitta faoliyat taxminan 15-20 daqiqa davom etishi mumkin. Shu raqam darsni rejalashtirishda bevosita ishlatiladi: faoliyat shu muddatdan uzun bo'lsa, oxirgi daqiqalar behuda ketadi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Eng ko'p uchraydigan xato: Kupletni naqoratdan oldin o'rgatish. Naqorat takrorlanadi va yod bo'lishi oson, shuning uchun u birinchi o'rganiladi.",
+          },
+        ],
+      },
+      {
+        id: "faoliyat",
+        title: "Faoliyat turlarining taqsimoti",
+        blocks: [
+          {
+            kind: "matn",
+            text: "45 daqiqalik darsda to'rt faoliyat turi 2-sinf uchun taxminan quyidagicha taqsimlanadi. Raqamlar qat'iy emas, lekin nisbat muhim — u yoshning imkoniyatidan chiqadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Kuylash — 18-20 daqiqa; naqorat va kuplet ajratib ishlanadi",
+              "Harakat — 7-8 daqiqa; marsh va raqs xarakteridagi material qulay",
+              "Tinglash — 5-7 daqiqa, yo'naltiruvchi savol bilan",
+              "Musiqa savodi — 5 daqiqa: zarb, urg'u, baland-past, qisqa-cho'ziq",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Taqsimotni tekshirishning oddiy yo'li bor: dars rejasida o'quvchi necha daqiqa musiqa qilgani va necha daqiqa eshitib o'tirgani hisoblanadi. Ikkinchisi birinchisidan ko'p bo'lsa, reja qayta ko'riladi.",
+          },
+          {
+            kind: "matn",
+            text: "Baholash ham yoshga bog'lanadi. Mezon oldin aytiladi: nimani tekshirishimizni bolalar biladi. Shu yoshda o'z-o'zini baholashning birinchi shakllari kiritiladi.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Naqorat — qo'shiqda takrorlanadigan qism",
+              "Kuplet — matni o'zgarib turadigan band",
+              "Yo'naltiruvchi savol — tinglashdan oldin beriladigan, diqqatni qaratadigan savol",
+              "Yosh tavsifnomasi — muayyan yoshning ovoz, diqqat, idrok va motivatsiya xususiyatlari majmui",
+              "Faoliyat taqsimoti — dars vaqtining musiqiy faoliyat turlari bo'yicha bo'linishi",
+            ],
           },
         ],
       },
@@ -5819,6 +5967,80 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "nazariya",
+        title: "Nazariy bayon: 3-sinf tavsifnomasi qanday o'qiladi",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yosh tavsifnomasi — ro'yxat emas, qaror qabul qilish vositasi. Uni to'rt o'q bo'yicha o'qish kerak va har bir o'q repertuar hamda dars tuzilmasida aniq natijaga olib keladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Ovoz imkoniyati — diapazon, nafas va yuklama chegarasi; repertuar tonalligini belgilaydi",
+              "Diqqat barqarorligi — bitta faoliyat necha daqiqa davom etishi mumkinligini belgilaydi",
+              "Idrok darajasi — matn mavhum bo'lishi mumkinmi yoki tasvirli bo'lishi kerakmi",
+              "Motivatsiya manbayi — bolani nima qiziqtiradi: o'yin, musobaqa, jamoa yoki o'z fikri",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "3-sinf uchun (8-9 yosh) birinchi o'q shunday ko'rinadi: Ovoz kuchayadi, tembr aniqlashadi; ansambl talabi jiddiy qo'yilishi mumkin.",
+          },
+          {
+            kind: "matn",
+            text: "Ikkinchi o'q — diqqat: bu yoshda bitta faoliyat taxminan 20 daqiqa davom etishi mumkin. Shu raqam darsni rejalashtirishda bevosita ishlatiladi: faoliyat shu muddatdan uzun bo'lsa, oxirgi daqiqalar behuda ketadi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Eng ko'p uchraydigan xato: Guruhli ishni musobaqaga aylantirib yuborish. Musobaqa qiziqtiradi, lekin g'olib aniqlanmasa yoki mezon noaniq bo'lsa, u janjalga olib keladi.",
+          },
+        ],
+      },
+      {
+        id: "faoliyat",
+        title: "Faoliyat turlarining taqsimoti",
+        blocks: [
+          {
+            kind: "matn",
+            text: "45 daqiqalik darsda to'rt faoliyat turi 3-sinf uchun taxminan quyidagicha taqsimlanadi. Raqamlar qat'iy emas, lekin nisbat muhim — u yoshning imkoniyatidan chiqadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Kuylash — 18-20 daqiqa; ansambl aniqligi ustida ish boshlanadi",
+              "Cholg'u va ritmik jo'rlik — 7-10 daqiqa; ritmik sezgi barqarorlashgani uchun samarali",
+              "Tinglash — 7 daqiqa, taqqoslash topshirig'i bilan",
+              "Musiqa savodi — 5-7 daqiqa: o'lchov, ritmik naqsh, nota yozuvining boshlanishi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Taqsimotni tekshirishning oddiy yo'li bor: dars rejasida o'quvchi necha daqiqa musiqa qilgani va necha daqiqa eshitib o'tirgani hisoblanadi. Ikkinchisi birinchisidan ko'p bo'lsa, reja qayta ko'riladi.",
+          },
+          {
+            kind: "matn",
+            text: "Baholash ham yoshga bog'lanadi. Rubrikaning sodda ko'rinishi kiritiladi: uch mezon, har biriga uch daraja. Bola o'z natijasini mezon bilan solishtira oladi.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Ritmik jo'rlik — qo'shiqqa zarbli cholg'u yoki chapak bilan qo'shiladigan qatlam",
+              "Ansambl aniqligi — birga boshlash, birga tugatish, bir xil temp",
+              "Taqqoslash topshirig'i — ikki asar yoki ijroni solishtirishga asoslangan vazifa",
+              "Yosh tavsifnomasi — muayyan yoshning ovoz, diqqat, idrok va motivatsiya xususiyatlari majmui",
+              "Faoliyat taqsimoti — dars vaqtining musiqiy faoliyat turlari bo'yicha bo'linishi",
+            ],
+          },
+        ],
+      },
+      {
         id: "mashq",
         title: "Amaliy mashq",
         blocks: [
@@ -5996,6 +6218,80 @@ export const DASTUR_MARUZALARI: Lesson[] = [
           {
             kind: "matn",
             text: "Ijodiy topshiriqlar shu yoshda musiqiy taassurotni mustahkamlaydi: asar kayfiyatini chizish, matnga davom topish, ritmik jo'rlik o'ylab topish. Ular baholanadi, lekin «to'g'ri javob» mezoni bilan emas — ishtirok va asoslash bilan.",
+          },
+        ],
+      },
+      {
+        id: "nazariya",
+        title: "Nazariy bayon: 4-sinf tavsifnomasi qanday o'qiladi",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yosh tavsifnomasi — ro'yxat emas, qaror qabul qilish vositasi. Uni to'rt o'q bo'yicha o'qish kerak va har bir o'q repertuar hamda dars tuzilmasida aniq natijaga olib keladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Ovoz imkoniyati — diapazon, nafas va yuklama chegarasi; repertuar tonalligini belgilaydi",
+              "Diqqat barqarorligi — bitta faoliyat necha daqiqa davom etishi mumkinligini belgilaydi",
+              "Idrok darajasi — matn mavhum bo'lishi mumkinmi yoki tasvirli bo'lishi kerakmi",
+              "Motivatsiya manbayi — bolani nima qiziqtiradi: o'yin, musobaqa, jamoa yoki o'z fikri",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "4-sinf uchun (9-10 yosh) birinchi o'q shunday ko'rinadi: Nafas uzayadi va diapazon kengayadi — ikki ovozlilik elementlarini kiritish mumkin bo'ladi.",
+          },
+          {
+            kind: "matn",
+            text: "Ikkinchi o'q — diqqat: bu yoshda bitta faoliyat taxminan 20-25 daqiqa davom etishi mumkin. Shu raqam darsni rejalashtirishda bevosita ishlatiladi: faoliyat shu muddatdan uzun bo'lsa, oxirgi daqiqalar behuda ketadi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Eng ko'p uchraydigan xato: Ikki ovozlilikni haqiqiy ikki ovozdan boshlash. To'g'ri yo'l — kanon, keyin ostinato, eng oxirida mustaqil ikkinchi ovoz.",
+          },
+        ],
+      },
+      {
+        id: "faoliyat",
+        title: "Faoliyat turlarining taqsimoti",
+        blocks: [
+          {
+            kind: "matn",
+            text: "45 daqiqalik darsda to'rt faoliyat turi 4-sinf uchun taxminan quyidagicha taqsimlanadi. Raqamlar qat'iy emas, lekin nisbat muhim — u yoshning imkoniyatidan chiqadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Kuylash — 18-20 daqiqa; kanon yoki ostinato ustida ish",
+              "Tinglash va tahlil — 8-10 daqiqa; mavhum tushunchalar qabul qilinadi",
+              "Harakat yoki cholg'u — 5-7 daqiqa",
+              "Musiqa savodi — 5-7 daqiqa: lad xarakteri, tonika hissi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Taqsimotni tekshirishning oddiy yo'li bor: dars rejasida o'quvchi necha daqiqa musiqa qilgani va necha daqiqa eshitib o'tirgani hisoblanadi. Ikkinchisi birinchisidan ko'p bo'lsa, reja qayta ko'riladi.",
+          },
+          {
+            kind: "matn",
+            text: "Baholash ham yoshga bog'lanadi. Ijro bahosiga ifodalilik mezoni qo'shiladi: faqat tozalik emas, matn ma'nosiga mos ijro ham baholanadi.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Kanon — bir ohangni ovozlar navbat bilan boshlaydigan shakl",
+              "Ostinato — doimiy takrorlanuvchi qisqa naqsh",
+              "Ifodalilik — ijroning matn ma'nosi va asar xarakteriga mosligi",
+              "Yosh tavsifnomasi — muayyan yoshning ovoz, diqqat, idrok va motivatsiya xususiyatlari majmui",
+              "Faoliyat taqsimoti — dars vaqtining musiqiy faoliyat turlari bo'yicha bo'linishi",
+            ],
           },
         ],
       },
@@ -6181,6 +6477,80 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "nazariya",
+        title: "Nazariy bayon: 5-sinf tavsifnomasi qanday o'qiladi",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yosh tavsifnomasi — ro'yxat emas, qaror qabul qilish vositasi. Uni to'rt o'q bo'yicha o'qish kerak va har bir o'q repertuar hamda dars tuzilmasida aniq natijaga olib keladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Ovoz imkoniyati — diapazon, nafas va yuklama chegarasi; repertuar tonalligini belgilaydi",
+              "Diqqat barqarorligi — bitta faoliyat necha daqiqa davom etishi mumkinligini belgilaydi",
+              "Idrok darajasi — matn mavhum bo'lishi mumkinmi yoki tasvirli bo'lishi kerakmi",
+              "Motivatsiya manbayi — bolani nima qiziqtiradi: o'yin, musobaqa, jamoa yoki o'z fikri",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "5-sinf uchun (10-11 yosh) birinchi o'q shunday ko'rinadi: O'smirlik ostonasi: ayrim o'g'il bolalarda ovoz o'zgarishining birinchi belgilari paydo bo'lishi mumkin. Shu bolalarga past partiya yoki ritmik vazifa beriladi.",
+          },
+          {
+            kind: "matn",
+            text: "Ikkinchi o'q — diqqat: bu yoshda bitta faoliyat taxminan 25 daqiqa davom etishi mumkin. Shu raqam darsni rejalashtirishda bevosita ishlatiladi: faoliyat shu muddatdan uzun bo'lsa, oxirgi daqiqalar behuda ketadi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Eng ko'p uchraydigan xato: Ovozi o'zgarayotgan bolani kuylashdan chiqarib yuborish. U faoliyatda qoladi, lekin boshqa vazifa bilan — aks holda musiqadan uzoqlashadi.",
+          },
+        ],
+      },
+      {
+        id: "faoliyat",
+        title: "Faoliyat turlarining taqsimoti",
+        blocks: [
+          {
+            kind: "matn",
+            text: "45 daqiqalik darsda to'rt faoliyat turi 5-sinf uchun taxminan quyidagicha taqsimlanadi. Raqamlar qat'iy emas, lekin nisbat muhim — u yoshning imkoniyatidan chiqadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Kuylash — 15-18 daqiqa; ikki ovozlilik mustahkamlanadi",
+              "Tinglash va tahlil — 10 daqiqa; milliy kuylar va uslub masalasi",
+              "Cholg'u yoki harakat — 5-7 daqiqa; doira usuli bilan ish",
+              "Musiqa savodi — 5 daqiqa; nota o'qish ko'nikmasi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Taqsimotni tekshirishning oddiy yo'li bor: dars rejasida o'quvchi necha daqiqa musiqa qilgani va necha daqiqa eshitib o'tirgani hisoblanadi. Ikkinchisi birinchisidan ko'p bo'lsa, reja qayta ko'riladi.",
+          },
+          {
+            kind: "matn",
+            text: "Baholash ham yoshga bog'lanadi. Jamoa fikri muhim bo'lgan yosh: baholash guruh natijasini ham hisobga oladi, lekin individual o'sish asosiy qoladi.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Mutatsiya belgilari — ovoz tembri va diapazonining o'zgarishi boshlanishi",
+              "Past partiya — mutatsiya davridagi bola uchun qulay, tor diapazondagi ovoz yo'li",
+              "Uslub — musiqiy ifodaning tarixiy yoki milliy an'anaga xos ko'rinishi",
+              "Yosh tavsifnomasi — muayyan yoshning ovoz, diqqat, idrok va motivatsiya xususiyatlari majmui",
+              "Faoliyat taqsimoti — dars vaqtining musiqiy faoliyat turlari bo'yicha bo'linishi",
+            ],
+          },
+        ],
+      },
+      {
         id: "mashq",
         title: "Amaliy mashq",
         blocks: [
@@ -6362,6 +6732,80 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "nazariya",
+        title: "Nazariy bayon: 6-sinf tavsifnomasi qanday o'qiladi",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yosh tavsifnomasi — ro'yxat emas, qaror qabul qilish vositasi. Uni to'rt o'q bo'yicha o'qish kerak va har bir o'q repertuar hamda dars tuzilmasida aniq natijaga olib keladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Ovoz imkoniyati — diapazon, nafas va yuklama chegarasi; repertuar tonalligini belgilaydi",
+              "Diqqat barqarorligi — bitta faoliyat necha daqiqa davom etishi mumkinligini belgilaydi",
+              "Idrok darajasi — matn mavhum bo'lishi mumkinmi yoki tasvirli bo'lishi kerakmi",
+              "Motivatsiya manbayi — bolani nima qiziqtiradi: o'yin, musobaqa, jamoa yoki o'z fikri",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "6-sinf uchun (11-12 yosh) birinchi o'q shunday ko'rinadi: Ovoz mutatsiyasi davri: tembr o'zgaradi, diapazon vaqtincha torayadi, charchash tez keladi. Diapazon sinf uchun emas, har bola uchun alohida aniqlanadi.",
+          },
+          {
+            kind: "matn",
+            text: "Ikkinchi o'q — diqqat: bu yoshda bitta faoliyat taxminan 25-30 daqiqa davom etishi mumkin. Shu raqam darsni rejalashtirishda bevosita ishlatiladi: faoliyat shu muddatdan uzun bo'lsa, oxirgi daqiqalar behuda ketadi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Eng ko'p uchraydigan xato: Mutatsiya davrida odatdagi yuklamani saqlab qolish. Baland va uzun notalar, uzoq kuylash bu davrda ovozga zarar beradi.",
+          },
+        ],
+      },
+      {
+        id: "faoliyat",
+        title: "Faoliyat turlarining taqsimoti",
+        blocks: [
+          {
+            kind: "matn",
+            text: "45 daqiqalik darsda to'rt faoliyat turi 6-sinf uchun taxminan quyidagicha taqsimlanadi. Raqamlar qat'iy emas, lekin nisbat muhim — u yoshning imkoniyatidan chiqadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Kuylash — 12-15 daqiqa; qisqa bo'laklar, dam olish bilan",
+              "Tinglash va tahlil — 12-15 daqiqa; ulush ataylab oshiriladi",
+              "Ijodiy ish — 7-10 daqiqa; jo'rlik, variant, tahlil yozuvi",
+              "Musiqa savodi — 5 daqiqa",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Taqsimotni tekshirishning oddiy yo'li bor: dars rejasida o'quvchi necha daqiqa musiqa qilgani va necha daqiqa eshitib o'tirgani hisoblanadi. Ikkinchisi birinchisidan ko'p bo'lsa, reja qayta ko'riladi.",
+          },
+          {
+            kind: "matn",
+            text: "Baholash ham yoshga bog'lanadi. Kuylash bahosining ulushi pasayadi, tahlil va ijodiy ishning ulushi oshadi — bu adolat masalasi, yengillik emas.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Mutatsiya — o'smirlik davrida ovozning sinishi va qayta shakllanishi",
+              "Ovoz gigiyenasi — ovozni asrash qoidalari: yuklama, davomiylik, dinamika chegarasi",
+              "Individual diapazon — har bir o'quvchi uchun alohida aniqlanadigan ovoz oralig'i",
+              "Yosh tavsifnomasi — muayyan yoshning ovoz, diqqat, idrok va motivatsiya xususiyatlari majmui",
+              "Faoliyat taqsimoti — dars vaqtining musiqiy faoliyat turlari bo'yicha bo'linishi",
+            ],
+          },
+        ],
+      },
+      {
         id: "mashq",
         title: "Amaliy mashq",
         blocks: [
@@ -6539,6 +6983,80 @@ export const DASTUR_MARUZALARI: Lesson[] = [
           {
             kind: "matn",
             text: "Ijodiy topshiriqlar shu yoshda musiqiy taassurotni mustahkamlaydi: asar kayfiyatini chizish, matnga davom topish, ritmik jo'rlik o'ylab topish. Ular baholanadi, lekin «to'g'ri javob» mezoni bilan emas — ishtirok va asoslash bilan.",
+          },
+        ],
+      },
+      {
+        id: "nazariya",
+        title: "Nazariy bayon: 7-sinf tavsifnomasi qanday o'qiladi",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yosh tavsifnomasi — ro'yxat emas, qaror qabul qilish vositasi. Uni to'rt o'q bo'yicha o'qish kerak va har bir o'q repertuar hamda dars tuzilmasida aniq natijaga olib keladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Ovoz imkoniyati — diapazon, nafas va yuklama chegarasi; repertuar tonalligini belgilaydi",
+              "Diqqat barqarorligi — bitta faoliyat necha daqiqa davom etishi mumkinligini belgilaydi",
+              "Idrok darajasi — matn mavhum bo'lishi mumkinmi yoki tasvirli bo'lishi kerakmi",
+              "Motivatsiya manbayi — bolani nima qiziqtiradi: o'yin, musobaqa, jamoa yoki o'z fikri",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "7-sinf uchun (12-13 yosh) birinchi o'q shunday ko'rinadi: Mutatsiya davom etadi; ovoz turi aniqlanib bora boshlaydi. Tessitura ehtiyotkor tanlanadi, dinamika cheklanadi.",
+          },
+          {
+            kind: "matn",
+            text: "Ikkinchi o'q — diqqat: bu yoshda bitta faoliyat taxminan 30 daqiqa davom etishi mumkin. Shu raqam darsni rejalashtirishda bevosita ishlatiladi: faoliyat shu muddatdan uzun bo'lsa, oxirgi daqiqalar behuda ketadi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Eng ko'p uchraydigan xato: Bolalarcha material taklif qilish. Bu yoshda tanqidiy fikr kuchli: mos kelmagan material rad etiladi va motivatsiya yo'qoladi.",
+          },
+        ],
+      },
+      {
+        id: "faoliyat",
+        title: "Faoliyat turlarining taqsimoti",
+        blocks: [
+          {
+            kind: "matn",
+            text: "45 daqiqalik darsda to'rt faoliyat turi 7-sinf uchun taxminan quyidagicha taqsimlanadi. Raqamlar qat'iy emas, lekin nisbat muhim — u yoshning imkoniyatidan chiqadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Kuylash — 12-15 daqiqa; tessitura va yuklama nazoratda",
+              "Tinglash va tahlil — 15 daqiqa; jahon va milliy klassika",
+              "Ijodiy va loyihaviy ish — 10 daqiqa; tadbir, taqdimot, to'plam",
+              "Musiqa savodi — qo'shiq va tahlil ichida",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Taqsimotni tekshirishning oddiy yo'li bor: dars rejasida o'quvchi necha daqiqa musiqa qilgani va necha daqiqa eshitib o'tirgani hisoblanadi. Ikkinchisi birinchisidan ko'p bo'lsa, reja qayta ko'riladi.",
+          },
+          {
+            kind: "matn",
+            text: "Baholash ham yoshga bog'lanadi. Baholashda o'z fikrini asoslash alohida mezonga aylanadi: nima uchun shu ijro yoki shu asar afzal.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Tessitura — asarning asosiy qismi joylashgan tovush balandligi sohasi",
+              "Tanqidiy idrok — asarni baholab, fikrini asoslab aytish qobiliyati",
+              "Loyihaviy ish — yakuniy mahsulot yaratishga qaratilgan uzoq muddatli vazifa",
+              "Yosh tavsifnomasi — muayyan yoshning ovoz, diqqat, idrok va motivatsiya xususiyatlari majmui",
+              "Faoliyat taqsimoti — dars vaqtining musiqiy faoliyat turlari bo'yicha bo'linishi",
+            ],
           },
         ],
       },
