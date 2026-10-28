@@ -9,6 +9,7 @@ import {
   LifeBuoy,
   Music4,
   Route,
+  ScrollText,
   Settings,
   Shield,
   UserRound,
@@ -38,6 +39,7 @@ const TALABA_NAV: NavItem[] = [
   { href: "/bosh-sahifa", label: "Bosh sahifa", icon: Home, mobile: true },
   { href: "/yolnalish", label: "Mening yo'lim", icon: Route, mobile: true, shortLabel: "Yo'lim" },
   { href: "/kurslar", label: "O'quv kurslari", icon: BookOpen },
+  { href: "/dastur", label: "Fan dasturi", icon: ScrollText },
   { href: "/asboblar", label: "Musiqa asboblari", icon: Music4, mobile: true, shortLabel: "Asboblar" },
   { href: "/topshiriqlar", label: "Topshiriqlar", icon: ClipboardList, mobile: true },
   { href: "/natijalar", label: "Baholash", icon: BarChart3 },
@@ -50,6 +52,7 @@ const OQITUVCHI_NAV: NavItem[] = [
   { href: "/oqituvchi/talabalar", label: "Talabalar", icon: Users, mobile: true },
   { href: "/oqituvchi/topshiriqlar", label: "Topshiriqlar", icon: ClipboardList, mobile: true, shortLabel: "Ishlar" },
   { href: "/oqituvchi/mentorlik", label: "Mentorlik", icon: GraduationCap },
+  { href: "/dastur", label: "Fan dasturi", icon: ScrollText },
   { href: "/oqituvchi/tadqiqot", label: "Tadqiqot", icon: BarChart3, mobile: true },
   { href: "/profil", label: "Profil", icon: UserRound, mobile: true },
 ];
@@ -58,6 +61,7 @@ const ADMIN_NAV: NavItem[] = [
   { href: "/admin", label: "Bosh sahifa", icon: Home, mobile: true },
   { href: "/admin/foydalanuvchilar", label: "Foydalanuvchilar", icon: Users, mobile: true, shortLabel: "Hisoblar" },
   { href: "/admin/kontent", label: "Kontent", icon: BookOpen, mobile: true },
+  { href: "/dastur", label: "Fan dasturi", icon: ScrollText },
   { href: "/admin/jurnal", label: "Faoliyat jurnali", icon: Shield, mobile: true, shortLabel: "Jurnal" },
   { href: "/profil", label: "Profil", icon: UserRound, mobile: true },
 ];

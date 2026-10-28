@@ -36,6 +36,7 @@ const TALABA_SAHIFALARI = [
   "/sozlamalar/",
   "/qollanma/",
   "/bildirishnomalar/",
+  "/dastur/",
 ];
 
 const OQITUVCHI_SAHIFALARI = [
