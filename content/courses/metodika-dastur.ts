@@ -5515,6 +5515,42 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "repertuar",
+        title: "1-sinf repertuari bilan ishlash",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yillik repertuar 1-sinf uchun quyidagi tartibda yig'iladi. Raqamlar taxminiy, lekin nisbat yoshning imkoniyatidan chiqadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Chorakda bir-ikki yangi qo'shiq — ko'proq o'rganish 1-sinfda ulgurilmaydi",
+              "Takrorlanadigan qo'shiqlar ulushi katta: yod bo'lgan material ishonch beradi",
+              "Har chorakda bitta o'yin qo'shig'i va bitta tinglash asari",
+              "Bayram repertuari alohida emas, o'rganilgan qo'shiqlardan yig'iladi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Qo'shiq o'rgatish ketma-ketligi barcha sinflarda bir xil, lekin bosqichlarning ulushi va usuli yoshga qarab o'zgaradi. Shu sinf uchun asosiy farqlar:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Matn og'zaki beriladi: o'qish ko'nikmasi hali shakllanmoqda",
+              "Ibora qisqa — ikki taktdan oshmasin, aks-sado usuli bilan",
+              "Har takrorga harakat yoki ishora qo'shiladi",
+              "Yod olish tekshiriladi guruh bo'lib, individual so'rash kam ishlatiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qo'shiqni tez o'rganib olgandek ko'rinadi, lekin keyingi darsda esdan chiqadi. Sabab — takror soni yetarli emas: 1-sinfda material uch-to'rt darsda qaytarilishi kerak.",
+          },
+        ],
+      },
+      {
         id: "atamalar",
         title: "Asosiy atamalar",
         blocks: [
@@ -5766,6 +5802,42 @@ export const DASTUR_MARUZALARI: Lesson[] = [
           {
             kind: "matn",
             text: "Baholash ham yoshga bog'lanadi. Mezon oldin aytiladi: nimani tekshirishimizni bolalar biladi. Shu yoshda o'z-o'zini baholashning birinchi shakllari kiritiladi.",
+          },
+        ],
+      },
+      {
+        id: "repertuar",
+        title: "2-sinf repertuari bilan ishlash",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yillik repertuar 2-sinf uchun quyidagi tartibda yig'iladi. Raqamlar taxminiy, lekin nisbat yoshning imkoniyatidan chiqadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Chorakda ikki yangi qo'shiq va bitta tinglash asari",
+              "Naqoratli qo'shiqlar ulushi oshadi — ular ansambl hissini beradi",
+              "Marsh va raqs xarakteridagi material harakat bilan bog'lanadi",
+              "Bitta xalq qo'shig'i har chorakda bo'lsin",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Qo'shiq o'rgatish ketma-ketligi barcha sinflarda bir xil, lekin bosqichlarning ulushi va usuli yoshga qarab o'zgaradi. Shu sinf uchun asosiy farqlar:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Naqorat birinchi o'rganiladi, kuplet keyin",
+              "Matn yozma ham beriladi — o'qish ko'nikmasi mustahkamlanmoqda",
+              "Guruhlarga bo'lib ijro boshlanadi: savol-javob, navbatlashish",
+              "Qizdirish qo'shiqning eng qiyin oralig'idan olinadi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Kupletni naqoratdan oldin o'rgatish va natijada sinfning yarmi matnni bilmasligi. Naqorat takrorlanadi, shuning uchun u tayanch bo'ladi.",
           },
         ],
       },
@@ -6025,6 +6097,42 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "repertuar",
+        title: "3-sinf repertuari bilan ishlash",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yillik repertuar 3-sinf uchun quyidagi tartibda yig'iladi. Raqamlar taxminiy, lekin nisbat yoshning imkoniyatidan chiqadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Chorakda ikki yangi qo'shiq, bitta tinglash asari va bitta ritmik ish",
+              "Ritmik jo'rlik repertuarning doimiy qismiga aylanadi",
+              "Bayram kuylari va xalq qo'shiqlari muvozanatda",
+              "Guruhli ijroga mos asarlar tanlanadi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Qo'shiq o'rgatish ketma-ketligi barcha sinflarda bir xil, lekin bosqichlarning ulushi va usuli yoshga qarab o'zgaradi. Shu sinf uchun asosiy farqlar:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Qo'shiq mustahkamlangandan keyin jo'rlik qo'shiladi, oldin emas",
+              "Ansambl talabi aniq aytiladi: birga boshlash, birga tugatish",
+              "Qiyin ritmik joy avval so'z bilan, keyin ohang bilan mashq qilinadi",
+              "O'z ijrosini baholash boshlanadi: uch mezonli sodda rubrika",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Jo'rlikni qo'shiq bilan birga o'rgatish. Bolalar cholg'uga qiziqib ohangni tashlab qo'yadi — natijada ikkisi ham chala qoladi.",
+          },
+        ],
+      },
+      {
         id: "atamalar",
         title: "Asosiy atamalar",
         blocks: [
@@ -6276,6 +6384,42 @@ export const DASTUR_MARUZALARI: Lesson[] = [
           {
             kind: "matn",
             text: "Baholash ham yoshga bog'lanadi. Ijro bahosiga ifodalilik mezoni qo'shiladi: faqat tozalik emas, matn ma'nosiga mos ijro ham baholanadi.",
+          },
+        ],
+      },
+      {
+        id: "repertuar",
+        title: "4-sinf repertuari bilan ishlash",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yillik repertuar 4-sinf uchun quyidagi tartibda yig'iladi. Raqamlar taxminiy, lekin nisbat yoshning imkoniyatidan chiqadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Chorakda ikki qo'shiq, bittasida ikki ovozlilik elementi bo'lsin",
+              "Tinglash asarlari uzayadi — mavhum obraz qabul qilinadi",
+              "Kanon va ostinato repertuarga muntazam kiritiladi",
+              "Ifodali ijro talabi barcha asarlarga qo'yiladi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Qo'shiq o'rgatish ketma-ketligi barcha sinflarda bir xil, lekin bosqichlarning ulushi va usuli yoshga qarab o'zgaradi. Shu sinf uchun asosiy farqlar:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Ikki ovozlilik kanondan boshlanadi, keyin ostinato, keyin mustaqil ovoz",
+              "Matn tahlili alohida bosqich bo'ladi: kalit so'zlar ajratiladi",
+              "Dinamik reja yozma belgilanadi va u bilan ijro qilinadi",
+              "Nafas joylari butun sinf uchun bir xil belgilanadi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Ikki ovozlilikni haqiqiy ikki ovozdan boshlash. Ikkinchi ovoz birinchisiga yopishib ketadi va sinf unisonga qaytadi.",
           },
         ],
       },
@@ -6535,6 +6679,42 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "repertuar",
+        title: "5-sinf repertuari bilan ishlash",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yillik repertuar 5-sinf uchun quyidagi tartibda yig'iladi. Raqamlar taxminiy, lekin nisbat yoshning imkoniyatidan chiqadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Chorakda ikki qo'shiq; mavzular jiddiylashadi",
+              "Milliy kuylar va zamonaviy bolalar qo'shiqlari aralash beriladi",
+              "Ikki ovozlilik mustahkamlanadi, uslub masalasi kiritiladi",
+              "Doira usuli bilan ish doimiy qismga aylanadi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Qo'shiq o'rgatish ketma-ketligi barcha sinflarda bir xil, lekin bosqichlarning ulushi va usuli yoshga qarab o'zgaradi. Shu sinf uchun asosiy farqlar:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Ovozi o'zgarayotgan bolaga past partiya yoki ritmik vazifa beriladi",
+              "Tonallik sinfga moslashtiriladi, asarga emas",
+              "Guruh ishi ko'proq: jamoa fikri bu yoshda motivatsiyani belgilaydi",
+              "Ijro rejasi bolalar bilan birga tuziladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Ovoz o'zgarishi belgilarini payqamaslik. Bola baland notani zo'riqib oladi va bu ovozga zarar beradi; u o'zi aytmaydi, shuning uchun o'qituvchi kuzatadi.",
+          },
+        ],
+      },
+      {
         id: "atamalar",
         title: "Asosiy atamalar",
         blocks: [
@@ -6786,6 +6966,42 @@ export const DASTUR_MARUZALARI: Lesson[] = [
           {
             kind: "matn",
             text: "Baholash ham yoshga bog'lanadi. Kuylash bahosining ulushi pasayadi, tahlil va ijodiy ishning ulushi oshadi — bu adolat masalasi, yengillik emas.",
+          },
+        ],
+      },
+      {
+        id: "repertuar",
+        title: "6-sinf repertuari bilan ishlash",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yillik repertuar 6-sinf uchun quyidagi tartibda yig'iladi. Raqamlar taxminiy, lekin nisbat yoshning imkoniyatidan chiqadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Chorakda bitta-ikkita qo'shiq — kuylash ulushi kamayadi",
+              "Tinglash va tahlil ulushi ataylab oshiriladi",
+              "O'rtacha diapazonli, uzoq cho'zilmaydigan asarlar tanlanadi",
+              "Ijodiy ish repertuarning bir qismini almashtiradi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Qo'shiq o'rgatish ketma-ketligi barcha sinflarda bir xil, lekin bosqichlarning ulushi va usuli yoshga qarab o'zgaradi. Shu sinf uchun asosiy farqlar:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Diapazon har bola uchun alohida tekshiriladi",
+              "Kuylash qisqa bo'laklarda, dam olish bilan olib boriladi",
+              "Baland va uzun notalar rejadan chiqariladi",
+              "Tahlil va ijodiy topshiriq kuylash o'rnini to'ldiradi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Mutatsiya davrida odatdagi yuklamani saqlab qolish. Bu davrda ovozga tushgan zarar uzoq tuzalmaydi — shuning uchun yuklama kamaytirish yengillik emas, talab.",
           },
         ],
       },
@@ -7045,6 +7261,42 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "repertuar",
+        title: "7-sinf repertuari bilan ishlash",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Yillik repertuar 7-sinf uchun quyidagi tartibda yig'iladi. Raqamlar taxminiy, lekin nisbat yoshning imkoniyatidan chiqadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Chorakda bitta jiddiy asar yetarli, lekin to'liq ishlangan bo'lsin",
+              "Vatan, ona tili, do'stlik mavzularidagi asarlar",
+              "Jahon va milliy klassikadan tinglash muntazam",
+              "Loyihaviy ish: tadbir, taqdimot yoki to'plam",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Qo'shiq o'rgatish ketma-ketligi barcha sinflarda bir xil, lekin bosqichlarning ulushi va usuli yoshga qarab o'zgaradi. Shu sinf uchun asosiy farqlar:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Tessitura va dinamika chegarasi oldindan belgilanadi",
+              "Repertuar tanlashda o'quvchilarning fikri so'raladi",
+              "Tahlil o'quvchining o'zi tomonidan bajariladi, o'qituvchi savol beradi",
+              "Ijro sahnaga yo'naltiriladi: tadbir yoki hisobot chiqishi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Bolalarcha material taklif qilish. Tanqidiy fikr kuchli bo'lgan yoshda mos kelmagan material rad etiladi va bu motivatsiyani yo'qotadi.",
+          },
+        ],
+      },
+      {
         id: "atamalar",
         title: "Asosiy atamalar",
         blocks: [
@@ -7239,6 +7491,106 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "nazariya",
+        title: "Nazariy bayon: to'garak darsdan nimasi bilan farq qiladi",
+        blocks: [
+          {
+            kind: "matn",
+            text: "To'garak — darsning davomi emas, boshqa tipdagi faoliyat. Farq uch nuqtada: ishtirok ixtiyoriy, tarkib qiziqish bo'yicha yig'iladi va natija ko'pincha ommaviy ijroga olib boradi. Shu uch belgi to'garakning butun metodikasini belgilaydi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Ixtiyoriylik — bola istagi bilan keladi, shuning uchun motivatsiya darsdagidan boshqacha boshqariladi",
+              "Tarkibning xilma-xilligi — bir guruhda turli sinf va turli darajadagi bolalar bo'ladi",
+              "Natijaga yo'nalganlik — konsert, tadbir yoki tanlov odatda yakuniy maqsad bo'ladi",
+              "Vaqt erkinligi — mashg'ulot davomiyligi dars jadvaliga bog'lanmagan",
+              "Baholashning yo'qligi — ball qo'yilmaydi, o'sish boshqa yo'l bilan ko'rsatiladi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Eng katta xavf — a'zolarning tark etishi. Dars majburiy, to'garak esa yo'q: bola zerikib yoki o'zini keraksiz his qilsa, kelmay qo'yadi. Shuning uchun har bir mashg'ulotda har bir a'zoning aniq vazifasi bo'lishi kerak.",
+          },
+          {
+            kind: "eslatma",
+            text: "Turli sinf bolalarining bir guruhda bo'lishi qiyinchilik emas, imkoniyat: katta yoshdagilar kichiklarga yordam beradi va bu ustoz-shogird munosabatining tabiiy ko'rinishi bo'ladi.",
+          },
+        ],
+      },
+      {
+        id: "turlari",
+        title: "To'garak turlari",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Maktab sharoitida quyidagi to'garaklar eng ko'p tashkil etiladi. Tanlov maktabning imkoniyati va o'qituvchining tayyorgarligidan kelib chiqadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Xor — eng ommaviy shakl, ko'p a'zo qabul qiladi, maxsus jihoz talab qilmaydi",
+              "Vokal ansambl — kichik tarkib, individual ish ko'proq, talab yuqoriroq",
+              "Cholg'u ansambli — bolalar cholg'ulari yoki milliy cholg'ular asosida",
+              "Folklor to'garagi — xalq qo'shiqlari, marosim kuylari, milliy ijro uslubi",
+              "Musiqa tinglash klubi — jihoz kam kerak, did shakllantirishga qaratilgan",
+              "Raqs va ritmika to'garagi — harakat va musiqa birgaligi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Birinchi yilda bitta to'garakdan boshlash tavsiya etiladi. Bir vaqtda uch to'garak ochish odatda uchalasining ham sustlashishiga olib keladi: o'qituvchi vaqti bo'linadi, repertuar yetishmaydi, tadbirga tayyorgarlik chalalashadi.",
+          },
+        ],
+      },
+      {
+        id: "rejalashtirish",
+        title: "Rejalashtirish va tadbir",
+        blocks: [
+          {
+            kind: "matn",
+            text: "To'garak rejasi chorak yoki yarim yilga tuziladi. Reja ikki qatlamdan iborat bo'ladi: mashg'ulotlar ketma-ketligi va yakuniy tadbir.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Maqsad va kutilayotgan natija — chorak oxirida guruh nimani ijro eta oladi",
+              "A'zolar — soni, sinfi, qabul tartibi",
+              "Jadval — haftada necha marta, qancha vaqt, qaysi xonada",
+              "Repertuar — murakkabligi oshib boradigan tartibda, kamida uchta asar",
+              "Mashg'ulot tuzilmasi — qizdirish, yangi material, takrorlash, yakun",
+              "Yakuniy tadbir — sana, joy, dastur, mas'ullar",
+              "Xavflar va ularning yechimi — a'zolar tark etishi, jihoz yetishmasligi, jadval to'qnashuvi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Ommaviy tadbir tashkil etishda eng ko'p tashlab ketiladigan narsa — repetitsiya jadvali. Dastur tayyor bo'lsa ham, sahnada turish tartibi, kirish-chiqish va jo'rlik bilan mashq qilinmagan bo'lsa, tadbir sifatsiz chiqadi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Tadbir maqsad emas, vosita: u to'garakning ishini ko'rsatadi va a'zolarni ushlab turadi. Shuning uchun tadbirdan keyin darhol keyingi maqsad qo'yiladi — aks holda guruh tarqaladi.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "To'garak — qiziqish bo'yicha ixtiyoriy ravishda tashkil etilgan sinfdan tashqari mashg'ulot",
+              "Xor — ko'p ovozli jamoaviy kuylash guruhi",
+              "Vokal ansambl — kichik tarkibli kuylash guruhi",
+              "Repetitsiya — tadbirga tayyorgarlik mashg'uloti",
+              "Yakuniy tadbir — to'garak ishining natijasini ko'rsatuvchi konsert yoki chiqish",
+              "Qo'shimcha ta'lim — dars jadvalidan tashqari, ixtiyoriy ta'lim shakli",
+            ],
+          },
+        ],
+      },
+      {
         id: "mashq",
         title: "Amaliy mashq",
         blocks: [
@@ -7412,6 +7764,105 @@ export const DASTUR_MARUZALARI: Lesson[] = [
           {
             kind: "matn",
             text: "Milliy musiqa ta'limining rivojlanish yo'nalishlari: an'anaviy ijrochilik maktabini saqlash, raqamli resurslardan foydalanish va o'qituvchi tayyorlash sifatini oshirish.",
+          },
+        ],
+      },
+      {
+        id: "nazariya",
+        title: "Nazariy bayon: uzluksiz ta'lim tizimi",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Musiqa ta'limi bitta bo'g'inda emas, bir nechta bo'g'inda beriladi va ular bir-birini davom ettiradi. Tizimning asosiy g'oyasi — uzluksizlik: har bir bo'g'in oldingisining natijasiga tayanadi.",
+          },
+          {
+            kind: "matn",
+            text: "Tizimda ikki yo'nalish ajratiladi. Ommaviy musiqa ta'limi barcha bolalarga qaratilgan: uning maqsadi musiqachi tayyorlash emas, musiqiy madaniyat shakllantirish. Professional ta'lim esa tanlangan, qobiliyatli o'quvchilar bilan ishlaydi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Maktabgacha ta'lim — qo'shiq, harakat va o'yin orqali birinchi musiqiy tajriba",
+              "Umumiy o'rta ta'lim — musiqa madaniyati fani; ommaviy ta'limning asosiy bo'g'ini",
+              "Bolalar musiqa va san'at maktablari — qo'shimcha ta'lim; ixtisoslashgan tayyorgarlikning boshlanishi",
+              "Maktabdagi to'garaklar — ommaviy ta'limning ixtiyoriy davomi",
+              "O'rta maxsus ta'lim (san'at kollejlari) — kasbiy tayyorgarlik",
+              "Oliy ta'lim — konservatoriya, pedagogika universitetlari va institutlari",
+              "Magistratura va malaka oshirish — kasbiy rivojlanishning davomi",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Bo'lajak musiqa o'qituvchisi uchun muhim nuqta: u ommaviy ta'lim bo'g'inida ishlaydi, lekin professional bo'g'in uchun ham manba bo'ladi. Qobiliyatli bolani payqab, uni musiqa maktabiga yo'naltirish — o'qituvchining kasbiy vazifasi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Ta'lim muassasalarining nomi va tuzilmasi vaqt o'tishi bilan o'zgaradi. Dars ishlanmasi yoki kurs ishida aniq nom va tartib ko'rsatilsa, uning joriy holati tekshirilishi kerak — platformadagi tavsif tizimning mantig'ini beradi, rasmiy hujjat o'rnini bosmaydi.",
+          },
+        ],
+      },
+      {
+        id: "maktablar",
+        title: "Bolalar musiqa va san'at maktablari",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bolalar musiqa va san'at maktabi umumta'lim maktabining o'rnini bosmaydi — u unga qo'shimcha bo'ladi. Bola ikki joyda o'qiydi: umumta'lim maktabida musiqa madaniyati fanini, musiqa maktabida esa ixtisoslikni.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Ixtisoslik — cholg'u yoki ovoz bo'yicha individual darslar",
+              "Nazariy fanlar — solfedjio, musiqa nazariyasi, musiqa tarixi",
+              "Jamoaviy ijro — xor, ansambl, orkestr",
+              "Hisobot shakllari — akademik konsert, imtihon, tanlov",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Ikki maktab o'rtasidagi farqni tushunish amalda muhim: umumta'lim maktabida musiqa darsi butun sinf uchun, musiqa maktabida esa individual tayyorgarlik uchun. Shuning uchun umumta'lim darsida musiqa maktabi talabini qo'yish — metodik xato: sinfda bolalarning ko'pchiligi nota o'qimaydi va buni bilish shart ham emas.",
+          },
+        ],
+      },
+      {
+        id: "istiqbol",
+        title: "Rivojlanish istiqbollari",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Milliy musiqa ta'limining rivojlanish yo'nalishlari bir necha masalaga tegishli:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Milliy merosning ta'lim mazmunidagi o'rni — maqom, xalq qo'shiqlari va cholg'u merosi",
+              "O'qituvchi tayyorlash sifati — metodik va raqamli kompetensiyalar",
+              "Raqamli resurslar — darslikka qo'shimcha audio, video va platforma materiallari",
+              "Moddiy baza — cholg'ular, musiqa xonasi, tovush jihozi",
+              "Qishloq va shahar maktablari o'rtasidagi sharoit farqi",
+              "Inklyuziv yondashuv — imkoniyati cheklangan o'quvchilar uchun musiqa mashg'ulotlari",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Bu ro'yxat kurs ishi va ilmiy ish mavzularining tabiiy manbayi: har bir band real muammoni nomlaydi va uni tadqiqot savoliga aylantirish mumkin.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Uzluksiz ta'lim — bo'g'inlari bir-birini davom ettiradigan ta'lim tizimi",
+              "Ommaviy musiqa ta'limi — barcha o'quvchilarga qaratilgan, musiqiy madaniyat shakllantiruvchi ta'lim",
+              "Professional musiqa ta'limi — kasbiy musiqachi tayyorlashga qaratilgan ta'lim",
+              "Qo'shimcha ta'lim — dars jadvalidan tashqari ixtisoslashgan ta'lim shakli",
+              "Solfedjio — musiqiy eshituv va nota savodini rivojlantiruvchi o'quv fani",
+              "Inklyuziv ta'lim — barcha o'quvchilarni, imkoniyati cheklanganlarni ham qamrab oluvchi ta'lim",
+            ],
           },
         ],
       },
@@ -7593,6 +8044,102 @@ export const DASTUR_MARUZALARI: Lesson[] = [
         ],
       },
       {
+        id: "nazariya",
+        title: "Nazariy bayon: tizimlarni qiyoslash mezoni",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Jahon musiqa pedagogikasidagi tizimlarni solishtirish uchun bitta savol yetarli emas. Ularni to'rt mezon bo'yicha qiyoslash qulay: nimadan boshlanadi, qaysi faoliyat yetakchi, materiali nima va natijasi qanday o'lchanadi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Boshlanish nuqtasi — eshitish, harakat, ovoz yoki cholg'u",
+              "Yetakchi faoliyat — kuylash, harakat, improvizatsiya yoki cholg'u ijrosi",
+              "Material — xalq musiqasi, maxsus yozilgan mashqlar yoki klassika",
+              "Natija — nota savodi, ansambl, ijodkorlik yoki musiqiy madaniyat",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Shu to'rt mezon bilan qarasa, tizimlar bir-biriga qarshi emas, bir-birini to'ldiradigan bo'lib chiqadi. Maktab amaliyotida ularning elementlari aralash qo'llaniladi va bu xato emas: muhimi, har bir elementning nima uchun olinganini bilish.",
+          },
+          {
+            kind: "eslatma",
+            text: "Tizimni to'liq ko'chirib olish kamdan-kam ishlaydi: har biri o'z madaniy muhitida, o'z repertuari va o'z soat hajmida tug'ilgan. Olinadigan narsa — tamoyil, mashq ro'yxati emas.",
+          },
+        ],
+      },
+      {
+        id: "tizimlar",
+        title: "To'rt pedagogik tizim",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Dasturda to'rtta tizim alohida ko'rsatilgan. Quyida har birining o'zagi va maktab darsida nimasi ishlatilishi keltirilgan.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "D.Kabalevskiy (Rossiya) — maqsad: musiqiy madaniyatni ma'naviy madaniyatning qismi sifatida shakllantirish. Dastur mavzular tizimiga qurilgan, musiqa hayot bilan bog'lanadi; janrlarning uchligi (marsh, raqs, qo'shiq) bolaga kirish yo'li bo'ladi. Darsda: mavzuli rejalashtirish va yo'naltiruvchi savol",
+              "Z.Koday (Vengriya) — maqsad: ovoz va ichki eshituv orqali musiqiy savod. Asosi: xalq qo'shig'i musiqaning ona tili; nisbiy solmizatsiya, bo'g'in nomlari va qo'l ishoralari; xor kuylash markazda. Darsda: ladli hisni rivojlantirish va jo'rliksiz kuylash",
+              "K.Orf (Germaniya) — maqsad: elementar musiqa yaratish tajribasi. Asosi: so'z - ritm - harakat - cholg'u zanjiri; sodda zarbli cholg'ular; improvizatsiya boshidan. Darsda: ostinato, jo'rlik va ijodiy topshiriq",
+              "E.Jak-Dalkroz (Shvetsariya) — maqsad: musiqani tana bilan his qilish. Asosi: ritmika, solfedjio va improvizatsiyaning uchligi; metr va ritm harakatda o'zlashtiriladi. Darsda: musiqiy-ritmik harakatlar",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Yaponiya tajribasida alohida yo'nalish — Suzuki yondashuvi: bola musiqani ona tilini o'rgangandek o'rganadi, ya'ni avval ko'p tinglaydi, keyin taqlid qiladi, nota esa keyin keladi; ota-onaning ishtiroki jarayonning qismi hisoblanadi. Yaponiya maktab ta'limida jamoaviy ijro — xor, orkestr va ansambl — kuchli an'anaga ega.",
+          },
+        ],
+      },
+      {
+        id: "qiyos",
+        title: "Qiyosiy tahlil va o'zbek an'anasi",
+        blocks: [
+          {
+            kind: "matn",
+            text: "To'rt tizimning umumiy jihati bor: hammasi bolani tinglovchidan ijrochiga aylantiradi va nota savodini eshitishdan keyin qo'yadi. Farqi esa yo'lda: Koday ovozdan, Orf cholg'udan, Dalkroz harakatdan, Kabalevskiy esa mazmundan boshlaydi.",
+          },
+          {
+            kind: "matn",
+            text: "O'zbek musiqa an'anasidagi ustoz-shogird tizimi bu qatorga tabiiy qo'shiladi. Uning o'zagi ham amaliy: shogird ustoz ijrosini tinglaydi, taqlid qiladi, keyin o'z talqinini topadi. Nota emas, tirik namuna va birgalikda ijro asosiy vosita bo'ladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Umumiy jihat — amaliy faoliyat nazariyadan oldin",
+              "Umumiy jihat — xalq musiqasi boshlang'ich material",
+              "Umumiy jihat — taqliddan mustaqillikka boradigan yo'l",
+              "Farq — yetakchi faoliyat turi va nota savodining o'rni",
+              "Farq — baholash va natijani o'lchash usuli",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Shuning uchun amaliy xulosa quyidagicha bo'ladi: o'zbek maktabida ustoz-shogird an'anasi tabiiy asos bo'lib qoladi, jahon tizimlaridan esa aniq vositalar olinadi — Kodaydan ladli his mashqlari, Orfdan cholg'u va improvizatsiya, Dalkrozdan harakat, Kabalevskiydan mavzuli rejalashtirish.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Nisbiy solmizatsiya — tovushlarni tonikaga nisbatan bo'g'in nomlari bilan kuylash usuli",
+              "Elementar musiqa yaratish — sodda vositalar bilan birgalikda musiqa to'qish (Orf yondashuvi)",
+              "Ritmika — musiqani harakat orqali idrok etish tizimi (Dalkroz)",
+              "Mavzuli rejalashtirish — darslarni umumiy mavzu atrofida bog'lash (Kabalevskiy)",
+              "Ona tili yondashuvi — musiqani tinglash va taqlid orqali o'rgatish (Suzuki)",
+              "Ustoz-shogird an'anasi — bilimni tirik namuna va birgalikda ijro orqali uzatish",
+              "Qiyosiy tahlil — tizimlarni belgilangan mezonlar bo'yicha solishtirish",
+            ],
+          },
+        ],
+      },
+      {
         id: "mashq",
         title: "Amaliy mashq",
         blocks: [
@@ -7767,6 +8314,107 @@ export const DASTUR_MARUZALARI: Lesson[] = [
           {
             kind: "matn",
             text: "Musiqiy-ma'rifiy loyiha — tadbirdan kengroq: u bir necha hafta davom etadi va natijasi moddiy bo'ladi (to'plam, yozuv, ko'rgazma, maktab radiosi). Loyiha bolani tashkilotchi sifatida ham o'stiradi.",
+          },
+        ],
+      },
+      {
+        id: "nazariya",
+        title: "Nazariy bayon: sinfdan tashqari ishning o'rni",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Sinfdan tashqari musiqiy-ma'rifiy ish darsning qo'shimchasi emas, ta'lim tizimining alohida qatlami. Uning imkoniyati darsda yo'q narsalarga tayanadi: vaqt cheklovi yumshoq, tarkib ixtiyoriy, natija esa ommaviy va ko'rinadigan.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Maqsad — o'quvchining musiqiy tajribasini dars doirasidan tashqariga chiqarish",
+              "Qamrov — nafaqat qobiliyatli bolalar, balki qiziqqan hamma",
+              "Natija — tomoshabin oldida ijro tajribasi va jamoaviy mas'uliyat",
+              "Ta'sir doirasi — maktab jamoasi, ota-onalar va mahalla",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Shu ishning ikki tomoni bor. Ko'rinadigan tomoni — tadbir: bayram, konsert, tanlov. Ko'rinmaydigan va asosiy tomoni — unga tayyorgarlik: aynan tayyorgarlik davrida bola eng ko'p o'rganadi.",
+          },
+          {
+            kind: "eslatma",
+            text: "Shuning uchun tadbirni baholashda savol «tadbir chiroyli bo'ldimi» emas, «tayyorgarlik davomida bolalar nimani o'rgandi» bo'lishi kerak. Chiroyli, lekin faqat ikki kuchli bola ishtirok etgan tadbir pedagogik jihatdan sust.",
+          },
+        ],
+      },
+      {
+        id: "shakllar",
+        title: "Tadbir shakllari",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Shakl tanlash maqsaddan chiqadi. Quyida asosiy shakllar va ularning pedagogik vazifasi keltirilgan.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Bayram ertaligi — ommaviy qamrov; ko'p bola ishtirok etadi, talab o'rtacha",
+              "Konsert — tayyorgarlik darajasi yuqori; kichik tarkib, sifat talabi kuchli",
+              "Tanlov — motivatsiyani ko'taradi, lekin mezon aniq bo'lishi shart",
+              "Festival — tanlovdan farqli: g'olib emas, ishtirok va xilma-xillik asosiy",
+              "Ijodiy uchrashuv — bastakor, ijrochi yoki ustoz bilan suhbat",
+              "Musiqiy-ma'rifiy loyiha — uzoq muddatli ish: to'plam, taqdimot, maktab albomi",
+              "Ochiq dars yoki hisobot mashg'uloti — ota-onalar uchun",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Tanlov shakli ehtiyotkorlik talab qiladi. Agar mezon aniq bo'lmasa yoki har yili bir xil bolalar g'olib bo'lsa, tanlov motivatsiyani ko'tarish o'rniga pasaytiradi. Yechim — nominatsiyalarni ko'paytirish va ishtirokni ham qayd etish.",
+          },
+        ],
+      },
+      {
+        id: "loyiha",
+        title: "Loyihani rejalashtirish",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Musiqiy-ma'rifiy loyiha oddiy tadbirdan uzoq muddatliligi bilan farq qiladi. Uni rejalashtirishda quyidagi bandlar yoziladi:",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Loyiha nomi va g'oyasi — bir jumlada",
+              "Maqsad va kutilayotgan natija — oxirida nima paydo bo'ladi",
+              "Ishtirokchilar — kim, nechta, qaysi sinfdan",
+              "Bosqichlar va muddatlar — boshlanish, oraliq nazorat, yakun",
+              "Resurslar — xona, jihoz, nota, jo'rlik, byudjet talab qiladigan qismlar",
+              "Mas'ullar — har bir bosqich uchun aniq odam",
+              "Natijani ko'rsatish shakli — konsert, taqdimot, yozuv yoki albom",
+              "Xavflar — ishtirokchilar tark etishi, jadval to'qnashuvi, texnik nosozlik",
+            ],
+          },
+          {
+            kind: "matn",
+            text: "Xavflar bandi odatda yozilmaydi va shuning uchun loyihalar ko'pincha oxirgi hafta buziladi. Ikki xavfni oldindan yozib, har biriga bitta zaxira yechim topib qo'yish — rejalashtirishning eng foydali besh daqiqasi.",
+          },
+          {
+            kind: "matn",
+            text: "Loyiha yakunida tahlil o'tkaziladi: nima rejadagidek bordi, nima bo'lmadi, keyingi loyihada nima o'zgaradi. Bu yozuv saqlanadi — u keyingi yilning rejasi uchun asos bo'ladi.",
+          },
+        ],
+      },
+      {
+        id: "atamalar",
+        title: "Asosiy atamalar",
+        blocks: [
+          {
+            kind: "royxat",
+            items: [
+              "Sinfdan tashqari ish — dars jadvalidan tashqarida o'tkaziladigan o'quv-tarbiyaviy faoliyat",
+              "Musiqiy-ma'rifiy loyiha — aniq natijaga qaratilgan, uzoq muddatli ijodiy ish",
+              "Bayram ertaligi — ommaviy qamrovli, ko'p ishtirokchili tadbir shakli",
+              "Festival — g'olib aniqlanmaydigan, ishtirok va xilma-xillikka qaratilgan tadbir",
+              "Hisobot mashg'uloti — to'garak yoki sinf ishini ota-onalarga ko'rsatish shakli",
+              "Zaxira yechim — xavf yuz berganda qo'llanadigan oldindan tayyorlangan variant",
+            ],
           },
         ],
       },

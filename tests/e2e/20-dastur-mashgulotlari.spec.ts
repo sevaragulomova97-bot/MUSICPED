@@ -79,4 +79,33 @@ test.describe("Dastur mashg'ulotlari", () => {
     await expect(asosiy).toContainText("Darslar");
     await expect(asosiy).not.toContainText("Ma'ruza mashg'ulotlari");
   });
+
+  test("ma'ruzada nazariy bayon va atamalar lug'ati bor", async ({ page }) => {
+    await sessiyaBer(page, TALABA);
+    await page.goto("/kurslar/musiqa-talimi-metodikasi/m1-fan-predmeti/");
+    await page.waitForURL(/m1-fan-predmeti/);
+
+    const asosiy = page.locator("main");
+    /*
+      Ma'ruzalar qisqa edi; nazariy bayon, mavzuga xos bo'lim va
+      atamalar lug'ati qo'shildi. Shu uch bo'lim yo'qolsa, dars
+      yana qisqa holiga qaytgan bo'ladi.
+    */
+    await expect(asosiy).toContainText("Nazariy bayon");
+    await expect(asosiy).toContainText("Asosiy atamalar");
+    await expect(asosiy).toContainText("Qo'shni fanlar bilan aloqa");
+  });
+
+  test("sinf ma'ruzasida faoliyat taqsimoti va repertuar bo'limi bor", async ({
+    page,
+  }) => {
+    await sessiyaBer(page, TALABA);
+    await page.goto("/kurslar/musiqa-talimi-metodikasi/m23-4-sinf-repertuari/");
+    await page.waitForURL(/m23-4-sinf/);
+
+    const asosiy = page.locator("main");
+    await expect(asosiy).toContainText("Faoliyat turlarining taqsimoti");
+    await expect(asosiy).toContainText("4-sinf repertuari bilan ishlash");
+    await expect(asosiy).toContainText("Asosiy atamalar");
+  });
 });
