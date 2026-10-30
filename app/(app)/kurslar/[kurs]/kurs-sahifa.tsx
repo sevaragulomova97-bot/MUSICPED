@@ -202,8 +202,13 @@ export function KursSahifa({ courseSlug }: { courseSlug: string }) {
                 ({topshiriqlar.length})
               </span>
             </CardTitle>
+            {/*
+              «O'quv natijalari» iborasi bu yerda ataylab ishlatilmaydi:
+              yuqorida shu nomli karta bor va ikkisi bir sahifada
+              turganda matn bo'yicha qidirish ikkisini ham topadi.
+            */}
             <p className="text-sm text-ink-muted">
-              Shu kursning o&apos;quv natijalarini baholaydigan ishlar
+              Shu kursni baholaydigan ishlar
             </p>
           </CardHeader>
           <CardContent>
