@@ -58,6 +58,26 @@ async function kuzatuvOrnat(page: Page) {
       return out;
     };
 
+    /*
+      Tirik ovozlar soni ikki tomondan hisoblanadi: `start()` qo'shadi,
+      `stop()` yoki `ended` ayiradi — qaysi biri oldin kelsa.
+
+      `stop()` ham sanalishi shart. Chegaradan oshgan ovozni dvigatel
+      darhol so'ndirishga buyuradi (`src.stop(now + 0.06)`), lekin
+      `ended` hodisasi hodisalar navbatidan o'tib keladi. Mashina band
+      bo'lsa u kechikadi va faqat `ended` ni kutgan hisoblagich
+      dvigatel allaqachon so'ndirgan ovozlarni ham «tirik» deb
+      sanayveradi. O'lchov shunda dvigatelning qoidasini emas,
+      hodisalar navbatining bandligini ko'rsatib qolardi — test goh
+      o'tib, goh yiqilardi.
+    */
+    const hisobdan_chiqqan = new WeakSet<AudioBufferSourceNode>();
+    const kamayt = (node: AudioBufferSourceNode) => {
+      if (hisobdan_chiqqan.has(node)) return;
+      hisobdan_chiqqan.add(node);
+      w.__audio.tirik -= 1;
+    };
+
     const origStart = AudioBufferSourceNode.prototype.start;
     AudioBufferSourceNode.prototype.start = function (
       this: AudioBufferSourceNode,
@@ -72,10 +92,17 @@ async function kuzatuvOrnat(page: Page) {
       }
       w.__audio.tirik += 1;
       w.__audio.engKop = Math.max(w.__audio.engKop, w.__audio.tirik);
-      this.addEventListener("ended", () => {
-        w.__audio.tirik -= 1;
-      });
+      this.addEventListener("ended", () => kamayt(this));
       return origStart.apply(this, a);
+    };
+
+    const origStop = AudioBufferSourceNode.prototype.stop;
+    AudioBufferSourceNode.prototype.stop = function (
+      this: AudioBufferSourceNode,
+      ...a: Parameters<AudioBufferSourceNode["stop"]>
+    ) {
+      kamayt(this);
+      return origStop.apply(this, a);
     };
   });
 }
@@ -314,7 +341,13 @@ test.describe("Dvigatel chidamliligi", () => {
     const engKop = await page.evaluate(
       () => (window as unknown as { __audio: { engKop: number } }).__audio.engKop,
     );
-    expect(engKop, "ovozlar nazoratsiz yig'ilmasligi kerak").toBeLessThanOrEqual(26);
+    /*
+      Dvigateldagi chegara — 24 ta ovoz (`MAX_OVOZ`). Ro'yxat
+      `start()` dan oldin sinxron qisqartirilgani uchun o'lchov shu
+      raqamdan oshmasligi kerak; bitta ovozlik zaxira faqat
+      o'lchovning o'z aniqligi uchun qoldirilgan.
+    */
+    expect(engKop, "ovozlar nazoratsiz yig'ilmasligi kerak").toBeLessThanOrEqual(25);
     expect(engKop, "ijro to'xtab qolmasligi kerak").toBeGreaterThan(1);
   });
 });

@@ -2462,3 +2462,39 @@ WCAG 2.5.3 ni buzdi (`label-content-name-mismatch`, «serious»,
 beshala oynachada). To'g'ri yechim — cho'zilgan havola: havola
 matni faqat kurs nomi, `::after` esa butun kartani qoplaydi.
 O'lchandi: axe bo'yicha 5 buzilishdan 0 ga.
+
+---
+
+### Q144. Audio testi dvigatelni emas, hodisalar navbatini o'lchardi
+
+**Kontekst.** `11-namuna-banki` dagi «tez ijroda ovozlar soni
+chegarada qoladi» testi uzoq yurgizishda goh o'tib, goh yiqilardi.
+Alohida yurgizilganda doim o'tgani uchun uni avval «resurs
+tanqisligi» deb hisoblagandim — bu noto'g'ri baho edi.
+
+**Haqiqiy sabab.** Dvigatelning qoidasi aniq: `ovozlar` ro'yxati
+`src.start()` chaqirilishidan **oldin sinxron** ravishda `MAX_OVOZ`
+(24) gacha qisqartiriladi, ortiqcha ovozga darhol
+`src.stop(now + 0.06)` buyuriladi.
+
+Test esa buni emas, `start()` bilan `ended` **hodisasi** orasidagi
+farqni sanardi. `ended` hodisalar navbatidan o'tib keladi va mashina
+band bo'lganda kechikadi — natijada dvigatel allaqachon so'ndirgan
+ovozlar hamon «tirik» deb sanalardi. Ya'ni o'lchov dvigatelning
+qoidasini emas, navbatning bandligini ko'rsatardi.
+
+**Qaror.** Hisoblagich `stop()` ni ham sanaydi: `stop()` yoki
+`ended` — qaysi biri oldin kelsa, bir martadan (`WeakSet`). Endi
+o'lchov «dvigatel jaranglashini xohlayotgan ovozlar soni» ni
+beradi, bu esa aynan ilovaning qoidasi.
+
+**Chegara aniqlashtirildi.** 26 dan 25 ga. Ilgari zaxira o'lchovdagi
+kechikishni yopish uchun kerak edi; endi u faqat o'lchovning o'z
+aniqligi uchun.
+
+**Tekshirildi.** Test to'liq to'plam parallel ishlab turganda —
+ya'ni ataylab yuklangan mashinada — yurgizildi va o'tdi. Aynan shu
+sharoit eski o'lchovni yiqitardi.
+
+**Ilova kodi o'zgarmadi.** Nuqson o'lchovda edi; dvigateldagi
+chegara to'g'ri ishlab turgan edi.
