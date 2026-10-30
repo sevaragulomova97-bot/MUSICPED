@@ -2406,3 +2406,38 @@ nuqsoni emas: uzoq yurgizishdagi resurs taqchilligi.
 «51 o'quv natijasi» → 62, «52 dars» → 112, «52 topshiriq + 19
 rubrika» → «64 topshiriq + 21 rubrika». Yangi fayllar ham xaritaga
 qo'shildi.
+
+---
+
+### Q143. Qalqib turgan oynacha bosish uchun noqulay edi
+
+**Kontekst.** Kurs oynachalari sekin qalqib turadi. To'liq e2e
+yurgizishda `13-chidamlilik` testi uch marta ketma-ket yiqildi:
+«waiting for element to be visible, enabled and stable» — 57 marta
+takrorlanib, keyin vaqt tugaydi.
+
+**Sabab testda emas.** Playwright bosishdan oldin elementning
+to'xtashini kutadi: ikki ketma-ket kadrda joyi bir xil bo'lishi
+kerak. Cheksiz animatsiyada bu hech qachon ro'y bermaydi. Ya'ni
+testdagi nosozlik haqiqiy noqulaylikning belgisi edi — doimiy
+harakatdagi nishonni bosish odam uchun ham qiyin, ayniqsa qo'l
+harakati cheklangan foydalanuvchi uchun.
+
+**Qaror.** `.mp-float:hover, .mp-float:focus-within` da
+`animation-play-state: paused`. Foydalanuvchi oynachaga nishon
+olgan zahoti harakat to'xtaydi; qo'lini olganda yana boshlanadi.
+Klaviatura bilan yurganda ham — fokus ichkariga tushganda to'xtaydi.
+
+**Nima uchun animatsiyani butunlay olib tashlamadik.** Qalqish
+foydalanuvchi so'ragan bezak; muammo harakatning o'zida emas,
+nishon olingan paytdagi harakatda. Mavjud ikki shart ham saqlandi:
+`html[data-effects="off"]` va `prefers-reduced-motion: reduce`
+harakatni umuman o'chiradi.
+
+**Yondosh tuzatish.** Oynachani bosiladigan qilish uchun butun
+karta `<Link>` ichiga olingan edi; bu havolaning nomini oynacha
+ichidagi barcha matndan yig'ardi. `aria-label` bilan qisqartirish
+WCAG 2.5.3 ni buzdi (`label-content-name-mismatch`, «serious»,
+beshala oynachada). To'g'ri yechim — cho'zilgan havola: havola
+matni faqat kurs nomi, `::after` esa butun kartani qoplaydi.
+O'lchandi: axe bo'yicha 5 buzilishdan 0 ga.

@@ -69,6 +69,27 @@ test.describe("Kurs oynachalari", () => {
     expect(new Set(kechikishlar).size).toBeGreaterThan(1);
   });
 
+  test("sichqoncha ustiga kelganda harakat to'xtaydi", async ({ page }) => {
+    await sessiyaBer(page, TALABA);
+    await page.goto("/kurslar/");
+    await page.waitForURL(/kurslar/);
+
+    /*
+      Doimiy qalqib turgan nishonni bosish qiyin. Shuning uchun
+      sichqoncha ustiga kelganda harakat to'xtaydi — aks holda
+      bosish nuqtasi qo'l ostidan siljib ketadi.
+    */
+    const oyna = page.locator(OYNA).first();
+    expect(
+      await oyna.evaluate((el) => getComputedStyle(el).animationPlayState),
+    ).toBe("running");
+
+    await oyna.hover();
+    expect(
+      await oyna.evaluate((el) => getComputedStyle(el).animationPlayState),
+    ).toBe("paused");
+  });
+
   test("bezak o'chirilsa qalqish to'xtaydi", async ({ page }) => {
     await sessiyaBer(page, TALABA);
     await page.goto("/sozlamalar/");

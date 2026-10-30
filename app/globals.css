@@ -500,6 +500,22 @@ html[data-effects="off"] .mp-burst-layer {
   }
 }
 
+/*
+  Sichqoncha ustiga kelganda yoki ichidagi havolaga fokus tushganda
+  harakat to'xtaydi.
+
+  Sabab amaliy: doimiy qalqib turgan nishonni bosish qiyin — ayniqsa
+  qo'l harakati cheklangan foydalanuvchi uchun. Shuni e2e testi ham
+  ko'rsatdi: Playwright bosishdan oldin elementning to'xtashini kutadi
+  va cheksiz animatsiyada u hech qachon to'xtamagani uchun test
+  yiqilardi. Ya'ni testdagi nosozlik haqiqiy noqulaylikning belgisi
+  edi.
+*/
+.mp-float:hover,
+.mp-float:focus-within {
+  animation-play-state: paused;
+}
+
 html[data-effects="off"] .mp-float {
   animation: none;
 }
