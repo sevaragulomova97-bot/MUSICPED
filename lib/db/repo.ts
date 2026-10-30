@@ -3,6 +3,7 @@
 import {
   db,
   type StoredActivity,
+  type RasmiyBaholar,
   type StoredDataset,
   type StoredMentorship,
   type StoredDiagnostic,
@@ -878,6 +879,34 @@ export async function gradeDatasetSubmission(
     ...row,
     bundle: { ...row.bundle, submissions },
   };
+  await db().datasets.put(updated);
+  return updated;
+}
+
+/**
+ * Rasmiy nazorat ballarini saqlaydi (JN / ON / YaN).
+ *
+ * Ball `undefined` bo'lsa, u «qo'yilmagan» deb saqlanadi — nol emas:
+ * ikkisining farqi baholashda muhim, chunki qo'yilmagan nazorat
+ * yakuniy xulosani umuman chiqarishga yo'l qo'ymaydi.
+ */
+export async function setRasmiyBaholar(
+  ownerId: string,
+  studentId: string,
+  ballar: Omit<RasmiyBaholar, "updatedAt">,
+): Promise<StoredDataset | null> {
+  const row = await getDataset(ownerId, studentId);
+  if (!row) return null;
+
+  const tozalangan: RasmiyBaholar = { updatedAt: now() };
+  for (const kod of ["JN", "ON", "YaN"] as const) {
+    const qiymat = ballar[kod];
+    if (qiymat === undefined || Number.isNaN(qiymat)) continue;
+    tozalangan[kod] = qiymat;
+  }
+  if (ballar.izoh?.trim()) tozalangan.izoh = ballar.izoh.trim();
+
+  const updated: StoredDataset = { ...row, rasmiy: tozalangan };
   await db().datasets.put(updated);
   return updated;
 }

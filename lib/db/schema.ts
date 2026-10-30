@@ -148,6 +148,26 @@ export type StoredActivity = {
  * `ownerId` — o'qituvchining profili. Bitta brauzerda bir nechta o'qituvchi
  * bo'lsa, ularning ma'lumoti aralashmaydi.
  */
+/**
+ * Rasmiy nazorat ballari (JN / ON / YaN).
+ *
+ * Platformada faqat joriy nazorat uchun dalil bor — baholangan
+ * topshiriqlar. Oraliq va yakuniy nazorat auditoriyada o'tkaziladi,
+ * shuning uchun ularning bali o'qituvchi tomonidan qo'lda kiritiladi.
+ * Platforma arifmetikani va saralash chegarasini tekshirib beradi.
+ *
+ * Ballar talabaning o'zida emas, o'qituvchining yozuvida saqlanadi:
+ * ular o'qituvchining qarori va talaba faylidan kelmaydi.
+ */
+export type RasmiyBaholar = {
+  JN?: number;
+  ON?: number;
+  YaN?: number;
+  izoh?: string;
+  /** Oxirgi o'zgartirish vaqti — ISO */
+  updatedAt: string;
+};
+
 export type StoredDataset = {
   /** `${ownerId}:${studentId}` — bitta talaba ikki marta qo'shilmaydi */
   id: string;
@@ -158,6 +178,11 @@ export type StoredDataset = {
   experimentGroup?: ExperimentGroup;
   bundle: TransferBundle;
   importedAt: string;
+  /*
+    Ixtiyoriy: indeks emas, shuning uchun Dexie versiyasini oshirish
+    kerak emas — eski yozuvlar maydoni yo'q holda o'qiladi.
+  */
+  rasmiy?: RasmiyBaholar;
 };
 
 /**

@@ -8,6 +8,7 @@
 
 import { TOPSHIRIQ_BY_ID } from "@/content/tasks";
 import { KURSLAR } from "@/content/courses";
+import type { MashgulotTuri } from "@/content/fan-dasturi";
 import type { StoredDataset } from "@/lib/db/schema";
 import {
   type AreaScores,
@@ -292,4 +293,88 @@ export function demoBundle(student: {
     reflections: [],
     portfolio: [],
   };
+}
+
+/* ──────────────────── Fan dasturi bo'yicha qoplov ──────────────────── */
+
+/**
+ * Dars identifikatori -> dastur mavzusi.
+ *
+ * O'qituvchiga «qancha dars tugatdi» degan raqam kam narsa aytadi:
+ * platformada dasturga kirmaydigan darslar ham bor. Shuning uchun
+ * qoplov ma'ruza va amaliy bo'yicha alohida hisoblanadi.
+ */
+const DASTUR_DARSLARI = new Map<string, { kod: string; tur: MashgulotTuri }>();
+for (const kurs of KURSLAR) {
+  for (const dars of kurs.lessons) {
+    if (dars.dasturKodi && dars.dasturTuri) {
+      DASTUR_DARSLARI.set(dars.id, { kod: dars.dasturKodi, tur: dars.dasturTuri });
+    }
+  }
+}
+
+export type TurQoplov = {
+  bajarildi: number;
+  jami: number;
+  /** Hali yakunlanmagan mavzu kodlari — dasturdagi tartibda */
+  qolgan: string[];
+};
+
+export type DasturQoplovi = Record<"maruza" | "amaliy", TurQoplov>;
+
+function kodTartibi(kod: string): number {
+  const raqam = Number(kod.replace(/^\D+/, ""));
+  return Number.isFinite(raqam) ? raqam : 0;
+}
+
+/** Talabaning dastur mavzulari bo'yicha qoplovi. */
+export function dasturQoplovi(
+  progress: readonly { lessonId: string; percent: number }[],
+): DasturQoplovi {
+  const tugagan = new Set(
+    progress.filter((p) => p.percent >= 100).map((p) => p.lessonId),
+  );
+
+  const natija: DasturQoplovi = {
+    maruza: { bajarildi: 0, jami: 0, qolgan: [] },
+    amaliy: { bajarildi: 0, jami: 0, qolgan: [] },
+  };
+
+  for (const [lessonId, { kod, tur }] of DASTUR_DARSLARI) {
+    if (tur !== "maruza" && tur !== "amaliy") continue;
+    const qator = natija[tur];
+    qator.jami += 1;
+    if (tugagan.has(lessonId)) qator.bajarildi += 1;
+    else qator.qolgan.push(kod);
+  }
+
+  for (const tur of ["maruza", "amaliy"] as const) {
+    natija[tur].qolgan.sort((a, b) => kodTartibi(a) - kodTartibi(b));
+  }
+  return natija;
+}
+
+/* ──────────────────── Joriy nazorat uchun taklif ──────────────────── */
+
+/**
+ * Baholangan ishlardan joriy nazorat (JN) bali uchun taklif.
+ *
+ * Platformada JN uchun yetarli dalil bor — baholangan topshiriqlar.
+ * ON va YaN esa platformada o'tkazilmaydi, shuning uchun ular uchun
+ * taklif berilmaydi: o'qituvchi ularni o'zi qo'yadi. Taklif ham
+ * majburiy emas — u faqat boshlang'ich qiymat.
+ */
+export function jnTaklifi(
+  submissions: readonly TransferSubmission[],
+  max: number,
+): number | null {
+  const baholangan = submissions.filter(
+    (s) => s.score !== undefined && s.score >= 0,
+  );
+  if (baholangan.length === 0) return null;
+  const ortacha =
+    baholangan.reduce((sum, s) => sum + (s.score as number), 0) /
+    baholangan.length;
+  // Foizdan ballga: 100% -> to'liq ball.
+  return Math.round((ortacha / 100) * max * 10) / 10;
 }

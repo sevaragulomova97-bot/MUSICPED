@@ -35,7 +35,13 @@ import {
   zpdZone,
   ZPD_NOMI,
 } from "@/lib/domain/types";
-import { isPending, overview, type StudentOverview } from "@/lib/teacher";
+import { RasmiyBaho } from "@/components/teacher/rasmiy-baho";
+import {
+  dasturQoplovi,
+  isPending,
+  overview,
+  type StudentOverview,
+} from "@/lib/teacher";
 import { formatDate } from "@/lib/utils";
 
 type Saralash = "ism" | "natija" | "kutayotgan";
@@ -330,7 +336,13 @@ export function Talabalar() {
         </CardContent>
       </Card>
 
-      {joriy && <TalabaKarta dataset={joriy} overview={overview(joriy)} />}
+      {joriy && (
+        <TalabaKarta
+          dataset={joriy}
+          overview={overview(joriy)}
+          ownerId={ownerId}
+        />
+      )}
     </div>
   );
 }
@@ -339,12 +351,15 @@ export function Talabalar() {
 function TalabaKarta({
   dataset,
   overview: o,
+  ownerId,
 }: {
   dataset: Awaited<ReturnType<typeof listDatasets>>[number];
   overview: StudentOverview;
+  ownerId?: string;
 }) {
   const [jadval, setJadval] = React.useState(false);
   const b = dataset.bundle;
+  const qoplov = dasturQoplovi(b.progress);
 
   const diagnostikalar = [...b.diagnostics].sort((x, y) =>
     x.completedAt.localeCompare(y.completedAt),
@@ -404,6 +419,49 @@ function TalabaKarta({
             value={Math.round((o.completedLessons / o.totalLessons) * 100)}
           />
         </div>
+
+        {/*
+          «Qancha dars tugatdi» degan raqam o'zi kam narsa aytadi:
+          platformada dasturga kirmaydigan darslar ham bor. Shuning
+          uchun qoplov ma'ruza va amaliy bo'yicha alohida ko'rsatiladi.
+        */}
+        <div className="grid gap-4 sm:grid-cols-2">
+          {(
+            [
+              ["maruza", "Ma'ruza (M1-M30)"],
+              ["amaliy", "Amaliy (A1-A30)"],
+            ] as const
+          ).map(([tur, nom]) => {
+            const q = qoplov[tur];
+            const foiz = q.jami ? Math.round((q.bajarildi / q.jami) * 100) : 0;
+            return (
+              <div key={tur}>
+                <p className="mb-2 flex items-baseline justify-between text-sm">
+                  <span className="text-ink-muted">{nom}</span>
+                  <span className="tabular-nums text-ink">
+                    {q.bajarildi}/{q.jami}
+                  </span>
+                </p>
+                <Progress value={foiz} />
+                {q.qolgan.length > 0 && (
+                  <p className="mt-1.5 text-xs text-ink-muted">
+                    Qolgan: {q.qolgan.slice(0, 6).join(", ")}
+                    {q.qolgan.length > 6 && ` va yana ${q.qolgan.length - 6} ta`}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {ownerId && (
+          <RasmiyBaho
+            ownerId={ownerId}
+            studentId={dataset.studentId}
+            submissions={b.submissions}
+            saqlangan={dataset.rasmiy}
+          />
+        )}
 
         {radar.length > 0 &&
           (jadval ? (
