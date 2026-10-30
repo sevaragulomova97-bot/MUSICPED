@@ -396,7 +396,13 @@ function DarsKontent({
         </Card>
 
         {/* Kontent */}
-        <div className="flex flex-col gap-5">
+        {/*
+          `min-w-0` — grid bandining standart `min-width: auto` qiymatini
+          bekor qiladi. Usiz ichkaridagi keng element (nota chizmasi,
+          jadval) ustunni kengaytirib, telefon ekranida sahifani yon
+          tomonga suradi.
+        */}
+        <div className="flex min-w-0 flex-col gap-5">
           <Card>
             <CardContent className="flex flex-col gap-5 p-5 lg:p-6">
               <h2 className="font-display text-lg font-semibold text-ink">

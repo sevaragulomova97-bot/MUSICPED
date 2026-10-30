@@ -125,19 +125,25 @@ components/
   layout/               Sidebar, Header, MobileNav, AppShell, Logo
   decor/                Nota belgilari va fondagi suzuvchi notalar
 content/
-  modules.ts            5 modul, 51 o'quv natijasi, ECTS kredit
+  modules.ts            5 modul, 62 o'quv natijasi, ECTS kredit
   diagnostic.ts         96 ta diagnostika savoli — 8 yo'nalish x 12, A/B/C parallel shakllari
   demo-students.ts      24 namunaviy talaba (tajriba / nazorat)
   practice.ts           18 ta cholg'u mashqi + ritm baholash
   tunes.ts              19 ta mashhur kuy (har cholg'uda 3+), jamoat mulki
   instrument-range.ts   har bir cholg'uning chalinadigan tovushlari
-  courses/              5 kurs, 52 ta to'liq dars (har bir modul o'z faylida)
-  tasks.ts              52 ta topshiriq + 19 ta baholash rubrikasi
+  fan-dasturi.ts        Rasmiy fan dasturi ma'lumot sifatida: TN1-TN8,
+                        M1-M30, A1-A30, kurs ishi va mustaqil ta'lim
+  dastur-qoplovi.ts     Dasturdagi mavzu platformada yozilganmi — qoplov
+  courses/              5 kurs, 112 ta to'liq dars (har bir modul o'z faylida)
+  courses/metodika-dastur.ts   Dasturdagi 30 ta ma'ruza (M1-M30)
+  courses/metodika-amaliy.ts   Dasturdagi 30 ta amaliy mashg'ulot (A1-A30)
+  tasks.ts              64 ta topshiriq + 21 ta baholash rubrikasi
   mentorship.ts         Pedagogik amaliyotning 3 bosqichi + kuzatuv varaqasi
 lib/
   audio/engine.ts       AudioContext, klaviatura, nota yozuvchi
   audio/instruments.ts  Namunali cholg'ular (Tone.Sampler) + sintez zaxirasi
   domain/instruments.ts Cholg'u lug'ati (audio dvigateldan mustaqil)
+  baholash-rasmiy.ts    Rasmiy nazorat: JN/ON/YaN, saralash, baho shkalasi
   domain/types.ts       Umumiy lug'at: Blum, ZPD, yo'nalishlar, profil turlari
   personalization.ts    IRY algoritmi (sof funksiya, testlangan)
   scoring.ts            Diagnostika baholash (sof funksiya, testlangan)
@@ -190,7 +196,7 @@ docs/
 - [x] **B5** — O'qituvchi kabineti, tadqiqot bo'limi (t-mezon, χ², Koen d,
       Mann-Uitni), admin paneli va kontent auditi, oflayn rejim (PWA),
       e2e testlar va qo'llanmalar
-- [x] **Kontent** — barcha 51 o'quv natijasi dars va topshiriq bilan
+- [x] **Kontent** — barcha 62 o'quv natijasi dars va topshiriq bilan
       qoplandi; audit uzilishsiz
 
 ---

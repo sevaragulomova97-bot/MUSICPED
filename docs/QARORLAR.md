@@ -2352,3 +2352,57 @@ to'liq oqimni haqiqiy tarmoq orqali sinaydi — talaba yuboradi,
 o'qituvchi yuklaydi, talaba kabinetda ko'rinadi; noto'g'ri kalit va
 internet uzilishi ham tekshiriladi. Navbat qoidalari 15 ta birlik
 testi bilan qoplangan.
+
+---
+
+### Q142. To'liq tekshiruv: telefon ekranidagi gorizontal siljish
+
+**Kontekst.** Platforma bo'ylab to'liq audit o'tkazildi: statik
+darvoza (tsc, eslint, 470 birlik testi, build), 28 sahifada konsol
+xatolari va `h1` mavjudligi, 214 qurilgan sahifada `lang` va `title`,
+ichki havolalarning qurilgan sahifaga tushishi, maxfiy ma'lumot izi,
+`basePath` bilan qurilish, hamda 93 ta e2e testi.
+
+**Asosiy topilma.** 390 px li ekranda nota bor darsda **butun sahifa**
+yon tomonga 306 px suriladi: sarlavha va matn ham ekrandan chiqib
+ketadi. Sabab — nota chizmasi `min-w-[620px]` bilan o'lchanadi, uning
+atrofidagi grid bandi esa standart `min-width: auto` bo'lgani uchun
+qisqara olmaydi va ustunni kengaytirib yuboradi. `overflow-x-auto`
+o'zi yetarli emas: u konteyner kengligini cheklamaydi.
+
+**Qaror.** `components/music/notation.tsx` ga `min-w-0` va
+`max-w-full`, dars sahifasining kontent ustuniga `min-w-0`. Shundan
+keyin siljish faqat chizmaning o'z qutichasida qoladi.
+
+**Nuqson yangi emas.** U eski `nota-savodi` darsida ham bor edi —
+aynan shu o'lchov bilan 306 px. Ya'ni u uzoq vaqt sezilmay turgan,
+chunki faqat tor ekranda va faqat nota bor bo'limda ko'rinadi.
+`tests/e2e/24-mobil-kenglik.spec.ts` uni qaytib kelishidan
+qo'riqlaydi; tuzatish qaytarib ko'rilganda testning 3 tasidan 2 tasi
+yiqiladi.
+
+**Ikkinchi topilma — regressiya.** Kurs ro'yxati oynachalarga
+aylantirilganda butun oynacha bitta havolaga aylandi va havolaning
+nomi oynacha ichidagi barcha matndan yig'ildi. `13-chidamlilik`
+testi buni tutdi (u aniq nomli havolani kutadi). Tuzatish:
+`aria-label={kurs.title}` — ekran o'quvchi uzun matn o'rniga kurs
+nomini o'qiydi.
+
+**Uchinchi topilma — o'lik havola.** `lib/navigation.ts` dagi
+`CERTIFICATE_NAV` mavjud bo'lmagan `/portfolio/sertifikatlar`
+yo'liga ishora qilardi; sertifikatlar aslida `/portfolio/` ichidagi
+bo'lim. Hech bir komponent uni ishlatmagani uchun foydalanuvchiga
+ko'rinmagan, lekin uni interfeysga ulagan odam 404 olardi — olib
+tashlandi.
+
+**Yiqilgan testlar tahlili.** To'liq yurgizishda 4 ta test yiqildi.
+Bittasi yuqoridagi regressiya. Ikkitasi — Playwright'ning trace
+faylini yozishdagi `ENOENT`, ya'ni testning o'zi emas, yakunlash
+bosqichi. Bittasi — audio banki testi 90 s da ulgurmadi. Uchalasi
+alohida yurgizilganda 20/20 o'tdi, shuning uchun ular ilovaning
+nuqsoni emas: uzoq yurgizishdagi resurs taqchilligi.
+
+**README yangilandi.** Fayl xaritasidagi raqamlar eskirgan edi:
+«51 o'quv natijasi» → 62, «52 dars» → 112, «52 topshiriq + 19
+rubrika» → «64 topshiriq + 21 rubrika». Yangi fayllar ham xaritaga
+qo'shildi.

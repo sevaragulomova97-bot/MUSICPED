@@ -151,8 +151,16 @@ export function Notation({
   }, [spec]);
 
   return (
-    <figure className={cn("flex flex-col gap-2", className)}>
-      <div className="overflow-x-auto rounded-xl border border-border-subtle bg-white p-2">
+    /*
+      `min-w-0` muhim: ichkaridagi nota maydoni `min-w-[620px]` bilan
+      o'lchanadi va grid yoki flex bandining standart `min-width: auto`
+      qiymati uni qisqarishga qo'ymaydi. Natijada 620 px li chizma
+      konteynerni kengaytirib, telefon ekranida butun sahifa yon tomonga
+      suriladigan bo'lib qolardi. `max-w-full` esa siljish aynan shu
+      qutichaning ichida qolishini kafolatlaydi.
+    */
+    <figure className={cn("flex min-w-0 flex-col gap-2", className)}>
+      <div className="max-w-full overflow-x-auto rounded-xl border border-border-subtle bg-white p-2">
         <div ref={hostRef} className="min-w-[620px]" aria-hidden="true" />
         {!ready && !error && (
           <p className="px-2 pb-2 text-xs text-ink-muted">Nota chizilmoqda…</p>

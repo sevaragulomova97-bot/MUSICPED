@@ -74,8 +74,16 @@ export function KurslarRoyxati() {
                 animationDuration: `${6.5 + (i % 3) * 0.8}s`,
               }}
             >
+              {/*
+                Butun oynacha havola bo'lgani uchun uning nomi oynacha
+                ichidagi barcha matndan yig'ilardi: ekran o'quvchi
+                «Musiqa nazariyasi Nota savodidan... 10 dars... Mavzularni
+                ko'rish» deb uzun matnni o'qib chiqardi. `aria-label`
+                havolaga bitta aniq nom beradi — kursning nomi.
+              */}
               <Link
                 href={`/kurslar/${kurs.slug}`}
+                aria-label={kurs.title}
                 className="group block h-full rounded-2xl"
               >
                 <Card className="flex h-full flex-col transition-shadow duration-300 group-hover:border-primary/40 group-hover:shadow-lg group-focus-visible:border-primary/40">

@@ -1,5 +1,4 @@
 import {
-  Award,
   BarChart3,
   BookOpen,
   ClipboardList,
@@ -88,12 +87,6 @@ export const GUIDE_NAV: NavItem = {
   href: "/qollanma",
   label: "Qo'llanma",
   icon: LifeBuoy,
-};
-
-export const CERTIFICATE_NAV: NavItem = {
-  href: "/portfolio/sertifikatlar",
-  label: "Sertifikatlar",
-  icon: Award,
 };
 
 const normalize = (p: string) => p.replace(/\/+$/, "") || "/";
