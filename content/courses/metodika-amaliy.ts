@@ -52,7 +52,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -78,6 +78,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 6-7 yosh: oraliq tor, nafas qisqa. Baland nota tez charchatadi.",
+          },
+          {
+            kind: "nota",
+            caption: "do1 - do2: 1-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["c/4"], duration: "w", lyric: "eng past" },
+                { keys: ["c/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["a/4"], duration: "q", lyric: "lya" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -99,6 +147,41 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: iboralar uzun, nafasni taqsimlash kerak; diapazon bolalar ovozi uchun keng. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Tantanavor ritm: cho'ziq notalar ko'p, temp sekin va barqaror.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["f/4"], duration: "q", lyric: "uch" },
+                { keys: ["f/4"], duration: "q", lyric: "to'rt" },
+                { keys: ["f/4"], duration: "w", lyric: "bir-ik-uch-to'rt" },
+                { keys: ["f/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -135,6 +218,48 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: iboralar uzun, nafasni taqsimlash kerak; diapazon bolalar ovozi uchun keng. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Nafas mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "w", lyric: "4 zarb" },
+                { keys: ["e/4"], duration: "w", lyric: "4 zarb" },
+                { keys: ["g/4"], duration: "w", lyric: "4 zarb" },
+                { keys: ["e/4"], duration: "w", lyric: "nafas" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Nafas mashqi: har bir nota to'rt zarb ushlanadi. Tovush oxirigacha tekis qolishi kerak.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -221,7 +346,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -247,6 +372,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 6-7 yosh: oraliq tor, nafas qisqa. Baland nota tez charchatadi.",
+          },
+          {
+            kind: "nota",
+            caption: "do1 - lya1: 1-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["c/4"], duration: "w", lyric: "eng past" },
+                { keys: ["a/4"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -268,6 +441,43 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: 1-sinf o'quvchisi matnni yodlashga ulgurmaydi; ohang esa unga tanish bo'lmaydi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "O'yin ritmi: tez va aniq. Avval sekin aytib, keyin tezlashtiriladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "2/4",
+              notes: [
+                { keys: ["e/4"], duration: "8", lyric: "ta" },
+                { keys: ["e/4"], duration: "8", lyric: "ta" },
+                { keys: ["e/4"], duration: "8", lyric: "ti" },
+                { keys: ["e/4"], duration: "8", lyric: "ti" },
+                { keys: ["e/4"], duration: "8", lyric: "ta" },
+                { keys: ["e/4"], duration: "8", lyric: "ti" },
+                { keys: ["e/4"], duration: "q", lyric: "ta" },
+                { keys: ["e/4"], duration: "q", lyric: "ta" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -304,6 +514,49 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: 1-sinf o'quvchisi matnni yodlashga ulgurmaydi; ohang esa unga tanish bo'lmaydi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Yuqori notaga chiqish",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "q" },
+                { keys: ["f/4"], duration: "q" },
+                { keys: ["g/4"], duration: "q" },
+                { keys: ["a/4"], duration: "q" },
+                { keys: ["a/4"], duration: "h", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Yuqori notaga chiqish: pog'onama-pog'ona ko'tarilinadi, sakrab emas. Tomoq erkin qolsin.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -390,7 +643,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -416,6 +669,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 6-7 yosh: oraliq tor, nafas qisqa. Baland nota tez charchatadi.",
+          },
+          {
+            kind: "nota",
+            caption: "do1 - lya1: 1-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["c/4"], duration: "w", lyric: "eng past" },
+                { keys: ["a/4"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -437,6 +738,43 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: matn tez va bo'g'inlarga to'la; bolalar shoshilib, harflarni yeb qo'yadi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "O'yin ritmi: tez va aniq. Avval sekin aytib, keyin tezlashtiriladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "2/4",
+              notes: [
+                { keys: ["e/4"], duration: "8", lyric: "ta" },
+                { keys: ["e/4"], duration: "8", lyric: "ta" },
+                { keys: ["e/4"], duration: "8", lyric: "ti" },
+                { keys: ["e/4"], duration: "8", lyric: "ti" },
+                { keys: ["e/4"], duration: "8", lyric: "ta" },
+                { keys: ["e/4"], duration: "8", lyric: "ti" },
+                { keys: ["e/4"], duration: "q", lyric: "ta" },
+                { keys: ["e/4"], duration: "q", lyric: "ta" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -473,6 +811,51 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: matn tez va bo'g'inlarga to'la; bolalar shoshilib, harflarni yeb qo'yadi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Diksiya mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "2/4",
+              notes: [
+                { keys: ["e/4"], duration: "8", lyric: "ta" },
+                { keys: ["e/4"], duration: "8", lyric: "ka" },
+                { keys: ["e/4"], duration: "8", lyric: "ta" },
+                { keys: ["e/4"], duration: "8", lyric: "ka" },
+                { keys: ["e/4"], duration: "8", lyric: "ta" },
+                { keys: ["e/4"], duration: "8", lyric: "ka" },
+                { keys: ["e/4"], duration: "q", lyric: "ta" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Diksiya mashqi: bo'g'inlar aniq va bir xil. Sekin boshlanadi, keyin tezlashtiriladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -559,7 +942,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -585,6 +968,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 6-7 yosh: oraliq tor, nafas qisqa. Baland nota tez charchatadi.",
+          },
+          {
+            kind: "nota",
+            caption: "do1 - lya1: 1-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["c/4"], duration: "w", lyric: "eng past" },
+                { keys: ["a/4"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -606,6 +1037,43 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: ramziy so'zlar (ramz, mustaqil, hur) 1-sinf uchun notanish bo'lishi mumkin. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Marsh ritmi: zarb bir tekis, kuchli zarb aniq bilinadi. Qadam bilan sinab ko'ring.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "q", lyric: "bir" },
+                { keys: ["e/4"], duration: "q", lyric: "ik" },
+                { keys: ["e/4"], duration: "q", lyric: "uch" },
+                { keys: ["e/4"], duration: "q", lyric: "to'rt" },
+                { keys: ["e/4"], duration: "8", lyric: "bir" },
+                { keys: ["e/4"], duration: "8", lyric: "va" },
+                { keys: ["e/4"], duration: "q", lyric: "ik" },
+                { keys: ["e/4"], duration: "h", lyric: "uch-to'rt" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -642,6 +1110,52 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: ramziy so'zlar (ramz, mustaqil, hur) 1-sinf uchun notanish bo'lishi mumkin. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Temp mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "q", lyric: "1" },
+                { keys: ["e/4"], duration: "q", lyric: "2" },
+                { keys: ["e/4"], duration: "q", lyric: "3" },
+                { keys: ["e/4"], duration: "q", lyric: "4" },
+                { keys: ["e/4"], duration: "q", lyric: "1" },
+                { keys: ["e/4"], duration: "q", lyric: "2" },
+                { keys: ["e/4"], duration: "q", lyric: "3" },
+                { keys: ["e/4"], duration: "q", lyric: "4" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Temp mashqi: sakkiz zarb bir xil tezlikda. Oxirgi zarb birinchisi bilan bir xil bo'lishi kerak.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -728,7 +1242,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -754,6 +1268,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 6-7 yosh: oraliq tor, nafas qisqa. Baland nota tez charchatadi.",
+          },
+          {
+            kind: "nota",
+            caption: "do1 - lya1: 1-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["c/4"], duration: "w", lyric: "eng past" },
+                { keys: ["a/4"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -775,6 +1337,42 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: sekin tempni ushlab turish; bolalar allani ham quvnoq qo'shiqdek tezlatib yuboradi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Alla tebranishi: ikki zarbli yumshoq tebranish. Temp sekin va o'zgarmas.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "6/8",
+              notes: [
+                { keys: ["e/4"], duration: "q", lyric: "al" },
+                { keys: ["e/4"], duration: "8", lyric: "la" },
+                { keys: ["e/4"], duration: "q", lyric: "al" },
+                { keys: ["e/4"], duration: "8", lyric: "la" },
+                { keys: ["e/4"], duration: "q", lyric: "hu" },
+                { keys: ["e/4"], duration: "8", lyric: "hu" },
+                { keys: ["e/4"], duration: "h", lyric: "al-la" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -811,6 +1409,49 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: sekin tempni ushlab turish; bolalar allani ham quvnoq qo'shiqdek tezlatib yuboradi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Legato mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "h" },
+                { keys: ["f/4"], duration: "h" },
+                { keys: ["g/4"], duration: "h" },
+                { keys: ["f/4"], duration: "h" },
+                { keys: ["e/4"], duration: "h" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Legato mashqi: notalar uzilmaydi, nafas bir tekis sarflanadi. Dinamika past.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -897,7 +1538,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -923,6 +1564,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 7-8 yosh: ovoz ishonchliroq, lekin yuqori chegara hali past.",
+          },
+          {
+            kind: "nota",
+            caption: "si (kichik oktava) - si1: 2-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["b/3"], duration: "w", lyric: "eng past" },
+                { keys: ["b/4"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -944,6 +1633,41 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: cho'qqini topmaslik: qo'shiq boshdan oxir bir xil balandlikda kuylanib qolishi mumkin. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Lirik ritm: ibora uzun, cho'ziq nota ibora oxirini ushlab turadi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["e/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["e/4"], duration: "q", lyric: "bir" },
+                { keys: ["e/4"], duration: "q", lyric: "ik" },
+                { keys: ["e/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["e/4"], duration: "w", lyric: "to'rt zarb" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -980,6 +1704,49 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: cho'qqini topmaslik: qo'shiq boshdan oxir bir xil balandlikda kuylanib qolishi mumkin. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Dinamika mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "h", lyric: "sekin" },
+                { keys: ["f/4"], duration: "h", lyric: "o'rta" },
+                { keys: ["g/4"], duration: "h", lyric: "to'liq" },
+                { keys: ["f/4"], duration: "h", lyric: "o'rta" },
+                { keys: ["e/4"], duration: "h", lyric: "sekin" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Dinamika mashqi: balandlik emas, kuch o'zgaradi. Tovush sifati hamma bosqichda bir xil.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -1066,7 +1833,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -1092,6 +1859,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 7-8 yosh: ovoz ishonchliroq, lekin yuqori chegara hali past.",
+          },
+          {
+            kind: "nota",
+            caption: "si (kichik oktava) - si1: 2-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["b/3"], duration: "w", lyric: "eng past" },
+                { keys: ["b/4"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -1113,6 +1928,43 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: harakat qo'shilganda nafas yetmaydi va ohang buziladi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Marsh ritmi: zarb bir tekis, kuchli zarb aniq bilinadi. Qadam bilan sinab ko'ring.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "q", lyric: "bir" },
+                { keys: ["e/4"], duration: "q", lyric: "ik" },
+                { keys: ["e/4"], duration: "q", lyric: "uch" },
+                { keys: ["e/4"], duration: "q", lyric: "to'rt" },
+                { keys: ["e/4"], duration: "8", lyric: "bir" },
+                { keys: ["e/4"], duration: "8", lyric: "va" },
+                { keys: ["e/4"], duration: "q", lyric: "ik" },
+                { keys: ["e/4"], duration: "h", lyric: "uch-to'rt" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -1149,6 +2001,48 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: harakat qo'shilganda nafas yetmaydi va ohang buziladi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Nafas mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["b/3"], duration: "w", lyric: "4 zarb" },
+                { keys: ["d/4"], duration: "w", lyric: "4 zarb" },
+                { keys: ["f/4"], duration: "w", lyric: "4 zarb" },
+                { keys: ["d/4"], duration: "w", lyric: "nafas" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Nafas mashqi: har bir nota to'rt zarb ushlanadi. Tovush oxirigacha tekis qolishi kerak.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -1235,7 +2129,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -1261,6 +2155,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 8-9 yosh: ovoz kuchayadi, ansambl talabi qo'yish mumkin.",
+          },
+          {
+            kind: "nota",
+            caption: "si (kichik oktava) - do2: 3-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["b/3"], duration: "w", lyric: "eng past" },
+                { keys: ["c/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -1282,6 +2224,41 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: naqoratdagi eng baland nota — 3-sinf uchun chegaraga yaqin bo'lishi mumkin. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Lirik ritm: ibora uzun, cho'ziq nota ibora oxirini ushlab turadi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["f/4"], duration: "q", lyric: "bir" },
+                { keys: ["f/4"], duration: "q", lyric: "ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["f/4"], duration: "w", lyric: "to'rt zarb" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -1318,6 +2295,50 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: naqoratdagi eng baland nota — 3-sinf uchun chegaraga yaqin bo'lishi mumkin. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Yuqori notaga chiqish",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "q" },
+                { keys: ["g/4"], duration: "q" },
+                { keys: ["a/4"], duration: "q" },
+                { keys: ["b/4"], duration: "q" },
+                { keys: ["c/5"], duration: "q" },
+                { keys: ["c/5"], duration: "h", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Yuqori notaga chiqish: pog'onama-pog'ona ko'tarilinadi, sakrab emas. Tomoq erkin qolsin.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -1404,7 +2425,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -1430,6 +2451,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 8-9 yosh: ovoz kuchayadi, ansambl talabi qo'yish mumkin.",
+          },
+          {
+            kind: "nota",
+            caption: "si (kichik oktava) - do2: 3-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["b/3"], duration: "w", lyric: "eng past" },
+                { keys: ["c/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -1451,6 +2520,43 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: so'z va zarb bir vaqtda bajarilganda ikkisidan biri buziladi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Doira usuli: olti zarbli formula. Avval qo'l bilan, keyin doirada mashq qilinadi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "6/8",
+              notes: [
+                { keys: ["f/4"], duration: "8", lyric: "bum" },
+                { keys: ["f/4"], duration: "8", lyric: "bak" },
+                { keys: ["f/4"], duration: "8", lyric: "bak" },
+                { keys: ["f/4"], duration: "8", lyric: "bum" },
+                { keys: ["f/4"], duration: "8", lyric: "bak" },
+                { keys: ["f/4"], duration: "8", lyric: "bak" },
+                { keys: ["f/4"], duration: "q", lyric: "bum" },
+                { keys: ["f/4"], duration: "8", lyric: "bak" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -1487,6 +2593,52 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: so'z va zarb bir vaqtda bajarilganda ikkisidan biri buziladi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Temp mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "q", lyric: "1" },
+                { keys: ["f/4"], duration: "q", lyric: "2" },
+                { keys: ["f/4"], duration: "q", lyric: "3" },
+                { keys: ["f/4"], duration: "q", lyric: "4" },
+                { keys: ["f/4"], duration: "q", lyric: "1" },
+                { keys: ["f/4"], duration: "q", lyric: "2" },
+                { keys: ["f/4"], duration: "q", lyric: "3" },
+                { keys: ["f/4"], duration: "q", lyric: "4" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Temp mashqi: sakkiz zarb bir xil tezlikda. Oxirgi zarb birinchisi bilan bir xil bo'lishi kerak.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -1573,7 +2725,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -1599,6 +2751,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 8-9 yosh: ovoz kuchayadi, ansambl talabi qo'yish mumkin.",
+          },
+          {
+            kind: "nota",
+            caption: "si (kichik oktava) - do2: 3-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["b/3"], duration: "w", lyric: "eng past" },
+                { keys: ["c/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -1620,6 +2820,41 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: qo'shiq xotirjam bo'lgani uchun diqqat susayadi va ijro «yuvilib» ketadi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Lirik ritm: ibora uzun, cho'ziq nota ibora oxirini ushlab turadi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["f/4"], duration: "q", lyric: "bir" },
+                { keys: ["f/4"], duration: "q", lyric: "ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["f/4"], duration: "w", lyric: "to'rt zarb" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -1656,6 +2891,49 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: qo'shiq xotirjam bo'lgani uchun diqqat susayadi va ijro «yuvilib» ketadi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Dinamika mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "h", lyric: "sekin" },
+                { keys: ["g/4"], duration: "h", lyric: "o'rta" },
+                { keys: ["a/4"], duration: "h", lyric: "to'liq" },
+                { keys: ["g/4"], duration: "h", lyric: "o'rta" },
+                { keys: ["f/4"], duration: "h", lyric: "sekin" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Dinamika mashqi: balandlik emas, kuch o'zgaradi. Tovush sifati hamma bosqichda bir xil.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -1742,7 +3020,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -1768,6 +3046,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 9-10 yosh: nafas uzayadi, ikki ovozlilik elementlari kiritiladi.",
+          },
+          {
+            kind: "nota",
+            caption: "si (kichik oktava) - re2: 4-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["b/3"], duration: "w", lyric: "eng past" },
+                { keys: ["d/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -1789,6 +3115,43 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: tez joylarda so'zlar tushib qoladi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "O'yin ritmi: tez va aniq. Avval sekin aytib, keyin tezlashtiriladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "2/4",
+              notes: [
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ti" },
+                { keys: ["f/4"], duration: "8", lyric: "ti" },
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ti" },
+                { keys: ["f/4"], duration: "q", lyric: "ta" },
+                { keys: ["f/4"], duration: "q", lyric: "ta" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -1825,6 +3188,51 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: tez joylarda so'zlar tushib qoladi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Diksiya mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "2/4",
+              notes: [
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ka" },
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ka" },
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ka" },
+                { keys: ["f/4"], duration: "q", lyric: "ta" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Diksiya mashqi: bo'g'inlar aniq va bir xil. Sekin boshlanadi, keyin tezlashtiriladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -1911,7 +3319,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -1937,6 +3345,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 9-10 yosh: nafas uzayadi, ikki ovozlilik elementlari kiritiladi.",
+          },
+          {
+            kind: "nota",
+            caption: "si (kichik oktava) - re2: 4-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["b/3"], duration: "w", lyric: "eng past" },
+                { keys: ["d/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -1958,6 +3414,43 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: hazil xarakteri ortiqcha bajarilib, ijro buzilishi mumkin. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "O'yin ritmi: tez va aniq. Avval sekin aytib, keyin tezlashtiriladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "2/4",
+              notes: [
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ti" },
+                { keys: ["f/4"], duration: "8", lyric: "ti" },
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ti" },
+                { keys: ["f/4"], duration: "q", lyric: "ta" },
+                { keys: ["f/4"], duration: "q", lyric: "ta" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -1994,6 +3487,49 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: hazil xarakteri ortiqcha bajarilib, ijro buzilishi mumkin. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Dinamika mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "h", lyric: "sekin" },
+                { keys: ["g/4"], duration: "h", lyric: "o'rta" },
+                { keys: ["a/4"], duration: "h", lyric: "to'liq" },
+                { keys: ["g/4"], duration: "h", lyric: "o'rta" },
+                { keys: ["f/4"], duration: "h", lyric: "sekin" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Dinamika mashqi: balandlik emas, kuch o'zgaradi. Tovush sifati hamma bosqichda bir xil.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -2080,7 +3616,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -2106,6 +3642,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 9-10 yosh: nafas uzayadi, ikki ovozlilik elementlari kiritiladi.",
+          },
+          {
+            kind: "nota",
+            caption: "si (kichik oktava) - re2: 4-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["b/3"], duration: "w", lyric: "eng past" },
+                { keys: ["d/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -2127,6 +3711,41 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: guruhlar kirish joyini kechiktiradi yoki bir-birini bosib ketadi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Dialog ritmi: savol va javob ikki guruhga bo'linadi. Ikkinchi guruh aniq vaqtda kiradi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "q", lyric: "sa" },
+                { keys: ["f/4"], duration: "q", lyric: "vol" },
+                { keys: ["f/4"], duration: "h", lyric: "?" },
+                { keys: ["f/4"], duration: "q", lyric: "ja" },
+                { keys: ["f/4"], duration: "q", lyric: "vob" },
+                { keys: ["f/4"], duration: "h", lyric: "." },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -2163,6 +3782,50 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: guruhlar kirish joyini kechiktiradi yoki bir-birini bosib ketadi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Kanon mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "q", lyric: "1" },
+                { keys: ["g/4"], duration: "q", lyric: "2" },
+                { keys: ["a/4"], duration: "q", lyric: "3" },
+                { keys: ["f/4"], duration: "q", lyric: "4" },
+                { keys: ["a/4"], duration: "q", lyric: "5" },
+                { keys: ["c/5"], duration: "q", lyric: "6" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Kanon mashqi: ikkinchi guruh shu iborani ikki zarb kechikib boshlaydi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -2249,7 +3912,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -2275,6 +3938,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 9-10 yosh: nafas uzayadi, ikki ovozlilik elementlari kiritiladi.",
+          },
+          {
+            kind: "nota",
+            caption: "si (kichik oktava) - re2: 4-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["b/3"], duration: "w", lyric: "eng past" },
+                { keys: ["d/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -2296,6 +4007,43 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: o'yin qizib ketganda ijro qichqiriqqa aylanadi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "O'yin ritmi: tez va aniq. Avval sekin aytib, keyin tezlashtiriladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "2/4",
+              notes: [
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ti" },
+                { keys: ["f/4"], duration: "8", lyric: "ti" },
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ti" },
+                { keys: ["f/4"], duration: "q", lyric: "ta" },
+                { keys: ["f/4"], duration: "q", lyric: "ta" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -2332,6 +4080,52 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: o'yin qizib ketganda ijro qichqiriqqa aylanadi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Temp mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "q", lyric: "1" },
+                { keys: ["f/4"], duration: "q", lyric: "2" },
+                { keys: ["f/4"], duration: "q", lyric: "3" },
+                { keys: ["f/4"], duration: "q", lyric: "4" },
+                { keys: ["f/4"], duration: "q", lyric: "1" },
+                { keys: ["f/4"], duration: "q", lyric: "2" },
+                { keys: ["f/4"], duration: "q", lyric: "3" },
+                { keys: ["f/4"], duration: "q", lyric: "4" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Temp mashqi: sakkiz zarb bir xil tezlikda. Oxirgi zarb birinchisi bilan bir xil bo'lishi kerak.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -2418,7 +4212,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -2444,6 +4238,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 9-10 yosh: nafas uzayadi, ikki ovozlilik elementlari kiritiladi.",
+          },
+          {
+            kind: "nota",
+            caption: "si (kichik oktava) - re2: 4-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["b/3"], duration: "w", lyric: "eng past" },
+                { keys: ["d/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -2465,6 +4307,43 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: ommaviy ijroda temp asta tezlashib ketadi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bayram ritmi: chapak va zarb navbatlashadi. Tayanch guruh tempni ushlab turadi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "8", lyric: "cha" },
+                { keys: ["f/4"], duration: "8", lyric: "pak" },
+                { keys: ["f/4"], duration: "q", lyric: "zarb" },
+                { keys: ["f/4"], duration: "8", lyric: "cha" },
+                { keys: ["f/4"], duration: "8", lyric: "pak" },
+                { keys: ["f/4"], duration: "q", lyric: "zarb" },
+                { keys: ["f/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -2501,6 +4380,52 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: ommaviy ijroda temp asta tezlashib ketadi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Temp mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "q", lyric: "1" },
+                { keys: ["f/4"], duration: "q", lyric: "2" },
+                { keys: ["f/4"], duration: "q", lyric: "3" },
+                { keys: ["f/4"], duration: "q", lyric: "4" },
+                { keys: ["f/4"], duration: "q", lyric: "1" },
+                { keys: ["f/4"], duration: "q", lyric: "2" },
+                { keys: ["f/4"], duration: "q", lyric: "3" },
+                { keys: ["f/4"], duration: "q", lyric: "4" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Temp mashqi: sakkiz zarb bir xil tezlikda. Oxirgi zarb birinchisi bilan bir xil bo'lishi kerak.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -2587,7 +4512,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -2613,6 +4538,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 12-13 yosh: mutatsiya davom etadi, tessitura ehtiyotkor tanlanadi.",
+          },
+          {
+            kind: "nota",
+            caption: "si (kichik oktava) - re2: 7-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["b/3"], duration: "w", lyric: "eng past" },
+                { keys: ["d/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -2634,6 +4607,41 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: yuqori registr va 7-sinf atrofidagi ovoz mutatsiyasi davri. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Tantanavor ritm: cho'ziq notalar ko'p, temp sekin va barqaror.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["f/4"], duration: "q", lyric: "uch" },
+                { keys: ["f/4"], duration: "q", lyric: "to'rt" },
+                { keys: ["f/4"], duration: "w", lyric: "bir-ik-uch-to'rt" },
+                { keys: ["f/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -2670,6 +4678,48 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: yuqori registr va 7-sinf atrofidagi ovoz mutatsiyasi davri. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Nafas mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["b/3"], duration: "w", lyric: "4 zarb" },
+                { keys: ["d/4"], duration: "w", lyric: "4 zarb" },
+                { keys: ["f/4"], duration: "w", lyric: "4 zarb" },
+                { keys: ["d/4"], duration: "w", lyric: "nafas" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Nafas mashqi: har bir nota to'rt zarb ushlanadi. Tovush oxirigacha tekis qolishi kerak.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -2756,7 +4806,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -2782,6 +4832,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 10-11 yosh: ayrim bolalarda ovoz o'zgarishi belgilari paydo bo'ladi.",
+          },
+          {
+            kind: "nota",
+            caption: "lya (kichik oktava) - re2: 5-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["a/3"], duration: "w", lyric: "eng past" },
+                { keys: ["d/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -2803,6 +4901,41 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: bayram ijrosida bolalar ovozni zo'riqtirib yuboradi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Lirik ritm: ibora uzun, cho'ziq nota ibora oxirini ushlab turadi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["f/4"], duration: "q", lyric: "bir" },
+                { keys: ["f/4"], duration: "q", lyric: "ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["f/4"], duration: "w", lyric: "to'rt zarb" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -2839,6 +4972,49 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: bayram ijrosida bolalar ovozni zo'riqtirib yuboradi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Dinamika mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "h", lyric: "sekin" },
+                { keys: ["g/4"], duration: "h", lyric: "o'rta" },
+                { keys: ["a/4"], duration: "h", lyric: "to'liq" },
+                { keys: ["g/4"], duration: "h", lyric: "o'rta" },
+                { keys: ["f/4"], duration: "h", lyric: "sekin" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Dinamika mashqi: balandlik emas, kuch o'zgaradi. Tovush sifati hamma bosqichda bir xil.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -2925,7 +5101,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -2951,6 +5127,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 10-11 yosh: ayrim bolalarda ovoz o'zgarishi belgilari paydo bo'ladi.",
+          },
+          {
+            kind: "nota",
+            caption: "lya (kichik oktava) - re2: 5-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["a/3"], duration: "w", lyric: "eng past" },
+                { keys: ["d/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -2972,6 +5196,41 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: manzara qo'shig'i bir xil kuylansa, zerikarli chiqadi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Lirik ritm: ibora uzun, cho'ziq nota ibora oxirini ushlab turadi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["f/4"], duration: "q", lyric: "bir" },
+                { keys: ["f/4"], duration: "q", lyric: "ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["f/4"], duration: "w", lyric: "to'rt zarb" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -3008,6 +5267,49 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: manzara qo'shig'i bir xil kuylansa, zerikarli chiqadi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Legato mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "h" },
+                { keys: ["g/4"], duration: "h" },
+                { keys: ["a/4"], duration: "h" },
+                { keys: ["g/4"], duration: "h" },
+                { keys: ["f/4"], duration: "h" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Legato mashqi: notalar uzilmaydi, nafas bir tekis sarflanadi. Dinamika past.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -3094,7 +5396,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -3120,6 +5422,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 10-11 yosh: ayrim bolalarda ovoz o'zgarishi belgilari paydo bo'ladi.",
+          },
+          {
+            kind: "nota",
+            caption: "lya (kichik oktava) - re2: 5-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["a/3"], duration: "w", lyric: "eng past" },
+                { keys: ["d/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -3141,6 +5491,43 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: usul asta tezlashadi; raqs harakati qo'shilganda nafas yetmaydi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Doira usuli: olti zarbli formula. Avval qo'l bilan, keyin doirada mashq qilinadi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "6/8",
+              notes: [
+                { keys: ["f/4"], duration: "8", lyric: "bum" },
+                { keys: ["f/4"], duration: "8", lyric: "bak" },
+                { keys: ["f/4"], duration: "8", lyric: "bak" },
+                { keys: ["f/4"], duration: "8", lyric: "bum" },
+                { keys: ["f/4"], duration: "8", lyric: "bak" },
+                { keys: ["f/4"], duration: "8", lyric: "bak" },
+                { keys: ["f/4"], duration: "q", lyric: "bum" },
+                { keys: ["f/4"], duration: "8", lyric: "bak" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -3177,6 +5564,52 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: usul asta tezlashadi; raqs harakati qo'shilganda nafas yetmaydi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Temp mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "q", lyric: "1" },
+                { keys: ["f/4"], duration: "q", lyric: "2" },
+                { keys: ["f/4"], duration: "q", lyric: "3" },
+                { keys: ["f/4"], duration: "q", lyric: "4" },
+                { keys: ["f/4"], duration: "q", lyric: "1" },
+                { keys: ["f/4"], duration: "q", lyric: "2" },
+                { keys: ["f/4"], duration: "q", lyric: "3" },
+                { keys: ["f/4"], duration: "q", lyric: "4" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Temp mashqi: sakkiz zarb bir xil tezlikda. Oxirgi zarb birinchisi bilan bir xil bo'lishi kerak.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -3263,7 +5696,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -3289,6 +5722,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 10-11 yosh: ayrim bolalarda ovoz o'zgarishi belgilari paydo bo'ladi.",
+          },
+          {
+            kind: "nota",
+            caption: "lya (kichik oktava) - re2: 5-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["a/3"], duration: "w", lyric: "eng past" },
+                { keys: ["d/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -3310,6 +5791,43 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: matn zich; so'zlar ansamblda bir vaqtda chiqmaydi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Marsh ritmi: zarb bir tekis, kuchli zarb aniq bilinadi. Qadam bilan sinab ko'ring.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "q", lyric: "bir" },
+                { keys: ["f/4"], duration: "q", lyric: "ik" },
+                { keys: ["f/4"], duration: "q", lyric: "uch" },
+                { keys: ["f/4"], duration: "q", lyric: "to'rt" },
+                { keys: ["f/4"], duration: "8", lyric: "bir" },
+                { keys: ["f/4"], duration: "8", lyric: "va" },
+                { keys: ["f/4"], duration: "q", lyric: "ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -3346,6 +5864,51 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: matn zich; so'zlar ansamblda bir vaqtda chiqmaydi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Diksiya mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "2/4",
+              notes: [
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ka" },
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ka" },
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ka" },
+                { keys: ["f/4"], duration: "q", lyric: "ta" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Diksiya mashqi: bo'g'inlar aniq va bir xil. Sekin boshlanadi, keyin tezlashtiriladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -3432,7 +5995,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -3458,6 +6021,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 11-12 yosh: mutatsiya davri — oraliq toraytiriladi, har bolaga alohida qaraladi.",
+          },
+          {
+            kind: "nota",
+            caption: "do1 - do2: 6-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["c/4"], duration: "w", lyric: "eng past" },
+                { keys: ["c/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["a/4"], duration: "q", lyric: "lya" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -3479,6 +6090,41 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: ikkinchi ovoz birinchi ovozga «yopishib» ketadi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Lirik ritm: ibora uzun, cho'ziq nota ibora oxirini ushlab turadi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["f/4"], duration: "q", lyric: "bir" },
+                { keys: ["f/4"], duration: "q", lyric: "ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["f/4"], duration: "w", lyric: "to'rt zarb" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -3515,6 +6161,50 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: ikkinchi ovoz birinchi ovozga «yopishib» ketadi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Kanon mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "q", lyric: "1" },
+                { keys: ["g/4"], duration: "q", lyric: "2" },
+                { keys: ["a/4"], duration: "q", lyric: "3" },
+                { keys: ["f/4"], duration: "q", lyric: "4" },
+                { keys: ["a/4"], duration: "q", lyric: "5" },
+                { keys: ["c/5"], duration: "q", lyric: "6" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Kanon mashqi: ikkinchi guruh shu iborani ikki zarb kechikib boshlaydi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -3601,7 +6291,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -3627,6 +6317,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 11-12 yosh: mutatsiya davri — oraliq toraytiriladi, har bolaga alohida qaraladi.",
+          },
+          {
+            kind: "nota",
+            caption: "do1 - do2: 6-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["c/4"], duration: "w", lyric: "eng past" },
+                { keys: ["c/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["a/4"], duration: "q", lyric: "lya" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -3648,6 +6386,41 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: keng sakrashlarda nota aniqligi yo'qoladi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Tantanavor ritm: cho'ziq notalar ko'p, temp sekin va barqaror.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["f/4"], duration: "q", lyric: "uch" },
+                { keys: ["f/4"], duration: "q", lyric: "to'rt" },
+                { keys: ["f/4"], duration: "w", lyric: "bir-ik-uch-to'rt" },
+                { keys: ["f/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -3684,6 +6457,50 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: keng sakrashlarda nota aniqligi yo'qoladi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Sakrash mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "q", lyric: "past" },
+                { keys: ["e/4"], duration: "q" },
+                { keys: ["c/4"], duration: "q", lyric: "past" },
+                { keys: ["g/4"], duration: "q" },
+                { keys: ["c/4"], duration: "q", lyric: "past" },
+                { keys: ["b/4"], duration: "h", lyric: "keng sakrash" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Sakrash mashqi: oraliq asta kengayadi. Har safar past notaga qaytib, quloqni tiklang.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -3770,7 +6587,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -3796,6 +6613,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 11-12 yosh: mutatsiya davri — oraliq toraytiriladi, har bolaga alohida qaraladi.",
+          },
+          {
+            kind: "nota",
+            caption: "do1 - do2: 6-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["c/4"], duration: "w", lyric: "eng past" },
+                { keys: ["c/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["a/4"], duration: "q", lyric: "lya" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -3817,6 +6682,43 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: bezaklar ortiqcha qilinsa, bolalar ijrosi sun'iy chiqadi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Raqs usuli: kuchli va kuchsiz zarb almashadi. Doirada «bum» past, «bak» baland zarb.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "8", lyric: "bum" },
+                { keys: ["f/4"], duration: "8", lyric: "bak" },
+                { keys: ["f/4"], duration: "q", lyric: "bum" },
+                { keys: ["f/4"], duration: "8", lyric: "bak" },
+                { keys: ["f/4"], duration: "8", lyric: "bak" },
+                { keys: ["f/4"], duration: "q", lyric: "bum" },
+                { keys: ["f/4"], duration: "q", lyric: "bak" },
+                { keys: ["f/4"], duration: "q", lyric: "bum" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -3853,6 +6755,49 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: bezaklar ortiqcha qilinsa, bolalar ijrosi sun'iy chiqadi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Legato mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "h" },
+                { keys: ["g/4"], duration: "h" },
+                { keys: ["a/4"], duration: "h" },
+                { keys: ["g/4"], duration: "h" },
+                { keys: ["f/4"], duration: "h" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Legato mashqi: notalar uzilmaydi, nafas bir tekis sarflanadi. Dinamika past.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -3939,7 +6884,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -3965,6 +6910,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 11-12 yosh: mutatsiya davri — oraliq toraytiriladi, har bolaga alohida qaraladi.",
+          },
+          {
+            kind: "nota",
+            caption: "do1 - do2: 6-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["c/4"], duration: "w", lyric: "eng past" },
+                { keys: ["c/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["a/4"], duration: "q", lyric: "lya" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -3986,6 +6979,43 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: tez tempda so'zlar bir-biriga qo'shilib ketadi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "O'yin ritmi: tez va aniq. Avval sekin aytib, keyin tezlashtiriladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "2/4",
+              notes: [
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ti" },
+                { keys: ["f/4"], duration: "8", lyric: "ti" },
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ti" },
+                { keys: ["f/4"], duration: "q", lyric: "ta" },
+                { keys: ["f/4"], duration: "q", lyric: "ta" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -4022,6 +7052,51 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: tez tempda so'zlar bir-biriga qo'shilib ketadi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Diksiya mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "2/4",
+              notes: [
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ka" },
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ka" },
+                { keys: ["f/4"], duration: "8", lyric: "ta" },
+                { keys: ["f/4"], duration: "8", lyric: "ka" },
+                { keys: ["f/4"], duration: "q", lyric: "ta" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Diksiya mashqi: bo'g'inlar aniq va bir xil. Sekin boshlanadi, keyin tezlashtiriladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -4108,7 +7183,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -4134,6 +7209,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 11-12 yosh: mutatsiya davri — oraliq toraytiriladi, har bolaga alohida qaraladi.",
+          },
+          {
+            kind: "nota",
+            caption: "do1 - do2: 6-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["c/4"], duration: "w", lyric: "eng past" },
+                { keys: ["c/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["g/4"], duration: "q", lyric: "sol" },
+                { keys: ["a/4"], duration: "q", lyric: "lya" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -4155,6 +7278,41 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: uzun iboralarda nafas yetmaydi va ibora o'rtasida uzilib qoladi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Lirik ritm: ibora uzun, cho'ziq nota ibora oxirini ushlab turadi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["f/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["f/4"], duration: "q", lyric: "bir" },
+                { keys: ["f/4"], duration: "q", lyric: "ik" },
+                { keys: ["f/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["f/4"], duration: "w", lyric: "to'rt zarb" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -4191,6 +7349,48 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: uzun iboralarda nafas yetmaydi va ibora o'rtasida uzilib qoladi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Nafas mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["c/4"], duration: "w", lyric: "4 zarb" },
+                { keys: ["e/4"], duration: "w", lyric: "4 zarb" },
+                { keys: ["g/4"], duration: "w", lyric: "4 zarb" },
+                { keys: ["e/4"], duration: "w", lyric: "nafas" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Nafas mashqi: har bir nota to'rt zarb ushlanadi. Tovush oxirigacha tekis qolishi kerak.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -4277,7 +7477,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -4303,6 +7503,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 12-13 yosh: mutatsiya davom etadi, tessitura ehtiyotkor tanlanadi.",
+          },
+          {
+            kind: "nota",
+            caption: "lya (kichik oktava) - do2: 7-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["a/3"], duration: "w", lyric: "eng past" },
+                { keys: ["c/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -4324,6 +7572,41 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: mutatsiya davrida yuqori notalar og'riqli yoki beqaror bo'lishi mumkin. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Lirik ritm: ibora uzun, cho'ziq nota ibora oxirini ushlab turadi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["e/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["e/4"], duration: "q", lyric: "bir" },
+                { keys: ["e/4"], duration: "q", lyric: "ik" },
+                { keys: ["e/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["e/4"], duration: "w", lyric: "to'rt zarb" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -4360,6 +7643,49 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: mutatsiya davrida yuqori notalar og'riqli yoki beqaror bo'lishi mumkin. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Mutatsiya davri uchun",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "q" },
+                { keys: ["f/4"], duration: "q" },
+                { keys: ["g/4"], duration: "q" },
+                { keys: ["f/4"], duration: "q" },
+                { keys: ["e/4"], duration: "q" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Mutatsiya davri uchun: tor oraliqda, o'rta registrda, past dinamikada. Zo'riqish bo'lmasin.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -4446,7 +7772,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -4472,6 +7798,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 12-13 yosh: mutatsiya davom etadi, tessitura ehtiyotkor tanlanadi.",
+          },
+          {
+            kind: "nota",
+            caption: "lya (kichik oktava) - do2: 7-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["a/3"], duration: "w", lyric: "eng past" },
+                { keys: ["c/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -4493,6 +7867,41 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: ikki ovoz va mutatsiya davri birga kelganda ansambl beqarorlashadi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Lirik ritm: ibora uzun, cho'ziq nota ibora oxirini ushlab turadi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["e/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["e/4"], duration: "q", lyric: "bir" },
+                { keys: ["e/4"], duration: "q", lyric: "ik" },
+                { keys: ["e/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["e/4"], duration: "w", lyric: "to'rt zarb" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -4529,6 +7938,50 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: ikki ovoz va mutatsiya davri birga kelganda ansambl beqarorlashadi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Kanon mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "q", lyric: "1" },
+                { keys: ["f/4"], duration: "q", lyric: "2" },
+                { keys: ["g/4"], duration: "q", lyric: "3" },
+                { keys: ["e/4"], duration: "q", lyric: "4" },
+                { keys: ["g/4"], duration: "q", lyric: "5" },
+                { keys: ["b/4"], duration: "q", lyric: "6" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Kanon mashqi: ikkinchi guruh shu iborani ikki zarb kechikib boshlaydi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -4615,7 +8068,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -4641,6 +8094,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 12-13 yosh: mutatsiya davom etadi, tessitura ehtiyotkor tanlanadi.",
+          },
+          {
+            kind: "nota",
+            caption: "lya (kichik oktava) - do2: 7-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["a/3"], duration: "w", lyric: "eng past" },
+                { keys: ["c/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -4662,6 +8163,41 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: yuqori registr mutatsiya davrida beqarorlashadi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Tantanavor ritm: cho'ziq notalar ko'p, temp sekin va barqaror.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["e/4"], duration: "q", lyric: "uch" },
+                { keys: ["e/4"], duration: "q", lyric: "to'rt" },
+                { keys: ["e/4"], duration: "w", lyric: "bir-ik-uch-to'rt" },
+                { keys: ["e/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["e/4"], duration: "h", lyric: "uch-to'rt" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -4698,6 +8234,49 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: yuqori registr mutatsiya davrida beqarorlashadi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Mutatsiya davri uchun",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "q" },
+                { keys: ["f/4"], duration: "q" },
+                { keys: ["g/4"], duration: "q" },
+                { keys: ["f/4"], duration: "q" },
+                { keys: ["e/4"], duration: "q" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Mutatsiya davri uchun: tor oraliqda, o'rta registrda, past dinamikada. Zo'riqish bo'lmasin.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -4784,7 +8363,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -4810,6 +8389,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 12-13 yosh: mutatsiya davom etadi, tessitura ehtiyotkor tanlanadi.",
+          },
+          {
+            kind: "nota",
+            caption: "lya (kichik oktava) - do2: 7-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["a/3"], duration: "w", lyric: "eng past" },
+                { keys: ["c/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -4831,6 +8458,43 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: tadbir ijrosida bolalar baqirib yuboradi va ovoz charchaydi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bayram ritmi: chapak va zarb navbatlashadi. Tayanch guruh tempni ushlab turadi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "8", lyric: "cha" },
+                { keys: ["e/4"], duration: "8", lyric: "pak" },
+                { keys: ["e/4"], duration: "q", lyric: "zarb" },
+                { keys: ["e/4"], duration: "8", lyric: "cha" },
+                { keys: ["e/4"], duration: "8", lyric: "pak" },
+                { keys: ["e/4"], duration: "q", lyric: "zarb" },
+                { keys: ["e/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["e/4"], duration: "h", lyric: "uch-to'rt" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -4867,6 +8531,49 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: tadbir ijrosida bolalar baqirib yuboradi va ovoz charchaydi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Dinamika mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "h", lyric: "sekin" },
+                { keys: ["f/4"], duration: "h", lyric: "o'rta" },
+                { keys: ["g/4"], duration: "h", lyric: "to'liq" },
+                { keys: ["f/4"], duration: "h", lyric: "o'rta" },
+                { keys: ["e/4"], duration: "h", lyric: "sekin" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Dinamika mashqi: balandlik emas, kuch o'zgaradi. Tovush sifati hamma bosqichda bir xil.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
@@ -4953,7 +8660,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           },
           {
             kind: "eslatma",
-            text: "Platformada asarning notasi, matni yoki audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerda faqat ish usuli va tahlil tartibi beriladi.",
+            text: "Platformada asarning o'z notasi, she'r matni va audio yozuvi saqlanmaydi — ular mualliflik huquqi bilan qo'riqlanadi. Asarni maktab darsligi, DTS ro'yxati yoki o'qituvchi bergan manbadan oling. Bu yerdagi nota misollari — qo'shiqning ohangi emas, shu mashg'ulot uchun yozilgan mashqlar: diapazon ko'rsatkichi, qizdirish va qiyin joyga mo'ljallangan mashq.",
           },
         ],
       },
@@ -4979,6 +8686,54 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
         ],
       },
       {
+        id: "ovoz",
+        title: "Ovoz va diapazon",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Asarni o'rganishdan oldin sinfning ovoz imkoniyati tekshiriladi: tanlangan tonallik shu oraliqqa sig'masa, qolgan hamma ish behuda ketadi. 12-13 yosh: mutatsiya davom etadi, tessitura ehtiyotkor tanlanadi.",
+          },
+          {
+            kind: "nota",
+            caption: "lya (kichik oktava) - do2: 7-sinf uchun ishchi oraliq (taxminiy; notani bosib eshitib ko'ring)",
+            playable: true,
+            spec: {
+              clef: "treble",
+              notes: [
+                { keys: ["a/3"], duration: "w", lyric: "eng past" },
+                { keys: ["c/5"], duration: "w", lyric: "eng baland" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Quyidagi qizdirish mashqi shu oraliqning pastki qismidan boshlanadi. U har bir kuylash darsida bajariladi: sovuq ovoz bilan kuylash ham ovozga zarar, ham ijroga xato.",
+          },
+          {
+            kind: "nota",
+            caption: "Qizdirish: besh pog'onali mashq, sekin tempda, past dinamikada",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+                { keys: ["c/4"], duration: "q", lyric: "do" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["e/4"], duration: "q", lyric: "mi" },
+                { keys: ["f/4"], duration: "q", lyric: "fa" },
+                { keys: ["d/4"], duration: "q", lyric: "re" },
+                { keys: ["b/3"], duration: "q", lyric: "si" },
+              ],
+            },
+          },
+          {
+            kind: "eslatma",
+            text: "Bu raqamlar yo'naltiruvchi. Aniq oraliq darslik va DTS bo'yicha tekshiriladi, eng ishonchli tekshiruv esa bitta — sinfni kuylatib ko'rish.",
+          },
+        ],
+      },
+      {
         id: "tahlil",
         title: "Tahlil (olti band)",
         blocks: [
@@ -5000,6 +8755,41 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "eslatma",
             text: "Odatda qiyin keladigan joy: matn ko'tarinki va murakkab — so'zlar ma'nosi tushunilmasa, ijro quruq chiqadi. Buni darslikdagi nota bo'yicha tekshirib, o'zingizga mos yechimni yozib qo'ying.",
+          },
+        ],
+      },
+      {
+        id: "ritm",
+        title: "Ritmik asos",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Lirik ritm: ibora uzun, cho'ziq nota ibora oxirini ushlab turadi.",
+          },
+          {
+            kind: "nota",
+            caption: "Ritmik naqsh — bitta balandlikda yozilgan: bu ohang emas, zarb mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "4/4",
+              notes: [
+                { keys: ["e/4"], duration: "h", lyric: "bir-ik" },
+                { keys: ["e/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["e/4"], duration: "q", lyric: "bir" },
+                { keys: ["e/4"], duration: "q", lyric: "ik" },
+                { keys: ["e/4"], duration: "h", lyric: "uch-to'rt" },
+                { keys: ["e/4"], duration: "w", lyric: "to'rt zarb" },
+              ],
+            },
+          },
+          {
+            kind: "mashq",
+            text: "Naqshni avval qo'l bilan urib chiqing, keyin bo'g'inlar bilan ayting, eng oxirida qo'shiq matnini shu ritmga qo'ying. Uch bosqich bir vaqtda bajarilmaydi.",
+          },
+          {
+            kind: "matn",
+            text: "Ritmni mustahkamlash qo'shiqdan oldin boradi: ohang ritmga quriladi, teskarisi emas. Shuning uchun ritmik naqsh aniq bo'lmaguncha ohangga o'tilmaydi.",
           },
         ],
       },
@@ -5036,6 +8826,51 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
               "Dinamika rejasi bajarildimi yoki ijro bir xil chiqdi?",
               "Tugatish aniq bo'ldimi — oxirgi nota va to'xtam?",
             ],
+          },
+        ],
+      },
+      {
+        id: "qiyinjoy",
+        title: "Qiyin joy ustida mashq",
+        blocks: [
+          {
+            kind: "matn",
+            text: "Bu asarda odatda qiyin keladigan joy: matn ko'tarinki va murakkab — so'zlar ma'nosi tushunilmasa, ijro quruq chiqadi. Quyidagi mashq aynan shu qiyinchilikka mo'ljallangan va u asarning o'zidan ajratib bajariladi.",
+          },
+          {
+            kind: "nota",
+            caption: "Mashq: Diksiya mashqi",
+            playable: true,
+            spec: {
+              clef: "treble",
+              timeSignature: "2/4",
+              notes: [
+                { keys: ["e/4"], duration: "8", lyric: "ta" },
+                { keys: ["e/4"], duration: "8", lyric: "ka" },
+                { keys: ["e/4"], duration: "8", lyric: "ta" },
+                { keys: ["e/4"], duration: "8", lyric: "ka" },
+                { keys: ["e/4"], duration: "8", lyric: "ta" },
+                { keys: ["e/4"], duration: "8", lyric: "ka" },
+                { keys: ["e/4"], duration: "q", lyric: "ta" },
+              ],
+            },
+          },
+          {
+            kind: "matn",
+            text: "Diksiya mashqi: bo'g'inlar aniq va bir xil. Sekin boshlanadi, keyin tezlashtiriladi.",
+          },
+          {
+            kind: "royxat",
+            items: [
+              "Mashq asardan alohida, sekin tempda bajariladi",
+              "Bajarilgandan keyin asarning qiyin joyi shu usul bilan takrorlanadi",
+              "Keyin qiyin joy o'zidan oldingi va keyingi ibora bilan ulanadi",
+              "Oxirida butun qism bir marta to'liq ijro etiladi",
+            ],
+          },
+          {
+            kind: "eslatma",
+            text: "Qiyin joy darsda topilsa, vaqt yo'qoladi va o'quvchi ishonchi pasayadi. Shuning uchun u darsdan oldin topiladi va unga mashq tayyorlanadi — metodik tahlilning asosiy foydasi shu.",
           },
         ],
       },
