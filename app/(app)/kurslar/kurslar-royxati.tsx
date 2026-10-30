@@ -75,18 +75,21 @@ export function KurslarRoyxati() {
               }}
             >
               {/*
-                Butun oynacha havola bo'lgani uchun uning nomi oynacha
-                ichidagi barcha matndan yig'ilardi: ekran o'quvchi
-                «Musiqa nazariyasi Nota savodidan... 10 dars... Mavzularni
-                ko'rish» deb uzun matnni o'qib chiqardi. `aria-label`
-                havolaga bitta aniq nom beradi — kursning nomi.
+                Butun oynacha bosiladi, lekin havola — faqat kurs nomi.
+
+                Oldin butun oynacha `<Link>` ichida edi va havolaning
+                nomi oynacha ichidagi barcha matndan yig'ilardi. `aria-label`
+                bilan nomni qisqartirish ham yaramadi: u ko'rinadigan
+                matnni qamramagani uchun WCAG 2.5.3 («Label in Name»)
+                buzilardi va qulaylik testi buni haqli ravishda tutdi.
+
+                Yechim — «cho'zilgan havola» naqshi: havola matni faqat
+                kurs nomi, uning `::after` elementi esa butun kartani
+                qoplaydi. Shunda bosish sohasi butun oynacha bo'ladi,
+                ekran o'quvchi esa bitta aniq nom eshitadi.
               */}
-              <Link
-                href={`/kurslar/${kurs.slug}`}
-                aria-label={kurs.title}
-                className="group block h-full rounded-2xl"
-              >
-                <Card className="flex h-full flex-col transition-shadow duration-300 group-hover:border-primary/40 group-hover:shadow-lg group-focus-visible:border-primary/40">
+              <div className="group relative h-full">
+                <Card className="flex h-full flex-col transition-shadow duration-300 group-hover:border-primary/40 group-hover:shadow-lg group-focus-within:border-primary/40">
                   <CardContent className="flex flex-1 flex-col gap-3 p-5 pt-5">
                     <div className="flex items-start justify-between gap-2">
                       <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary-soft text-primary-ink">
@@ -98,7 +101,12 @@ export function KurslarRoyxati() {
                     </div>
 
                     <h2 className="font-display text-base font-semibold leading-snug text-ink transition-colors group-hover:text-primary">
-                      {kurs.title}
+                      <Link
+                        href={`/kurslar/${kurs.slug}`}
+                        className="rounded after:absolute after:inset-0 after:content-['']"
+                      >
+                        {kurs.title}
+                      </Link>
                     </h2>
 
                     <p className="line-clamp-3 flex-1 text-sm leading-relaxed text-ink-muted">
@@ -127,7 +135,7 @@ export function KurslarRoyxati() {
                     </span>
                   </CardContent>
                 </Card>
-              </Link>
+              </div>
             </li>
           );
         })}
