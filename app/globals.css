@@ -469,3 +469,43 @@ html[data-effects="off"] .mp-burst-layer {
     display: none;
   }
 }
+
+/* ──────────────────────────────────────────────────────────────
+   BEZAK: havoda qalqib turadigan kurs oynalari
+
+   `/kurslar` sahifasidagi oynachalar sekin yuqoriga-pastga suriladi.
+   Harakat juda kichik (±6 px) va uzoq davrli: u ko'zni chalg'itmasligi,
+   faqat «havoda» hissini berishi kerak.
+
+   Yuqoridagi bezaklar bilan bir xil ikki shartga bo'ysunadi:
+     • foydalanuvchi sozlamasi — `html[data-effects="off"]`;
+     • tizim sozlamasi — `prefers-reduced-motion: reduce`.
+
+   `transform` ni animatsiya egallaganligi uchun oynaning ustiga
+   bosganda ko'tarilish effekti transform bilan emas, soya va chegara
+   rangi bilan beriladi — aks holda ikkisi bir-birini bosib ketardi.
+   ────────────────────────────────────────────────────────────── */
+
+.mp-float {
+  animation: mp-float 7s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes mp-float {
+  from {
+    transform: translate3d(0, 0.375rem, 0);
+  }
+  to {
+    transform: translate3d(0, -0.375rem, 0);
+  }
+}
+
+html[data-effects="off"] .mp-float {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-float {
+    animation: none;
+  }
+}

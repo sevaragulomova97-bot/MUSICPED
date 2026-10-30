@@ -428,6 +428,38 @@ export type Asar = {
 
 const FC = "Flipped Classroom";
 
+/**
+ * Muallif ismlarining bir xil shaklga keltirilishi.
+ *
+ * Dastur hujjatida ayni bir muallif ikki xil yozilgan joylar bor.
+ * `sher` va `musiqa` maydonlari hujjatdagi holicha saqlanadi — ular
+ * transkripsiyaning aniqligi uchun javob beradi; ekranga esa shu
+ * jadval orqali bir xil shakl chiqadi.
+ *
+ * Tanlov qoidasi: **ko'pchilik shakli** olinadi; shakllar teng
+ * uchrasa, dasturda **birinchi kelgan** shakl qoladi.
+ */
+export const ISM_BIR_XIL: Record<string, string> = {
+  // A12, A18, A24 da «A.Mansurov», MT12 da «A.Mansur» (3 : 1)
+  "A.Mansur": "A.Mansurov",
+  // A10, A22, A27, A29, MT5 da «X.Hasanova», MT10 da «H.Hasanova» (5 : 1)
+  "H.Hasanova": "X.Hasanova",
+  /*
+    A10 da «H.Ahmedov», A27 da «H.Ahmedova» — bittadan. Ikkisi ham
+    «Tinchlik bo'lsin» qo'shig'i va ikkisining musiqasi ham
+    X.Hasanova, ya'ni muallif bir odam. Teng bo'lgani uchun qoida
+    bo'yicha dasturda birinchi kelgan shakl (A10) qoldirildi.
+    Agar hujjat bo'yicha to'g'ri shakl «H.Ahmedova» bo'lsa, shu
+    jadvaldagi yo'nalishni teskari qilish yetarli.
+  */
+  "H.Ahmedova": "H.Ahmedov",
+};
+
+/** Ismni bir xil shaklga keltiradi; jadvalda bo'lmasa, o'zini qaytaradi. */
+export function ismniBirXil(ism: string): string {
+  return ISM_BIR_XIL[ism] ?? ism;
+}
+
 export const ASARLAR: Asar[] = [
   { kod: "A1", nom: "O'zbekiston Respublikasi Davlat madhiyasi", sher: "A.Oripov", musiqa: "M.Burhonov", turi: "madhiya", metod: FC },
   { kod: "A2", nom: "Maktabim", sher: "I.Muslim", musiqa: "F.Nazarov", sinf: 1, turi: "muallif", metod: FC },
@@ -477,8 +509,8 @@ export const AMALIYLAR: DasturMavzusi[] = ASARLAR.map((a) => ({
 export function asarMuallifi(a: Asar): string {
   if (a.turi === "xalq") return "Xalq qo'shig'i";
   const qismlar: string[] = [];
-  if (a.sher) qismlar.push(`${a.sher} she'ri`);
-  if (a.musiqa) qismlar.push(`${a.musiqa} musiqasi`);
+  if (a.sher) qismlar.push(`${ismniBirXil(a.sher)} she'ri`);
+  if (a.musiqa) qismlar.push(`${ismniBirXil(a.musiqa)} musiqasi`);
   return qismlar.join(", ") || "Muallifi ko'rsatilmagan";
 }
 

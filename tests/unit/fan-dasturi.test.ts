@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
+  ismniBirXil,
+  ISM_BIR_XIL,
   AMALIYLAR,
   ASARLAR,
   asarMuallifi,
@@ -171,6 +173,91 @@ describe("ta'lim natijalari", () => {
   it("har bir natija matni to'liq yozilgan", () => {
     for (const t of TALIM_NATIJALARI) {
       expect(t.matn.length, t.kod).toBeGreaterThan(80);
+    }
+  });
+});
+
+/**
+ * Muallif ismlari bir xil shaklda chiqishi kerak.
+ *
+ * Dastur hujjatida ayni muallif ikki xil yozilgan joylar bor; `sher` va
+ * `musiqa` maydonlari hujjatdagi holicha qoladi, ekranga esa
+ * `ISM_BIR_XIL` jadvali orqali bitta shakl chiqadi. Quyidagi testlar
+ * jadvalning eskirib qolishiga yo'l qo'ymaydi.
+ */
+describe("muallif ismlarining birxilligi", () => {
+  const BARCHA = [...ASARLAR, ...MUSTAQIL_TOPSHIRIQLAR.map((t) => t.asar)];
+  const xomIsmlar = BARCHA.flatMap((a) =>
+    [a.sher, a.musiqa].filter((x): x is string => Boolean(x)),
+  );
+
+  it("jadvaldagi har bir kalit haqiqatan ma'lumotda uchraydi", () => {
+    // Kalit ishlatilmay qolsa, u chalg'ituvchi bo'ladi.
+    for (const kalit of Object.keys(ISM_BIR_XIL)) {
+      expect(xomIsmlar, `${kalit} jadvalda bor, ma'lumotda yo'q`).toContain(
+        kalit,
+      );
+    }
+  });
+
+  it("jadval o'z-o'ziga yoki boshqa kalitga yo'naltirmaydi", () => {
+    for (const [kalit, qiymat] of Object.entries(ISM_BIR_XIL)) {
+      expect(qiymat, kalit).not.toBe(kalit);
+      // Zanjir bo'lmasin: qiymat yana kalit bo'lib chiqmasin.
+      expect(Object.keys(ISM_BIR_XIL), `${kalit} -> ${qiymat}`).not.toContain(
+        qiymat,
+      );
+    }
+  });
+
+  it("ekranga chiqadigan ismlar orasida variant qolmaydi", () => {
+    const korinadigan = new Set(xomIsmlar.map(ismniBirXil));
+
+    /*
+      Variantni topish uchun ismni kalitga keltiramiz: bosh harf
+      H/X farqi va familiyaning -a qo'shimchasi tashlab yuboriladi.
+      Shu kalit bo'yicha ikki xil ism qolsa, ular hali
+      birxillashtirilmagan variantlar bo'ladi.
+    */
+    const kalit = (ism: string) =>
+      ism
+        .toLowerCase()
+        .replace(/^x/, "h")
+        .replace(/\.x/, ".h")
+        .replace(/(ov|ev)a$/, "$1");
+
+    const guruhlar = new Map<string, Set<string>>();
+    for (const ism of korinadigan) {
+      const k = kalit(ism);
+      if (!guruhlar.has(k)) guruhlar.set(k, new Set());
+      guruhlar.get(k)!.add(ism);
+    }
+
+    const variantlar = [...guruhlar.values()]
+      .filter((g) => g.size > 1)
+      .map((g) => [...g]);
+    expect(variantlar, JSON.stringify(variantlar)).toEqual([]);
+  });
+
+  it("amaliy darslardagi muallif matni ham bir xil", async () => {
+    const { DASTUR_AMALIYLARI } = await import(
+      "@/content/courses/metodika-amaliy"
+    );
+    const matn = JSON.stringify(DASTUR_AMALIYLARI);
+    for (const kalit of Object.keys(ISM_BIR_XIL)) {
+      /*
+        Oddiy `toContain` yaramaydi: «A.Mansur» kaliti «A.Mansurov»
+        ning ichida ham bor. Shuning uchun ism butun so'z sifatida
+        qidiriladi — ortidan harf kelmasligi kerak.
+      */
+      const butunSoz = new RegExp(
+        `${kalit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\p{L}])`,
+        "u",
+      );
+      expect(
+        butunSoz.test(matn),
+        `darsda «${kalit}» qolib ketgan`,
+      ).toBe(false);
     }
   });
 });

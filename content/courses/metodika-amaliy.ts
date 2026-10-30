@@ -4416,7 +4416,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
     id: "met-a27",
     slug: "a27-tinchlik-bolsin-7-sinf",
     title: "A27: «Tinchlik bo'lsin» (7-sinf) — ifodali ijro va tahlil",
-    summary: "H.Ahmedova she'ri, X.Hasanova musiqasi, «Tinchlik bo'lsin». Tinchlik — yuqori sinf darajasida. Flipped Classroom metodida tahlil, ijro va o'rgatish rejasi.",
+    summary: "H.Ahmedov she'ri, X.Hasanova musiqasi, «Tinchlik bo'lsin». Tinchlik — yuqori sinf darajasida. Flipped Classroom metodida tahlil, ijro va o'rgatish rejasi.",
     durationMin: 80,
     bloom: "qollash",
     outcomeId: "on-met-22",
@@ -4437,7 +4437,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
           {
             kind: "royxat",
             items: [
-              "Asarni maktab darsligidan toping: H.Ahmedova she'ri, X.Hasanova musiqasi, «Tinchlik bo'lsin» (7-sinf).",
+              "Asarni maktab darsligidan toping: H.Ahmedov she'ri, X.Hasanova musiqasi, «Tinchlik bo'lsin» (7-sinf).",
               "Matnni ovoz chiqarib o'qing; tushunmagan so'zlarni yozib qo'ying.",
               "Ohangni ikki-uch marta tinglang va qaysi joy yodda qolganini belgilang.",
               "Diapazonni aniqlang: eng past va eng baland nota qaysi? Ovozingizga qulaymi?",
@@ -4458,7 +4458,7 @@ export const DASTUR_AMALIYLARI: Lesson[] = [
             kind: "royxat",
             items: [
               "Dastur kodi: A27 (amaliy mashg'ulot, 2 soat)",
-              "Muallif: H.Ahmedova she'ri, X.Hasanova musiqasi",
+              "Muallif: H.Ahmedov she'ri, X.Hasanova musiqasi",
               "Sinf: 7-sinf",
               "Turi: muallif qo'shig'i",
               "Mavzu: tinchlik — yuqori sinf darajasida",

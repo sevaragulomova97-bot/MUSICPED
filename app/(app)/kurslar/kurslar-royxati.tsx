@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLiveQuery } from "dexie-react-hooks";
-import { BookOpen, CheckCircle2, Clock3 } from "lucide-react";
+import { ArrowRight, BookOpen, Clock3 } from "lucide-react";
 import { useSession } from "@/components/session-provider";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,8 +10,25 @@ import { Progress } from "@/components/ui/progress";
 import { KURSLAR } from "@/content/courses";
 import { MODUL_BY_ID } from "@/content/modules";
 import { allProgress } from "@/lib/db/repo";
-import { BLOOM_NOMI } from "@/lib/domain/types";
 
+/**
+ * Kurslar ro'yxati — to'rtburchak oynachalar ko'rinishida.
+ *
+ * Ilgari bu sahifa beshala kursning **barcha** darslarini bir joyda
+ * chiqarardi. Dastur mavzulari qo'shilgach, u 110 dan ortiq bandga
+ * aylandi va sahifa vazifasini yo'qotdi: ro'yxatdan kurs tanlash
+ * uchun uzoq aylantirish kerak bo'lardi.
+ *
+ * Endi har bir kurs bitta oynacha: nomi, tavsifi, hajmi va o'zlashtirish
+ * foizi. Oynachaga bosilsa, shu kursning mavzulari sahifasiga o'tiladi —
+ * u yerda darslar ma'ruza, amaliy va qo'shimcha guruhlariga bo'lingan.
+ *
+ * Oynachalar `mp-float` bilan sekin qalqib turadi. Harakat har bir
+ * oynada boshqa vaqtda boshlanadi, shuning uchun ular bir-biriga
+ * qo'shilib ketmaydi. Kechikish va davr **indeks bo'yicha** hisoblanadi,
+ * tasodifiy emas: aks holda serverdagi va brauzerdagi qiymat farq qilib,
+ * gidratsiya xatosi chiqardi.
+ */
 export function KurslarRoyxati() {
   const { profile } = useSession();
   const userId = profile?.id;
@@ -22,6 +39,7 @@ export function KurslarRoyxati() {
   }, [userId]);
 
   const byLesson = new Map((progress ?? []).map((p) => [p.lessonId, p.percent]));
+  const jamiDars = KURSLAR.reduce((s, k) => s + k.lessons.length, 0);
 
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-6">
@@ -30,98 +48,82 @@ export function KurslarRoyxati() {
           O&apos;quv kurslari
         </h1>
         <p className="mt-1.5 text-sm text-ink-muted">
-          5 modul, {KURSLAR.reduce((s, k) => s + k.lessons.length, 0)} ta dars.
-          Har bir dars modulning aniq o&apos;quv natijasiga bog&apos;langan.
+          {KURSLAR.length} modul, {jamiDars} ta dars. Kursni tanlang — uning
+          mavzulari ma&apos;ruza, amaliy va qo&apos;shimcha bo&apos;limlarga
+          ajratilgan.
         </p>
       </div>
 
-      {KURSLAR.map((kurs) => {
-        const modul = MODUL_BY_ID.get(kurs.moduleId);
-        const tugagan = kurs.lessons.filter(
-          (l) => (byLesson.get(l.id) ?? 0) >= 100,
-        ).length;
-        const foiz = Math.round((tugagan / kurs.lessons.length) * 100);
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {KURSLAR.map((kurs, i) => {
+          const modul = MODUL_BY_ID.get(kurs.moduleId);
+          const tugagan = kurs.lessons.filter(
+            (l) => (byLesson.get(l.id) ?? 0) >= 100,
+          ).length;
+          const foiz = Math.round((tugagan / kurs.lessons.length) * 100);
+          const soat = Math.round(
+            kurs.lessons.reduce((s, l) => s + l.durationMin, 0) / 60,
+          );
 
-        return (
-          <Card key={kurs.slug}>
-            <CardContent className="p-5 lg:p-6">
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <h2 className="font-display text-lg font-semibold text-ink">
-                    <Link
-                      href={`/kurslar/${kurs.slug}`}
-                      className="rounded transition-colors hover:text-primary"
-                    >
+          return (
+            <li
+              key={kurs.slug}
+              className="mp-float"
+              style={{
+                animationDelay: `${(i % 5) * 0.9}s`,
+                animationDuration: `${6.5 + (i % 3) * 0.8}s`,
+              }}
+            >
+              <Link
+                href={`/kurslar/${kurs.slug}`}
+                className="group block h-full rounded-2xl"
+              >
+                <Card className="flex h-full flex-col transition-shadow duration-300 group-hover:border-primary/40 group-hover:shadow-lg group-focus-visible:border-primary/40">
+                  <CardContent className="flex flex-1 flex-col gap-3 p-5 pt-5">
+                    <div className="flex items-start justify-between gap-2">
+                      <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary-soft text-primary-ink">
+                        <BookOpen className="size-5" aria-hidden="true" />
+                      </span>
+                      {modul && (
+                        <Badge variant="primary">{modul.credits} ECTS</Badge>
+                      )}
+                    </div>
+
+                    <h2 className="font-display text-base font-semibold leading-snug text-ink transition-colors group-hover:text-primary">
                       {kurs.title}
-                    </Link>
-                  </h2>
-                  <p className="mt-1 text-sm text-ink-muted">{kurs.description}</p>
-                </div>
-                {modul && (
-                  <Badge variant="primary">{modul.credits} ECTS kredit</Badge>
-                )}
-              </div>
+                    </h2>
 
-              <div className="mt-4">
-                <Progress
-                  value={foiz}
-                  label={`${tugagan} / ${kurs.lessons.length} dars tugallandi`}
-                />
-              </div>
+                    <p className="line-clamp-3 flex-1 text-sm leading-relaxed text-ink-muted">
+                      {kurs.description}
+                    </p>
 
-              <ul className="mt-5 flex flex-col gap-2">
-                {kurs.lessons.map((dars) => {
-                  const pct = byLesson.get(dars.id) ?? 0;
-                  const done = pct >= 100;
-                  return (
-                    <li key={dars.id}>
-                      <Link
-                        href={`/kurslar/${kurs.slug}/${dars.slug}`}
-                        className="flex items-center gap-3 rounded-xl border border-border-subtle p-3.5 transition-colors hover:border-primary/40 hover:bg-primary-soft/40"
-                      >
-                        <span
-                          className={`grid size-9 shrink-0 place-items-center rounded-lg ${
-                            done
-                              ? "bg-success-soft text-success-ink"
-                              : "bg-surface-muted text-ink-muted"
-                          }`}
-                        >
-                          {done ? (
-                            <CheckCircle2 className="size-4" aria-hidden="true" />
-                          ) : (
-                            <BookOpen className="size-4" aria-hidden="true" />
-                          )}
-                        </span>
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-ink-muted">
+                      <Badge variant="neutral">{kurs.lessons.length} dars</Badge>
+                      <span className="flex items-center gap-1">
+                        <Clock3 className="size-3.5" aria-hidden="true" />≈ {soat}{" "}
+                        soat
+                      </span>
+                    </div>
 
-                        <span className="min-w-0 flex-1">
-                          <span className="block truncate text-sm font-medium text-ink">
-                            {dars.title}
-                          </span>
-                          <span className="block truncate text-xs text-ink-muted">
-                            {dars.summary}
-                          </span>
-                        </span>
+                    <Progress
+                      value={foiz}
+                      label={`${tugagan} / ${kurs.lessons.length} dars tugallandi`}
+                    />
 
-                        <span className="hidden shrink-0 items-center gap-2 sm:flex">
-                          <Badge variant="neutral">{BLOOM_NOMI[dars.bloom]}</Badge>
-                          <span className="flex items-center gap-1 text-xs text-ink-muted">
-                            <Clock3 className="size-3.5" aria-hidden="true" />
-                            {dars.durationMin} daq
-                          </span>
-                        </span>
-
-                        {pct > 0 && pct < 100 && (
-                          <Badge variant="warning">{pct}%</Badge>
-                        )}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </CardContent>
-          </Card>
-        );
-      })}
+                    <span className="flex items-center gap-1.5 text-sm font-medium text-primary">
+                      Mavzularni ko&apos;rish
+                      <ArrowRight
+                        className="size-4 transition-transform group-hover:translate-x-0.5"
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </CardContent>
+                </Card>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
