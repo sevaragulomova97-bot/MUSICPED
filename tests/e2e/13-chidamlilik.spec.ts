@@ -1,6 +1,13 @@
 import { readFileSync } from "node:fs";
 import { expect, test, type Page } from "@playwright/test";
-import { ADMIN, bazaniTozala, OQITUVCHI, sessiyaBer, TALABA } from "./yordamchi";
+import {
+  ADMIN,
+  bazaniTozala,
+  bezakniOchir,
+  OQITUVCHI,
+  sessiyaBer,
+  TALABA,
+} from "./yordamchi";
 
 /**
  * Nosoz muhit va nosoz ma'lumotda ilovaning xatti-harakati.
@@ -108,6 +115,14 @@ test.describe("Bildirishnomalar", () => {
 
 test.describe("Kurs sahifasi", () => {
   test("ro'yxatdan kursga, kursdan darsga va orqaga o'tiladi", async ({ page }) => {
+    /*
+      Bu test havolalarni tekshiradi, bezakni emas. Kurs oynachalari
+      qalqib turadi va Playwright bosishdan oldin elementning
+      to'xtashini kutadi — mashina band bo'lsa bu shart bajarilmay,
+      test tebranib qoladi. Harakatning o'zi `21-kurs-oynalari` da
+      alohida tekshiriladi.
+    */
+    await bezakniOchir(page);
     await sessiyaBer(page, TALABA);
     await page.goto("/kurslar/");
 

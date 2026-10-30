@@ -60,3 +60,22 @@ export async function bazaniTozala(page: Page) {
     );
   });
 }
+
+/**
+ * Bezak effektlarini o'chiradi (`html[data-effects="off"]`).
+ *
+ * Kurs oynachalari sekin qalqib turadi. Playwright esa bosish yoki
+ * hover'dan **oldin** elementning to'xtashini talab qiladi: ikki ketma-ket
+ * kadrda joyi bir xil bo'lishi kerak. Cheksiz animatsiyada bu shart
+ * mashina bandligiga qarab goh bajariladi, goh yo'q — test esa
+ * tebranib qoladi.
+ *
+ * Harakatning o'zini tekshiradigan testlar bor (`21-kurs-oynalari`),
+ * shuning uchun boshqa testlar uni o'chirib qo'yishi mumkin: ular
+ * havolani tekshiradi, bezakni emas.
+ */
+export async function bezakniOchir(page: Page) {
+  await page.addInitScript(() => {
+    window.localStorage.setItem("musicped.effects.v1", "off");
+  });
+}

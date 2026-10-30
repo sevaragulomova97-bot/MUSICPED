@@ -2434,6 +2434,27 @@ nishon olingan paytdagi harakatda. Mavjud ikki shart ham saqlandi:
 `html[data-effects="off"]` va `prefers-reduced-motion: reduce`
 harakatni umuman o'chiradi.
 
+**Testlar uchun bu yetarli bo'lmadi.** Keyingi to'liq yurgizishda
+ikkita test yana yiqildi va sabab aniqlandi: Playwright bosish yoki
+hover'dan **oldin** elementning to'xtashini talab qiladi, hover'da
+to'xtatish esa pointer yetib kelgandan **keyin** ishlaydi. Ya'ni
+to'xtatish odamga yordam beradi, Playwright ning oldindan tekshiruviga
+emas. Mashina band bo'lmaganda ikki kadr orasidagi siljish sezilmaydi
+va test o'tadi — band bo'lganda yiqiladi. Shuning uchun u goh o'tib,
+goh yiqilardi.
+
+**Qaror.** Bezakni tekshirmaydigan testlar uni o'chiradi
+(`bezakniOchir()` yordamchisi `musicped.effects.v1 = off` ni
+`addInitScript` orqali qo'yadi). Harakatning o'zi
+`21-kurs-oynalari` da tekshirilaveradi, lekin u yerda ham `hover()`
+o'rniga `page.mouse.move()` ishlatiladi — u elementning to'xtashini
+kutmaydi.
+
+**Nega test zaiflashtirilmadi.** `13-chidamlilik` baribir havolani
+haqiqiy bosadi va navigatsiyani tekshiradi; faqat bezak o'chiriladi.
+`force: true` bilan actionability tekshiruvini chetlab o'tish esa
+havolaning haqiqatan bosiladiganini tekshirmay qo'yardi.
+
 **Yondosh tuzatish.** Oynachani bosiladigan qilish uchun butun
 karta `<Link>` ichiga olingan edi; bu havolaning nomini oynacha
 ichidagi barcha matndan yig'ardi. `aria-label` bilan qisqartirish

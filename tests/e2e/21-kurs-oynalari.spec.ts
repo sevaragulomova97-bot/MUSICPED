@@ -84,10 +84,22 @@ test.describe("Kurs oynachalari", () => {
       await oyna.evaluate((el) => getComputedStyle(el).animationPlayState),
     ).toBe("running");
 
-    await oyna.hover();
-    expect(
-      await oyna.evaluate((el) => getComputedStyle(el).animationPlayState),
-    ).toBe("paused");
+    /*
+      `hover()` o'rniga sichqonchani to'g'ridan-to'g'ri suramiz:
+      `hover()` avval elementning to'xtashini kutadi, bu yerda esa
+      element aynan harakatda bo'lgani uchun kutish ma'nosiz.
+    */
+    const quti = await oyna.boundingBox();
+    expect(quti).not.toBeNull();
+    await page.mouse.move(
+      quti!.x + quti!.width / 2,
+      quti!.y + quti!.height / 2,
+    );
+    await expect
+      .poll(() =>
+        oyna.evaluate((el) => getComputedStyle(el).animationPlayState),
+      )
+      .toBe("paused");
   });
 
   test("bezak o'chirilsa qalqish to'xtaydi", async ({ page }) => {
